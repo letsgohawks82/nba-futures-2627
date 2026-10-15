@@ -1,0 +1,1201 @@
+date,start_et,away,home,cup_group,arena,game_no
+2026-10-20,3:00p,BOS,DET,False,Little Caesars Arena,1
+2026-10-20,7:00p,PHI,NYK,False,Madison Square Garden (IV),2
+2026-10-20,9:30p,OKC,SAS,False,Frost Bank Center,3
+2026-10-21,10:00p,GSW,LAL,False,Crypto.com Arena,4
+2026-10-21,10:00p,PHX,POR,False,Moda Center,5
+2026-10-21,10:30p,SAC,LAC,False,Intuit Dome,6
+2026-10-21,7:00p,ATL,ORL,False,Kia Center,7
+2026-10-21,7:00p,MIL,WAS,False,Capital One Arena,8
+2026-10-21,7:30p,CHA,BKN,False,Barclays Center,9
+2026-10-21,7:30p,MIN,MIA,False,Kaseya Center,10
+2026-10-21,7:30p,CHI,TOR,False,Scotiabank Arena,11
+2026-10-21,8:00p,UTA,MEM,False,FedExForum,12
+2026-10-21,8:00p,IND,NOP,False,Smoothie King Center,13
+2026-10-21,8:30p,DAL,HOU,False,Toyota Center,14
+2026-10-22,7:00p,CLE,PHI,False,Xfinity Mobile Arena,15
+2026-10-22,9:30p,DEN,OKC,False,Paycom Center,16
+2026-10-23,10:00p,MEM,GSW,False,Chase Center,17
+2026-10-23,10:00p,LAC,LAL,False,Crypto.com Arena,18
+2026-10-23,10:00p,POR,SAC,False,Golden 1 Center,19
+2026-10-23,7:00p,NYK,BOS,False,TD Garden,20
+2026-10-23,7:00p,ATL,CHA,False,Spectrum Center,21
+2026-10-23,7:00p,DAL,IND,False,Gainbridge Fieldhouse,22
+2026-10-23,7:00p,MIN,ORL,False,Kia Center,23
+2026-10-23,7:00p,TOR,WAS,False,Capital One Arena,24
+2026-10-23,8:00p,DET,MIA,False,Kaseya Center,25
+2026-10-23,8:00p,CHI,MIL,False,Fiserv Forum,26
+2026-10-23,9:30p,HOU,SAS,False,Moody Center,27
+2026-10-23,9:30p,NOP,UTA,False,Delta Center,28
+2026-10-24,10:00p,GSW,PHX,False,Mortgage Matchup Center,29
+2026-10-24,6:00p,MIA,CHA,False,Spectrum Center,30
+2026-10-24,7:30p,BKN,CLE,False,Rocket Arena,31
+2026-10-24,7:30p,MIL,PHI,False,Xfinity Mobile Arena,32
+2026-10-24,8:00p,HOU,ATL,False,State Farm Arena,33
+2026-10-24,8:00p,WAS,CHI,False,United Center,34
+2026-10-24,8:00p,SAS,DAL,False,American Airlines Center,35
+2026-10-24,9:00p,NOP,DEN,False,Ball Arena,36
+2026-10-25,5:00p,LAL,UTA,False,Delta Center,37
+2026-10-25,6:00p,IND,BKN,False,Barclays Center,38
+2026-10-25,7:00p,TOR,MIN,False,Target Center,39
+2026-10-25,7:00p,ORL,NYK,False,Madison Square Garden (IV),40
+2026-10-25,7:00p,LAC,OKC,False,Paycom Center,41
+2026-10-25,7:30p,DET,PHI,False,Xfinity Mobile Arena,42
+2026-10-25,9:00p,MEM,SAC,False,Golden 1 Center,43
+2026-10-26,10:00p,GSW,DEN,False,Ball Arena,44
+2026-10-26,7:00p,WAS,CHA,False,Spectrum Center,45
+2026-10-26,7:00p,MIN,CLE,False,Rocket Arena,46
+2026-10-26,7:30p,CHI,BOS,False,TD Garden,47
+2026-10-26,7:30p,DAL,MIA,False,Kaseya Center,48
+2026-10-26,8:00p,IND,MIL,False,Fiserv Forum,49
+2026-10-26,8:00p,PHX,OKC,False,Paycom Center,50
+2026-10-26,8:30p,ATL,HOU,False,Toyota Center,51
+2026-10-26,9:00p,MEM,UTA,False,Delta Center,52
+2026-10-27,11:00p,POR,LAL,False,Crypto.com Arena,53
+2026-10-27,7:30p,BKN,BOS,False,TD Garden,54
+2026-10-27,8:00p,DET,NYK,False,Madison Square Garden (IV),55
+2026-10-27,8:00p,SAC,SAS,False,Frost Bank Center,56
+2026-10-28,10:30p,LAL,LAC,False,Intuit Dome,57
+2026-10-28,7:00p,MIA,ATL,False,State Farm Arena,58
+2026-10-28,7:00p,WAS,CLE,False,Rocket Arena,59
+2026-10-28,7:00p,CHA,DET,False,Little Caesars Arena,60
+2026-10-28,7:00p,PHI,IND,False,Gainbridge Fieldhouse,61
+2026-10-28,7:30p,ORL,TOR,False,Scotiabank Arena,62
+2026-10-28,8:00p,NYK,CHI,False,United Center,63
+2026-10-28,8:00p,HOU,MIL,False,Fiserv Forum,64
+2026-10-28,8:00p,GSW,MIN,False,Target Center,65
+2026-10-28,8:00p,DEN,NOP,False,Smoothie King Center,66
+2026-10-28,9:00p,SAS,UTA,False,Delta Center,67
+2026-10-28,9:30p,OKC,DAL,False,American Airlines Center,68
+2026-10-29,10:00p,MEM,POR,False,Moda Center,69
+2026-10-29,7:00p,CLE,ATL,False,State Farm Arena,70
+2026-10-29,8:00p,SAC,NOP,False,Smoothie King Center,71
+2026-10-30,10:00p,LAL,GSW,True,Chase Center,72
+2026-10-30,10:00p,DEN,PHX,True,Mortgage Matchup Center,73
+2026-10-30,7:00p,CHA,WAS,True,Capital One Arena,74
+2026-10-30,7:30p,DET,BKN,True,Barclays Center,75
+2026-10-30,7:30p,CHI,BOS,True,TD Garden,76
+2026-10-30,7:30p,NYK,PHI,True,Xfinity Mobile Arena,77
+2026-10-30,7:30p,ORL,TOR,True,Scotiabank Arena,78
+2026-10-30,8:00p,HOU,DAL,True,American Airlines Center,79
+2026-10-30,8:00p,IND,MIA,True,Kaseya Center,80
+2026-10-30,8:00p,LAC,MIN,True,Target Center,81
+2026-10-31,3:00p,POR,UTA,False,Delta Center,82
+2026-10-31,6:00p,PHI,CHA,False,Spectrum Center,83
+2026-10-31,7:00p,ATL,NOP,False,Smoothie King Center,84
+2026-10-31,8:00p,SAC,MEM,False,FedExForum,85
+2026-10-31,8:00p,CLE,MIL,False,Fiserv Forum,86
+2026-10-31,8:00p,MIN,SAS,False,Frost Bank Center,87
+2026-10-31,8:30p,OKC,HOU,False,Toyota Center,88
+2026-11-01,3:30p,BOS,ORL,False,Kia Center,89
+2026-11-01,5:00p,BKN,IND,False,Gainbridge Fieldhouse,90
+2026-11-01,8:30p,LAC,GSW,False,Chase Center,91
+2026-11-01,9:00p,TOR,LAL,False,Crypto.com Arena,92
+2026-11-02,10:00p,PHX,GSW,False,Chase Center,93
+2026-11-02,10:00p,TOR,LAC,False,Intuit Dome,94
+2026-11-02,10:00p,MIA,LAL,False,Crypto.com Arena,95
+2026-11-02,7:00p,OKC,CLE,False,Rocket Arena,96
+2026-11-02,7:30p,DET,CHA,False,Spectrum Center,97
+2026-11-02,7:30p,ATL,IND,False,Gainbridge Fieldhouse,98
+2026-11-02,7:30p,BKN,NYK,False,Madison Square Garden (IV),99
+2026-11-02,7:30p,WAS,ORL,False,Kia Center,100
+2026-11-02,7:30p,CHI,PHI,False,Xfinity Mobile Arena,101
+2026-11-02,8:00p,SAC,DAL,False,American Airlines Center,102
+2026-11-02,8:00p,NOP,MEM,False,FedExForum,103
+2026-11-02,8:00p,MIL,MIN,False,Target Center,104
+2026-11-02,8:30p,BOS,HOU,False,Toyota Center,105
+2026-11-02,8:30p,UTA,SAS,False,Frost Bank Center,106
+2026-11-02,9:00p,POR,DEN,False,Ball Arena,107
+2026-11-04,10:00p,LAL,SAC,False,Golden 1 Center,108
+2026-11-04,10:30p,MIA,LAC,False,Intuit Dome,109
+2026-11-04,7:00p,PHI,DET,False,Little Caesars Arena,110
+2026-11-04,7:00p,ATL,WAS,False,Capital One Arena,111
+2026-11-04,7:30p,CHA,BKN,False,Barclays Center,112
+2026-11-04,7:30p,MIL,BOS,False,TD Garden,113
+2026-11-04,7:30p,CHI,NYK,False,Madison Square Garden (IV),114
+2026-11-04,8:00p,IND,MEM,False,FedExForum,115
+2026-11-04,8:00p,UTA,NOP,False,Smoothie King Center,116
+2026-11-04,8:00p,CLE,OKC,False,Paycom Center,117
+2026-11-04,8:30p,MIN,HOU,False,Toyota Center,118
+2026-11-04,9:00p,TOR,DEN,False,Ball Arena,119
+2026-11-04,9:00p,POR,PHX,False,Mortgage Matchup Center,120
+2026-11-04,9:30p,DAL,SAS,False,Frost Bank Center,121
+2026-11-05,10:00p,MIA,GSW,False,Chase Center,122
+2026-11-05,9:00p,ORL,PHX,False,Mortgage Matchup Center,123
+2026-11-06,10:00p,POR,LAL,True,Crypto.com Arena,124
+2026-11-06,10:00p,SAS,SAC,True,Golden 1 Center,125
+2026-11-06,7:00p,WAS,ATL,True,State Farm Arena,126
+2026-11-06,7:00p,BOS,CHA,True,Spectrum Center,127
+2026-11-06,7:30p,PHI,CLE,True,Rocket Arena,128
+2026-11-06,8:00p,UTA,DAL,True,American Airlines Center,129
+2026-11-06,8:00p,OKC,MEM,True,FedExForum,130
+2026-11-06,8:00p,TOR,MIL,True,Fiserv Forum,131
+2026-11-06,8:00p,MIN,NOP,True,Smoothie King Center,132
+2026-11-07,10:00p,SAS,POR,False,Moda Center,133
+2026-11-07,5:00p,DEN,IND,False,Mexico City Arena,134
+2026-11-07,7:30p,BKN,ATL,False,State Farm Arena,135
+2026-11-07,8:00p,NYK,CLE,False,Rocket Arena,136
+2026-11-07,8:00p,WAS,OKC,False,Paycom Center,137
+2026-11-07,8:30p,ORL,GSW,False,Chase Center,138
+2026-11-07,9:00p,HOU,PHX,False,Mortgage Matchup Center,139
+2026-11-08,3:30p,PHI,CHI,False,United Center,140
+2026-11-08,6:00p,LAL,DET,False,Little Caesars Arena,141
+2026-11-08,7:00p,UTA,MIN,False,Target Center,142
+2026-11-08,7:30p,BKN,DAL,False,American Airlines Center,143
+2026-11-08,8:00p,BOS,MIL,False,Fiserv Forum,144
+2026-11-08,9:00p,NOP,LAC,False,Intuit Dome,145
+2026-11-08,9:00p,MIA,SAC,False,Golden 1 Center,146
+2026-11-09,10:00p,NOP,GSW,False,Chase Center,147
+2026-11-09,7:00p,LAL,ATL,False,State Farm Arena,148
+2026-11-09,7:00p,CLE,CHA,False,Spectrum Center,149
+2026-11-09,7:00p,WAS,DET,False,Little Caesars Arena,150
+2026-11-09,7:30p,MEM,TOR,False,Scotiabank Arena,151
+2026-11-09,8:00p,IND,DAL,False,American Airlines Center,152
+2026-11-09,8:30p,DEN,HOU,False,Toyota Center,153
+2026-11-09,9:00p,SAS,PHX,False,Mortgage Matchup Center,154
+2026-11-10,10:00p,ORL,SAC,False,Golden 1 Center,155
+2026-11-10,11:00p,OKC,POR,False,Moda Center,156
+2026-11-10,7:30p,MIL,NYK,False,Madison Square Garden (IV),157
+2026-11-10,8:00p,BOS,PHI,False,Xfinity Mobile Arena,158
+2026-11-10,9:00p,LAC,PHX,False,Mortgage Matchup Center,159
+2026-11-10,9:00p,MIA,UTA,False,Delta Center,160
+2026-11-11,10:00p,OKC,POR,False,Moda Center,161
+2026-11-11,7:00p,WAS,IND,False,Gainbridge Fieldhouse,162
+2026-11-11,7:00p,CLE,NYK,False,Madison Square Garden (IV),163
+2026-11-11,7:00p,BOS,TOR,False,Scotiabank Arena,164
+2026-11-11,8:00p,SAS,CHI,False,United Center,165
+2026-11-11,8:00p,DEN,MEM,False,FedExForum,166
+2026-11-11,8:00p,LAL,MIL,False,Fiserv Forum,167
+2026-11-11,8:00p,BKN,NOP,False,Smoothie King Center,168
+2026-11-11,9:00p,ORL,UTA,False,Delta Center,169
+2026-11-11,9:30p,GSW,HOU,False,Toyota Center,170
+2026-11-12,7:00p,TOR,PHI,False,Xfinity Mobile Arena,171
+2026-11-12,7:00p,DET,WAS,False,Capital One Arena,172
+2026-11-12,8:00p,DAL,MIN,False,Target Center,173
+2026-11-12,9:00p,CHA,PHX,False,Mortgage Matchup Center,174
+2026-11-13,10:00p,POR,SAC,True,Golden 1 Center,175
+2026-11-13,10:30p,OKC,LAC,True,Intuit Dome,176
+2026-11-13,7:00p,NYK,IND,True,Gainbridge Fieldhouse,177
+2026-11-13,7:00p,MIL,ORL,True,Kia Center,178
+2026-11-13,8:00p,ATL,CHI,True,United Center,179
+2026-11-13,8:00p,CLE,MIA,True,Kaseya Center,180
+2026-11-13,8:00p,MEM,NOP,True,Smoothie King Center,181
+2026-11-13,8:30p,UTA,HOU,True,Toyota Center,182
+2026-11-13,9:30p,GSW,SAS,True,Frost Bank Center,183
+2026-11-14,7:00p,DEN,NOP,False,Smoothie King Center,184
+2026-11-14,7:30p,DAL,CLE,False,Rocket Arena,185
+2026-11-14,8:00p,BKN,MEM,False,FedExForum,186
+2026-11-14,8:00p,DET,MIA,False,Kaseya Center,187
+2026-11-14,8:00p,CHI,MIN,False,Target Center,188
+2026-11-15,1:00p,IND,PHI,False,Xfinity Mobile Arena,189
+2026-11-15,4:00p,LAL,PHX,False,Mortgage Matchup Center,190
+2026-11-15,4:30p,CHA,LAC,False,Intuit Dome,191
+2026-11-15,5:00p,SAS,UTA,False,Delta Center,192
+2026-11-15,6:00p,DAL,BOS,False,TD Garden,193
+2026-11-15,6:00p,NYK,TOR,False,Scotiabank Arena,194
+2026-11-15,7:00p,HOU,WAS,False,Capital One Arena,195
+2026-11-15,8:00p,ATL,MIL,False,Fiserv Forum,196
+2026-11-15,9:00p,OKC,SAC,False,Golden 1 Center,197
+2026-11-16,7:00p,ORL,BOS,False,TD Garden,198
+2026-11-16,7:00p,CHI,CLE,False,Rocket Arena,199
+2026-11-16,7:00p,MEM,WAS,False,Capital One Arena,200
+2026-11-16,7:30p,PHI,BKN,False,Barclays Center,201
+2026-11-16,7:30p,HOU,MIA,False,Kaseya Center,202
+2026-11-16,8:00p,POR,MIN,False,Target Center,203
+2026-11-16,8:00p,GSW,NOP,False,Smoothie King Center,204
+2026-11-16,9:00p,PHX,DEN,False,Ball Arena,205
+2026-11-17,10:00p,CHA,LAL,False,Crypto.com Arena,206
+2026-11-17,11:00p,UTA,LAC,False,Intuit Dome,207
+2026-11-17,7:30p,NYK,TOR,False,Scotiabank Arena,208
+2026-11-17,8:00p,POR,MIN,False,Target Center,209
+2026-11-17,8:00p,DET,SAS,False,Frost Bank Center,210
+2026-11-18,10:00p,UTA,LAL,False,Crypto.com Arena,211
+2026-11-18,10:00p,PHX,SAC,False,Golden 1 Center,212
+2026-11-18,7:00p,MEM,CLE,False,Rocket Arena,213
+2026-11-18,7:00p,HOU,IND,False,Gainbridge Fieldhouse,214
+2026-11-18,7:00p,MIL,MIA,False,Kaseya Center,215
+2026-11-18,7:00p,PHI,ORL,False,Kia Center,216
+2026-11-18,7:30p,CHI,BKN,False,Barclays Center,217
+2026-11-18,7:30p,WAS,TOR,False,Scotiabank Arena,218
+2026-11-18,8:00p,DET,NOP,False,Smoothie King Center,219
+2026-11-18,8:00p,ATL,OKC,False,Paycom Center,220
+2026-11-18,9:00p,BOS,DEN,False,Ball Arena,221
+2026-11-18,9:30p,GSW,DAL,False,American Airlines Center,222
+2026-11-19,8:00p,GSW,MEM,False,FedExForum,223
+2026-11-19,8:00p,POR,MIL,False,Fiserv Forum,224
+2026-11-19,8:00p,NYK,MIN,False,Target Center,225
+2026-11-19,8:00p,LAC,SAS,False,Frost Bank Center,226
+2026-11-20,10:00p,HOU,DEN,True,Ball Arena,227
+2026-11-20,10:00p,SAC,LAL,True,Crypto.com Arena,228
+2026-11-20,7:00p,CHA,ATL,True,State Farm Arena,229
+2026-11-20,7:30p,ORL,BKN,True,Barclays Center,230
+2026-11-20,7:30p,IND,CLE,True,Rocket Arena,231
+2026-11-20,7:30p,TOR,DET,True,Little Caesars Arena,232
+2026-11-20,8:00p,WAS,CHI,True,United Center,233
+2026-11-20,8:00p,NOP,OKC,True,Paycom Center,234
+2026-11-20,9:30p,PHX,UTA,True,Delta Center,235
+2026-11-21,10:00p,BOS,SAC,False,Golden 1 Center,236
+2026-11-21,1:00p,MIL,PHI,False,Xfinity Mobile Arena,237
+2026-11-21,7:30p,POR,NYK,False,Madison Square Garden (IV),238
+2026-11-21,8:00p,LAC,DAL,False,American Airlines Center,239
+2026-11-21,8:00p,MEM,MIN,False,Target Center,240
+2026-11-21,8:00p,NOP,SAS,False,Frost Bank Center,241
+2026-11-22,3:30p,DET,ATL,False,State Farm Arena,242
+2026-11-22,6:00p,OKC,MIA,False,Kaseya Center,243
+2026-11-22,7:00p,DEN,CHI,False,United Center,244
+2026-11-22,7:00p,DAL,UTA,False,Delta Center,245
+2026-11-22,7:00p,ORL,WAS,False,Capital One Arena,246
+2026-11-22,8:00p,IND,NYK,False,Madison Square Garden (IV),247
+2026-11-22,8:30p,BOS,GSW,False,Chase Center,248
+2026-11-23,10:00p,UTA,LAL,False,Crypto.com Arena,249
+2026-11-23,10:00p,SAS,SAC,False,Golden 1 Center,250
+2026-11-23,7:00p,MEM,CHA,False,Spectrum Center,251
+2026-11-23,7:00p,POR,PHI,False,Xfinity Mobile Arena,252
+2026-11-23,7:30p,OKC,IND,False,Gainbridge Fieldhouse,253
+2026-11-23,7:30p,BKN,MIN,False,Target Center,254
+2026-11-23,7:30p,MIL,TOR,False,Scotiabank Arena,255
+2026-11-23,8:00p,CLE,CHI,False,United Center,256
+2026-11-23,8:00p,PHX,NOP,False,Smoothie King Center,257
+2026-11-23,8:30p,LAC,HOU,False,Toyota Center,258
+2026-11-24,10:00p,DAL,DEN,True,Ball Arena,259
+2026-11-24,7:00p,DET,ORL,True,Kia Center,260
+2026-11-24,8:00p,BOS,WAS,True,Capital One Arena,261
+2026-11-25,10:00p,SAC,GSW,True,Chase Center,262
+2026-11-25,10:00p,SAS,POR,True,Moda Center,263
+2026-11-25,5:00p,MIA,PHI,True,Xfinity Mobile Arena,264
+2026-11-25,7:00p,CHI,CHA,True,Spectrum Center,265
+2026-11-25,7:30p,CLE,NYK,True,Madison Square Garden (IV),266
+2026-11-25,7:30p,MIN,OKC,True,Paycom Center,267
+2026-11-25,8:00p,LAC,MEM,True,FedExForum,268
+2026-11-25,8:00p,BKN,MIL,True,Fiserv Forum,269
+2026-11-25,8:30p,PHX,HOU,True,Toyota Center,270
+2026-11-27,7:00p,MIA,NYK,True,Madison Square Garden (IV),271
+2026-11-27,7:30p,MIL,DET,True,Little Caesars Arena,272
+2026-11-27,7:30p,PHI,IND,True,Gainbridge Fieldhouse,273
+2026-11-27,7:30p,BKN,TOR,True,Scotiabank Arena,274
+2026-11-27,8:00p,ATL,BOS,True,TD Garden,275
+2026-11-27,8:30p,MEM,MIN,True,Target Center,276
+2026-11-27,9:00p,DAL,PHX,True,Mortgage Matchup Center,277
+2026-11-27,9:30p,NOP,LAC,True,Intuit Dome,278
+2026-11-27,9:30p,GSW,POR,True,Moda Center,279
+2026-11-27,9:30p,LAL,SAS,True,Frost Bank Center,280
+2026-11-27,9:30p,DEN,UTA,True,Delta Center,281
+2026-11-28,5:00p,ORL,WAS,False,Capital One Arena,282
+2026-11-28,6:00p,BKN,CHA,False,Spectrum Center,283
+2026-11-28,8:00p,IND,CHI,False,United Center,284
+2026-11-28,8:00p,OKC,MIL,False,Fiserv Forum,285
+2026-11-28,8:30p,PHI,HOU,False,Toyota Center,286
+2026-11-29,4:00p,LAL,MEM,False,FedExForum,287
+2026-11-29,4:00p,BOS,SAS,False,Frost Bank Center,288
+2026-11-29,5:00p,PHX,UTA,False,Delta Center,289
+2026-11-29,6:00p,MIA,CLE,False,Rocket Arena,290
+2026-11-29,6:00p,ORL,DET,False,Little Caesars Arena,291
+2026-11-29,6:00p,ATL,NYK,False,Madison Square Garden (IV),292
+2026-11-29,6:00p,NOP,POR,False,Moda Center,293
+2026-11-29,6:00p,DEN,TOR,False,Scotiabank Arena,294
+2026-11-29,8:30p,LAC,GSW,False,Chase Center,295
+2026-11-29,9:00p,MIN,SAC,False,Golden 1 Center,296
+2026-11-30,10:00p,NOP,SAC,False,Golden 1 Center,297
+2026-11-30,7:00p,WAS,CHA,False,Spectrum Center,298
+2026-11-30,7:00p,DEN,DET,False,Little Caesars Arena,299
+2026-11-30,7:30p,OKC,BKN,False,Barclays Center,300
+2026-11-30,7:30p,LAL,HOU,False,Toyota Center,301
+2026-11-30,8:00p,BOS,DAL,False,American Airlines Center,302
+2026-11-30,8:00p,SAS,MIL,False,Fiserv Forum,303
+2026-12-01,10:00p,MIN,POR,False,Moda Center,304
+2026-12-01,11:00p,UTA,GSW,False,Chase Center,305
+2026-12-01,7:00p,IND,CLE,False,Rocket Arena,306
+2026-12-01,7:00p,MEM,PHI,False,Xfinity Mobile Arena,307
+2026-12-01,7:30p,ATL,MIA,False,Kaseya Center,308
+2026-12-01,8:00p,NYK,CHI,False,United Center,309
+2026-12-01,8:30p,TOR,HOU,False,Toyota Center,310
+2026-12-01,9:00p,LAC,PHX,False,Mortgage Matchup Center,311
+2026-12-02,10:30p,MIN,LAC,False,Intuit Dome,312
+2026-12-02,7:00p,MEM,DET,False,Little Caesars Arena,313
+2026-12-02,7:00p,DEN,PHI,False,Xfinity Mobile Arena,314
+2026-12-02,7:30p,CHA,BOS,False,TD Garden,315
+2026-12-02,8:00p,ORL,DAL,False,American Airlines Center,316
+2026-12-02,8:00p,NYK,MIL,False,Fiserv Forum,317
+2026-12-02,8:00p,LAL,NOP,False,Smoothie King Center,318
+2026-12-02,8:00p,BKN,OKC,False,Paycom Center,319
+2026-12-02,9:00p,SAC,PHX,False,Mortgage Matchup Center,320
+2026-12-03,10:00p,UTA,POR,False,Moda Center,321
+2026-12-03,7:00p,IND,ATL,False,State Farm Arena,322
+2026-12-03,7:30p,WAS,MIA,False,Kaseya Center,323
+2026-12-03,8:00p,CLE,CHI,False,United Center,324
+2026-12-03,8:00p,TOR,SAS,False,Frost Bank Center,325
+2026-12-12,10:00p,ATL,POR,False,Moda Center,326
+2026-12-12,5:00p,MIL,MEM,False,FedExForum,327
+2026-12-12,7:00p,CHA,WAS,False,Capital One Arena,328
+2026-12-12,7:30p,ORL,PHI,False,Xfinity Mobile Arena,329
+2026-12-12,8:00p,GSW,CLE,False,Rocket Arena,330
+2026-12-12,8:30p,NYK,MIA,False,Kaseya Center,331
+2026-12-12,9:00p,MIN,PHX,False,Mortgage Matchup Center,332
+2026-12-12,9:30p,DEN,UTA,False,Delta Center,333
+2026-12-13,3:00p,BOS,BKN,False,Barclays Center,334
+2026-12-13,3:30p,TOR,OKC,False,Paycom Center,335
+2026-12-13,5:00p,DET,IND,False,Gainbridge Fieldhouse,336
+2026-12-13,6:00p,HOU,CHI,False,United Center,337
+2026-12-13,7:00p,LAC,SAS,False,Frost Bank Center,338
+2026-12-13,9:00p,NOP,SAC,False,Golden 1 Center,339
+2026-12-14,10:00p,NOP,LAL,False,Crypto.com Arena,340
+2026-12-14,7:00p,TOR,CHA,False,Spectrum Center,341
+2026-12-14,7:00p,BKN,DET,False,Little Caesars Arena,342
+2026-12-14,7:00p,PHI,ORL,False,Kia Center,343
+2026-12-14,7:30p,WAS,BOS,False,TD Garden,344
+2026-12-14,8:00p,MIA,CHI,False,United Center,345
+2026-12-14,8:00p,MIL,DAL,False,American Airlines Center,346
+2026-12-14,8:00p,GSW,MEM,False,FedExForum,347
+2026-12-14,8:30p,NYK,HOU,False,Toyota Center,348
+2026-12-14,9:00p,ATL,PHX,False,Mortgage Matchup Center,349
+2026-12-14,9:00p,MIN,UTA,False,Delta Center,350
+2026-12-15,11:00p,DEN,POR,False,Moda Center,351
+2026-12-15,8:00p,SAS,CLE,False,Rocket Arena,352
+2026-12-16,7:00p,WAS,BOS,False,TD Garden,353
+2026-12-16,7:00p,LAC,CHA,False,Spectrum Center,354
+2026-12-16,7:00p,PHX,DET,False,Little Caesars Arena,355
+2026-12-16,7:00p,GSW,IND,False,Gainbridge Fieldhouse,356
+2026-12-16,7:00p,CLE,ORL,False,Kia Center,357
+2026-12-16,7:30p,DAL,BKN,False,Barclays Center,358
+2026-12-16,7:30p,SAS,TOR,False,Scotiabank Arena,359
+2026-12-16,8:00p,UTA,CHI,False,United Center,360
+2026-12-16,8:00p,MIA,MEM,False,FedExForum,361
+2026-12-16,8:00p,NYK,NOP,False,Smoothie King Center,362
+2026-12-16,8:00p,SAC,OKC,False,Paycom Center,363
+2026-12-16,8:30p,MIL,HOU,False,Toyota Center,364
+2026-12-16,9:30p,LAL,MIN,False,Target Center,365
+2026-12-17,7:00p,POR,IND,False,Gainbridge Fieldhouse,366
+2026-12-17,7:00p,DAL,PHI,False,Xfinity Mobile Arena,367
+2026-12-17,9:00p,ATL,DEN,False,Ball Arena,368
+2026-12-18,7:00p,OKC,CHA,False,Spectrum Center,369
+2026-12-18,7:00p,LAC,MIA,False,Kaseya Center,370
+2026-12-18,7:00p,NYK,WAS,False,Capital One Arena,371
+2026-12-18,7:30p,ORL,BKN,False,Barclays Center,372
+2026-12-18,7:30p,UTA,BOS,False,TD Garden,373
+2026-12-18,7:30p,CLE,DET,False,Little Caesars Arena,374
+2026-12-18,7:30p,GSW,TOR,False,Scotiabank Arena,375
+2026-12-18,8:00p,HOU,MEM,False,FedExForum,376
+2026-12-18,8:00p,PHX,MIL,False,Fiserv Forum,377
+2026-12-18,8:00p,LAL,MIN,False,Target Center,378
+2026-12-18,8:00p,SAC,NOP,False,Smoothie King Center,379
+2026-12-18,8:00p,CHI,SAS,False,Frost Bank Center,380
+2026-12-19,6:00p,POR,CHA,False,Spectrum Center,381
+2026-12-19,7:00p,ORL,ATL,False,State Farm Arena,382
+2026-12-19,8:00p,CHI,DAL,False,American Airlines Center,383
+2026-12-19,9:00p,LAL,DEN,False,Ball Arena,384
+2026-12-20,10:00p,IND,LAC,False,Intuit Dome,385
+2026-12-20,3:00p,WAS,BKN,False,Barclays Center,386
+2026-12-20,3:30p,HOU,TOR,False,Scotiabank Arena,387
+2026-12-20,4:00p,PHX,MEM,False,FedExForum,388
+2026-12-20,6:00p,UTA,CLE,False,Rocket Arena,389
+2026-12-20,6:00p,SAC,MIA,False,Kaseya Center,390
+2026-12-20,7:00p,OKC,ATL,False,State Farm Arena,391
+2026-12-20,7:00p,SAS,NOP,False,Smoothie King Center,392
+2026-12-20,8:00p,DET,BOS,False,TD Garden,393
+2026-12-20,8:00p,GSW,MIL,False,Fiserv Forum,394
+2026-12-21,10:00p,IND,LAL,False,Crypto.com Arena,395
+2026-12-21,10:30p,DEN,LAC,False,Intuit Dome,396
+2026-12-21,7:00p,PHI,CHA,False,Spectrum Center,397
+2026-12-21,7:00p,NYK,CLE,False,Rocket Arena,398
+2026-12-21,7:00p,SAC,ORL,False,Kia Center,399
+2026-12-21,7:30p,POR,BKN,False,Barclays Center,400
+2026-12-21,7:30p,CHI,MIA,False,Kaseya Center,401
+2026-12-21,8:00p,PHX,MIN,False,Target Center,402
+2026-12-21,8:00p,MEM,NOP,False,Smoothie King Center,403
+2026-12-21,8:00p,MIL,SAS,False,Frost Bank Center,404
+2026-12-22,10:30p,DAL,GSW,False,Chase Center,405
+2026-12-22,7:00p,TOR,WAS,False,Capital One Arena,406
+2026-12-22,8:00p,DET,OKC,False,Paycom Center,407
+2026-12-23,10:00p,DEN,LAL,False,Crypto.com Arena,408
+2026-12-23,10:00p,DAL,SAC,False,Golden 1 Center,409
+2026-12-23,10:30p,GSW,LAC,False,Intuit Dome,410
+2026-12-23,7:00p,DET,ATL,False,State Farm Arena,411
+2026-12-23,7:00p,CHA,ORL,False,Kia Center,412
+2026-12-23,7:00p,CLE,WAS,False,Capital One Arena,413
+2026-12-23,7:30p,SAS,BKN,False,Barclays Center,414
+2026-12-23,7:30p,POR,BOS,False,TD Garden,415
+2026-12-23,7:30p,CHI,MIA,False,Kaseya Center,416
+2026-12-23,7:30p,UTA,NYK,False,Madison Square Garden (IV),417
+2026-12-23,7:30p,HOU,PHI,False,Xfinity Mobile Arena,418
+2026-12-23,8:00p,TOR,MEM,False,FedExForum,419
+2026-12-23,8:00p,MIN,MIL,False,Fiserv Forum,420
+2026-12-23,8:00p,OKC,NOP,False,Smoothie King Center,421
+2026-12-23,9:00p,IND,PHX,False,Mortgage Matchup Center,422
+2026-12-25,10:30p,DEN,GSW,False,Chase Center,423
+2026-12-25,12:00p,SAS,NYK,False,Madison Square Garden (IV),424
+2026-12-25,2:30p,MIA,BOS,False,TD Garden,425
+2026-12-25,5:00p,PHI,LAL,False,Crypto.com Arena,426
+2026-12-25,8:00p,OKC,MIN,False,Target Center,427
+2026-12-26,10:30p,MEM,LAC,False,Intuit Dome,428
+2026-12-26,1:00p,POR,WAS,False,Capital One Arena,429
+2026-12-26,3:30p,CHA,ATL,False,State Farm Arena,430
+2026-12-26,5:00p,IND,UTA,False,Delta Center,431
+2026-12-26,6:00p,NOP,BKN,False,Barclays Center,432
+2026-12-26,7:00p,TOR,ORL,False,Kia Center,433
+2026-12-26,8:00p,DET,CHI,False,United Center,434
+2026-12-26,8:00p,PHX,DAL,False,American Airlines Center,435
+2026-12-27,3:30p,OKC,HOU,False,Toyota Center,436
+2026-12-27,6:00p,WAS,CLE,False,Rocket Arena,437
+2026-12-27,6:00p,CHA,MIA,False,Kaseya Center,438
+2026-12-27,6:00p,BKN,NYK,False,Madison Square Garden (IV),439
+2026-12-27,6:00p,MIL,ORL,False,Kia Center,440
+2026-12-27,6:00p,UTA,SAC,False,Golden 1 Center,441
+2026-12-27,7:00p,POR,DET,False,Little Caesars Arena,442
+2026-12-27,7:00p,ATL,SAS,False,Frost Bank Center,443
+2026-12-27,8:00p,IND,DEN,False,Ball Arena,444
+2026-12-27,8:30p,MIN,GSW,False,Chase Center,445
+2026-12-27,9:00p,PHI,LAC,False,Intuit Dome,446
+2026-12-27,9:00p,MEM,LAL,False,Crypto.com Arena,447
+2026-12-28,10:30p,MIN,DEN,False,Ball Arena,448
+2026-12-28,7:30p,NOP,TOR,False,Scotiabank Arena,449
+2026-12-28,8:00p,CLE,BOS,False,TD Garden,450
+2026-12-28,9:00p,GSW,PHX,False,Mortgage Matchup Center,451
+2026-12-29,10:00p,BKN,POR,False,Moda Center,452
+2026-12-29,10:00p,PHI,SAC,False,Golden 1 Center,453
+2026-12-29,10:30p,HOU,LAL,False,Crypto.com Arena,454
+2026-12-29,7:00p,CHI,ATL,False,State Farm Arena,455
+2026-12-29,7:00p,ORL,CHA,False,Spectrum Center,456
+2026-12-29,7:00p,LAC,IND,False,Gainbridge Fieldhouse,457
+2026-12-29,8:00p,MIA,DAL,False,American Airlines Center,458
+2026-12-29,8:00p,SAS,MEM,False,FedExForum,459
+2026-12-29,8:00p,MIL,OKC,False,Paycom Center,460
+2026-12-30,10:00p,HOU,GSW,False,Chase Center,461
+2026-12-30,7:00p,NOP,DET,False,Little Caesars Arena,462
+2026-12-30,7:30p,WAS,TOR,False,Scotiabank Arena,463
+2026-12-30,8:00p,BOS,CHI,False,United Center,464
+2026-12-30,9:00p,PHI,PHX,False,Mortgage Matchup Center,465
+2026-12-30,9:00p,NYK,UTA,False,Delta Center,466
+2026-12-31,1:00p,SAS,CHA,False,Spectrum Center,467
+2026-12-31,3:00p,MIL,ATL,False,State Farm Arena,468
+2026-12-31,3:00p,LAC,CLE,False,Rocket Arena,469
+2026-12-31,3:00p,ORL,IND,False,Gainbridge Fieldhouse,470
+2026-12-31,4:00p,DEN,MIN,False,Target Center,471
+2026-12-31,6:00p,BKN,SAC,False,Golden 1 Center,472
+2026-12-31,8:00p,LAL,NOP,False,Smoothie King Center,473
+2026-12-31,8:00p,MIA,OKC,False,Paycom Center,474
+2026-12-31,9:00p,NYK,PHX,False,Mortgage Matchup Center,475
+2027-01-01,5:00p,SAS,WAS,False,Capital One Arena,476
+2027-01-01,7:30p,ORL,DET,False,Little Caesars Arena,477
+2027-01-01,7:30p,LAC,TOR,False,Scotiabank Arena,478
+2027-01-01,8:00p,PHI,MIL,False,Fiserv Forum,479
+2027-01-01,8:30p,DAL,HOU,False,Toyota Center,480
+2027-01-01,9:30p,BOS,UTA,False,Delta Center,481
+2027-01-02,10:00p,BOS,POR,False,Moda Center,482
+2027-01-02,1:00p,CLE,CHA,False,Spectrum Center,483
+2027-01-02,5:00p,NYK,DEN,False,Ball Arena,484
+2027-01-02,7:00p,MIN,IND,False,Gainbridge Fieldhouse,485
+2027-01-02,7:00p,MIA,NOP,False,Smoothie King Center,486
+2027-01-02,7:30p,DAL,ATL,False,State Farm Arena,487
+2027-01-02,8:00p,LAL,CHI,False,United Center,488
+2027-01-02,8:00p,UTA,OKC,False,Paycom Center,489
+2027-01-02,8:30p,BKN,GSW,False,Chase Center,490
+2027-01-02,9:00p,SAC,PHX,False,Mortgage Matchup Center,491
+2027-01-03,5:00p,DET,DEN,False,Ball Arena,492
+2027-01-03,5:30p,CHA,MIL,False,Fiserv Forum,493
+2027-01-03,6:00p,MEM,ORL,False,Kia Center,494
+2027-01-03,7:00p,CLE,HOU,False,Toyota Center,495
+2027-01-03,7:00p,SAS,MIN,False,Target Center,496
+2027-01-03,7:00p,LAL,TOR,False,Scotiabank Arena,497
+2027-01-03,7:00p,LAC,WAS,False,Capital One Arena,498
+2027-01-03,8:00p,SAC,OKC,False,Paycom Center,499
+2027-01-04,10:00p,NYK,POR,False,Moda Center,500
+2027-01-04,7:00p,CHI,IND,False,Gainbridge Fieldhouse,501
+2027-01-04,7:00p,ATL,PHI,False,Xfinity Mobile Arena,502
+2027-01-04,8:00p,DAL,NOP,False,Smoothie King Center,503
+2027-01-04,9:00p,BOS,PHX,False,Mortgage Matchup Center,504
+2027-01-04,9:00p,BKN,UTA,False,Delta Center,505
+2027-01-05,10:00p,PHX,DEN,False,Ball Arena,506
+2027-01-05,10:00p,DET,SAC,False,Golden 1 Center,507
+2027-01-05,7:00p,ATL,CHA,False,Spectrum Center,508
+2027-01-05,7:00p,TOR,CLE,False,Rocket Arena,509
+2027-01-05,7:00p,LAC,ORL,False,Kia Center,510
+2027-01-05,7:00p,LAL,WAS,False,Capital One Arena,511
+2027-01-05,7:30p,MEM,MIA,False,Kaseya Center,512
+2027-01-05,8:00p,MIL,CHI,False,United Center,513
+2027-01-05,8:00p,MIN,HOU,False,Toyota Center,514
+2027-01-06,10:00p,NYK,GSW,False,Chase Center,515
+2027-01-06,7:30p,UTA,BKN,False,Barclays Center,516
+2027-01-06,7:30p,OKC,PHI,False,Xfinity Mobile Arena,517
+2027-01-06,8:00p,POR,NOP,False,Smoothie King Center,518
+2027-01-06,8:00p,IND,SAS,False,Frost Bank Center,519
+2027-01-07,10:00p,DET,GSW,False,Chase Center,520
+2027-01-07,10:00p,BOS,LAL,False,Crypto.com Arena,521
+2027-01-07,10:00p,CHI,SAC,False,Golden 1 Center,522
+2027-01-07,7:00p,IND,ATL,False,State Farm Arena,523
+2027-01-07,7:00p,DEN,CHA,False,Spectrum Center,524
+2027-01-07,7:00p,CLE,ORL,False,Kia Center,525
+2027-01-07,7:00p,OKC,WAS,False,Capital One Arena,526
+2027-01-07,7:30p,MIA,BKN,False,Barclays Center,527
+2027-01-07,7:30p,MIN,TOR,False,Scotiabank Arena,528
+2027-01-07,8:00p,POR,DAL,False,American Airlines Center,529
+2027-01-07,8:00p,LAC,MIL,False,Fiserv Forum,530
+2027-01-07,8:30p,MEM,HOU,False,Toyota Center,531
+2027-01-08,10:00p,DET,LAL,False,Crypto.com Arena,532
+2027-01-08,10:00p,NYK,SAC,False,Golden 1 Center,533
+2027-01-08,7:00p,MIA,PHI,False,Xfinity Mobile Arena,534
+2027-01-08,7:00p,MIN,WAS,False,Capital One Arena,535
+2027-01-08,7:30p,UTA,TOR,False,Scotiabank Arena,536
+2027-01-08,8:00p,ORL,NOP,False,Smoothie King Center,537
+2027-01-08,8:00p,MEM,SAS,False,Frost Bank Center,538
+2027-01-08,9:30p,PHX,DAL,False,American Airlines Center,539
+2027-01-09,10:00p,CHA,POR,False,Moda Center,540
+2027-01-09,10:30p,BOS,LAC,False,Intuit Dome,541
+2027-01-09,5:00p,DEN,CLE,False,Rocket Arena,542
+2027-01-09,6:00p,HOU,BKN,False,Barclays Center,543
+2027-01-09,7:00p,MIL,IND,False,Gainbridge Fieldhouse,544
+2027-01-09,8:30p,CHI,GSW,False,Chase Center,545
+2027-01-10,3:00p,SAS,ATL,False,State Farm Arena,546
+2027-01-10,6:00p,UTA,DET,False,Little Caesars Arena,547
+2027-01-10,6:00p,DAL,MEM,False,FedExForum,548
+2027-01-10,6:00p,NOP,MIA,False,Kaseya Center,549
+2027-01-10,6:00p,OKC,ORL,False,Kia Center,550
+2027-01-10,6:00p,PHI,TOR,False,Scotiabank Arena,551
+2027-01-10,7:00p,CHI,PHX,False,Mortgage Matchup Center,552
+2027-01-10,9:00p,CHA,SAC,False,Golden 1 Center,553
+2027-01-11,10:00p,LAL,LAC,False,Intuit Dome,554
+2027-01-11,7:00p,BKN,IND,False,Gainbridge Fieldhouse,555
+2027-01-11,7:00p,ATL,WAS,False,Capital One Arena,556
+2027-01-11,7:30p,HOU,BOS,False,TD Garden,557
+2027-01-11,7:30p,DEN,NYK,False,Madison Square Garden (IV),558
+2027-01-11,8:00p,CLE,MIN,False,Target Center,559
+2027-01-12,10:00p,ORL,POR,False,Moda Center,560
+2027-01-12,11:00p,SAC,GSW,False,Chase Center,561
+2027-01-12,7:30p,BKN,MIA,False,Kaseya Center,562
+2027-01-12,7:30p,DET,TOR,False,Scotiabank Arena,563
+2027-01-12,8:00p,DAL,MEM,False,FedExForum,564
+2027-01-12,8:00p,DEN,MIL,False,Fiserv Forum,565
+2027-01-12,8:00p,WAS,PHI,False,Xfinity Mobile Arena,566
+2027-01-12,9:00p,CHI,UTA,False,Delta Center,567
+2027-01-13,10:00p,CHA,GSW,False,Chase Center,568
+2027-01-13,10:00p,LAL,POR,False,Moda Center,569
+2027-01-13,7:00p,CLE,ATL,False,State Farm Arena,570
+2027-01-13,7:00p,NYK,BOS,False,TD Garden,571
+2027-01-13,7:00p,MIL,IND,False,Gainbridge Fieldhouse,572
+2027-01-13,7:30p,PHX,TOR,False,Scotiabank Arena,573
+2027-01-13,9:30p,HOU,OKC,False,Paycom Center,574
+2027-01-14,10:00p,ORL,LAL,False,Crypto.com Arena,575
+2027-01-14,10:00p,LAC,SAC,False,Golden 1 Center,576
+2027-01-14,2:00p,NOP,SAS,False,Accor Arena,577
+2027-01-14,7:00p,DAL,DET,False,Little Caesars Arena,578
+2027-01-14,7:00p,BKN,PHI,False,Xfinity Mobile Arena,579
+2027-01-14,7:30p,MIA,NYK,False,Madison Square Garden (IV),580
+2027-01-14,8:00p,MIN,CHI,False,United Center,581
+2027-01-14,9:00p,MEM,DEN,False,Ball Arena,582
+2027-01-14,9:00p,CHA,UTA,False,Delta Center,583
+2027-01-15,10:00p,SAC,POR,False,Moda Center,584
+2027-01-15,10:30p,ORL,LAC,False,Intuit Dome,585
+2027-01-15,7:00p,GSW,ATL,False,State Farm Arena,586
+2027-01-15,7:00p,PHX,IND,False,Gainbridge Fieldhouse,587
+2027-01-15,7:30p,MIA,TOR,False,Scotiabank Arena,588
+2027-01-15,8:00p,CLE,MIL,False,Fiserv Forum,589
+2027-01-15,8:00p,UTA,OKC,False,Paycom Center,590
+2027-01-15,8:30p,WAS,HOU,False,Toyota Center,591
+2027-01-16,12:30p,MIN,PHI,False,Xfinity Mobile Arena,592
+2027-01-16,7:00p,BKN,BOS,False,TD Garden,593
+2027-01-16,7:30p,DAL,NYK,False,Madison Square Garden (IV),594
+2027-01-16,8:00p,CLE,MEM,False,FedExForum,595
+2027-01-16,8:30p,DET,HOU,False,Toyota Center,596
+2027-01-16,9:00p,CHA,DEN,False,Ball Arena,597
+2027-01-17,10:30a,SAS,NOP,False,,598
+2027-01-17,1:00p,IND,WAS,False,Capital One Arena,599
+2027-01-17,3:30p,TOR,CHI,False,United Center,600
+2027-01-17,3:30p,POR,OKC,False,Paycom Center,601
+2027-01-17,5:00p,SAC,UTA,False,Delta Center,602
+2027-01-17,6:00p,GSW,MIA,False,Kaseya Center,603
+2027-01-17,8:00p,ORL,DEN,False,Ball Arena,604
+2027-01-17,9:00p,MIL,LAL,False,Crypto.com Arena,605
+2027-01-18,10:30p,PHX,LAC,False,Intuit Dome,606
+2027-01-18,12:00p,DET,CLE,False,Rocket Arena,607
+2027-01-18,2:30p,PHI,ATL,False,State Farm Arena,608
+2027-01-18,3:00p,BOS,WAS,False,Capital One Arena,609
+2027-01-18,5:00p,MIN,NYK,False,Madison Square Garden (IV),610
+2027-01-18,7:30p,HOU,MEM,False,FedExForum,611
+2027-01-18,8:00p,OKC,DAL,False,American Airlines Center,612
+2027-01-19,10:00p,UTA,DEN,False,Ball Arena,613
+2027-01-19,10:00p,LAL,SAC,False,Golden 1 Center,614
+2027-01-19,7:00p,GSW,ORL,False,Kia Center,615
+2027-01-19,7:00p,IND,PHI,False,Xfinity Mobile Arena,616
+2027-01-19,7:00p,CHI,TOR,False,Scotiabank Arena,617
+2027-01-19,7:30p,POR,MIA,False,Kaseya Center,618
+2027-01-19,8:00p,CHA,DAL,False,American Airlines Center,619
+2027-01-20,10:00p,MIL,SAC,False,Golden 1 Center,620
+2027-01-20,7:00p,POR,ATL,False,State Farm Arena,621
+2027-01-20,7:00p,CHI,BKN,False,Barclays Center,622
+2027-01-20,7:30p,IND,BOS,False,TD Garden,623
+2027-01-20,7:30p,TOR,NYK,False,Madison Square Garden (IV),624
+2027-01-20,8:00p,HOU,MIN,False,Target Center,625
+2027-01-20,8:00p,OKC,NOP,False,Smoothie King Center,626
+2027-01-20,9:00p,MEM,PHX,False,Mortgage Matchup Center,627
+2027-01-20,9:00p,LAC,UTA,False,Delta Center,628
+2027-01-20,9:30p,MIA,SAS,False,Frost Bank Center,629
+2027-01-21,10:00p,LAL,GSW,False,Chase Center,630
+2027-01-21,7:30p,CLE,BKN,False,Barclays Center,631
+2027-01-21,7:30p,PHI,BOS,False,TD Garden,632
+2027-01-21,9:00p,WAS,DEN,False,Ball Arena,633
+2027-01-22,10:00p,MIL,GSW,False,Chase Center,634
+2027-01-22,10:00p,SAC,LAL,False,Crypto.com Arena,635
+2027-01-22,10:30p,WAS,LAC,False,Intuit Dome,636
+2027-01-22,7:00p,NYK,ATL,False,State Farm Arena,637
+2027-01-22,7:00p,HOU,CHA,False,Spectrum Center,638
+2027-01-22,7:00p,POR,ORL,False,Kia Center,639
+2027-01-22,7:30p,IND,DET,False,Little Caesars Arena,640
+2027-01-22,8:00p,DAL,NOP,False,Smoothie King Center,641
+2027-01-22,8:00p,MEM,OKC,False,Paycom Center,642
+2027-01-22,9:00p,UTA,PHX,False,Mortgage Matchup Center,643
+2027-01-22,9:30p,MIN,SAS,False,Frost Bank Center,644
+2027-01-23,5:00p,PHI,CHI,False,United Center,645
+2027-01-23,6:00p,TOR,BKN,False,Barclays Center,646
+2027-01-23,7:00p,CHA,BOS,False,TD Garden,647
+2027-01-23,8:00p,CLE,DAL,False,American Airlines Center,648
+2027-01-23,8:00p,ATL,MIA,False,Kaseya Center,649
+2027-01-23,9:00p,MIL,DEN,False,Ball Arena,650
+2027-01-24,3:30p,POR,SAS,False,Frost Bank Center,651
+2027-01-24,4:00p,WAS,LAL,False,Crypto.com Arena,652
+2027-01-24,4:00p,UTA,PHX,False,Mortgage Matchup Center,653
+2027-01-24,6:00p,MIN,DET,False,Little Caesars Arena,654
+2027-01-24,6:00p,HOU,ORL,False,Kia Center,655
+2027-01-24,7:00p,LAC,NYK,False,Madison Square Garden (IV),656
+2027-01-24,8:30p,OKC,GSW,False,Chase Center,657
+2027-01-25,7:00p,TOR,BOS,False,TD Garden,658
+2027-01-25,7:00p,ORL,CHA,False,Spectrum Center,659
+2027-01-25,7:00p,LAC,PHI,False,Xfinity Mobile Arena,660
+2027-01-25,7:30p,MIA,BKN,False,Barclays Center,661
+2027-01-25,8:00p,DAL,CHI,False,United Center,662
+2027-01-25,8:00p,MIN,MEM,False,FedExForum,663
+2027-01-25,8:00p,CLE,NOP,False,Smoothie King Center,664
+2027-01-25,9:30p,SAC,DEN,False,Ball Arena,665
+2027-01-26,10:00p,WAS,POR,False,Moda Center,666
+2027-01-26,11:00p,OKC,LAL,False,Crypto.com Arena,667
+2027-01-26,7:00p,ATL,DET,False,Little Caesars Arena,668
+2027-01-26,7:00p,CHI,IND,False,Gainbridge Fieldhouse,669
+2027-01-26,7:30p,PHX,NYK,False,Madison Square Garden (IV),670
+2027-01-26,8:00p,HOU,SAS,False,Frost Bank Center,671
+2027-01-26,9:00p,MIL,UTA,False,Delta Center,672
+2027-01-27,10:00p,GSW,POR,False,Moda Center,673
+2027-01-27,7:00p,DET,CLE,False,Rocket Arena,674
+2027-01-27,7:00p,SAC,PHI,False,Xfinity Mobile Arena,675
+2027-01-27,7:30p,PHX,BKN,False,Barclays Center,676
+2027-01-27,7:30p,LAC,BOS,False,TD Garden,677
+2027-01-27,7:30p,DAL,TOR,False,Scotiabank Arena,678
+2027-01-27,8:00p,CHA,SAS,False,Frost Bank Center,679
+2027-01-27,8:30p,NOP,HOU,False,Toyota Center,680
+2027-01-27,9:30p,DEN,MIN,False,Target Center,681
+2027-01-28,7:00p,LAL,IND,False,Gainbridge Fieldhouse,682
+2027-01-28,7:00p,ATL,NYK,False,Madison Square Garden (IV),683
+2027-01-28,7:00p,CHI,ORL,False,Kia Center,684
+2027-01-28,7:00p,SAC,WAS,False,Capital One Arena,685
+2027-01-28,8:00p,PHI,NOP,False,Smoothie King Center,686
+2027-01-28,8:00p,MEM,OKC,False,Paycom Center,687
+2027-01-28,9:00p,GSW,UTA,False,Delta Center,688
+2027-01-28,9:30p,MIA,MIL,False,Fiserv Forum,689
+2027-01-29,7:00p,CLE,TOR,False,Scotiabank Arena,690
+2027-01-29,7:30p,LAC,BKN,False,Barclays Center,691
+2027-01-29,7:30p,PHX,BOS,False,TD Garden,692
+2027-01-29,8:00p,DET,DAL,False,American Airlines Center,693
+2027-01-29,8:30p,ORL,HOU,False,Toyota Center,694
+2027-01-29,9:30p,CHA,MIN,False,Target Center,695
+2027-01-30,12:30p,PHI,MIA,False,Kaseya Center,696
+2027-01-30,3:00p,DEN,OKC,False,Paycom Center,697
+2027-01-30,5:30p,SAS,GSW,False,Chase Center,698
+2027-01-30,7:00p,WAS,IND,False,Gainbridge Fieldhouse,699
+2027-01-30,7:30p,NOP,CLE,False,Rocket Arena,700
+2027-01-30,8:00p,ATL,MIL,False,Fiserv Forum,701
+2027-01-30,8:30p,LAL,NYK,False,Madison Square Garden (IV),702
+2027-01-30,9:30p,MEM,UTA,False,Delta Center,703
+2027-01-31,3:00p,SAC,DET,False,Little Caesars Arena,704
+2027-01-31,6:00p,PHX,MIN,False,Target Center,705
+2027-01-31,6:00p,CHI,OKC,False,Paycom Center,706
+2027-01-31,6:00p,BKN,ORL,False,Kia Center,707
+2027-01-31,6:00p,BOS,TOR,False,Scotiabank Arena,708
+2027-01-31,7:00p,LAL,CHA,False,Spectrum Center,709
+2027-01-31,8:00p,POR,DEN,False,Ball Arena,710
+2027-01-31,8:30p,HOU,DAL,False,American Airlines Center,711
+2027-02-01,10:00p,SAS,GSW,False,Chase Center,712
+2027-02-01,7:00p,WAS,ATL,False,State Farm Arena,713
+2027-02-01,7:00p,NOP,PHI,False,Xfinity Mobile Arena,714
+2027-02-01,7:30p,NYK,BKN,False,Barclays Center,715
+2027-02-01,7:30p,MIA,IND,False,Gainbridge Fieldhouse,716
+2027-02-01,8:00p,MEM,MIL,False,Fiserv Forum,717
+2027-02-01,9:00p,CLE,UTA,False,Delta Center,718
+2027-02-02,10:30p,SAS,LAC,False,Intuit Dome,719
+2027-02-02,11:00p,MIN,POR,False,Moda Center,720
+2027-02-02,7:00p,CHI,DET,False,Little Caesars Arena,721
+2027-02-02,7:00p,NOP,ORL,False,Kia Center,722
+2027-02-02,7:30p,CHA,MIA,False,Kaseya Center,723
+2027-02-02,8:00p,LAL,BOS,False,TD Garden,724
+2027-02-02,8:00p,TOR,DAL,False,American Airlines Center,725
+2027-02-02,9:00p,OKC,DEN,False,Ball Arena,726
+2027-02-03,10:30p,GSW,LAC,False,Intuit Dome,727
+2027-02-03,7:00p,NYK,DET,False,Little Caesars Arena,728
+2027-02-03,7:00p,ATL,IND,False,Gainbridge Fieldhouse,729
+2027-02-03,8:00p,PHI,MEM,False,FedExForum,730
+2027-02-03,9:00p,CLE,PHX,False,Mortgage Matchup Center,731
+2027-02-03,9:30p,UTA,HOU,False,Toyota Center,732
+2027-02-04,10:00p,DAL,DEN,False,Ball Arena,733
+2027-02-04,10:00p,CLE,POR,False,Moda Center,734
+2027-02-04,10:00p,MIN,SAC,False,Golden 1 Center,735
+2027-02-04,7:00p,NOP,WAS,False,Capital One Arena,736
+2027-02-04,7:30p,LAL,BKN,False,Barclays Center,737
+2027-02-04,7:30p,BOS,CHA,False,Spectrum Center,738
+2027-02-04,7:30p,MIL,MIA,False,Kaseya Center,739
+2027-02-04,7:30p,TOR,NYK,False,Madison Square Garden (IV),740
+2027-02-04,8:00p,OKC,CHI,False,United Center,741
+2027-02-04,8:00p,ORL,SAS,False,Frost Bank Center,742
+2027-02-05,7:00p,BOS,ATL,False,State Farm Arena,743
+2027-02-05,7:00p,GSW,CHA,False,Spectrum Center,744
+2027-02-05,7:00p,DET,PHI,False,Xfinity Mobile Arena,745
+2027-02-05,9:00p,LAC,DEN,False,Ball Arena,746
+2027-02-05,9:00p,HOU,PHX,False,Mortgage Matchup Center,747
+2027-02-05,9:30p,IND,OKC,False,Paycom Center,748
+2027-02-06,10:00p,PHX,SAC,False,Golden 1 Center,749
+2027-02-06,3:00p,UTA,DAL,False,American Airlines Center,750
+2027-02-06,3:00p,MIA,MIN,False,Target Center,751
+2027-02-06,5:30p,POR,MEM,False,FedExForum,752
+2027-02-06,6:00p,WAS,BKN,False,Barclays Center,753
+2027-02-06,7:30p,ORL,CLE,False,Rocket Arena,754
+2027-02-06,7:30p,MIL,TOR,False,Scotiabank Arena,755
+2027-02-06,8:00p,NOP,CHI,False,United Center,756
+2027-02-06,8:30p,LAL,SAS,False,Frost Bank Center,757
+2027-02-07,10:30p,HOU,SAC,False,Golden 1 Center,758
+2027-02-07,3:00p,DEN,ATL,False,State Farm Arena,759
+2027-02-07,3:00p,GSW,DET,False,Little Caesars Arena,760
+2027-02-07,3:30p,UTA,MIN,False,Target Center,761
+2027-02-07,4:30p,LAC,DAL,False,American Airlines Center,762
+2027-02-07,6:00p,CHA,TOR,False,Scotiabank Arena,763
+2027-02-07,7:00p,BOS,PHI,False,Xfinity Mobile Arena,764
+2027-02-07,9:30p,NYK,OKC,False,Paycom Center,765
+2027-02-08,7:00p,MIA,ATL,False,State Farm Arena,766
+2027-02-08,7:00p,NOP,IND,False,Gainbridge Fieldhouse,767
+2027-02-08,7:00p,BKN,PHI,False,Xfinity Mobile Arena,768
+2027-02-08,7:00p,CHI,WAS,False,Capital One Arena,769
+2027-02-08,8:00p,POR,MEM,False,FedExForum,770
+2027-02-08,8:00p,ORL,MIL,False,Fiserv Forum,771
+2027-02-08,9:30p,LAL,PHX,False,Mortgage Matchup Center,772
+2027-02-09,10:00p,HOU,UTA,False,Delta Center,773
+2027-02-09,10:30p,DET,LAC,False,Intuit Dome,774
+2027-02-09,7:00p,TOR,CLE,False,Rocket Arena,775
+2027-02-09,7:30p,MIN,BKN,False,Barclays Center,776
+2027-02-09,7:30p,DEN,BOS,False,TD Garden,777
+2027-02-09,7:30p,CHA,NYK,False,Madison Square Garden (IV),778
+2027-02-09,8:00p,GSW,CHI,False,United Center,779
+2027-02-09,8:00p,SAS,DAL,False,American Airlines Center,780
+2027-02-09,8:00p,SAC,MIL,False,Fiserv Forum,781
+2027-02-09,8:00p,POR,OKC,False,Paycom Center,782
+2027-02-10,10:00p,LAC,LAL,False,Crypto.com Arena,783
+2027-02-10,7:00p,NOP,ATL,False,State Farm Arena,784
+2027-02-10,7:00p,CLE,IND,False,Gainbridge Fieldhouse,785
+2027-02-10,7:00p,MIA,WAS,False,Capital One Arena,786
+2027-02-10,7:30p,GSW,BOS,False,TD Garden,787
+2027-02-10,8:00p,ORL,MEM,False,FedExForum,788
+2027-02-10,9:00p,DET,PHX,False,Mortgage Matchup Center,789
+2027-02-11,7:00p,MIL,CHA,False,Spectrum Center,790
+2027-02-11,7:00p,UTA,IND,False,Gainbridge Fieldhouse,791
+2027-02-11,7:00p,NYK,PHI,False,Xfinity Mobile Arena,792
+2027-02-11,8:00p,POR,DAL,False,American Airlines Center,793
+2027-02-11,8:30p,SAC,HOU,False,Toyota Center,794
+2027-02-11,9:00p,CHI,DEN,False,Ball Arena,795
+2027-02-11,9:30p,SAS,OKC,False,Paycom Center,796
+2027-02-12,10:30p,DEN,LAL,False,Crypto.com Arena,797
+2027-02-12,7:00p,PHX,ATL,False,State Farm Arena,798
+2027-02-12,7:00p,MIA,ORL,False,Kia Center,799
+2027-02-12,7:00p,BKN,WAS,False,Capital One Arena,800
+2027-02-12,7:30p,CLE,TOR,False,Scotiabank Arena,801
+2027-02-12,8:00p,MIN,BOS,False,TD Garden,802
+2027-02-12,8:00p,LAC,MEM,False,FedExForum,803
+2027-02-12,8:00p,HOU,NOP,False,Smoothie King Center,804
+2027-02-13,2:00p,SAC,IND,False,Gainbridge Fieldhouse,805
+2027-02-13,3:00p,DAL,CHA,False,Spectrum Center,806
+2027-02-13,3:30p,DET,POR,False,Moda Center,807
+2027-02-13,5:30p,PHI,OKC,False,Paycom Center,808
+2027-02-13,7:00p,SAS,ORL,False,Kia Center,809
+2027-02-13,7:00p,MIL,WAS,False,Capital One Arena,810
+2027-02-13,8:30p,GSW,NYK,False,Madison Square Garden (IV),811
+2027-02-14,1:00p,SAC,ATL,False,State Farm Arena,812
+2027-02-14,1:00p,TOR,BOS,False,TD Garden,813
+2027-02-14,1:00p,PHX,CLE,False,Rocket Arena,814
+2027-02-14,1:00p,BKN,MIA,False,Kaseya Center,815
+2027-02-14,2:00p,DEN,HOU,False,Toyota Center,816
+2027-02-14,2:00p,LAC,NOP,False,Smoothie King Center,817
+2027-02-14,3:30p,CHI,POR,False,Moda Center,818
+2027-02-15,12:00p,MIN,CHA,False,Spectrum Center,819
+2027-02-15,2:30p,PHI,DAL,False,American Airlines Center,820
+2027-02-15,5:00p,SAS,MIA,False,Kaseya Center,821
+2027-02-15,7:00p,PHX,WAS,False,Capital One Arena,822
+2027-02-15,7:30p,IND,GSW,False,Chase Center,823
+2027-02-15,8:00p,NYK,MEM,False,FedExForum,824
+2027-02-15,8:00p,ORL,OKC,False,Paycom Center,825
+2027-02-15,9:00p,DET,UTA,False,Delta Center,826
+2027-02-16,10:00p,CHI,LAL,False,Crypto.com Arena,827
+2027-02-16,10:00p,NOP,POR,False,Moda Center,828
+2027-02-16,11:00p,HOU,LAC,False,Intuit Dome,829
+2027-02-16,7:00p,MIL,CLE,False,Rocket Arena,830
+2027-02-16,8:00p,TOR,ATL,False,State Farm Arena,831
+2027-02-17,10:00p,NOP,GSW,False,Chase Center,832
+2027-02-17,10:00p,IND,SAC,False,Golden 1 Center,833
+2027-02-17,10:30p,CHI,LAC,False,Intuit Dome,834
+2027-02-17,7:00p,TOR,CHA,False,Spectrum Center,835
+2027-02-17,7:00p,MIL,CLE,False,Rocket Arena,836
+2027-02-17,7:00p,NYK,DET,False,Little Caesars Arena,837
+2027-02-17,7:00p,DAL,ORL,False,Kia Center,838
+2027-02-17,7:00p,PHX,PHI,False,Xfinity Mobile Arena,839
+2027-02-17,7:00p,MIA,WAS,False,Capital One Arena,840
+2027-02-17,7:30p,ATL,BKN,False,Barclays Center,841
+2027-02-17,8:00p,SAS,MEM,False,FedExForum,842
+2027-02-17,9:00p,UTA,DEN,False,Ball Arena,843
+2027-02-17,9:30p,BOS,OKC,False,Paycom Center,844
+2027-02-18,10:00p,HOU,LAL,False,Crypto.com Arena,845
+2027-02-18,10:00p,IND,POR,False,Moda Center,846
+2027-02-18,7:30p,SAS,MIN,False,Target Center,847
+2027-02-18,8:00p,BOS,MEM,False,FedExForum,848
+2027-02-25,10:00p,DAL,GSW,False,Chase Center,849
+2027-02-25,10:30p,UTA,LAC,False,Intuit Dome,850
+2027-02-25,7:00p,SAC,CLE,False,Rocket Arena,851
+2027-02-25,7:00p,MIA,DET,False,Little Caesars Arena,852
+2027-02-25,7:00p,CHA,ORL,False,Kia Center,853
+2027-02-25,7:30p,PHI,BKN,False,Barclays Center,854
+2027-02-25,7:30p,OKC,NYK,False,Madison Square Garden (IV),855
+2027-02-25,8:00p,ATL,CHI,False,United Center,856
+2027-02-25,8:00p,WAS,MIL,False,Fiserv Forum,857
+2027-02-25,8:00p,PHX,NOP,False,Smoothie King Center,858
+2027-02-26,10:00p,LAL,DEN,False,Ball Arena,859
+2027-02-26,10:00p,DAL,POR,False,Moda Center,860
+2027-02-26,7:30p,CLE,BOS,False,TD Garden,861
+2027-02-26,7:30p,ATL,TOR,False,Scotiabank Arena,862
+2027-02-26,8:00p,IND,MIN,False,Target Center,863
+2027-02-26,8:00p,MEM,SAS,False,Moody Center,864
+2027-02-26,8:30p,CHA,HOU,False,Toyota Center,865
+2027-02-27,3:00p,WAS,UTA,False,Delta Center,866
+2027-02-27,5:30p,OKC,DET,False,Little Caesars Arena,867
+2027-02-27,8:00p,BKN,CHI,False,United Center,868
+2027-02-27,8:00p,SAC,MEM,False,FedExForum,869
+2027-02-27,8:30p,PHI,NYK,False,Madison Square Garden (IV),870
+2027-02-27,9:00p,NOP,PHX,False,Mortgage Matchup Center,871
+2027-02-28,10:30p,POR,LAC,False,Intuit Dome,872
+2027-02-28,1:00p,DEN,SAS,False,Moody Center,873
+2027-02-28,3:30p,LAL,DAL,False,American Airlines Center,874
+2027-02-28,4:00p,TOR,IND,False,Gainbridge Fieldhouse,875
+2027-02-28,4:30p,ATL,ORL,False,Kia Center,876
+2027-02-28,7:00p,SAC,CHA,False,Spectrum Center,877
+2027-02-28,7:00p,BOS,MIN,False,Target Center,878
+2027-02-28,7:30p,MIL,NYK,False,Madison Square Garden (IV),879
+2027-02-28,9:30p,MIA,HOU,False,Toyota Center,880
+2027-03-01,7:00p,PHI,CLE,False,Rocket Arena,881
+2027-03-01,7:00p,CHI,DET,False,Little Caesars Arena,882
+2027-03-01,8:00p,UTA,NOP,False,Smoothie King Center,883
+2027-03-01,8:30p,GSW,HOU,False,Toyota Center,884
+2027-03-01,9:00p,BKN,DEN,False,Ball Arena,885
+2027-03-01,9:30p,WAS,PHX,False,Mortgage Matchup Center,886
+2027-03-02,10:00p,WAS,SAC,False,Golden 1 Center,887
+2027-03-02,11:00p,LAC,POR,False,Moda Center,888
+2027-03-02,7:00p,BOS,IND,False,Gainbridge Fieldhouse,889
+2027-03-02,7:00p,LAL,ORL,False,Kia Center,890
+2027-03-02,7:30p,TOR,MIA,False,Kaseya Center,891
+2027-03-02,7:30p,MEM,NYK,False,Madison Square Garden (IV),892
+2027-03-02,8:00p,GSW,DAL,False,American Airlines Center,893
+2027-03-02,8:00p,DET,MIL,False,Fiserv Forum,894
+2027-03-02,8:00p,MIN,OKC,False,Paycom Center,895
+2027-03-03,10:00p,SAS,DEN,False,Ball Arena,896
+2027-03-03,7:00p,CHI,ATL,False,State Farm Arena,897
+2027-03-03,7:00p,CHA,PHI,False,Xfinity Mobile Arena,898
+2027-03-03,7:30p,TOR,MIA,False,Kaseya Center,899
+2027-03-03,8:00p,UTA,MIL,False,Fiserv Forum,900
+2027-03-03,8:30p,NOP,HOU,False,Toyota Center,901
+2027-03-03,9:00p,BKN,PHX,False,Mortgage Matchup Center,902
+2027-03-04,10:00p,WAS,GSW,False,Chase Center,903
+2027-03-04,10:00p,OKC,SAC,False,Golden 1 Center,904
+2027-03-04,10:30p,BKN,LAC,False,Intuit Dome,905
+2027-03-04,7:00p,POR,CLE,False,Rocket Arena,906
+2027-03-04,7:00p,IND,ORL,False,Kia Center,907
+2027-03-04,7:00p,LAL,PHI,False,Xfinity Mobile Arena,908
+2027-03-04,7:30p,MEM,ATL,False,State Farm Arena,909
+2027-03-04,9:30p,NYK,DAL,False,American Airlines Center,910
+2027-03-05,7:00p,BOS,DET,False,Little Caesars Arena,911
+2027-03-05,7:00p,UTA,ORL,False,Kia Center,912
+2027-03-05,7:30p,POR,TOR,False,Scotiabank Arena,913
+2027-03-05,8:00p,MIL,NOP,False,Smoothie King Center,914
+2027-03-05,9:00p,MIN,PHX,False,Mortgage Matchup Center,915
+2027-03-05,9:30p,SAS,HOU,False,Toyota Center,916
+2027-03-06,10:00p,LAC,SAC,False,Golden 1 Center,917
+2027-03-06,3:00p,IND,MIA,False,Kaseya Center,918
+2027-03-06,5:00p,CHA,CHI,False,United Center,919
+2027-03-06,5:30p,ATL,CLE,False,Rocket Arena,920
+2027-03-06,7:00p,UTA,WAS,False,Capital One Arena,921
+2027-03-06,8:00p,NOP,MEM,False,FedExForum,922
+2027-03-06,8:30p,OKC,LAL,False,Crypto.com Arena,923
+2027-03-07,10:00p,HOU,GSW,False,Chase Center,924
+2027-03-07,10:30p,BKN,LAL,False,Crypto.com Arena,925
+2027-03-07,1:00p,PHI,BOS,False,TD Garden,926
+2027-03-07,3:30p,MIN,DEN,False,Ball Arena,927
+2027-03-07,5:00p,POR,CHI,False,United Center,928
+2027-03-07,7:30p,NYK,SAS,False,Frost Bank Center,929
+2027-03-08,10:00p,DEN,SAC,False,Golden 1 Center,930
+2027-03-08,10:30p,HOU,LAC,False,Intuit Dome,931
+2027-03-08,7:00p,CHA,IND,False,Gainbridge Fieldhouse,932
+2027-03-08,7:00p,UTA,PHI,False,Xfinity Mobile Arena,933
+2027-03-08,7:30p,PHX,MIA,False,Kaseya Center,934
+2027-03-08,8:00p,ATL,MEM,False,FedExForum,935
+2027-03-08,8:00p,NOP,MIN,False,Target Center,936
+2027-03-08,9:30p,DAL,OKC,False,Paycom Center,937
+2027-03-09,11:00p,POR,GSW,False,Chase Center,938
+2027-03-09,7:00p,PHX,ORL,False,Kia Center,939
+2027-03-09,7:30p,MIL,BKN,False,Barclays Center,940
+2027-03-09,8:00p,BOS,CHI,False,United Center,941
+2027-03-09,8:00p,MEM,DAL,False,American Airlines Center,942
+2027-03-09,8:00p,CLE,DET,False,Little Caesars Arena,943
+2027-03-09,8:00p,WAS,SAS,False,Frost Bank Center,944
+2027-03-10,10:00p,DEN,POR,False,Moda Center,945
+2027-03-10,10:00p,GSW,SAC,False,Golden 1 Center,946
+2027-03-10,10:30p,NYK,LAC,False,Intuit Dome,947
+2027-03-10,7:00p,NOP,CHA,False,Spectrum Center,948
+2027-03-10,7:00p,ORL,MIA,False,Kaseya Center,949
+2027-03-10,7:30p,OKC,TOR,False,Scotiabank Arena,950
+2027-03-10,9:00p,HOU,UTA,False,Delta Center,951
+2027-03-10,9:30p,ATL,MIN,False,Target Center,952
+2027-03-11,10:00p,NYK,LAL,False,Crypto.com Arena,953
+2027-03-11,10:30p,CLE,LAC,False,Intuit Dome,954
+2027-03-11,7:00p,IND,CHA,False,Spectrum Center,955
+2027-03-11,7:00p,MIL,DET,False,Little Caesars Arena,956
+2027-03-11,7:30p,MEM,BOS,False,TD Garden,957
+2027-03-11,7:30p,PHI,SAS,False,Frost Bank Center,958
+2027-03-11,8:00p,BKN,ATL,False,State Farm Arena,959
+2027-03-11,8:00p,PHX,CHI,False,United Center,960
+2027-03-11,8:00p,WAS,DAL,False,American Airlines Center,961
+2027-03-12,10:00p,GSW,DEN,False,Ball Arena,962
+2027-03-12,10:00p,CLE,LAL,False,Crypto.com Arena,963
+2027-03-12,7:30p,OKC,BOS,False,TD Garden,964
+2027-03-12,8:00p,MIA,MIL,False,Fiserv Forum,965
+2027-03-12,8:00p,TOR,NOP,False,Smoothie King Center,966
+2027-03-12,9:30p,SAC,UTA,False,Delta Center,967
+2027-03-13,10:30p,LAC,POR,False,Moda Center,968
+2027-03-13,3:00p,ORL,ATL,False,State Farm Arena,969
+2027-03-13,3:00p,BKN,DET,False,Little Caesars Arena,970
+2027-03-13,5:30p,IND,HOU,False,Toyota Center,971
+2027-03-13,6:00p,PHX,CHA,False,Spectrum Center,972
+2027-03-13,8:00p,MEM,CHI,False,United Center,973
+2027-03-13,8:00p,NOP,DAL,False,American Airlines Center,974
+2027-03-13,8:30p,PHI,MIN,False,Target Center,975
+2027-03-14,10:00p,GSW,LAL,False,Crypto.com Arena,976
+2027-03-14,12:00p,BOS,NYK,False,Madison Square Garden (IV),977
+2027-03-14,2:30p,SAS,OKC,False,Paycom Center,978
+2027-03-14,5:00p,DET,TOR,False,Scotiabank Arena,979
+2027-03-14,6:00p,CLE,SAC,False,Golden 1 Center,980
+2027-03-14,7:30p,MIA,DEN,False,Ball Arena,981
+2027-03-14,8:00p,WAS,MIN,False,Target Center,982
+2027-03-15,7:00p,TOR,PHI,False,Xfinity Mobile Arena,983
+2027-03-15,7:30p,IND,BKN,False,Barclays Center,984
+2027-03-15,8:00p,ORL,CHI,False,United Center,985
+2027-03-15,8:00p,PHX,MEM,False,FedExForum,986
+2027-03-15,9:30p,ATL,DAL,False,American Airlines Center,987
+2027-03-16,10:00p,CLE,GSW,False,Chase Center,988
+2027-03-16,10:00p,LAL,POR,False,Moda Center,989
+2027-03-16,11:00p,DEN,LAC,False,Intuit Dome,990
+2027-03-16,7:00p,NYK,WAS,False,Capital One Arena,991
+2027-03-16,7:30p,SAC,BOS,False,TD Garden,992
+2027-03-16,8:00p,DET,IND,False,Gainbridge Fieldhouse,993
+2027-03-16,8:00p,ORL,MIL,False,Fiserv Forum,994
+2027-03-16,8:00p,MIN,NOP,False,Smoothie King Center,995
+2027-03-16,8:00p,CHA,OKC,False,Paycom Center,996
+2027-03-16,8:30p,SAS,HOU,False,Toyota Center,997
+2027-03-17,10:00p,MEM,GSW,False,Chase Center,998
+2027-03-17,10:00p,PHX,LAL,False,Crypto.com Arena,999
+2027-03-17,10:00p,MIA,POR,False,Moda Center,1000
+2027-03-17,7:00p,CHI,PHI,False,Xfinity Mobile Arena,1001
+2027-03-17,7:30p,SAC,NYK,False,Madison Square Garden (IV),1002
+2027-03-17,7:30p,DAL,OKC,False,Paycom Center,1003
+2027-03-17,8:30p,BKN,HOU,False,Toyota Center,1004
+2027-03-17,9:00p,ATL,UTA,False,Delta Center,1005
+2027-03-18,10:30p,MEM,LAC,False,Intuit Dome,1006
+2027-03-18,7:00p,TOR,IND,False,Gainbridge Fieldhouse,1007
+2027-03-18,7:00p,PHI,WAS,False,Capital One Arena,1008
+2027-03-18,7:30p,ORL,BOS,False,TD Garden,1009
+2027-03-18,8:00p,DET,MIL,False,Fiserv Forum,1010
+2027-03-18,8:00p,CHA,NOP,False,Smoothie King Center,1011
+2027-03-18,8:00p,BKN,SAS,False,Frost Bank Center,1012
+2027-03-18,9:00p,CLE,DEN,False,Ball Arena,1013
+2027-03-18,9:00p,MIN,UTA,False,Delta Center,1014
+2027-03-19,10:00p,POR,GSW,False,Chase Center,1015
+2027-03-19,10:00p,ATL,LAL,False,Crypto.com Arena,1016
+2027-03-19,10:30p,MIA,PHX,False,Mortgage Matchup Center,1017
+2027-03-19,7:30p,SAC,TOR,False,Scotiabank Arena,1018
+2027-03-19,8:00p,HOU,NOP,False,Smoothie King Center,1019
+2027-03-19,8:00p,DAL,SAS,False,Frost Bank Center,1020
+2027-03-20,10:30p,ATL,LAC,False,Intuit Dome,1021
+2027-03-20,1:00p,WAS,NYK,False,Madison Square Garden (IV),1022
+2027-03-20,7:00p,DEN,ORL,False,Kia Center,1023
+2027-03-20,7:30p,CHI,CLE,False,Rocket Arena,1024
+2027-03-20,8:00p,CHA,DET,False,Little Caesars Arena,1025
+2027-03-20,8:00p,OKC,MEM,False,FedExForum,1026
+2027-03-20,8:00p,IND,MIL,False,Fiserv Forum,1027
+2027-03-21,10:00p,DAL,LAL,False,Crypto.com Arena,1028
+2027-03-21,3:00p,SAC,BKN,False,Barclays Center,1029
+2027-03-21,3:00p,NOP,BOS,False,TD Garden,1030
+2027-03-21,5:00p,POR,PHX,False,Mortgage Matchup Center,1031
+2027-03-21,5:00p,TOR,UTA,False,Delta Center,1032
+2027-03-21,6:00p,DEN,MIA,False,Kaseya Center,1033
+2027-03-21,7:30p,SAS,PHI,False,Xfinity Mobile Arena,1034
+2027-03-22,10:00p,ATL,GSW,False,Chase Center,1035
+2027-03-22,10:30p,DAL,LAC,False,Intuit Dome,1036
+2027-03-22,7:00p,HOU,CLE,False,Rocket Arena,1037
+2027-03-22,7:00p,IND,ORL,False,Kia Center,1038
+2027-03-22,8:00p,SAC,CHI,False,United Center,1039
+2027-03-22,8:00p,CHA,MEM,False,FedExForum,1040
+2027-03-22,8:00p,WAS,MIL,False,Fiserv Forum,1041
+2027-03-22,9:30p,DET,MIN,False,Target Center,1042
+2027-03-23,10:00p,TOR,POR,False,Moda Center,1043
+2027-03-23,11:00p,OKC,PHX,False,Mortgage Matchup Center,1044
+2027-03-23,7:30p,BOS,BKN,False,Barclays Center,1045
+2027-03-23,7:30p,NOP,NYK,False,Madison Square Garden (IV),1046
+2027-03-23,8:00p,LAL,MIA,False,Kaseya Center,1047
+2027-03-23,9:00p,PHI,UTA,False,Delta Center,1048
+2027-03-24,10:00p,PHI,GSW,False,Chase Center,1049
+2027-03-24,10:00p,OKC,PHX,False,Mortgage Matchup Center,1050
+2027-03-24,10:00p,ATL,SAC,False,Golden 1 Center,1051
+2027-03-24,10:30p,MIL,LAC,False,Intuit Dome,1052
+2027-03-24,7:00p,DET,CHA,False,Spectrum Center,1053
+2027-03-24,7:00p,MEM,IND,False,Gainbridge Fieldhouse,1054
+2027-03-24,7:00p,DEN,WAS,False,Capital One Arena,1055
+2027-03-24,7:30p,SAS,BOS,False,TD Garden,1056
+2027-03-24,7:30p,HOU,NYK,False,Madison Square Garden (IV),1057
+2027-03-24,8:00p,ORL,CHI,False,United Center,1058
+2027-03-24,8:00p,DAL,MIN,False,Target Center,1059
+2027-03-25,10:00p,TOR,GSW,False,Chase Center,1060
+2027-03-25,7:00p,LAL,CLE,False,Rocket Arena,1061
+2027-03-25,7:00p,HOU,DET,False,Little Caesars Arena,1062
+2027-03-25,7:00p,SAS,IND,False,Gainbridge Fieldhouse,1063
+2027-03-25,7:30p,DEN,BKN,False,Barclays Center,1064
+2027-03-25,7:30p,UTA,MIA,False,Kaseya Center,1065
+2027-03-25,8:00p,CHI,MEM,False,FedExForum,1066
+2027-03-26,10:00p,MIL,PHX,False,Mortgage Matchup Center,1067
+2027-03-26,10:00p,PHI,POR,False,Moda Center,1068
+2027-03-26,7:00p,NYK,CHA,False,Spectrum Center,1069
+2027-03-26,8:00p,NOP,DAL,False,American Airlines Center,1070
+2027-03-26,8:00p,ORL,MIN,False,Target Center,1071
+2027-03-26,8:00p,LAC,OKC,False,Paycom Center,1072
+2027-03-27,10:00p,MIL,POR,False,Moda Center,1073
+2027-03-27,10:00p,TOR,SAC,False,Golden 1 Center,1074
+2027-03-27,3:00p,SAS,DET,False,Little Caesars Arena,1075
+2027-03-27,7:00p,UTA,ATL,False,State Farm Arena,1076
+2027-03-27,7:00p,GSW,WAS,False,Capital One Arena,1077
+2027-03-27,8:00p,LAC,CHI,False,United Center,1078
+2027-03-27,8:00p,BOS,MIA,False,Kaseya Center,1079
+2027-03-28,10:00p,PHI,DEN,False,Ball Arena,1080
+2027-03-28,12:30p,NYK,ORL,False,Kia Center,1081
+2027-03-28,3:00p,MEM,BKN,False,Barclays Center,1082
+2027-03-28,3:00p,LAL,HOU,False,Toyota Center,1083
+2027-03-28,6:00p,UTA,CHA,False,Spectrum Center,1084
+2027-03-28,6:00p,DAL,WAS,False,Capital One Arena,1085
+2027-03-28,7:00p,BOS,NOP,False,Smoothie King Center,1086
+2027-03-28,7:30p,OKC,MIN,False,Target Center,1087
+2027-03-28,9:00p,TOR,PHX,False,Mortgage Matchup Center,1088
+2027-03-29,10:00p,DEN,SAC,False,Golden 1 Center,1089
+2027-03-29,7:00p,MIN,ATL,False,State Farm Arena,1090
+2027-03-29,7:00p,MIA,CLE,False,Rocket Arena,1091
+2027-03-29,7:00p,LAC,DET,False,Little Caesars Arena,1092
+2027-03-29,7:30p,GSW,BKN,False,Barclays Center,1093
+2027-03-29,8:00p,IND,CHI,False,United Center,1094
+2027-03-29,8:00p,DAL,MIL,False,Fiserv Forum,1095
+2027-03-29,9:30p,PHX,SAS,False,Frost Bank Center,1096
+2027-03-30,11:00p,HOU,POR,False,Moda Center,1097
+2027-03-30,7:00p,MIA,CHA,False,Spectrum Center,1098
+2027-03-30,8:00p,BOS,IND,False,Gainbridge Fieldhouse,1099
+2027-03-30,8:00p,LAL,MEM,False,FedExForum,1100
+2027-03-30,8:00p,NYK,ORL,False,Kia Center,1101
+2027-03-30,9:00p,OKC,UTA,False,Delta Center,1102
+2027-03-31,10:00p,HOU,POR,False,Moda Center,1103
+2027-03-31,7:00p,LAC,ATL,False,State Farm Arena,1104
+2027-03-31,7:00p,TOR,DET,False,Little Caesars Arena,1105
+2027-03-31,7:00p,GSW,PHI,False,Xfinity Mobile Arena,1106
+2027-03-31,7:00p,CHI,WAS,False,Capital One Arena,1107
+2027-03-31,7:30p,CLE,BKN,False,Barclays Center,1108
+2027-03-31,8:00p,NOP,MIL,False,Fiserv Forum,1109
+2027-03-31,8:00p,SAC,MIN,False,Target Center,1110
+2027-03-31,8:00p,PHX,SAS,False,Frost Bank Center,1111
+2027-03-31,9:30p,DEN,DAL,False,American Airlines Center,1112
+2027-04-01,7:00p,BOS,CLE,False,Rocket Arena,1113
+2027-04-01,7:00p,ORL,IND,False,Gainbridge Fieldhouse,1114
+2027-04-01,7:30p,CHA,NYK,False,Madison Square Garden (IV),1115
+2027-04-01,9:30p,LAL,OKC,False,Paycom Center,1116
+2027-04-02,10:00p,DEN,PHX,False,Mortgage Matchup Center,1117
+2027-04-02,10:00p,UTA,POR,False,Moda Center,1118
+2027-04-02,10:30p,SAS,LAC,False,Intuit Dome,1119
+2027-04-02,7:00p,PHI,WAS,False,Capital One Arena,1120
+2027-04-02,7:30p,NYK,BKN,False,Barclays Center,1121
+2027-04-02,7:30p,MIA,BOS,False,TD Garden,1122
+2027-04-02,7:30p,GSW,MIN,False,Target Center,1123
+2027-04-02,8:00p,DET,CHI,False,United Center,1124
+2027-04-02,8:00p,SAC,DAL,False,American Airlines Center,1125
+2027-04-02,8:00p,CHA,MIL,False,Fiserv Forum,1126
+2027-04-02,8:30p,MEM,HOU,False,Toyota Center,1127
+2027-04-02,8:30p,ATL,TOR,False,Scotiabank Arena,1128
+2027-04-03,5:00p,NOP,OKC,False,Paycom Center,1129
+2027-04-03,7:00p,WAS,ORL,False,Kia Center,1130
+2027-04-04,10:00p,SAS,LAL,False,Crypto.com Arena,1131
+2027-04-04,1:00p,ATL,PHI,False,Xfinity Mobile Arena,1132
+2027-04-04,2:00p,BKN,MIL,False,Fiserv Forum,1133
+2027-04-04,3:00p,CHA,CLE,False,Rocket Arena,1134
+2027-04-04,3:00p,MIN,DAL,False,American Airlines Center,1135
+2027-04-04,3:00p,MIA,DET,False,Little Caesars Arena,1136
+2027-04-04,3:30p,IND,TOR,False,Scotiabank Arena,1137
+2027-04-04,4:00p,CHI,HOU,False,Toyota Center,1138
+2027-04-04,4:30p,PHX,LAC,False,Intuit Dome,1139
+2027-04-04,5:00p,MEM,DEN,False,Ball Arena,1140
+2027-04-04,5:00p,POR,UTA,False,Delta Center,1141
+2027-04-04,6:00p,GSW,SAC,False,Golden 1 Center,1142
+2027-04-04,7:30p,BOS,NYK,False,Madison Square Garden (IV),1143
+2027-04-05,7:00p,BKN,CLE,False,Rocket Arena,1144
+2027-04-05,7:00p,MIA,ORL,False,Kia Center,1145
+2027-04-05,8:00p,WAS,NOP,False,Smoothie King Center,1146
+2027-04-06,10:00p,DAL,LAL,False,Crypto.com Arena,1147
+2027-04-06,10:30p,MIN,LAC,False,Intuit Dome,1148
+2027-04-06,11:00p,PHX,GSW,False,Chase Center,1149
+2027-04-06,7:00p,IND,CHA,False,Spectrum Center,1150
+2027-04-06,7:30p,PHI,TOR,False,Scotiabank Arena,1151
+2027-04-06,8:00p,NYK,ATL,False,State Farm Arena,1152
+2027-04-06,8:00p,DET,MEM,False,FedExForum,1153
+2027-04-06,8:00p,CHI,MIL,False,Fiserv Forum,1154
+2027-04-06,8:00p,SAC,SAS,False,Frost Bank Center,1155
+2027-04-06,9:00p,NOP,DEN,False,Ball Arena,1156
+2027-04-06,9:00p,OKC,UTA,False,Delta Center,1157
+2027-04-07,10:00p,MIN,LAL,False,Crypto.com Arena,1158
+2027-04-07,10:00p,DAL,POR,False,Moda Center,1159
+2027-04-07,7:00p,IND,DET,False,Little Caesars Arena,1160
+2027-04-07,7:00p,BOS,ORL,False,Kia Center,1161
+2027-04-07,7:30p,CLE,SAS,False,Frost Bank Center,1162
+2027-04-07,7:30p,BKN,TOR,False,Scotiabank Arena,1163
+2027-04-07,8:00p,CHA,CHI,False,United Center,1164
+2027-04-07,8:00p,WAS,MEM,False,FedExForum,1165
+2027-04-07,8:30p,SAC,HOU,False,Toyota Center,1166
+2027-04-08,7:00p,PHI,MIA,False,Kaseya Center,1167
+2027-04-08,8:00p,NYK,MIL,False,Fiserv Forum,1168
+2027-04-08,9:00p,LAC,DEN,False,Ball Arena,1169
+2027-04-08,9:00p,NOP,UTA,False,Delta Center,1170
+2027-04-08,9:30p,GSW,OKC,False,Paycom Center,1171
+2027-04-09,10:00p,MIN,LAL,False,Crypto.com Arena,1172
+2027-04-09,10:00p,MEM,PHX,False,Mortgage Matchup Center,1173
+2027-04-09,10:00p,DAL,SAC,False,Golden 1 Center,1174
+2027-04-09,7:00p,BOS,ATL,False,State Farm Arena,1175
+2027-04-09,7:00p,BKN,CHA,False,Spectrum Center,1176
+2027-04-09,7:00p,CLE,IND,False,Gainbridge Fieldhouse,1177
+2027-04-09,7:00p,DET,NYK,False,Madison Square Garden (IV),1178
+2027-04-09,7:00p,TOR,ORL,False,Kia Center,1179
+2027-04-09,8:00p,MIL,CHI,False,United Center,1180
+2027-04-09,8:00p,WAS,MIA,False,Kaseya Center,1181
+2027-04-09,8:00p,GSW,OKC,False,Paycom Center,1182
+2027-04-09,8:30p,POR,HOU,False,Toyota Center,1183
+2027-04-09,9:30p,DEN,SAS,False,Frost Bank Center,1184
+2027-04-09,9:30p,LAC,UTA,False,Delta Center,1185
+2027-04-11,6:00p,TOR,BKN,False,Barclays Center,1186
+2027-04-11,6:00p,MIL,BOS,False,TD Garden,1187
+2027-04-11,6:00p,ATL,CLE,False,Rocket Arena,1188
+2027-04-11,6:00p,ORL,MIA,False,Kaseya Center,1189
+2027-04-11,6:00p,CHI,NOP,False,Smoothie King Center,1190
+2027-04-11,6:00p,IND,NYK,False,Madison Square Garden (IV),1191
+2027-04-11,6:00p,CHA,PHI,False,Xfinity Mobile Arena,1192
+2027-04-11,6:00p,DET,WAS,False,Capital One Arena,1193
+2027-04-11,8:30p,MEM,DAL,False,American Airlines Center,1194
+2027-04-11,8:30p,OKC,DEN,False,Ball Arena,1195
+2027-04-11,8:30p,UTA,GSW,False,Chase Center,1196
+2027-04-11,8:30p,SAC,LAC,False,Intuit Dome,1197
+2027-04-11,8:30p,PHX,LAL,False,Crypto.com Arena,1198
+2027-04-11,8:30p,HOU,MIN,False,Target Center,1199
+2027-04-11,8:30p,POR,SAS,False,Frost Bank Center,1200

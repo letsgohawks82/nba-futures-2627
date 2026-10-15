@@ -1,0 +1,31 @@
+team,owner_status,recipients,protection,swap_or_conditional_detail,stepien_flag,source
+ATL,traded,SAS,none listed,,,HoopsRumors 2026-09
+BOS,own,BOS,,,,HoopsRumors 2026-09
+BKN,own+swap_rights_out,BKN (HOU may swap HOU 2027 for BKN 2027),none,Houston has right to swap own 2027 1st for Brooklyn's (confirmed OverTheApron ledger),,HoopsRumors 2026-09; OverTheApron
+CHA,own,CHA,,,,HoopsRumors 2026-09
+CHI,own,CHI,,,,HoopsRumors 2026-09
+CLE,traded,MEM/UTA/PHX,none,"3-way: MEM gets best of CLE/MIN/UTA; UTA gets 2nd best; PHX gets worst. If UTA pick is top-5 UTA keeps it and MEM gets better of CLE/MIN, PHX the worse",,HoopsRumors 2026-09
+DAL,traded,CHA,top-2 protected,"If protected DAL sends MIA 2028 2nd to CHA",,HoopsRumors 2026-09
+DEN,traded,OKC/LAC/TOR,top-5 protected,"See OKC/LAC/TOR cluster; if top-5 OKC gets better of those two and DEN owes 2028 1st (top-5 prot) to OKC",,HoopsRumors 2026-09
+DET,own,DET,,,,HoopsRumors 2026-09
+GSW,own,GSW,,,,HoopsRumors 2026-09
+HOU,own+swap_rights,HOU (may swap HOU for BKN),none,,,HoopsRumors 2026-09
+IND,own,IND,,,,HoopsRumors 2026-09
+LAC,swap_rights_out,OKC/LAC/TOR cluster,none,"LAC receives better of: worst of (LAC,OKC,DEN-topprot5) vs TOR pick; TOR gets the lesser",*,HoopsRumors 2026-09
+LAL,traded,MEM,top-4 protected,"If protected LAL sends 2027 2nd to MEM",,HoopsRumors 2026-09; OverTheApron (2nd conditional)
+MEM,own,MEM,,,,HoopsRumors 2026-09
+MIA,traded,CHA,top-14 protected,"If protected MIA sends unprotected 2028 1st to CHA",,HoopsRumors 2026-09
+MIL,traded,NOP/ATL,"if both MIL & NOP picks top-4, NOP gets both","NOP gets better of NOP/MIL; ATL gets worse",,HoopsRumors 2026-09
+MIN,traded,MEM/UTA/PHX,none,see CLE,,HoopsRumors 2026-09
+NOP,own+swap_rights,NOP/ATL,"if both NOP & MIL top-4 NOP gets both","NOP gets better of NOP/MIL; ATL gets worse",,HoopsRumors 2026-09
+NYK,traded,BKN,none,,,HoopsRumors 2026-09; OverTheApron
+OKC,own+swap_rights,OKC cluster,none,"OKC gets two most favorable of: OKC, LAC, DEN(top-5 prot)",,HoopsRumors 2026-09
+ORL,own,ORL,,,*,HoopsRumors 2026-09
+PHI,own,PHI,,,*,HoopsRumors 2026-09
+PHX,traded,HOU,none,,,HoopsRumors 2026-09
+POR,own,POR,,,,HoopsRumors 2026-09
+SAC,own,SAC,,,,HoopsRumors 2026-09
+SAS,traded,SAC/OKC,none,"SAC gets SAS pick if 1-16, OKC if 17-30; if SAC gets it SAC sends 2027 2nd + CHA 2027 2nd to OKC",,HoopsRumors 2026-09
+TOR,swap_rights_out,OKC cluster,none,,,HoopsRumors 2026-09
+UTA,conditional,MEM/UTA/PHX,top-5 protected,see CLE,,HoopsRumors 2026-09; ESPN lottery article (UTA pick owed to MEM; cannot be higher than 6th)
+WAS,own,WAS,,,,HoopsRumors 2026-09

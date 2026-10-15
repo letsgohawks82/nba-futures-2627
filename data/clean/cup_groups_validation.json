@@ -1,0 +1,91 @@
+{
+ "book": {
+  "CUP_EAST_A": [
+   "BKN",
+   "DET",
+   "MIL",
+   "ORL",
+   "TOR"
+  ],
+  "CUP_EAST_B": [
+   "CLE",
+   "IND",
+   "MIA",
+   "NYK",
+   "PHI"
+  ],
+  "CUP_EAST_C": [
+   "ATL",
+   "BOS",
+   "CHA",
+   "CHI",
+   "WAS"
+  ],
+  "CUP_WEST_A": [
+   "DAL",
+   "DEN",
+   "HOU",
+   "PHX",
+   "UTA"
+  ],
+  "CUP_WEST_B": [
+   "LAC",
+   "MEM",
+   "MIN",
+   "NOP",
+   "OKC"
+  ],
+  "CUP_WEST_C": [
+   "GSW",
+   "LAL",
+   "POR",
+   "SAC",
+   "SAS"
+  ]
+ },
+ "schedule": [
+  [
+   "ATL",
+   "BOS",
+   "CHA",
+   "CHI",
+   "WAS"
+  ],
+  [
+   "BKN",
+   "DET",
+   "MIL",
+   "ORL",
+   "TOR"
+  ],
+  [
+   "CLE",
+   "IND",
+   "MIA",
+   "NYK",
+   "PHI"
+  ],
+  [
+   "DAL",
+   "DEN",
+   "HOU",
+   "PHX",
+   "UTA"
+  ],
+  [
+   "GSW",
+   "LAL",
+   "POR",
+   "SAC",
+   "SAS"
+  ],
+  [
+   "LAC",
+   "MEM",
+   "MIN",
+   "NOP",
+   "OKC"
+  ]
+ ],
+ "match": true
+}

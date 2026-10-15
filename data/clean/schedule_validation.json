@@ -1,0 +1,23 @@
+{
+ "bbref_games": 1200,
+ "espn_games": 1200,
+ "matched_on_date_home_away": 1200,
+ "bbref_only": 0,
+ "espn_only": 0,
+ "cup_group_games": 60,
+ "games_per_team_min_max": [
+  80,
+  80
+ ],
+ "cup_games_per_team_min_max": [
+  4,
+  4
+ ],
+ "b2b_per_team_min_max_mean": [
+  13,
+  16,
+  14.2
+ ],
+ "first": "2026-10-20",
+ "last": "2027-04-11"
+}

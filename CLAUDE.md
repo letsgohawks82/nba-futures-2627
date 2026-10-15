@@ -21,3 +21,11 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 ## Gotchas
 - Windows shell; use .venv\Scripts\python.exe explicitly.
 - Odds CSV: 687 data rows; columns market,selection,side,line,american,flag.
+
+## G1 (2026-10-15) - data pulled, awaiting approval
+- nba_api/cdn.nba.com blocked from this IP -> bbref + ESPN site API + barttorvik fallbacks; no tracking/hustle; in-house RAPM infeasible.
+- Schedule = 1,200 games (80/team); 2 games/team Dec 4-10 depend on Cup results (generate in G3). 60 Cup group games; groups equal the book groups.
+- 3-2-1: 37 balls (6+21+8+2), floor #12 for 3 worst, restrictions follow the original team's pick; deadline Feb 11 2027 3pm ET. Draw mechanics not public (assumption in report).
+- Code: src/data/. Clean outputs: data/clean/. data/manifest.csv is committed; data/raw is git-ignored.
+- Raw bbref html from first pull is mojibake; clean parquets repaired.
+- Gotcha: pandas 3 string dtype is not object; use pd.api.types.is_string_dtype.
