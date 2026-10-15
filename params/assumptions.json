@@ -1,0 +1,114 @@
+[
+ {
+  "name": "lottery_n_draws",
+  "value": 4,
+  "units": "draws",
+  "description": "Number of ball draws in the 3-2-1 lottery; remaining picks by reverse record. USER DEFAULT. Evidence (NBA.com, Tankathon, Hoops Rumors) says ALL 16 picks are drawn, i.e. 16 - see G2 report sensitivity.",
+  "type": "assumption",
+  "source": "reports/G2_report.md; data/clean/lottery_sensitivity_draws.csv"
+ },
+ {
+  "name": "lottery_redraw_blocked",
+  "value": 1,
+  "units": "bool",
+  "description": "A restricted team drawn at a blocked slot is redrawn (equivalent to excluding it from that slot's candidates).",
+  "type": "assumption",
+  "source": "src/sim/lottery.py"
+ },
+ {
+  "name": "lottery_restrictions_follow_pick",
+  "value": 1,
+  "units": "bool",
+  "description": "Top-5/#1 restrictions follow the original team's pick when traded (toggle). Consistent with NBA.com 'regardless of whether the pick was traded' and ESPN UTA->MEM example.",
+  "type": "assumption (supported by NBA.com wording)",
+  "source": "data/raw/lottery/321_rules_sources_20261015.md"
+ },
+ {
+  "name": "lottery_7v8_loser_keeps_ball_if_makes_playoffs",
+  "value": 1,
+  "units": "bool",
+  "description": "7-vs-8 play-in loser keeps its 1 ball even if it wins the 8-seed game.",
+  "type": "assumption",
+  "source": "NBA.com wording; not stated explicitly"
+ },
+ {
+  "name": "lottery_floor_pick_three_worst",
+  "value": 12,
+  "units": "pick",
+  "description": "Three worst records cannot fall below this pick.",
+  "type": "fact (NBA.com, ESPN, HoopsRumors)",
+  "source": "data/raw/lottery/321_rules_sources_20261015.md"
+ },
+ {
+  "name": "tpg_min_games_pct",
+  "value": 0.7,
+  "units": "share of team games",
+  "description": "Turnover-leader qualifier; defaults to the same 58/82 rule as PTS/REB/AST. UNCONFIRMED with the book (NBA.com has no TPG qualifier).",
+  "type": "assumption - unconfirmed with book",
+  "source": "data/raw/rules/stat_qualifiers_20261015.md"
+ },
+ {
+  "name": "leader_min_games_pct",
+  "value": 0.7,
+  "units": "share of team games",
+  "description": "NBA.com PTS/REB/AST/STL/BLK qualifier (58 of 82), with total-based exception.",
+  "type": "fact (NBA.com statminimums)",
+  "source": "data/raw/rules/stat_qualifiers_20261015.md"
+ },
+ {
+  "name": "cup_nonqualifier_games_each",
+  "value": 2,
+  "units": "games",
+  "description": "Each of 22 Cup non-advancing teams plays 2 regular-season games on Dec 6-10 (22 games total).",
+  "type": "fact (NBA.com Cup 101)",
+  "source": "NBA.com/news/nba-cup-101"
+ },
+ {
+  "name": "cup_nonqualifier_pairing",
+  "value": "random within conference per sim, 1 home 1 away; cross-conference only if counts odd",
+  "units": "rule",
+  "description": "USER SPEC. NOTE: NBA.com says 2 of the 22 non-qualifier games are cross-conference; set cup_nonqualifier_cross_conf_games to reproduce.",
+  "type": "user spec",
+  "source": "reports/G2_report.md"
+ },
+ {
+  "name": "cup_nonqualifier_cross_conf_games",
+  "value": 0,
+  "units": "games",
+  "description": "USER DEFAULT 0 (NBA.com says 2). Toggle.",
+  "type": "assumption",
+  "source": "NBA.com Cup 101"
+ },
+ {
+  "name": "cup_qf_loser_games",
+  "value": 2,
+  "units": "games",
+  "description": "The 4 quarterfinal losers play 1 game each pairing within conference (2 games).",
+  "type": "fact (ESPN/NBA.com)",
+  "source": "NBA.com Cup 101; ESPN 2026 Cup"
+ },
+ {
+  "name": "cup_semifinal_site",
+  "value": "higher seed's home arena (NBA.com); user spec said neutral site",
+  "units": "rule",
+  "description": "Semis count as regular-season games; final does not. DISCREPANCY flagged. Toggle cup_semis_neutral (default 0).",
+  "type": "fact (NBA.com) vs user spec",
+  "source": "NBA.com Cup 101"
+ },
+ {
+  "name": "cup_semis_neutral",
+  "value": 0,
+  "units": "bool",
+  "description": "1 = neutral-site semis (user spec); 0 = higher seed hosts (NBA.com).",
+  "type": "assumption",
+  "source": "NBA.com Cup 101"
+ },
+ {
+  "name": "tank_incentive_toggle_teams",
+  "value": "LAC,TOR",
+  "units": "teams",
+  "description": "Teams whose 2027 pick terms are not fully reconciled; tank incentive is a manual toggle, not modeled.",
+  "type": "flag",
+  "source": "data/clean/picks_2027_reconciled.csv"
+ }
+]

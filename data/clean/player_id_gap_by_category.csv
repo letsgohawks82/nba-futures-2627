@@ -1,0 +1,118 @@
+team,name,exp,college,category
+ATL,Giorgi Bezhanishvili,0.0,Illinois,undrafted_or_two_way_no_NBA_games
+ATL,Cameron Corhen,0.0,Pittsburgh,undrafted_or_two_way_no_NBA_games
+ATL,Zuby Ejiofor,0.0,St. John's,rookie_2026_draftee
+ATL,Kingston Flemings,0.0,Houston,rookie_2026_draftee
+ATL,Kobe Johnson,0.0,UCLA,undrafted_or_two_way_no_NBA_games
+ATL,Henri Veesaar,0.0,North Carolina,rookie_2026_draftee
+BOS,Chris Cenac Jr.,0.0,Houston,rookie_2026_draftee
+BOS,Tucker DeVries,0.0,Indiana,undrafted_or_two_way_no_NBA_games
+BOS,Gabe McGlothan,0.0,Grand Canyon,undrafted_or_two_way_no_NBA_games
+BOS,Dillon Mitchell,0.0,St. John's,rookie_2026_draftee
+BOS,Milos Uzan,0.0,Houston,undrafted_or_two_way_no_NBA_games
+BKN,Tyler Bilodeau,0.0,UCLA,rookie_2026_draftee
+BKN,Mikel Brown Jr.,0.0,Louisville,rookie_2026_draftee
+BKN,Joshua Jefferson,0.0,Iowa State,rookie_2026_draftee
+CHA,Christian Anderson,0.0,Texas Tech,rookie_2026_draftee
+CHA,Kylan Boswell,0.0,Illinois,undrafted_or_two_way_no_NBA_games
+CHA,Wyatt Fricks,0.0,Marshall,undrafted_or_two_way_no_NBA_games
+CHA,Jarkel Joiner,4.0,NC State,undrafted_or_two_way_no_NBA_games
+CHA,Hannes Steinbach,0.0,Washington,rookie_2026_draftee
+CHI,Tobe Awaka,0.0,Arizona,undrafted_or_two_way_no_NBA_games
+CHI,Jaylin Sellers,0.0,Providence,undrafted_or_two_way_no_NBA_games
+CHI,Dailyn Swain,0.0,Texas,rookie_2026_draftee
+CHI,Caleb Wilson,0.0,North Carolina,rookie_2026_draftee
+CLE,Rashaun Agee,0.0,Texas A&M,undrafted_or_two_way_no_NBA_games
+CLE,Zack Austin,0.0,Pittsburgh,undrafted_or_two_way_no_NBA_games
+CLE,Khalifa Diop,0.0,,international_or_no_college_no_NBA_games
+CLE,Meleek Thomas,0.0,Arkansas,rookie_2026_draftee
+CLE,Ernest Udeh Jr.,0.0,Miami,undrafted_or_two_way_no_NBA_games
+CLE,Noam Yaacov,0.0,,international_or_no_college_no_NBA_games
+DAL,Tarik Biberovic,0.0,,international_or_no_college_no_NBA_games
+DAL,Sergio de Larrea,0.0,,rookie_2026_draftee
+DAL,Jorge Diaz Graham,0.0,Oregon State,undrafted_or_two_way_no_NBA_games
+DAL,Morez Johnson Jr.,0.0,Michigan,rookie_2026_draftee
+DAL,Tobi Lawal,0.0,Virginia Tech,rookie_2026_draftee
+DEN,Trevon Brazile,0.0,Arkansas,rookie_2026_draftee
+DEN,Steven Crowl,,Wisconsin,undrafted_or_two_way_no_NBA_games
+DEN,Alpha Diallo,0.0,Providence,undrafted_or_two_way_no_NBA_games
+DEN,Dane Goodwin,0.0,Notre Dame,undrafted_or_two_way_no_NBA_games
+DEN,Coleman Hawkins,0.0,Kansas State,undrafted_or_two_way_no_NBA_games
+DEN,Bryce Hopkins,0.0,St. John's,rookie_2026_draftee
+DET,Ebuka Okorie,0.0,Stanford,rookie_2026_draftee
+DET,Ugonna Onyenso,0.0,Virginia,rookie_2026_draftee
+DET,Brice Williams,2.0,Nebraska,undrafted_or_two_way_no_NBA_games
+GSW,Graham Ike,0.0,Gonzaga,undrafted_or_two_way_no_NBA_games
+GSW,Yaxel Lendeborg,0.0,Michigan,rookie_2026_draftee
+GSW,Alex Toohey,2.0,,international_or_no_college_no_NBA_games
+HOU,Quadir Copeland,0.0,NC State,undrafted_or_two_way_no_NBA_games
+HOU,Bruce Thornton,0.0,Ohio State,rookie_2026_draftee
+IND,Braden Smith,0.0,Purdue,rookie_2026_draftee
+LAC,Fletcher Loyer,0.0,Purdue,undrafted_or_two_way_no_NBA_games
+LAC,Nick Martinelli,0.0,Northwestern,rookie_2026_draftee
+LAC,Baba Miller,0.0,Cincinnati,rookie_2026_draftee
+LAC,Keaton Wagler,0.0,Illinois,rookie_2026_draftee
+LAC,DeAndre Williams,,Memphis,undrafted_or_two_way_no_NBA_games
+LAL,Cameron Carr,0.0,Baylor,rookie_2026_draftee
+LAL,Rafael Castro,0.0,George Washington,undrafted_or_two_way_no_NBA_games
+LAL,Arthur Kaluma,2.0,Texas,undrafted_or_two_way_no_NBA_games
+LAL,William Kyle III,0.0,Syracuse,undrafted_or_two_way_no_NBA_games
+LAL,AK Okereke,0.0,Vanderbilt,undrafted_or_two_way_no_NBA_games
+MEM,Cameron Boozer,0.0,Duke,rookie_2026_draftee
+MEM,Carson Cooper,0.0,Michigan State,undrafted_or_two_way_no_NBA_games
+MEM,Karim Lopez,0.0,,rookie_2026_draftee
+MIA,Ryan Conwell,0.0,Louisville,rookie_2026_draftee
+MIA,Tre Donaldson,0.0,Miami,undrafted_or_two_way_no_NBA_games
+MIA,J'Vonne Hadley,0.0,Louisville,undrafted_or_two_way_no_NBA_games
+MIA,Gabe Madsen,0.0,Utah,undrafted_or_two_way_no_NBA_games
+MIA,Ian Schieffelin,0.0,Clemson,undrafted_or_two_way_no_NBA_games
+MIL,Nate Ament,0.0,Tennessee,rookie_2026_draftee
+MIL,Brayden Burries,0.0,Arizona,rookie_2026_draftee
+MIL,Bogoljub Markovic,0.0,,international_or_no_college_no_NBA_games
+MIL,Jake Stephens,0.0,Chattanooga,undrafted_or_two_way_no_NBA_games
+MIN,Isaiah Evans,0.0,Duke,rookie_2026_draftee
+NOP,Malik Dia,0.0,Ole Miss,undrafted_or_two_way_no_NBA_games
+NOP,Jalon Moore,,Oklahoma,undrafted_or_two_way_no_NBA_games
+NOP,Jaron Pierre Jr.,0.0,SMU,rookie_2026_draftee
+NYK,Jaden Akins,0.0,Michigan State,undrafted_or_two_way_no_NBA_games
+NYK,Tyler Nickel,0.0,Vanderbilt,rookie_2026_draftee
+OKC,Josh Dix,0.0,Creighton,undrafted_or_two_way_no_NBA_games
+OKC,Andrew Holifield,0.0,Lamar,undrafted_or_two_way_no_NBA_games
+OKC,Aday Mara,0.0,Michigan,rookie_2026_draftee
+OKC,Robert McCray V,,Florida State,undrafted_or_two_way_no_NBA_games
+OKC,Otega Oweh,0.0,Kentucky,rookie_2026_draftee
+OKC,Anthony Pritchard,0.0,Central Michigan,undrafted_or_two_way_no_NBA_games
+OKC,Thomas Sorber,0.0,Georgetown,undrafted_or_two_way_no_NBA_games
+OKC,Bennett Stirtz,0.0,Iowa,rookie_2026_draftee
+OKC,Christoph Tilly,0.0,Ohio State,undrafted_or_two_way_no_NBA_games
+ORL,Izaiyah Nelson,0.0,South Florida,rookie_2026_draftee
+ORL,Mike Sharavjamts,,South Carolina,undrafted_or_two_way_no_NBA_games
+PHI,Duke Miles,0.0,Vanderbilt,undrafted_or_two_way_no_NBA_games
+PHI,Labaron Philon Jr.,0.0,Alabama,rookie_2026_draftee
+PHI,Saint Thomas,0.0,USC,undrafted_or_two_way_no_NBA_games
+PHX,Koa Peat,0.0,Arizona,rookie_2026_draftee
+SAC,Darius Acuff Jr.,0.0,Arkansas,rookie_2026_draftee
+SAC,Alex Karaban,0.0,UConn,rookie_2026_draftee
+SAC,Viktor Lakhin,0.0,Clemson,undrafted_or_two_way_no_NBA_games
+SAC,Emanuel Sharp,0.0,Houston,rookie_2026_draftee
+SAS,Maliq Brown,0.0,Duke,rookie_2026_draftee
+SAS,RJ Davis,2.0,North Carolina,undrafted_or_two_way_no_NBA_games
+SAS,Jon Elmore,0.0,Marshall,undrafted_or_two_way_no_NBA_games
+SAS,Ja'Kobi Gillespie,0.0,Tennessee,rookie_2026_draftee
+SAS,Jayden Quaintance,0.0,Kentucky,rookie_2026_draftee
+SAS,Tarris Reed Jr.,0.0,UConn,rookie_2026_draftee
+TOR,Nate Bittle,0.0,Oregon,undrafted_or_two_way_no_NBA_games
+TOR,Jaden Bradley,0.0,Arizona,rookie_2026_draftee
+TOR,Nimari Burnett,0.0,Michigan,undrafted_or_two_way_no_NBA_games
+TOR,Tyson Degenhart,0.0,Boise State,undrafted_or_two_way_no_NBA_games
+TOR,Allen Graves,0.0,Santa Clara,rookie_2026_draftee
+TOR,Tyreke Key,2.0,Tennessee,undrafted_or_two_way_no_NBA_games
+TOR,Jamarion Sharp,,Ole Miss,undrafted_or_two_way_no_NBA_games
+UTA,Jonas Aidoo,0.0,Arkansas,undrafted_or_two_way_no_NBA_games
+UTA,Tamar Bates,0.0,Missouri,undrafted_or_two_way_no_NBA_games
+UTA,Terrell Brown Jr.,,Washington,undrafted_or_two_way_no_NBA_games
+UTA,Taylor Funk,0.0,Utah State,undrafted_or_two_way_no_NBA_games
+UTA,Darryn Peterson,0.0,Kansas,rookie_2026_draftee
+WAS,AJ Dybantsa,0.0,BYU,rookie_2026_draftee
+WAS,Felix Okpara,0.0,Tennessee,rookie_2026_draftee
+WAS,Steve Settle III,0.0,Temple,undrafted_or_two_way_no_NBA_games

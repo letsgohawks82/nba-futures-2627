@@ -29,3 +29,12 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 - Code: src/data/. Clean outputs: data/clean/. data/manifest.csv is committed; data/raw is git-ignored.
 - Raw bbref html from first pull is mojibake; clean parquets repaired.
 - Gotcha: pandas 3 string dtype is not object; use pd.api.types.is_string_dtype.
+
+## G2 (2026-10-15) - ratings + backtest done, awaiting approval
+- Model: src/ratings/{prep,model,rookies,backtest,project_2027}.py. BPM-based player impact (lambda .55, M0 600), college rookie model, availability model, team layer SRS~teamsum+prevSRS; wins=41+2.44*SRS, sums to 1230.
+- Backtest 2019-2026: RMSE 8.44 [7.97,8.90] vs 10.2 baselines (paired diff CI excludes 0). No free market-line archive -> no market benchmark. Roster membership proxy leaks slightly.
+- w_darko=0.35 is an ASSUMPTION (no DARKO history). nba_api still blocked -> no in-house RAPM until after lock.
+- Lottery sim src/sim/lottery.py (draws param). User default 4 draws conflicts with sources (16). Restricted: UTA no top-5, WAS no #1. LAC/TOR pick terms = toggle.
+- Cup module spec in params/assumptions.json (NBA.com: semis at higher seed, 2 cross-conf nonqualifier games; user spec differs; toggles).
+- Overrides: params/overrides_players.csv (blank template); ESPN Out injuries applied automatically.
+- run.py ratings = backtest + project_2027.

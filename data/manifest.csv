@@ -360,3 +360,22 @@ data/raw/barttorvik/advstats_2024.csv_20261015,https://barttorvik.com/getadvstat
 data/raw/barttorvik/advstats_2025.csv_20261015,https://barttorvik.com/getadvstats.php?year=2025&csv=1,2026-10-15T13:16:06-04:00,5060,7948579a1a04e688c57cf0f3bde44d719581e418181c3db6d4b3cbd222f1e022,"headerless CSV; column order per barttorvik convention, verify in G2"
 data/raw/barttorvik/advstats_2026.csv_20261015,https://barttorvik.com/getadvstats.php?year=2026&csv=1,2026-10-15T13:16:08-04:00,4978,b984344e95fe33c39a25e4cc78b1b850162693a451097b53a97f2d11e7c65913,"headerless CSV; column order per barttorvik convention, verify in G2"
 data/raw/coaches/2027_coaches.html_20261015,https://www.basketball-reference.com/leagues/NBA_2027_coaches.html,2026-10-15T13:16:18-04:00,33,5802cceed9e209fed3ee2902cd63e4f5934d13c7323e3850cfd8d55e1bc19553,
+data/clean/picks_2027_reconciled.csv,"HoopsRumors 2026-09; RealGM future_drafts/detailed (browser, 2026-10-15); Tankathon / (projection); ESPN trade tracker (to 2026-09-22)",2026-10-15T13:25:13-04:00,30,3203e0e4ea2fe11abd45a0d885d1610da6fc6922cfc7aba4867562a1e75e5ddf,"reconciled, hand-built"
+params/assumptions.json,derived/assumption,2026-10-15T13:29:59-04:00,1,8e81bf4888c9e54b7b534c48d8773d2b0a1b9877546a49fdd38b66dc54aa010a,G2-prep
+params/provenance.json,derived/assumption,2026-10-15T13:29:59-04:00,1,332183db6ec4691ed82a6379d46b7782fb801fd4535df65dc95303b8d63bdd48,G2-prep
+data/clean/lottery_sensitivity_draws.csv,derived/assumption,2026-10-15T13:29:59-04:00,1,5955c29ec3df0dfbb9a4e1b6d1abeb877843a14246327bffd625ccaa008fbf22,G2-prep
+data/clean/player_ids.csv,derived/assumption,2026-10-15T13:29:59-04:00,1,e803289230174e501d5323e2bbdc2c32f75e0cae560f4c5a70d02f98f5c753b5,G2-prep
+data/clean/player_id_gap_by_category.csv,derived/assumption,2026-10-15T13:29:59-04:00,1,7c171613db9b419b89a2013d6f8c426d1e38d2709ba02a9b2ec719a5ae55ec88,G2-prep
+data/clean/backtest_fitlog.csv,derived model output (src/ratings),2026-10-15T13:43:28-04:00,9,fe75233b0d99a4fa28f46b169c0d560c5e84bafe3801148202505d730ca660fa,G2
+data/clean/backtest_metrics.json,derived model output (src/ratings),2026-10-15T13:43:28-04:00,323,2c847ef6e84060dbcbae5f270a68dc3a59f2b201aaa624ea08b6f13bd321d74b,G2
+data/clean/backtest_predictions.csv,derived model output (src/ratings),2026-10-15T13:43:28-04:00,241,ee1274f432faece80d38c4f31761f1098a1f2d125c06fada1c5e57e821f9c7a6,G2
+data/clean/picks_2027.csv,derived model output (src/ratings),2026-10-15T13:43:28-04:00,31,36f6167b2d9406536ab1b0d4600cb97283b043e1010419ac9a1f26c3d937a868,G2
+data/clean/picks_2027_reconciled.csv,derived model output (src/ratings),2026-10-15T13:43:28-04:00,31,0510dfb5ef42cd2dd921550bc77bb54bab3677c153ed0abc5044f47996539117,G2
+data/clean/player_projection_2027.csv,derived model output (src/ratings),2026-10-15T13:43:28-04:00,628,aadf77493611663ae02fb913223e12c29a79b9f0327f70d7a040574c6ec411e3,G2
+data/clean/ratings_fit_2027.json,derived model output (src/ratings),2026-10-15T13:43:28-04:00,80,0924cadccca350d3bac5efb2ea598aadd4f878272544f3df26ea6d419e549e43,G2
+data/clean/team_projection_2027.csv,derived model output (src/ratings),2026-10-15T13:43:28-04:00,31,d578f04164e0aeea633d62c5abd1b4974f15f33c59b2bb7f31ac32156cf4cd9a,G2
+data/clean/sensitivity_w_darko.csv,derived model output (src/ratings),2026-10-15T13:43:28-04:00,31,7df1b041ac515ae18a30d78dd5df02e197b287b41690247a21c7f823f8f7c103,G2
+data/clean/benchmark_model_vs_book_wins.csv,derived model output (src/ratings),2026-10-15T13:43:28-04:00,31,7fa017d502c66433104c9176a56512a37fbf4fd7008aea7e39ee3a39f2488ecb,G2
+data/clean/ratings_fit_2027.json,derived model output (src/ratings),2026-10-15T13:43:28-04:00,80,0924cadccca350d3bac5efb2ea598aadd4f878272544f3df26ea6d419e549e43,G2
+params/provenance.json,derived model output (src/ratings),2026-10-15T13:43:28-04:00,291,d319a9c5b81561771199336a8d5357bbe46ef73fcb2137c58a023175919c1f35,G2
+params/overrides_players.csv,derived model output (src/ratings),2026-10-15T13:43:28-04:00,1,44452c38844b5222de0e14487af5acc361aa8f9c1cc23e81915fca43bc66a56f,G2

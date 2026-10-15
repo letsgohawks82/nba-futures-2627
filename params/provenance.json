@@ -1,0 +1,291 @@
+{
+ "lottery_n_draws": {
+  "value": 4,
+  "method": "assumption",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "reports/G2_report.md; data/clean/lottery_sensitivity_draws.csv",
+  "note": "Number of ball draws in the 3-2-1 lottery; remaining picks by reverse record. USER DEFAULT. Evidence (NBA.com, Tankathon, Hoops Rumors) says ALL 16 picks are drawn, i.e. 16 - see G2 report sensitivity."
+ },
+ "lottery_redraw_blocked": {
+  "value": 1,
+  "method": "assumption",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/lottery.py",
+  "note": "A restricted team drawn at a blocked slot is redrawn (equivalent to excluding it from that slot's candidates)."
+ },
+ "lottery_restrictions_follow_pick": {
+  "value": 1,
+  "method": "assumption",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "data/raw/lottery/321_rules_sources_20261015.md",
+  "note": "Top-5/#1 restrictions follow the original team's pick when traded (toggle). Consistent with NBA.com 'regardless of whether the pick was traded' and ESPN UTA->MEM example."
+ },
+ "lottery_7v8_loser_keeps_ball_if_makes_playoffs": {
+  "value": 1,
+  "method": "assumption",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "NBA.com wording; not stated explicitly",
+  "note": "7-vs-8 play-in loser keeps its 1 ball even if it wins the 8-seed game."
+ },
+ "lottery_floor_pick_three_worst": {
+  "value": 12,
+  "method": "documented fact",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "data/raw/lottery/321_rules_sources_20261015.md",
+  "note": "Three worst records cannot fall below this pick."
+ },
+ "tpg_min_games_pct": {
+  "value": 0.7,
+  "method": "assumption",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "data/raw/rules/stat_qualifiers_20261015.md",
+  "note": "Turnover-leader qualifier; defaults to the same 58/82 rule as PTS/REB/AST. UNCONFIRMED with the book (NBA.com has no TPG qualifier)."
+ },
+ "leader_min_games_pct": {
+  "value": 0.7,
+  "method": "documented fact",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "data/raw/rules/stat_qualifiers_20261015.md",
+  "note": "NBA.com PTS/REB/AST/STL/BLK qualifier (58 of 82), with total-based exception."
+ },
+ "cup_nonqualifier_games_each": {
+  "value": 2,
+  "method": "documented fact",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "NBA.com/news/nba-cup-101",
+  "note": "Each of 22 Cup non-advancing teams plays 2 regular-season games on Dec 6-10 (22 games total)."
+ },
+ "cup_nonqualifier_pairing": {
+  "value": "random within conference per sim, 1 home 1 away; cross-conference only if counts odd",
+  "method": "assumption",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "reports/G2_report.md",
+  "note": "USER SPEC. NOTE: NBA.com says 2 of the 22 non-qualifier games are cross-conference; set cup_nonqualifier_cross_conf_games to reproduce."
+ },
+ "cup_nonqualifier_cross_conf_games": {
+  "value": 0,
+  "method": "assumption",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "NBA.com Cup 101",
+  "note": "USER DEFAULT 0 (NBA.com says 2). Toggle."
+ },
+ "cup_qf_loser_games": {
+  "value": 2,
+  "method": "documented fact",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "NBA.com Cup 101; ESPN 2026 Cup",
+  "note": "The 4 quarterfinal losers play 1 game each pairing within conference (2 games)."
+ },
+ "cup_semifinal_site": {
+  "value": "higher seed's home arena (NBA.com); user spec said neutral site",
+  "method": "documented fact",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "NBA.com Cup 101",
+  "note": "Semis count as regular-season games; final does not. DISCREPANCY flagged. Toggle cup_semis_neutral (default 0)."
+ },
+ "cup_semis_neutral": {
+  "value": 0,
+  "method": "assumption",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "NBA.com Cup 101",
+  "note": "1 = neutral-site semis (user spec); 0 = higher seed hosts (NBA.com)."
+ },
+ "tank_incentive_toggle_teams": {
+  "value": "LAC,TOR",
+  "method": "assumption",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "data/clean/picks_2027_reconciled.csv",
+  "note": "Teams whose 2027 pick terms are not fully reconciled; tank incentive is a manual toggle, not modeled."
+ },
+ "player_lambda_decay": {
+  "value": 0.55,
+  "method": "grid search minimizing minutes-weighted RMSE of next-season BPM",
+  "data_window": "bbref 2014-2026 (targets 2015-2026)",
+  "n": 4383,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/model.py:fit_player_model"
+ },
+ "player_M0_reliability_minutes": {
+  "value": 600,
+  "method": "same grid search (shrinkage reliability r=S/(S+M0), S=decayed prior minutes)",
+  "data_window": "bbref 2014-2026",
+  "n": 4383,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/model.py:fit_player_model"
+ },
+ "player_beta [const, age, age^2, r*prior, r]": {
+  "value": [
+   -1.8005631816926833,
+   -0.6750660085489817,
+   0.10025150298328622,
+   1.077926369424281,
+   2.26944523510396
+  ],
+  "method": "weighted OLS",
+  "data_window": "bbref 2014-2026",
+  "n": 4383,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/model.py:fit_player_model"
+ },
+ "player_oos_rmse_bpm": {
+  "value": 1.6558477755564749,
+  "method": "in-sample weighted RMSE of player model (BPM pts/100)",
+  "data_window": "bbref 2014-2026",
+  "n": 4383,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/model.py"
+ },
+ "rookie_college_model_beta": {
+  "value": [
+   -3.867568946845259,
+   -0.3480269920308815,
+   0.2974219745283428,
+   -0.06604978706119237,
+   0.12779737045179096,
+   0.25442651119518167
+  ],
+  "method": "weighted OLS rookie BPM ~ ln(pick)+college BPM+class+height; leave-future-draft-year RMSE 2.04 vs 2.27 slot-only",
+  "data_window": "drafts 2013-2025",
+  "n": 539,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/rookies.py"
+ },
+ "availability_beta [const,g1,g2,age,age^2]": {
+  "value": [
+   0.4800683400426101,
+   0.2513704166233665,
+   0.093320886518483,
+   -0.013799725435964645,
+   -0.006320078143223329
+  ],
+  "method": "OLS of games-played fraction; resid sd 0.198",
+  "data_window": "bbref 2014-2026",
+  "n": 4425,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/model.py"
+ },
+ "team_layer_beta [const, teamsum_c, prev_srs, continuity*prev_srs]": {
+  "value": [
+   -0.035014649427000104,
+   1.0697564232366585,
+   -0.16998641331120895,
+   0.14318773791379424
+  ],
+  "method": "OLS srs ~ ...; fit on team-seasons 2016-2026 (each season uses player model fit only on earlier data)",
+  "data_window": "2016-2026",
+  "n": 330,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/model.py:fit_team_layer"
+ },
+ "k_wins_per_srs": {
+  "value": 2.4403037933311396,
+  "method": "regression wins-41 on SRS (82-game scaled)",
+  "data_window": "2016-2026",
+  "n": 330,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/model.py"
+ },
+ "wins_resid_sd": {
+  "value": 8.075952262216939,
+  "method": "sd of out-of-fit wins residual incl. game noise",
+  "data_window": "2016-2026",
+  "n": 330,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/model.py"
+ },
+ "sigma_team_wins (true-strength shock, wins)": {
+  "value": 6.69,
+  "method": "sqrt(wins_resid_sd^2 - 82*0.25 binomial game variance); G3 re-estimates sigma_team in SRS pts/game from game-level fit",
+  "data_window": "2016-2026",
+  "n": 330,
+  "fit_date": "2026-10-15",
+  "code_path": "derived; src/ratings/backtest.py"
+ },
+ "sigma_team_srs": {
+  "value": 2.74,
+  "method": "sigma_team_wins / k_wins",
+  "data_window": "2016-2026",
+  "n": 330,
+  "fit_date": "2026-10-15",
+  "code_path": "derived"
+ },
+ "w_darko": {
+  "value": 0.35,
+  "method": "ASSUMPTION: DARKO has no archived history so cannot be backtested; sensitivity in data/clean/sensitivity_w_darko.csv",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/project_2027.py"
+ },
+ "darko_scale_map [slope, intercept]": {
+  "value": [
+   1.0789080464990493,
+   0.07818404160899306
+  ],
+  "method": "regress projected bbref-based rating on DPM among players with >1500 decayed prior minutes",
+  "data_window": "2026 DARKO snapshot",
+  "n": 297,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/project_2027.py"
+ },
+ "pace_blend": {
+  "value": 0.7,
+  "method": "ASSUMPTION: 0.7 prev-season pace + 0.3 league mean (not backtested)",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/project_2027.py"
+ },
+ "mpg_cap": {
+  "value": 38.0,
+  "method": "ASSUMPTION: max projected mpg",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/model.py"
+ },
+ "minutes_decay_lambda": {
+  "value": 0.6,
+  "method": "ASSUMPTION: prior-minutes decay for mpg projection (not tuned)",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/model.py"
+ },
+ "mpg_shrink_games": {
+  "value": 15,
+  "method": "ASSUMPTION: prior-games shrinkage of mpg toward 12 mpg",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "src/ratings/model.py"
+ }
+}

@@ -1,0 +1,31 @@
+team,hoopsrumors_2026-09,realgm_detailed_2026-10-15,tankathon_projection_owner,discrepancy,tank_incentive_toggle,note
+ATL,traded to SAS,"Atlanta's 2027 1st to San Antonio [6/30/2022]","Atlanta pick shown as SA",none,0,ATL has no own pick; but ATL receives worse of NOP/MIL (top-4 prot) - ATL tank incentive uses NOP/MIL-derived pick not own
+BOS,own,no entry,own,none,0,
+BKN,swap rights to HOU; also holds NYK pick,"HOU may swap HOU 2027 for BKN 2027 [1/16/2021]; BKN receives NYK 2027 [7/6/2024]","BKN slot shows HOU as holder (swap exercised in projection)",none,0,HOU may take the better of HOU/BKN; BKN keeps the worse plus the NYK pick
+CHA,own + MIA (top-14 prot) + DAL (top-2 prot),"MIA 1-14 prot 2027 unprot 2028 [1/23/2024]; DAL 1-2 prot else MIA 2028 2nd [2/8/2024]","CHA shown holding MIA and DAL picks",none,0,
+CHI,own,no entry,own,none,0,
+CLE,traded to MEM/UTA/PHX cluster,"Cluster: MEM best of UTA(barred 1-5)/CLE/MIN; UTA 2nd; PHX worst","CLE slot shows UTA",none,0,
+DAL,top-2 protected to CHA,"1-2 prot to CHA else MIA 2028 2nd","DAL slot shows CHA",none,0,
+DEN,to OKC/LAC/TOR cluster (top-5 prot),"DEN to OKC prot 1-5 (2027-29); OKC may convey to LAC; LAC may convey to TOR","DEN slot shows OKC",none,0,
+DET,own,no entry,own,none,0,
+GSW,own,no entry,own,none,0,
+HOU,own + swap right + PHX pick,"HOU may swap HOU for BKN; PHX 2027 to HOU [via BKN]","HOU slot shows BKN (swap), PHX slot shows HOU",none,0,
+IND,own,no entry,own,none,0,
+LAC,swap rights to OKC (cluster),"OKC may swap OKC/DEN(prot 1-5) for LAC; LAC then may swap LAC/OKC/DEN for TOR [LAC-TOR 9/14/2026]","LAC slot shows OKC",POST-SEP-1 TRADE: LAC-TOR dated 9/14/2026 in RealGM; HR snapshot dated 9/11 already describes TOR swap; semantics match (verify no later edit),1,TOGGLE on: tank incentive set by toggle not model for LAC and TOR until swap terms re-verified
+LAL,top-4 prot to MEM (else LAL 2027 2nd to MEM),"1-4 prot to MEM; else 2nd to MEM (via UTA); BKN gets 2nd if conveyed","LAL slot shows MEM",none,0,
+MEM,own (+ LAL top-4 prot + best-of cluster),"MEM receives best of UTA/CLE/MIN and LAL pick","own",none,0,
+MIA,top-14 prot to CHA (else 2028 1st unprot),"1-14 prot 2027 / unprot 2028","MIA slot shows CHA",none,0,MIA 2027 1st only conveys if outside top-14 (picks 15+)
+MIL,to NOP or ATL (better to NOP; both to NOP if both top-4),"NOP more favorable of NOP/MIL; ATL less (prot 1-4 -> NOP gets both)","MIL slot shows NO",none,0,
+MIN,cluster (MEM/UTA/PHX),"cluster","MIN slot shows PHX",none,0,
+NOP,own + swap (better of NOP/MIL),"NOP better of NOP/MIL; ATL worse; both to NOP if top-4","NOP slot shows ATL",none,0,
+NYK,to BKN,"NYK 2027 1st to BKN [7/6/2024]","NYK slot shows BKN",none,0,
+OKC,own + swap rights (cluster) + SAS(17-30),"see cluster; SAS 17-30 to OKC","OKC slot shows TOR (projection)",none,0,
+ORL,own,no entry,own,none,0,
+PHI,own,no entry,own,none,0,
+PHX,to HOU,"PHX 2027 1st to HOU via BKN","PHX slot shows HOU",none,0,
+POR,own,no entry,own,none,0,
+SAC,own (+ SAS pick if 1-16),"SAS 1-16 to SAC; else SAC conveys two 2nds to OKC","own",none,0,
+SAS,to SAC if 1-16 / OKC if 17-30,"identical","SAS slot shows OKC at 29",none,0,
+TOR,swap rights to LAC,"LAC may swap for TOR 2027 [9/14/2026]","TOR slot shows LAC",POST-SEP-1 TRADE (see LAC),1,TOGGLE on
+UTA,top-5 prot / cluster,"UTA treated as barred from 1-5 in the cluster comparison","UTA slot shows MEM",wording only (protected vs barred); effect identical; 3-2-1 restriction makes protection moot,0,
+WAS,own,no entry,own,none,0,
