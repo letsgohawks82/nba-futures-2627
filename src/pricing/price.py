@@ -13,7 +13,7 @@ MODELLED = {"TITLE", "CONF_EAST", "CONF_WEST", "CUP", "PLAYIN_EAST", "PLAYIN_WES
 DISPLAY_ONLY = {"MIP", "SMOY", "COY", "CLUTCH", "CUP_MVP"}            # market de-vig + fair price only, no model probability, no bets
 PLAYER_G4 = {"MVP", "DPOY", "ROY", "LDR_PPG", "LDR_RPG", "LDR_APG", "LDR_SPG", "LDR_BPG", "LDR_TPG"}   # modelled in G4
 
-ASSUME = dict(devig="Shin", kelly_fraction=0.25, min_ev=0.03, ci_level=0.80, max_bet=1000.0, max_exposure=0.25, shrink=0.25)
+ASSUME = dict(devig="Shin", kelly_fraction=0.25, min_ev=0.03, ci_level=0.80, max_bet=1000.0, max_exposure=0.25, shrink=0.50, zero_sum_filter=True)
 
 
 def dec_from_american(a):
@@ -135,3 +135,10 @@ def portfolio_kelly(X, dec, p_stake, kelly_fraction=0.25, max_exposure=0.25):
     tot = full.sum()
     scale = min(1.0, max_exposure / tot) if tot > 0 else 1.0
     return full * scale, res.x, w
+
+
+def wins_prob_shift(pmf_row, line, side, delta):
+    """P(over) after shifting the team's win distribution up by delta wins (continuity-corrected: each integer W is uniform on [W-.5, W+.5])."""
+    n = int(math.floor(line))
+    over = pmf_row[n + 1:].sum() + delta * pmf_row[n]
+    return over if side == "OVER" else 1 - over

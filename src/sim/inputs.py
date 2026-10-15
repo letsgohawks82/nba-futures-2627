@@ -124,10 +124,15 @@ def build(overrides=None, season_label=2027):
     kprot = rules.kprot.values.astype(np.int64); fover = rules.fover.fillna(-1.0).values.astype(np.float64)
     for tm, (kp, fo) in overrides.get("rules_override", {}).items():
         kprot[IDX[tm]] = kp; fover[IDX[tm]] = fo
-    return dict(par=parr, conf=conf, div=div, grp=grp, grp_conf=grp_conf, prevw=prevw, rating=rating, pw=pw, pa=pa, pw_po=pw_po, po_delta=po_delta,
+    out = dict(par=parr, conf=conf, div=div, grp=grp, grp_conf=grp_conf, prevw=prevw, rating=rating, pw=pw, pa=pa, pw_po=pw_po, po_delta=po_delta,
                 gh=gh, ga=ga, gb2bh=gb2bh, gb2ba=gb2ba, gday=gday, gcup=gcup, deadline_day=deadline_day, cup_ko_day=cup_ko_day,
                 pickval=val, Pgen=Pgen, Pnf=Pnf, Pnt5=Pnt5, kprot=kprot, fover=fover, nf_team=IDX["WAS"], nt5_team=IDX["UTA"],
                 teams=TEAM_LIST, pnames=pnames, pids=pids, par_dict=par, sched=g)
+    out["target_wins"] = tp.pred_wins.values.astype(float); out["rating_raw"] = rating.copy()
+    if overrides.get("_calibrate", True):
+        from .meanmatch import calibrate_ratings
+        out["rating"], out["calibration_hist"] = calibrate_ratings(out, out["target_wins"], n=overrides.get("_cal_n", 15_000), iters=overrides.get("_cal_iters", 6))
+    return out
 
 
 if __name__ == "__main__":

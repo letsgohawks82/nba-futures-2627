@@ -1,0 +1,62 @@
+{
+ "raw": 75,
+ "playoff_fix": 91,
+ "zero_sum": 89,
+ "shrink": 63,
+ "robustness": 63,
+ "longshot": 63,
+ "continuity": 59,
+ "compression_rule": 52,
+ "final": 52,
+ "shrink_final": 0.5,
+ "zs_delta": 0.36666666666666664,
+ "bad_buckets": [],
+ "shrink025_alt_final": 62,
+ "wins_by_step": {
+  "raw": 20,
+  "playoff_fix": 20,
+  "zero_sum": 18,
+  "shrink": 18,
+  "robustness": 18,
+  "longshot": 18,
+  "continuity": 17,
+  "final": 10
+ },
+ "ev_by_bucket": [
+  {
+   "fair_bucket": "<2%",
+   "n": 59,
+   "median_ev": -0.0115,
+   "p25_ev": -0.5728,
+   "p75_ev": 0.6861
+  },
+  {
+   "fair_bucket": "2-5%",
+   "n": 32,
+   "median_ev": 0.1869,
+   "p25_ev": -0.1901,
+   "p75_ev": 0.4578
+  },
+  {
+   "fair_bucket": "5-15%",
+   "n": 39,
+   "median_ev": 0.1394,
+   "p25_ev": -0.3394,
+   "p75_ev": 0.8409
+  },
+  {
+   "fair_bucket": "15-50%",
+   "n": 96,
+   "median_ev": -0.185,
+   "p25_ev": -0.3338,
+   "p75_ev": 0.0546
+  },
+  {
+   "fair_bucket": ">50%",
+   "n": 64,
+   "median_ev": -0.0777,
+   "p25_ev": -0.2443,
+   "p75_ev": 0.0898
+  }
+ ]
+}

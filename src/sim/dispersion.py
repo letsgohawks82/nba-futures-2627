@@ -11,20 +11,23 @@ from .runner import simulate
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 C = lambda f: os.path.join(ROOT, "data", "clean", f)
 SEASONS = [2019, 2022, 2023, 2024, 2025, 2026]       # full 82-game seasons (2020/2021 shortened)
-GRID = [2.0, 2.5, 3.0, 3.25, 3.5, 3.75, 4.0, 4.5]
+GRID = [2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75]
 N = 30_000
 
 
 def run():
     D = Data(); g = add_rest(games_frame()); bt = pd.read_csv(C("backtest_predictions_firstroster.csv"))
-    ts = D.ts.set_index(["season", "abbr"]); base = build({"_lottery_tables": lottery_tables(16, 30_000)})
-    inputs = {s: hist_inputs(D, g, bt, s, base) for s in SEASONS}
+    ts = D.ts.set_index(["season", "abbr"]); base = build({"_lottery_tables": lottery_tables(16, 30_000), "_calibrate": False})
+    inputs = {s: hist_inputs(D, g, bt, s, base, cal=False) for s in SEASONS}
+    from .meanmatch import calibrate_ratings
+    targets = {s: bt[bt.test_season == s].set_index("abbr").loc[TEAM_LIST].pred_wins.values.astype(float) for s in SEASONS}
     actual = {s: np.array([ts.loc[(s, t)].wins for t in TEAM_LIST], float) for s in SEASONS}
     res = {}
     for sg in GRID:
         for s in SEASONS:
             inp = {k: (v.copy() if isinstance(v, np.ndarray) else v) for k, v in inputs[s].items()}
             inp["par"][PAR_NAMES.index("sigma_team")] = sg                         # availability draws stay ON (avail_on=1)
+            inp["rating"], _ = calibrate_ratings(inp, targets[s], n=12_000, iters=5)   # moment-match E[wins] to the calibrated projection for THIS sigma
             r = simulate(inp, N, 100 + s, verbose=False)
             res[(sg, s)] = (r["wins"].copy(), r["conf_rank"].copy())
     # log score of actual wins under the simulated pmf (smoothed)
@@ -52,13 +55,15 @@ def run():
     disp = pd.DataFrame(rows)
     # variance ratio vs self-consistency ceiling at the CV-chosen sigma (all-season optimum)
     def vr(sg):
-        o = np.mean([((actual[s] - res[(sg, s)][0].mean(0)) ** 2).mean() / res[(sg, s)][0].var(0).mean() for s in SEASONS])
+        mu = {s: res[(sg, s)][0].mean(0) for s in SEASONS}; va = {s: res[(sg, s)][0].var(0).mean() for s in SEASONS}
+        o = np.mean([((actual[s] - mu[s]) ** 2).mean() / va[s] for s in SEASONS])
         rng = np.random.default_rng(7); ce = []
-        for _ in range(3000):
+        idx = {s: rng.integers(0, N, 3000) for s in SEASONS}
+        for k in range(3000):
             v = []
             for s in SEASONS:
-                j = rng.integers(0, N); w = res[(sg, s)][0][j].astype(float)
-                v.append(((w - res[(sg, s)][0].mean(0)) ** 2).mean() / res[(sg, s)][0].var(0).mean())
+                w = res[(sg, s)][0][idx[s][k]].astype(float)
+                v.append(((w - mu[s]) ** 2).mean() / va[s])
             ce.append(np.mean(v))
         ce = np.array(ce); return dict(obs=float(o), ceil_mean=float(ce.mean()), ceil_p05=float(np.percentile(ce, 5)), ceil_p95=float(np.percentile(ce, 95)), p_ge=float((ce >= o).mean()))
     vrs = {sg: vr(sg) for sg in GRID}
@@ -89,7 +94,7 @@ def run():
         relo[name] = dict(brier=float(np.mean((p - y) ** 2)), brier_ref=float(np.mean((y.mean() - y) ** 2)), reliability=rel(p, y))
     out = dict(seasons=SEASONS, n_team_seasons=int(len(R)), grid_table=disp.to_dict("records"), cv=cv.to_dict("records"), sigma_all_season_optimum=sg_all,
                variance_ratio_by_sigma={str(k): v for k, v in vrs.items()}, reliability_oos=relo)
-    json.dump(out, open(C("sigma_team_cv.json"), "w"), indent=1); R.to_csv(C("sigma_team_cv_oos_predictions.csv"), index=False)
+    json.dump(out, open(C("sigma_team_cv_meanmatched.json"), "w"), indent=1); R.to_csv(C("sigma_team_cv_oos_predictions_meanmatched.csv"), index=False)
     return out, disp, cv, vrs, relo
 
 

@@ -64,3 +64,10 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 - Bet Card caveat: model-vs-book mean |gap| 3.9 wins; no market benchmark exists; CI = parameter uncertainty only.
 - Gotchas: openpyxl cannot write the spill operator (#) -> set via xlwings formula2; Excel PageSetup/PDF export fails without a printer; numba cache clear needed after engine edits; Bash heredocs with certain quotes fail -> use Write tool.
 - Next: G4 (player markets) then G6 (audit + delivery PDF).
+
+## G5 revision (miscalibration diagnosis; approved fixes)
+- ROOT CAUSE: sim expected wins were compressed vs the calibrated projection. Fix = src/sim/meanmatch.py (moment-match sim ratings to 41+k*SRS), applied in inputs.build (default), robust scenarios, param draws, hist calibration. sigma_team refit to 3.5 (LOSO, matched). Production predictive SD 8.77.
+- Filters (run_pricing.py): zero-sum (WINS means +0.367), shrink 0.5 edge test, robustness, longshot (<5% fair), EV-bucket exclusion (none flagged), continuity<0.55 -> shrink 0.75 for WINS/PLAYOFFS/DIV, compression rule (no WINS unders on mkt top-5 / overs on bottom-5; params/verified_drivers.csv for exceptions). Waterfall in data/clean/qualification_waterfall.json: raw 75 -> 91 -> 89 -> 63 -> 63 -> 63 -> 59 -> 52 final.
+- PLAYOFFS = 16-team field (Bracket), user-confirmed; confirm with book. PLAYOFFS portfolio outcome now uses the bracket flag (bit 128).
+- Model vs market: RMSE 4.22, slope .76, compression slope -0.24 [-0.34,-0.13]; backtest residual slope +0.015 (no over-regression). Roster audit: ESPN vs model 0 diffs; Robinson signed with BOS (FA).
+- New modules: src/pricing/{diagnostics,drivers,compression}.py, src/sim/{meanmatch,sensitivity}.py.

@@ -230,8 +230,8 @@
   "code_path": "derived"
  },
  "sigma_team_srs": {
-  "value": 3.25,
-  "method": "Leave-one-season-out CV over 6 full seasons (2019, 2022-26), engine with availability draws ON: log score of actual wins under simulated pmf. Optimum 3.25 (selected in 4 of 6 folds; folds chose 3.25-4.0); predictive SD/realized RMSE = 0.98; variance ratio 1.04 (p=0.33 vs self-consistency ceiling). Replaces 3.5 (tuned earlier on 90 team-seasons).",
+  "value": 3.5,
+  "method": "Leave-one-season-out CV with simulator means moment-matched to the calibrated projection (G5 fix) and availability draws ON: optimum 3.5 (folds chose 3.5 x4, 3.75, 3.0); sim SD / realized RMSE 1.016; variance ratio 0.97 (p=0.62 vs self-consistency ceiling). Supersedes 3.25 (which compensated for un-matched, compressed means).",
   "data_window": "2018-19, 2021-22..2025-26 preseason inputs",
   "n": 180,
   "fit_date": "2026-10-15",

@@ -20,7 +20,7 @@ def build_smarkets(wb, o):
     put(ws, "A5", "Edge colours: green = EV >= min EV with CI low > 0; red = EV < 0. Imputed (orange) sides are never bet. Model probabilities are sim-based (M_Sims); WINS also shown live in M_WinDist.", "text", italic=True)
     put(ws, "L5", "=Sim_Stale", "link"); ws["L5"].font = font(RED, bold=True)
     hdr = ["Market", "Selection", "Team", "Side", "Line", "Book American", "Decimal", "Flag", "Fair prob (de-vig)", "Model prob", "Model / fair price (American)", "EV per $1", "Edge (model-fair, pp)", "EV CI low (80%)", "EV CI high (80%)", "P(EV>0)",
-           "Staking prob (shrunk)", "Naive Kelly (frac)", "Naive stake $", "Portfolio Kelly (frac)", "Portfolio stake $", "Robust OK", "Qualifies", "Lock (CST)", "Rule", "Row id", "Sim status", "Live analytic P (WINS, reprices with Overrides)", "Live analytic EV (WINS)"]
+           "Staking prob (shrunk)", "Naive Kelly (frac)", "Naive stake $", "Portfolio Kelly (frac)", "Portfolio stake $", "Robust OK", "Qualifies", "Lock (CST)", "Rule", "Row id", "Sim status", "Live analytic P (WINS, reprices with Overrides)", "Live analytic EV (WINS)", "Zero-sum model P (WINS, means rescaled to book sum)", "Zero-sum EV (WINS)", "EV at shrunk probability", "EV CI low at shrunk probability"]
     headers(ws, 7, hdr, height=30)
     S = REG["sims_team"]; cm = S["cols"]; sf, sl = S["first"], S["last"]
     pm = REG["sims_pmf"]; rk0 = REG["sims_rank_col0"]; ci = REG["sims_ci"]; od = REG["odds"]; dv = REG["devig"]
@@ -64,11 +64,25 @@ def build_smarkets(wb, o):
                 put(ws, f"S{r}", f'=IF(A_bankroll="","-",MIN(A_maxbet,R{r}*A_bankroll))', "formula", "money")
                 put(ws, f"T{r}", f"=M_Sims!M{cir}", "link", "0.0000"); put(ws, f"U{r}", f'=IF(A_bankroll="","-",MIN(A_maxbet,T{r}*A_bankroll))', "formula", "money")
                 put(ws, f"V{r}", f"=M_Sims!H{cir}", "link", "int")
-                put(ws, f"W{r}", f'=AND(H{r}<>"IMPUTED_20C_LADDER",L{r}>=A_minev,N{r}>0,V{r}=1,IF(A{r}="PLAYOFFS",A_poconf=1,TRUE))', "formula")
+                put(ws, f"AF{r}", f"=Q{r}*G{r}-1", "formula", "pct"); put(ws, f"AG{r}", f"=(1-A_shrink)*N{r}+A_shrink*(I{r}*G{r}-1)", "formula", "pct")
+                if m == "WINS":
+                    rowr = f"INDEX(M_Sims!${CL(pm['c0'])}${pm['first']}:${CL(pm['c1'])}${pm['last']},MATCH($C{r},M_Sims!$A${pm['first']}:$A${pm['last']},0),0)"
+                    hdr_r2 = f"M_Sims!${CL(pm['c0'])}${pm['hdr']}:${CL(pm['c1'])}${pm['hdr']}"
+                    ov_zs = f"(SUMPRODUCT(({hdr_r2}>=INT(E{r})+1)*{rowr})+A_zs_delta*INDEX({rowr},1,INT(E{r})+2))"
+                    put(ws, f"AD{r}", "=" + (ov_zs if x.side == "OVER" else f"1-{ov_zs}"), "link", "pct"); put(ws, f"AE{r}", f"=AD{r}*G{r}-1", "formula", "pct")
+                else:
+                    put(ws, f"AD{r}", "-", "text", align="right"); put(ws, f"AE{r}", "-", "text", align="right")
+                zs = f'IF(AND(A{r}="WINS",A_zs_on=1),AND(AE{r}>=A_minev,M_Sims!O{cir}>0),TRUE)'
+                rt_ = REG["raw_teams"]
+                cont = f"INDEX(Raw_Teams!$F${rt_['first']}:$F${rt_['last']},MATCH($C{r},Raw_Teams!$A${rt_['first']}:$A${rt_['last']},0))"
+                longshot = f"IF(I{r}<A_longthr,(1-A_shrink)*M_Sims!K{cir}+A_shrink*(I{r}*G{r}-1)>=A_minev,TRUE)"
+                contf = f'IF(AND(OR(A{r}="WINS",A{r}="PLAYOFFS",LEFT(A{r},4)="DIV_"),{cont}<A_contthr),AND(((1-A_contshrink)*J{r}+A_contshrink*I{r})*G{r}-1>=A_minev,(1-A_contshrink)*N{r}+A_contshrink*(I{r}*G{r}-1)>0),TRUE)'
+                put(ws, f"W{r}", f'=AND(H{r}<>"IMPUTED_20C_LADDER",L{r}>=A_minev,N{r}>0,V{r}=1,IF(A{r}="PLAYOFFS",A_poconf=1,TRUE),{zs},AF{r}>=A_minev,AG{r}>0,{longshot},{contf},M_Sims!P{cir}=0)', "formula")
             else:
                 put(ws, f"J{r}", "-", "text", align="right"); put(ws, f"K{r}", f"=IF(I{r}>=0.5,-100*I{r}/(1-I{r}),100*(1-I{r})/I{r})", "formula", "amer")
                 for col in "LMNOPQRSTUV": put(ws, f"{col}{r}", "-", "text", align="right")
                 put(ws, f"W{r}", False, "text")
+                for col in ("AD", "AE", "AF", "AG"): put(ws, f"{col}{r}", "-", "text", align="right")
             if m == "WINS":
                 wd = REG["windist"]
                 put(ws, f"AB{r}", f'=INDEX(IF(D{r}="OVER",M_WinDist!$E${wd["first"]}:$E${wd["last"]},M_WinDist!$F${wd["first"]}:$F${wd["last"]}),MATCH($C{r},M_WinDist!$A${wd["first"]}:$A${wd["last"]},0))', "link", "pct")
@@ -93,7 +107,7 @@ def build_smarkets(wb, o):
 def build_betcard(wb):
     ws = wb.create_sheet("Bet_Card"); sheet_header(ws, "Bet_Card - all qualifying bets (dynamic FILTER/SORTBY over S_Markets)", span=15)
     sm = REG["smk"]
-    put(ws, "A5", "Qualifies = EV >= min EV AND edge CI low > 0 AND robustness filter AND not imputed (PLAYOFFS blocked until the rule is confirmed). Stake = portfolio Kelly (correlation-aware), naive shown beside it. Lock times in CST.", "text", italic=True)
+    put(ws, "A5", "Qualifies = EV >= min EV AND edge CI low > 0 AND robustness filter AND not imputed AND (WINS) survives the zero-sum rescale AND the edge survives the shrink toward the market. Stake = portfolio Kelly (correlation-aware), naive shown beside it. Lock times in CST.", "text", italic=True)
     put(ws, "A6", "=Sim_Stale", "link"); ws["A6"].font = font(RED, bold=True)
     labels = ["Market", "Selection", "Side", "Line", "Book American", "Fair prob", "Model prob", "EV per $1", "EV CI low", "Naive Kelly", "Naive stake $", "Portfolio Kelly", "Portfolio stake $", "Lock (CST)", "Rule"]
     headers(ws, 7, labels)
@@ -200,7 +214,7 @@ def build_sensitivity(wb):
 
 def build_backtest(wb):
     ws = wb.create_sheet("Backtest"); sheet_header(ws, "Backtest - G2 ratings backtest and G3 simulation calibration (train/test marked)", span=8)
-    bt = json.load(open(C("backtest_metrics_firstroster.json"))); cal = json.load(open(C("sim_calibration.json"))); cv = json.load(open(C("sigma_team_cv.json")))
+    bt = json.load(open(C("backtest_metrics_firstroster.json"))); cal = json.load(open(C("sim_calibration.json"))); cv = json.load(open(C("sigma_team_cv_meanmatched.json")))
     put(ws, "A5", "Train/test: each test season t (2018-19..2025-26) is predicted using only seasons < t (expanding window). Headline = first-team-roster point-in-time proxy (RMSE 8.92); actual-roster (leaky, 8.44) and prior-roster (no moves, 10.30) bound it.", "text", italic=True)
     headers(ws, 7, ["Model", "Wins RMSE", "RMSE CI low (80%)", "RMSE CI high (80%)", "Wins MAE", "Spearman rho", "Paired RMSE diff vs model (baseline-model)"])
     names = {"model": "This model (first-team roster)", "B1_prev_wins_regress": "B1 prior-wins regression", "B2_prev_srs": "B2 prior-SRS regression", "B3_naive_prev_wins": "B3 naive prior wins", "B4_prev_srs_2of3_continuity": "B4 prior SRS 2/3 + continuity"}

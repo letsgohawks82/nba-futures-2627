@@ -11,7 +11,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 C = lambda f: os.path.join(ROOT, "data", "clean", f)
 
 
-def hist_inputs(D, g_all, bt, s, base_inp):
+def hist_inputs(D, g_all, bt, s, base_inp, cal=True):
     P = fit_player_model(D, s - 1)
     ro = first_roster(D, s)
     pl = predict_players(D, s, P, roster_ids=ro.bbref_id.unique())
@@ -44,6 +44,10 @@ def hist_inputs(D, g_all, bt, s, base_inp):
                deadline_day=10_000, cup_ko_day=10_000, kprot=-np.ones(30, np.int64), fover=-np.ones(30), nf_team=-1, nt5_team=-1)
     par = inp["par"].copy(); par[PAR_NAMES.index("cup_on")] = 0.0; par[PAR_NAMES.index("tank_on")] = 0.0
     inp["par"] = par
+    if cal:     # moment-match the simulator to the season's calibrated projection (41 + k x SRS)
+        from .meanmatch import calibrate_ratings
+        tgt = b.loc[TEAM_LIST].pred_wins.values.astype(float)
+        inp["rating"], _ = calibrate_ratings(inp, tgt, n=12_000, iters=5)
     return inp
 
 
@@ -60,7 +64,7 @@ def run(n=40_000, seasons=(2024, 2025, 2026), seed=21):
     bt = pd.read_csv(C("backtest_predictions_firstroster.csv"))
     ts = D.ts.set_index(["season", "abbr"])
     lt = lottery_tables(16, 60_000)
-    base = build({"_lottery_tables": lt})
+    base = build({"_lottery_tables": lt, "_calibrate": False})
     out = []; recs = []; sims = {}
     for s in seasons:
         inp = hist_inputs(D, gh, bt, s, base)

@@ -1,4 +1,4 @@
-built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xlsx 20.9 s
+built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xlsx 18.4 s
 {
  "errors": {
   "Cover": [
@@ -108,7 +108,7 @@ built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xl
   ],
   [
    "Model probabilities sum to 2: conference",
-   4.440892098500626e-16,
+   0.0,
    "OK"
   ],
   [
@@ -123,7 +123,7 @@ built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xl
   ],
   [
    "Model probabilities sum to 6: Cup groups",
-   8.881784197001252e-16,
+   1.7763568394002505e-15,
    "OK"
   ],
   [
@@ -168,7 +168,7 @@ built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xl
   ],
   [
    "Analytic vs sim P(over) deltas > 2pp (count)",
-   8.0,
+   2.0,
    "FLAG"
   ],
   [
@@ -213,7 +213,7 @@ built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xl
   ]
  ],
  "overall_checks_failing": 0.0,
- "bet_count": 89.0,
+ "bet_count": 52.0,
  "sim_status": "OK - sims match current assumptions",
  "devig_parity_max_abs": {
   "mult": 2.220446049250313e-16,
@@ -223,7 +223,7 @@ built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xl
  },
  "team_wins_parity_max_abs": 1.7763568394002505e-14,
  "wins_sum": 1230.0,
- "ev_parity_max_abs": 0.00020500000000001073,
- "qualifying_excel": 89,
- "qualifying_python": 89
+ "ev_parity_max_abs": 0.0018450000000003741,
+ "qualifying_excel": 52,
+ "qualifying_python": 52
 }

@@ -1,7 +1,12 @@
 {
  "hardcodes": {
   "Cover": {},
-  "Assumptions": {},
+  "Assumptions": {
+   "30": [
+    1,
+    "B43"
+   ]
+  },
   "Overrides": {},
   "Odds_Input": {},
   "M_DeVig": {},
@@ -212,6 +217,16 @@
     "patterns": 20,
     "dominant_share": 0.204,
     "n": 294
+   },
+   "W": {
+    "patterns": 20,
+    "dominant_share": 0.204,
+    "n": 294
+   },
+   "AD": {
+    "patterns": 2,
+    "dominant_share": 0.5,
+    "n": 60
    }
   },
   "Bet_Card": {},

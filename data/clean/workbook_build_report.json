@@ -107,7 +107,7 @@
   ],
   [
    "Model probabilities sum to 2: conference",
-   4.440892098500626e-16,
+   0.0,
    "OK"
   ],
   [
@@ -122,7 +122,7 @@
   ],
   [
    "Model probabilities sum to 6: Cup groups",
-   8.881784197001252e-16,
+   1.7763568394002505e-15,
    "OK"
   ],
   [
@@ -167,7 +167,7 @@
   ],
   [
    "Analytic vs sim P(over) deltas > 2pp (count)",
-   8.0,
+   2.0,
    "FLAG"
   ],
   [
@@ -212,7 +212,7 @@
   ]
  ],
  "overall_checks_failing": 0.0,
- "bet_count": 89.0,
+ "bet_count": 52.0,
  "sim_status": "OK - sims match current assumptions",
  "devig_parity_max_abs": {
   "mult": 2.220446049250313e-16,
@@ -222,7 +222,7 @@
  },
  "team_wins_parity_max_abs": 1.7763568394002505e-14,
  "wins_sum": 1230.0,
- "ev_parity_max_abs": 0.00020500000000001073,
- "qualifying_excel": 89,
- "qualifying_python": 89
+ "ev_parity_max_abs": 0.0018450000000003741,
+ "qualifying_excel": 52,
+ "qualifying_python": 52
 }

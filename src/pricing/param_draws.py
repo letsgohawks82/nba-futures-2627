@@ -5,6 +5,7 @@ import numpy as np, pandas as pd
 from ..sim.inputs import build, lottery_tables, PAR_NAMES, TEAM_LIST
 from ..sim.runner import simulate, FLAGS
 from ..ratings import project_2027 as pj
+from ..sim.meanmatch import calibrate_ratings
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PI = {k: i for i, k in enumerate(PAR_NAMES)}
@@ -19,7 +20,7 @@ def rating_vectors():
 def run(M=60, N=15_000, seed=99):
     gm = json.load(open(os.path.join(ROOT, "data/clean/game_model_fit.json"))); pf = json.load(open(os.path.join(ROOT, "data/clean/playoff_adj_fit.json")))
     lt = lottery_tables(16, 150_000)
-    base = build({"_lottery_tables": lt}); p0 = base["par"].copy(); r05 = base["rating"].copy()
+    base = build({"_lottery_tables": lt, "_calibrate": False}); p0 = base["par"].copy(); r05 = base["rating_raw"].copy()
     rv = rating_vectors(); slope = (rv[1.0] - rv[0.0])         # dRating/dw (linear)
     rng = np.random.default_rng(seed); draws = []; res = {k: [] for k in ("title", "conference", "division", "cup", "cup_group", "playoffs", "top6", "bracket")}; ranks = []; whist = []
     t0 = time.time()
@@ -32,7 +33,9 @@ def run(M=60, N=15_000, seed=99):
         par[PI["po_lambda"]] = max(rng.normal(pf["lambda_po"], 0.19), 0.0)
         par[PI["tank_kappa"]] = abs(rng.normal(p0[PI["tank_kappa"]], 0.5))
         w = rng.uniform(0.1, 0.9); scale = rng.normal(1.0, 0.06)
-        inp = dict(base); inp["par"] = par; inp["rating"] = (r05 + (w - 0.5) * slope) * scale
+        inp = dict(base); inp["par"] = par; srs_d = (r05 + (w - 0.5) * slope) * scale; srs_d = srs_d - srs_d.mean(); inp["rating"] = srs_d
+        target = 41.0 + par[PI["k_wins"]] * srs_d                                            # calibrated linear projection for this draw
+        inp["rating"], _ = calibrate_ratings(inp, target, n=8_000, iters=4)                  # moment-match the sim to it
         r = simulate(inp, N, seed * 1000 + d, verbose=False)
         for k, bit in FLAGS.items():
             if k in res: res[k].append(((r["flags"] & bit) > 0).mean(0))

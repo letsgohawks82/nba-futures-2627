@@ -1,8 +1,8 @@
 {
  "n_sims": 100000,
  "seed": 2026,
- "run_utc": "2026-10-15T20:20:12+00:00",
- "assumptions_hash": "21eeee5ead5ac702",
+ "run_utc": "2026-10-15T21:35:36+00:00",
+ "assumptions_hash": "30ca9e5eb89d8e39",
  "par": {
   "HCA": 1.8856964143871797,
   "b2b_home": -2.6541500639904645,
@@ -12,7 +12,7 @@
   "sigma_po": 13.486412633669902,
   "mean_total": 227.57256622785633,
   "sd_total": 20.172190054967434,
-  "sigma_team": 3.25,
+  "sigma_team": 3.5,
   "repl_rating": -2.0,
   "b_team": 1.07,
   "avail_concentration": 3.7,
@@ -33,5 +33,5 @@
   "k_wins": 2.4403037933311396,
   "cup_on": 1.0
  },
- "runtime_s": 102.6
+ "runtime_s": 24.9
 }

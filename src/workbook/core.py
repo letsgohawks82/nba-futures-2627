@@ -30,7 +30,7 @@ def build_assumptions(wb):
     rows = [  # (name, key, value, units, desc, prov, scenario(bull,base,bear)|None, fmt, kind)
         ("HCA", "A_hca", gm["hca"], "pts", "Home-court advantage (regular season), margin points", "params/provenance.json:game_hca (2021-22..2025-26)", None, "num2", "input"),
         ("sigma_game", "A_sigma_game", gm["sigma_game"], "pts", "Game margin standard deviation", "game_sigma_game", None, "num2", "input"),
-        ("sigma_team", "A_sigma_team", 3.25, "SRS pts", "True-strength shock SD (season) - LOSO CV, availability draws on", "sigma_team_srs (G3 addendum)", (2.93, 3.25, 3.58), "num2", "input"),
+        ("sigma_team", "A_sigma_team", 3.5, "SRS pts", "True-strength shock SD (season) - LOSO CV with mean-matched sims, availability draws on", "sigma_team_srs (G5 refit)", (3.15, 3.5, 3.85), "num2", "input"),
         ("prior_blend_weight (coef on prior SRS)", "A_b2", L["beta"][2], "coef", "Team layer: coefficient on prior-season SRS", "team_layer_beta[2]", None, "num3", "input"),
         ("team_layer_const", "A_b0", L["beta"][0], "coef", "Team layer: intercept", "team_layer_beta[0]", None, "num3", "input"),
         ("team_layer_rating_coef", "A_b1", L["beta"][1], "coef", "Team layer: coefficient on minutes-weighted player rating sum", "team_layer_beta[1]", None, "num3", "input"),
@@ -58,11 +58,15 @@ def build_assumptions(wb):
         ("CI_level", "A_cilevel", 0.80, "prob", "Confidence level of the edge CI (engine output is computed at 80%)", "SPEC", None, "pct", "input"),
         ("max_bet", "A_maxbet", 1000, "$", "Max single bet", "SPEC / book MAX", None, "money", "input"),
         ("max_total_exposure", "A_maxexp", 0.25, "share of bankroll", "Max total exposure", "SPEC", None, "pct", "input"),
-        ("staking_shrink_to_market", "A_shrink", 0.25, "share", "Model-to-market shrink for STAKING only (0 = pure model); the model itself is never shrunk", "SPEC", None, "num2", "input"),
+        ("staking_shrink_to_market", "A_shrink", 0.50, "share", "Model-to-market shrink (0 = pure model). 0.5 after the G5 miscalibration diagnosis (model-vs-market wins RMSE > 4); also applied to the edge test; the model itself is never shrunk", "SPEC default 0.25; raised to 0.5 (G5 report)", None, "num2", "input"),
+        ("zero_sum_filter_on", "A_zs_on", 1, "0/1", "WINS bets must survive rescaling model win means to the book's sum of lines (removes edges that are only market inflation)", "G5 report", None, "int", "input"),
+        ("longshot_threshold", "A_longthr", 0.05, "prob", "Selections with fair probability below this must survive shrink + sigma_team -10% (longshot control)", "G5 report", None, "pct", "input"),
+        ("low_continuity_threshold", "A_contthr", 0.55, "share", "Teams with roster continuity below this need wins/playoffs/division edges to survive the stronger shrink", "G5 report", None, "num2", "input"),
+        ("low_continuity_shrink", "A_contshrink", 0.75, "share", "Shrink applied to the edge test for low-continuity teams", "G5 report", None, "num2", "input"),
+        ("zero_sum_shift", "A_zs_delta", "=(SUMIFS(Odds_Input!$E$8:$E$694,Odds_Input!$B$8:$B$694,\"WINS\",Odds_Input!$D$8:$D$694,\"OVER\")-A_leaguew)/30", "wins/team", "Book sum of win lines minus 1,230, per team (live)", "derived from Odds_Input", None, "num3", "formula"),
         ("playoffs_definition", "A_podef", "Bracket", "list", "PLAYOFFS market definition: Bracket (16-team playoffs; matches book prices) or Top10 (play-in counts; spec reading)", "UNCONFIRMED - see G5 report", None, "text", "input"),
-        ("playoffs_rule_confirmed", "A_poconf", 0, "0/1", "Set to 1 only after confirming the PLAYOFFS rule with the book; 0 blocks PLAYOFFS bets", "G5 report", None, "int", "input"),
-        ("analytic_s_eff", "A_seff", 14.72, "SRS pts", "Analytic layer: wins = 82 x Phi(SRS / s_eff); fit to the sim means (RMSE 0.30 wins); sums to 1,230", "G5: fit of analytic layer to the engine", None, "num2", "input"),
-        ("analytic_sd_scale", "A_sdscale", 0.96, "ratio", "Analytic layer: SD scale vs delta-method SD (fit to sim SDs)", "G5: fit of analytic layer to the engine", None, "num2", "input"),
+        ("playoffs_rule_confirmed", "A_poconf", 1, "0/1", "PLAYOFFS = 16-team playoff field (top-8, including via play-in): user-confirmed from implied sums (~8.7/conf). CONFIRM WITH BOOK. Set 0 to block PLAYOFFS bets", "G5 report", None, "int", "input"),
+        ("analytic_sd_scale", "A_sdscale", 0.94, "ratio", "Analytic layer: SD scale vs delta-method SD (fit to sim SDs)", "G5: fit of analytic layer to the engine", None, "num2", "input"),
         ("games_per_season", "A_games", 82, "games", "Games per team (structural constant)", "SPEC", None, "int", "input"),
         ("team_minutes_per_season", "A_teamminutes", 19680, "minutes", "240 minutes x 82 games (structural constant)", "SPEC", None, "int", "input"),
         ("pace_blend_prior", "A_paceblend", 0.7, "share", "Pace projection = share x prior pace + (1 - share) x league mean (assumption, untested)", "provenance pace_blend", None, "num2", "input"),
@@ -79,6 +83,8 @@ def build_assumptions(wb):
         else:
             if key == "A_wbox":
                 put(ws, f"B{r}", f"=1-A_wdarko", "formula", fmt)
+            elif isinstance(val, str) and val.startswith("="):
+                put(ws, f"B{r}", val, "formula", fmt)
             elif val is None:
                 put(ws, f"B{r}", None, "input", fmt)
             else:
@@ -86,7 +92,7 @@ def build_assumptions(wb):
             for col in "GHI":
                 put(ws, f"{col}{r}", "-", "text", align="right")
         put(ws, f"C{r}", units, "text"); put(ws, f"D{r}", desc, "text"); put(ws, f"E{r}", pv, "text")
-        put(ws, f"F{r}", scn[1] if scn else ("-" if val is None else val), "text" if val is None else "input", fmt if val is not None else None)
+        put(ws, f"F{r}", scn[1] if scn else ("-" if (val is None or (isinstance(val, str) and val.startswith("="))) else val), "text" if (val is None or (isinstance(val, str) and val.startswith("="))) else "input", fmt if (val is not None and not (isinstance(val, str) and val.startswith("="))) else None)
         name(wb, key, f"Assumptions!$B${r}"); REG[key] = f"Assumptions!$B${r}"
         r += 1
     dv2 = DataValidation(type="list", formula1='"Multiplicative,Power,Shin"'); ws.add_data_validation(dv2); dv2.add(f"B{[i for i,x in enumerate(rows) if x[1]=='A_devig'][0]+8}")

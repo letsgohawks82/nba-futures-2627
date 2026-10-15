@@ -1,0 +1,16 @@
+base
+sigma_team 3.15 (-10%)
+sigma_team 3.85 (+10%)
+HCA -0.5
+HCA +0.5
+tank kappa 0
+tank kappa 1.57 (upper CI)
+playoff adj lambda 0
+playoff adj lambda 1.0
+playoff adj lambda 0.32
+playoff adj lambda 0.80
+playoff inj off
+cup semis neutral (user spec)
+cup 0 cross-conf (user spec)
+availability draws off
+LAC+TOR own-pick toggle

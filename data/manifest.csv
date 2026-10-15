@@ -579,3 +579,47 @@ data/clean/workbook_build_report.json,derived (G5),2026-10-15T16:55:11-04:00,1,1
 data/clean/odds_parsed_from_pdf.csv,derived (G5),2026-10-15T16:55:11-04:00,1,11f6661f7672c32befdd7868bfe475e86491a4335e1cb3069046ef9a6a6edfc0,G5
 data/clean/sim_sensitivity.csv,derived (G5),2026-10-15T16:55:11-04:00,1,373834e978290509ff53e2c308af3b694589b1af5781c7c6a374ffc10264b018,G5
 src/pricing/parse_odds.py,derived (G5),2026-10-15T16:55:11-04:00,1,a8307b0ac939808e50dbb7b9cf6fbb73596b8898bbc4f33c2cb833d10bc098d6,G5
+data/raw/roster_check/NYK_2027.html_20261015,https://www.basketball-reference.com/teams/NYK/2027.html,2026-10-15T17:21:24-04:00,65,cc38b9a8ee579f58edc634ca6f3a312dc2cf36adfbd27f6b1ef2556d272a7e0d,
+data/raw/roster_check/ATL_2027.html_20261015,https://www.basketball-reference.com/teams/ATL/2027.html,2026-10-15T17:21:35-04:00,38,a97656c1707017ec4e0c03234ce58f5455d4bdf99c4bae94a276a4b239919d2c,
+data/raw/roster_check/BKN_2027.html_20261015,https://www.basketball-reference.com/teams/BRK/2027.html,2026-10-15T17:21:40-04:00,46,15954f71f02809f0cd9abe575d885b6214bb4c192e72070a347e8449ef238f81,
+data/raw/roster_check/BOS_2027.html_20261015,https://www.basketball-reference.com/teams/BOS/2027.html,2026-10-15T17:21:44-04:00,45,9a8eaf7f838b4ff32714a3e68277eb8585f9f801c7d7b3a5e3dd26f3843b9401,
+data/raw/roster_check/CHA_2027.html_20261015,https://www.basketball-reference.com/teams/CHO/2027.html,2026-10-15T17:21:48-04:00,47,64a67458ad56a65eb0d11bd3281834ba359d838910cb745f4449644a4d02ca84,
+data/raw/roster_check/CHI_2027.html_20261015,https://www.basketball-reference.com/teams/CHI/2027.html,2026-10-15T17:21:52-04:00,40,bd3a50881e49b4afdfabb21dc3dd5c145b0403b103888ae621c2394a4c2f2f6f,
+data/raw/roster_check/CLE_2027.html_20261015,https://www.basketball-reference.com/teams/CLE/2027.html,2026-10-15T17:21:56-04:00,45,96371e19bd6ac00ceb06566f92031ecd8496b7a2949b3ca9435b5d6381bd3c3f,
+data/raw/roster_check/DAL_2027.html_20261015,https://www.basketball-reference.com/teams/DAL/2027.html,2026-10-15T17:22:00-04:00,48,bb2d17838c5d68dd9e1d6fef8c41bd4bcfbc54a40b690249791f3dfc4fcf3e2e,
+data/raw/roster_check/DEN_2027.html_20261015,https://www.basketball-reference.com/teams/DEN/2027.html,2026-10-15T17:22:05-04:00,37,54cc0900631932be8ddafef24d0dd4419899f3bc3b3b7a5cfd514faf0fe9724e,
+data/raw/roster_check/DET_2027.html_20261015,https://www.basketball-reference.com/teams/DET/2027.html,2026-10-15T17:22:09-04:00,38,40d167aacdc15fa614b0b3024b30b22ba49953ccbd2538f182ffddeb4386824f,
+data/raw/roster_check/GSW_2027.html_20261015,https://www.basketball-reference.com/teams/GSW/2027.html,2026-10-15T17:22:13-04:00,47,caf32c65fb4aa619e7c65fda0d3af28e02c7ead6195face91cbe526137132bc0,
+data/raw/roster_check/HOU_2027.html_20261015,https://www.basketball-reference.com/teams/HOU/2027.html,2026-10-15T17:22:17-04:00,50,73f07ee547704308e5ed2e9fd73ffce92218d5f8641d725eb7422c351dc901b1,
+data/raw/roster_check/IND_2027.html_20261015,https://www.basketball-reference.com/teams/IND/2027.html,2026-10-15T17:22:22-04:00,41,3225b94be73db6d042ba45bdc6f5cf2bb567b495db4e3a7dd2a09247e8283f4c,
+data/raw/roster_check/LAC_2027.html_20261015,https://www.basketball-reference.com/teams/LAC/2027.html,2026-10-15T17:22:26-04:00,48,b590ca490f4a24fcd8a8ea8bd3f88b6ff3adcf6bd9d4b8818d3569be7a8f1873,
+data/raw/roster_check/LAL_2027.html_20261015,https://www.basketball-reference.com/teams/LAL/2027.html,2026-10-15T17:22:30-04:00,42,c69efb54083c790362984db6b1eb192393d741a2611a9fa5a19b86c39c73eae7,
+data/raw/roster_check/MEM_2027.html_20261015,https://www.basketball-reference.com/teams/MEM/2027.html,2026-10-15T17:22:34-04:00,55,3453c9c6f93af6643bc80fd5b69e5d2c6275a0cdc6bf1e70a60068992fd08983,
+data/raw/roster_check/MIA_2027.html_20261015,https://www.basketball-reference.com/teams/MIA/2027.html,2026-10-15T17:22:38-04:00,39,403eeaf7247ad8287bf7994b0c09fa1b43885f8330a40f0d8d85594c2e70a43d,
+data/raw/roster_check/MIL_2027.html_20261015,https://www.basketball-reference.com/teams/MIL/2027.html,2026-10-15T17:22:43-04:00,49,27472e67fb15f5d73b29b58fd8d70d7c840dc4113447f82a2b030f507e74b31e,
+data/raw/roster_check/MIN_2027.html_20261015,https://www.basketball-reference.com/teams/MIN/2027.html,2026-10-15T17:22:47-04:00,43,dca618bc36130a02307613e7d6c8f5ce2f35bdb13a6191d114fc6d5823910407,
+data/raw/roster_check/NOP_2027.html_20261015,https://www.basketball-reference.com/teams/NOP/2027.html,2026-10-15T17:22:51-04:00,39,a020b4df2b117f72da438895eb7b71f92cdba95962bfa560519fec2df13d089f,
+data/raw/roster_check/NYK_2027.html_20261015,https://www.basketball-reference.com/teams/NYK/2027.html,2026-10-15T17:22:55-04:00,65,cc38b9a8ee579f58edc634ca6f3a312dc2cf36adfbd27f6b1ef2556d272a7e0d,
+data/raw/roster_check/OKC_2027.html_20261015,https://www.basketball-reference.com/teams/OKC/2027.html,2026-10-15T17:22:59-04:00,43,c5bfaa334dcff571061ce216714560f560d2c47223da2131710e80b012c9069d,
+data/raw/roster_check/ORL_2027.html_20261015,https://www.basketball-reference.com/teams/ORL/2027.html,2026-10-15T17:23:03-04:00,51,f52b78fcf310fae596eea13bc50951855e523e74e94c2d656f34a4898d792861,
+data/raw/roster_check/PHI_2027.html_20261015,https://www.basketball-reference.com/teams/PHI/2027.html,2026-10-15T17:23:08-04:00,44,05a6269a698699207b9a056046f2bc10d58fee505896f0f215894a631723f361,
+data/raw/roster_check/PHX_2027.html_20261015,https://www.basketball-reference.com/teams/PHO/2027.html,2026-10-15T17:23:12-04:00,42,de95b8a46eddc5e38eb40c9a88f96daa1d1aa1742ecf7abb3df03ea96a5099ad,
+data/raw/roster_check/POR_2027.html_20261015,https://www.basketball-reference.com/teams/POR/2027.html,2026-10-15T17:23:16-04:00,42,ac8d099a2dbe03502d81cf948280edfe9a0b0ce0bd608bcf5a6122c07f1968a0,
+data/raw/roster_check/SAC_2027.html_20261015,https://www.basketball-reference.com/teams/SAC/2027.html,2026-10-15T17:23:20-04:00,42,349e430fc6d5062042f1ee9899d6250fdb5363dd212304df5ddac82b02178eb6,
+data/raw/roster_check/SAS_2027.html_20261015,https://www.basketball-reference.com/teams/SAS/2027.html,2026-10-15T17:23:24-04:00,42,094e8a68ab9d21eb09d03585a1f8b268b10eff5f456f04a0247fe146072f3450,
+data/raw/roster_check/TOR_2027.html_20261015,https://www.basketball-reference.com/teams/TOR/2027.html,2026-10-15T17:23:29-04:00,38,fb17b9da62f0cbd5c309d7bfc2c8f35e5423574567007851e54cdf5368d00df5,
+data/raw/roster_check/UTA_2027.html_20261015,https://www.basketball-reference.com/teams/UTA/2027.html,2026-10-15T17:23:33-04:00,43,83814c8018d0e7e325ca0c5f1ec670120d9df47dc3b703d12efeae0e9594797e,
+data/raw/roster_check/WAS_2027.html_20261015,https://www.basketball-reference.com/teams/WAS/2027.html,2026-10-15T17:23:37-04:00,46,52575d995d0872d9abfe8576ce491f60add8a129075ffc5f56d4ec32225bca36,
+data/clean/sigma_team_cv_meanmatched.json,derived (G5 revision),2026-10-15T18:06:52-04:00,1,306f02c2ceafaa71cb37b8bcc9cfb81b1b74ebd8bb0689332a6aa01761b73a53,G5-revision
+data/clean/sigma_team_cv_oos_predictions_meanmatched.csv,derived (G5 revision),2026-10-15T18:06:52-04:00,1,24fc28122a2c5566791360908b3f2777e768a3819a15f3071ca85998a00e551d,G5-revision
+data/clean/compression_test.json,derived (G5 revision),2026-10-15T18:06:52-04:00,1,159ef4e40f5a21c7379ffcfea8b7a7c030a633d6f5bf0e65f6cf516f0c39eb16,G5-revision
+data/clean/qualification_waterfall.json,derived (G5 revision),2026-10-15T18:06:52-04:00,1,d1c1b28a2c38907743db3b31154320ec3fde344f9a4ef8704f1a23272c43eb52,G5-revision
+data/clean/model_vs_market_wins_table.csv,derived (G5 revision),2026-10-15T18:06:52-04:00,1,dfd9a205a5065ce1d9f7285667bbe9e67b4fc0d5c85e2a541062d3db1f842e5c,G5-revision
+data/clean/top_disagreements_drivers.csv,derived (G5 revision),2026-10-15T18:06:52-04:00,1,6c5a632dcca4f85c2bce52961dd40b6e2ca510b3debf5573dc89100ada41d486,G5-revision
+data/clean/roster_audit_diff.csv,derived (G5 revision),2026-10-15T18:06:52-04:00,1,73671ba50c24144ca8638b7b0770113d5c81e5642f0824cbab63f9c5986f712d,G5-revision
+data/clean/rosters_espn_refresh_20261015.csv,derived (G5 revision),2026-10-15T18:06:52-04:00,1,a259c0cede2e505dc46dbdb1a5f27235f380ab2593a20525e20db5556b55f7fc,G5-revision
+data/clean/rosters_bbref_2027_20261015.csv,derived (G5 revision),2026-10-15T18:06:52-04:00,1,4c7041f8761e64a42e37d1f7cb0a57f1bb2d2f23ee625af18dadc6e65374f5ad,G5-revision
+data/clean/pricing_table.csv,derived (G5 revision),2026-10-15T18:06:52-04:00,1,077382b49117462e0db5757f6af3928636b0dadc14ec387c278b9fa3de9c93ad,G5-revision
+data/clean/sim_sensitivity.csv,derived (G5 revision),2026-10-15T18:06:52-04:00,1,aefe513397f7a6e076b9189a306f4bcf659d7274d8fcaaf664425c3aace74c51,G5-revision
+data/clean/sim_team_summary.csv,derived (G5 revision),2026-10-15T18:06:52-04:00,1,582cc9281a806aeb0732e3b7fcfb4c2df83dc87509bd7780891f9e0f581d8899,G5-revision
+params/provenance.json,derived (G5 revision),2026-10-15T18:06:52-04:00,1,949e0097368d2eb930748e9fe8f5afdee73d8e41ab2ee903822ebd7b6b287961,G5-revision

@@ -1,84 +1,139 @@
-# G5 Report — Workbook build, team markets and Bet Card (2026-10-15)
+# G5 Report (revised) — Workbook, team markets and Bet Card (2026-10-15)
 
-**Status: complete, awaiting "approve G5".** G4 (player markets) is deferred until after the team Bet Card, as you directed. Their tabs exist as placeholders with no model probabilities and no bets.
+**Status: complete, awaiting "approve G5".** This version replaces the first G5 report. It adds the miscalibration diagnosis, the simulator fix, and every filter you asked for. G4 (player markets) is still deferred; its tabs are placeholders with no model probabilities and no bets.
 
-**Workbook:** `output/NBA_Futures_Model_v1_20261015_MS.xlsx` (22 tabs, one prior version retained). Rebuild with `run.py build` (it calls `src.workbook.build`; `run.py price` re-prices; `run.py sim` re-runs the engine).
+**Workbook:** `output/NBA_Futures_Model_v1_20261015_MS.xlsx` (22 tabs, one prior version kept). Rebuild with `run.py price`, then `run.py build`. Diagnostics: `python -m src.pricing.diagnostics | compression | drivers`.
 
-## 0. Decisions I need from you before staking
-1. **PLAYOFFS market definition (blocking for 54 rows).**
-   - Your spec says YES = top-10 in the conference, because the sheet's rule text says the play-in tournament is considered part of the playoffs.
-   - **The book's prices say otherwise.** Applying the book's own win totals (normalised to 1,230 wins) with the model's team noise, the implied P(top-10) sums to 18.2 over the 27 listed teams. The book's de-vigged YES prices sum to **14.9**, which matches a 16-team playoff bracket (top-8 per conference; 14.7) and not top-10.
-   - Mean absolute error vs the book: 0.031 for top-8, 0.125 for top-10.
-   - If the rule really is top-10, the YES prices on weak teams are wildly mispriced (BKN, MIL, CHI, SAC at +1150 to +2350 against model 11–34%). That is either a large edge or the printed rule is wrong.
-   - **I did not pick a side.** `playoffs_definition` defaults to "Bracket" (matches prices) and `playoffs_rule_confirmed` = 0 **blocks every PLAYOFFS bet** until you confirm the rule with the book. Both probabilities and EVs are shown. If the Bracket definition is confirmed, 17 PLAYOFFS bets would qualify in addition to the 89; under top-10 the model sees much larger edges (the alternate EVs are on S_Markets).
-2. **PLAYIN markets** are interpreted as "team finishes 7–10" (implied probabilities sum to 4.37 / 4.40 per conference for 4 slots, consistent). Flagged on the sheet.
-3. **How much to trust the Bet Card at all** (see §4): no free market-line archive exists, so I cannot show the model beats the closing line. Please read §4 before sizing.
+## 0. Headline
+- **The first 89-bet Bet Card was too optimistic, and part of the reason was a bug-like inconsistency in the simulator.** The sim's expected wins were more compressed than the calibrated projection it was built from (OKC 56.5 in the sim vs 59.7 in the projection). Fixing that and applying your filters cuts the card to **52 bets**; the first card had 89.
+- **The model is still more compressed than the market.** The 30-team model-vs-market RMSE is **4.22 wins** (4.44 before the fix); the spread of team means is 8.6 wins against 10.3 for the market. The model is still treated as miscalibrated relative to the market, which is why the shrink is 0.5 and the compression rule applies. I cannot show the model beats the market (no free closing-line archive), so please treat the card as a list of model opinions to audit, not as proven edges.
+- PLAYOFFS is priced as the 16-team playoff field (top-8, including via play-in), per your confirmation from the implied sums (my own check: 14.9 over 27 listed teams vs 14.3 for the bracket and 17.9 for top-10). Flagged "confirm with book" on the sheet, in the rule text and on Assumptions.
 
-## 1. What was built (per spec)
-| Tab | What it does |
-|---|---|
-| Cover | Title, version, timestamps, sim N, run hash, live sim status, navigation links |
-| Assumptions | 42 knobs in one table (value, units, description, provenance, default, Bull/Base/Bear). Includes De-vig selector, bankroll (blank), Kelly 0.25, min EV 3%, CI level 80%, max bet $1,000, max exposure 25%, staking shrink 0.25, 65-game toggle, scenario selector, sim assumptions key |
-| Overrides | Per-player minutes / games / rating adjustments, per-team SRS adjustments (blue) |
-| Odds_Input | The 687 odds rows (blue inputs; orange fill on 15 backfilled/imputed rows); parser: `run.py parse-odds <pdf/txt>` |
-| M_DeVig | Implied probabilities, overround, fair probabilities under Multiplicative / Power / Shin. Power k and Shin z are solved **in formulas** (32-step bisection per market, grouped columns, not hidden). Two-way markets are de-vigged as pairs; PLAYIN targets a sum of 4 (Shin falls back to Power there) |
-| M_TeamRatings | Player → team build from Raw_Players with Overrides flowing through; ORtg / DRtg / net / pace and ranks |
-| M_WinDist | Live analytic win distribution and P(over); compared with the sim; flags \|Δ\| > 2pp |
-| M_Sims | Engine output (values, labelled): run hash, timestamp, N, team probabilities with MC SE, conference-rank distribution, wins pmf, per-bet edge CI / robustness / portfolio Kelly |
-| M_Lottery2027 | 3-2-1 rules, restrictions (UTA no top-5, WAS no #1), pick ownership, per-team pick distribution |
-| M_Players | G4 placeholder (projected ratings / games) |
-| S_Markets | One block per market (34): book price, fair probability, model probability, model fair price, EV, edge, CI, Kelly, rule text, lock time; edges colour-coded |
-| Bet_Card | `LET`/`FILTER`/`SORTBY`/`HSTACK` over S_Markets (dynamic), sorted by portfolio Kelly stake |
-| Exposure, Dashboard, Sensitivity, Backtest, Tracker, Checks, Data_Sources, Raw_Teams / Raw_Players / Raw_Schedule | As specified |
+## 1. Root cause and fix
+- **Diagnosis:** the book's win totals have a team-to-team SD of 10.3 and the model's sim means 7.6. In the 2023-24 to 2025-26 calibration the sim's top bin was 56.0 vs 59.8 actual and its bottom bin 27.8 vs 20.9 actual. The calibrated linear projection (wins = 41 + 2.44 × SRS) did not show that compression in the eight-season backtest (55.9 vs 55.1 at the top, 27.4 vs 27.6 at the bottom).
+- **Cause:** Φ saturation, σ_team concavity and availability draws compress the sim's expected wins relative to the projection.
+- **Fix:** `src/sim/meanmatch.py` adjusts the simulator's team ratings until its expected wins equal the calibrated projection (max error 0.08 wins; the matched sim agrees with the projection to RMSE 0.10). The ratings spread widens by 14%. The same matching is applied to every robustness scenario, every parameter draw and every historical calibration season.
+- **σ_team refit with the matched sim** (leave-one-season-out CV over six full seasons, availability draws on; `sigma_team_cv_meanmatched.json`): optimum **3.5 SRS points** (folds chose 3.5 four times, 3.75 once, 3.0 once); simulated SD ÷ realized RMSE = **1.016** (8.82 vs 8.68); variance ratio **0.97** against a ceiling band of 0.85–1.17 (p = 0.62). Production predictive SD is **8.77 wins**, within ±5% of the backtest's 8.92. Out-of-sample reliability for P(over projection ±5/±10) is calibrated (bins 0.867 vs 0.874, 0.711 vs 0.718, 0.291 vs 0.269, 0.132 vs 0.146; Brier equals the climatological reference to within 0.002). P(top-6 seed) Brier is 0.165 vs 0.240; the 0.10–0.25 bin is low (predicted 0.18, observed 0.29, n = 28).
+- **Bottom-8 carryover (unchanged from the G3 addendum):** UTA 32.6 → 33.3, BKN 30.8 → 31.3, WAS 27.4 → 27.8, DAL 33.8 → 34.0, IND 42.0 → 42.1, NOP 31.9 → 32.0, MEM 36.4 → 36.4, SAC 24.1 → 23.9 (before → after using pre-deadline roles).
 
-**Formatting:** Arial 10 everywhere, blue inputs / black formulas / green cross-sheet links / red flags, navy headers, no merged cells, gridlines off, tab headers on every sheet, row heights 15 / 30 / 6. Audit: 0 non-Arial cells, 0 merged cells.
+## 2. Compression test (post-fix)
+- Regressing (model − market fair median) on the market median across 30 teams: slope **−0.24, 95% CI [−0.34, −0.13]** (80% CI [−0.31, −0.17]). Before the fix it was −0.32 [−0.41, −0.23]. Still significantly negative.
+- **Is the projection over-regressed against realized outcomes?** No. In the 240-team-season backtest the residual-on-predicted slope is **+0.015** (season-cluster 80% CI [−0.04, +0.07]; team bootstrap [−0.06, +0.09]). A leave-one-season-out re-fit of the slope gives held-out RMSE 8.94 vs 8.92 unchanged, so there is nothing to fix out-of-sample and I did not change the SRS→wins slope or the prior weight.
+- **So the rule applies:** no wins unders on the market's top 5 and no wins overs on its bottom 5, unless a specific verifiable player or roster fact is on file (`params/verified_drivers.csv`, empty). It blocks 7 otherwise-qualifying bets: NYK under 52.5, PHI under 50.5, SAS under 59.5, MIL over 25.5, BKN over 24.5, NOP over 28.5, SAC over 20.5. NYK's Robinson loss is verified but explains about 1.4 SRS points, not the 6.6-win gap, so it does not clear the bar.
 
-## 2. Verification (Excel 365 recalculated through xlwings)
-- **Error scan:** 0 error cells on every sheet. **Checks tab: 0 failing** (all `OK`; 3 informational/flag lines):
-  - Fair probabilities sum to target in every market (max deviation 4e-9); pair sums exact.
-  - Model probabilities sum correctly (title 1, conference 2, division 6, Cup 1, Cup groups 6); P(top-10) ≥ P(top-6); P(conference) ≤ P(top-10); P(title) ≤ P(conference).
-  - Live analytic wins sum to 1,230; odds row count reconciles.
-  - Imputed odds rows: 4 (never bet); backfilled rows: 11.
-  - FLAG (not an error): 8 of 30 WINS lines differ by more than 2pp between the analytic layer and the sim.
-- **Excel vs Python parity:** de-vig Multiplicative / Power / Shin agree to **2e-16 / 3e-10 / 3e-10**; team wins to 2e-14; EV per bet to 2e-4 (CSV rounding on rare long shots); **qualifying bets 89 in both**.
-- **Live behaviour tested:**
-  - Overriding SGA's rating by −3 moves OKC from 58.7 to 54.8 wins.
-  - Bankroll $10,000 gives $2,500 total portfolio stake.
-  - Scenario "Bear" flips the sim status to STALE.
-  - De-vig selector and PLAYOFFS definition change fair probabilities / EVs correctly.
-  - Overrides move the analytic layer immediately; sim-based probabilities need `run.py sim` (STALE flag), and S_Markets shows a "live analytic" WINS probability / EV that reprices with Overrides.
-- **Six-bug audit** (`workbook_audit.json`):
-  1. Hardcodes in formulas: only structural constants remain (`INDEX` column numbers on the Dashboard, 100 in the American-odds conversion). Pace blend, 82 games, 19,680 team minutes and the 4 play-in slots were moved to Assumptions.
-  2. Inconsistent dragged formulas: all flagged columns are block structure by design (one S_Markets block per market, team table vs player block). Row alignment was verified by value: every modelled S_Markets EV matches Python.
-  3. Circular references: none.
-  4. External links: none.
-  5. Sign conventions documented: EV = p × decimal − 1; edge = model − fair; CLV = closing − placed implied.
-  6. Summary tabs linked: Dashboard and Exposure team table are live formulas. The Exposure P&L distribution is engine output (labelled).
+## 3. Model vs market wins, all 30 teams
+Market fair median = book line shifted by the de-vigged P(over) (juice removed) using the model's predictive SD of 8.5 wins.
 
-## 3. Pricing methodology
-- **De-vig:** default Shin. Shin pushes long-shot fair probabilities down, which inflates EV on long shots; the Bet Card therefore ranks by portfolio stake, not by EV.
-- **Model probability:** 100,000 production sims. WINS is the exact simulated P(wins > line).
-- **Edge CI** (`param_draws.npz`): 60 parameter draws × 15,000 sims. Each draw perturbs σ_team, HCA, back-to-back effects, σ_game, playoff HCA and λ, tank κ, the DARKO weight (0.1–0.9) and a rating-scale factor, with independent seeds so MC error is included. The EV CI is the 10th–90th percentile across draws.
-- **Qualification:** EV ≥ 3% **and** EV CI low > 0 **and** not an imputed side **and** the robustness filter (bottom-10 projected teams need EV > 0 at κ = 0, κ = 1.57, σ_team ±10%) **and** rule confirmed. Result: **89 bets**; the robustness filter removed none (all bottom-10 bets survive).
-- **Staking:** probability for staking = 0.75 × model + 0.25 × fair. Naive Kelly = 0.25 × full Kelly. **Portfolio Kelly:** sim outcomes are exponentially tilted to match the shrunk marginals, then E[log wealth] is maximised jointly (bounds 0 to 0.6 per bet); stakes scale to the 25% exposure cap. Stakes are fractions of bankroll; the $1,000 cap applies in the workbook.
+| Team | Line | Market median | Model mean | Model − market |
+|---|---|---|---|---|
+| MIA | 46.5 | 46.0 | 37.5 | −8.5 |
+| SAS | 59.5 | 60.7 | 53.9 | −6.8 |
+| NYK | 52.5 | 50.5 | 43.9 | −6.6 |
+| WAS | 35.5 | 34.1 | 27.8 | −6.3 |
+| PHI | 50.5 | 50.0 | 44.4 | −5.6 |
+| UTA | 37.5 | 38.7 | 33.3 | −5.5 |
+| MIN | 47.5 | 48.0 | 44.4 | −3.6 |
+| OKC | 61.5 | 62.2 | 58.7 | −3.5 |
+| ATL | 44.5 | 43.8 | 40.6 | −3.2 |
+| IND | 44.5 | 45.0 | 42.0 | −3.0 |
+| CLE | 47.5 | 48.2 | 46.6 | −1.6 |
+| DET | 49.5 | 48.3 | 47.2 | −1.1 |
+| LAL | 45.5 | 46.9 | 46.1 | −0.8 |
+| DEN | 49.5 | 48.1 | 47.4 | −0.7 |
+| ORL | 43.5 | 44.5 | 43.9 | −0.6 |
+| PHX | 39.5 | 39.7 | 39.6 | −0.2 |
+| DAL | 34.5 | 34.3 | 34.0 | −0.2 |
+| BOS | 51.5 | 50.5 | 51.1 | +0.6 |
+| CHA | 39.5 | 36.9 | 37.7 | +0.8 |
+| CHI | 28.5 | 30.3 | 32.1 | +1.8 |
+| SAC | 20.5 | 21.7 | 24.0 | +2.3 |
+| NOP | 28.5 | 29.0 | 31.9 | +2.9 |
+| TOR | 45.5 | 47.1 | 50.1 | +2.9 |
+| LAC | 29.5 | 27.5 | 30.9 | +3.4 |
+| HOU | 47.5 | 49.7 | 53.6 | +3.9 |
+| MIL | 25.5 | 26.0 | 29.9 | +3.9 |
+| POR | 42.5 | 41.3 | 45.6 | +4.3 |
+| GSW | 39.5 | 38.1 | 43.8 | +5.8 |
+| MEM | 28.5 | 30.1 | 36.5 | +6.4 |
+| BKN | 24.5 | 23.5 | 31.3 | +7.8 |
 
-## 4. The Bet Card, and how far to trust it
-- **89 bets**; total stake at the 25% exposure cap. By market: WINS 22 (15.0% of bankroll), play-in 12 (5.9%), division 12, conference 14, title 11, Cup and Cup groups 18 (almost all tiny).
-- **Largest stakes** (fraction of bankroll): BKN wins over 24.5 (+110) 1.4%; NYK wins under 52.5 (−155) 1.2%; LAC over 29.5 (+135) 1.1%; BKN play-in YES (+1400) 1.1%; MIA under 46.5 (−120) 1.0%; MIN under 47.5 (+100) 1.0%; WAS under 35.5 (−140) 1.0%; MEM over 28.5 (−145) 0.9%.
-- **Simulated portfolio:** expected return +20.6% of bankroll, P(profit) 94.7%, median +18.2%, 5th percentile −0.3%, 1st percentile −4.8%, worst −11.8% (all in the model's own world).
-- **Caution:**
-  1. The Bet Card is a list of model-vs-book disagreements. The model's mean absolute gap to the book's win totals is **3.9 wins**, with gaps up to 9 (NYK −9.1, MIA −8.1, SAS −6.7, PHI −6.2, WAS −6.0; MEM +8.0, BKN +7.6, MIL +6.1, SAC +5.4, HOU +4.5).
-  2. The model's honest out-of-sample wins RMSE is 8.9 (G2) and no free closing-line archive exists, so **I cannot show the model beats the market**. A typical market RMSE is 7–8. The CI covers parameter uncertainty only, not the possibility that the market is simply better.
-  3. The 25% staking shrink and the lower-CI rule are the only guards the spec provides. Total exposure is concentrated in a handful of team views (BKN 2.4%, MEM 1.8%, MIN / NYK 1.6% each).
-  4. Before the Tuesday lock I would diagnose the top 10 disagreements by driver (injuries, roster moves, rookie / DARKO inputs) before placing real money. That is the G6 audit.
-- **Lock times** (CST): season markets lock Tue 10/20 02:10 PM; each team's wins market locks 10 minutes after its first tip (BOS/DET 02:10 PM matches the sheet's printed locks).
+**Statistics:** RMSE 4.22; mean signed difference −0.36; MAE 3.48; correlation 0.915; slope of model on market 0.76; SD of team means 8.57 (model) vs 10.34 (market). The book's lines sum to 1,241 and the market medians to 1,240.8; the model sums to 1,230. The diagnosis threshold (RMSE above about 4) is met, so the model is treated as miscalibrated relative to the market.
 
-## 5. Limitations / open items
-- PLAYOFFS definition (§0.1) and the play-in interpretation.
-- Excel's PDF export needs a printer driver; the Dashboard + Bet_Card PDF is a G6 deliverable and I will use another route if none is available. Chart rendering was not visually inspected here.
-- The analytic layer approximates the engine (wins = 82 × Φ(SRS / s_eff), s_eff = 14.72; mean RMSE 0.30 wins vs the sim); 8 of 30 WINS lines differ by more than 2pp (flagged).
-- `parse-odds` reproduces **640 of 687** rows of the CSV exactly (0 price mismatches). The 47 not reproduced are rows the PDF text layer has blank or garbled (exactly the backfilled / imputed rows) plus 4 spelling variants; unparsed lines are reported.
-- Player markets (G4) have no model; display-only markets show fair prices only.
-- Calibrations and tank / playoff assumptions are as in the G3 addenda.
+## 4. Bet Card anatomy (final 52 bets, shrink 0.5)
+- **Overall:** median EV +57.6%, median edge (model − fair) +12.5pp, median EV CI low +45%; total stake 25.0% of bankroll (the exposure cap). Portfolio P&L (the model's own world): expected return +23.4%, P(profit) 94.4%, 5th percentile −0.6%, 1st percentile −6.9%, worst −17.2%. At the shrunk probabilities the expected return is +10.3%.
+- **By market** (count, % of bankroll staked): WINS 10 (11.3%); PLAYOFFS 10 (6.0%); PLAYIN 10 (4.4%); DIV 7 (2.3%); CONF 4 (0.3%); Cup groups 3 (under 0.1%); TITLE 5 (0.3%); CUP 3 (0.3%).
+- **WINS over vs under:** 5 overs (3.5% staked, median EV 38%) and 5 unders (7.8%, median EV 41%). Not one-directional; overall the card is 37 YES, 5 NO, 5 OVER, 5 UNDER.
+- **Favorites vs longshots** (favorite = fair ≥ 10%):
+  - TITLE: 0 / 5 (all longshots).
+  - CONF: 0 / 4. CUP: 0 / 3.
+  - CUP groups: 2 favorites / 1 longshot (stakes under 0.1%).
+  - DIV: 4 favorites (1.9% staked) / 3 longshots (0.4%).
+  - 16 of the 52 bets have fair probability below 5%.
+- **Why the card is still heavy on YES bets:** futures markets only offer YES prices, so a model that thinks the market is too low on many teams can only back them.
+
+## 5. Filters, in order (waterfall)
+| Step | Bets | What it does |
+|---|---|---|
+| Reference: first card (compressed sim means) | 89 | EV ≥ 3% and CI low > 0, PLAYOFFS blocked |
+| Raw (matched means) | **75** | EV ≥ 3%, CI low > 0, not imputed, PLAYOFFS still blocked |
+| Playoff fix | **91** | PLAYOFFS priced as the 16-team field (+16) |
+| Zero-sum (means rescaled to 1,241) | **89** | −2 WINS: OKC under 61.5, CLE under 47.5 |
+| Shrink 0.5 (edge at the shrunk probability) | **63** | −26, mostly TITLE (5), CONF (7), Cup (8), DIV (3), PLAYOFFS (3) |
+| Robustness (κ 0 / 1.57, σ_team ±10%, bottom-10 teams) | **63** | −0 |
+| Longshot control (fair < 5%) | **63** | −0 (the shrink already binds) |
+| Low-continuity shrink 0.75 | **59** | −4: LAC over 29.5, PHI NO, MIL YES, CHI YES (PLAYOFFS) |
+| Compression rule | **52** | −7 (see §2) |
+| **Final** | **52** | At shrink 0.25 the same filters would leave 62 |
+
+- **WINS bets by step:** 20 → 20 → 18 → 18 → 18 → 18 → 17 → **10**.
+- **Zero-sum filter:** rescaling the model's means by +0.367 wins per team (1,241 vs 1,230) removes only two wins bets, both unders (OKC, CLE), the kind inflated lines inflate. The remaining 18 are not driven by inflation alone.
+- **EV by fair-probability bucket** (all modelled selections, model EV before shrink; `qualification_waterfall.json`):
+
+| Fair bucket | n | Median EV | 25th–75th pct |
+|---|---|---|---|
+| < 2% | 59 | −1.2% | −57% to +69% |
+| 2–5% | 32 | +18.7% | −19% to +46% |
+| 5–15% | 39 | +13.9% | −34% to +84% |
+| 15–50% | 96 | −18.5% | −33% to +5% |
+| > 50% | 64 | −7.8% | −24% to +9% |
+
+  No bucket has a median above your 20% threshold (2–5% is closest at 18.7%), so no bucket was excluded. The wide spreads in the long-shot buckets show why the shrink does the work there.
+
+## 6. Biggest 10 disagreements and their drivers
+The market is more extreme than the model on both ends. For none of these do I have a verified fact that explains the whole gap; the table gives the drivers I can see in the data (`top_disagreements_drivers.csv`).
+
+| Team | Gap | Drivers in the model | Info-gap / fact check |
+|---|---|---|---|
+| MIA −8.5 | model low | Giannis (rated +6.8) arrived but 5 of last year's top rotation left (Powell, Herro, Ware, Jaquez, Jakučionis ≈ 7,500 minutes), replaced by older low-rated veterans (Hardaway, Klay, Portis, Richards); continuity 0.48; Giannis projected 53 games | Roster moves after the June 3 DARKO snapshot; market likely credits the star effect more than the box prior |
+| SAS −6.8 | model low | Prior SRS +8.3 → predicted +5.3 with continuity 0.76; only addition is T. Harris; no injuries listed | No roster fact; this is the model's general regression of an elite team |
+| NYK −6.6 | model low | Robinson left as a free agent for BOS (July 1, verified, ESPN + bbref NYK page); bench replaced by Brown, Agbaji, Drummond; SRS +6.0 → +1.1 | Robinson alone explains about 1.4 SRS points; the rest is regression |
+| WAS −6.3 | model low | #1 pick Dybantsa rated −1.8 (rookie model); Young and Davis projected 50 games each; prior SRS −11.6 | Rookie rating and availability are the swing factors |
+| PHI −5.6 | model low | Continuity 0.43; LeBron (41), J. Brown, Simons, Love arrive; Embiid 49 games | Players moved after the DARKO snapshot; ages weigh on LeBron |
+| UTA −5.5 | model low | Peterson (#2 pick) rated −1.9; JJJ arrived in February; Markkanen 58 games | Post-snapshot role changes |
+| BKN +7.8 | model high | Prior SRS −9.7 regresses to −4.0; Randle and Ellis added; Claxton, Z. Williams, J. Wilson gone | Market (23.5) may expect a tank; the model cuts tank incentive for BKN because HOU holds the swap right on BKN's pick |
+| MEM +6.4 | model high | Lost JJJ, KCP, Aldama, Landale (≈4,700 minutes) but regresses SRS −5.8 → −1.9 | Largest suspected over-regression of a depleted roster; no verified offsetting fact |
+| GSW +5.8 | model high | Curry 52 games, Porziņģis 44, Butler out until Jan 2 (ACL, already in the model, 28 games) | Age effects (Curry 38, Horford 40, Green 36) may be understated by the broad aging curve |
+| POR +4.3 | model high | Morant arrived (rated +0.8, 52 games); Holiday 36; no-history minutes 0% | Role in the new rotation untested |
+
+None of these is an injury since the DARKO snapshot that is missing from the model: all 23 ESPN "Out" players, including Butler, DiVincenzo, Beal, Ingram and Hukporti, are applied through their return dates.
+
+## 7. Roster audit (your item 3)
+- **ESPN, re-pulled today vs the model's rosters:** 627 vs 627 players, **0 differences** in team or status (`rosters_espn_refresh_20261015.csv`).
+- **Second source, bbref 2027 team pages (30 teams):** 595 players on both lists, **0 with a different team**. ESPN-only: about 30 fringe players (two-way, camp, 10-day). bbref-only: 18 fringe players plus **Batum (LAC)** and Hayes (SAC), who played rotation minutes last year and are absent from ESPN; their absence is immaterial to those teams' totals. Alex Sarr / Bub Carrington / Nic Claxton appear as differences only because of name variants (`roster_audit_diff.csv`).
+- **Mitchell Robinson:** left the Knicks for BOS as a free agent (3 years, $47.4M, announced July 1, 2026; AP / ESPN). It is a signing, not a trade. The model's NYK roster omits him and BOS includes him.
+
+## 8. Workbook (Excel 365, recalculated through xlwings)
+- **Errors:** 0 error cells; **Checks: 0 failing** (3 informational: 4 imputed rows, 11 backfilled rows, 2 of 30 WINS lines differ by more than 2pp between the live analytic layer and the sim).
+- **Excel vs Python parity:** de-vig 2e-16 / 3e-10 / 3e-10 (Multiplicative / Power / Shin), team wins 2e-14, qualifying bets **52 in both**.
+- **Qualification formulas are live** for min EV, shrink, zero-sum, longshot (fair < `longshot_threshold`) and continuity (`low_continuity_threshold`, `low_continuity_shrink`). Engine-supplied flags: edge CIs, robustness, portfolio Kelly, and the static bucket / compression block. Changing the shrink or the thresholds re-filters the card live; the portfolio Kelly stakes need `run.py price`.
+- **Audit:** no circular references, no external links, 0 non-Arial cells, 0 merged cells; remaining hard-coded numbers are structural. New Assumptions: zero-sum filter, longshot and continuity thresholds, PLAYOFFS definition and confirmation flag, shrink 0.5.
+- **Fixed during this pass:** the portfolio outcome for PLAYOFFS used top-10 while pricing used the bracket definition, which distorted the first portfolio stakes; both now use the bracket.
+
+## 9. Limitations and next steps
+- **No market benchmark.** The edge CI covers parameter uncertainty only. The strongest evidence of miscalibration is the compression gap in §2–3.
+- The tightened rule (the shrunk edge must clear 3% and the CI low must be positive) goes beyond the spec's "shrink for staking only"; it follows your instruction after the diagnosis. Switch back by setting the shrink to 0.25; only the staking probability then changes.
+- The PLAYOFFS definition still needs confirmation with the book.
+- Excel's PDF export needs a printer driver; the Dashboard + Bet_Card PDF (G6) will use another route if none is available.
+- Top-10 disagreements by driver (§6) should be examined with a human before real money; that is the G6 audit.
 
 Awaiting "approve G5".

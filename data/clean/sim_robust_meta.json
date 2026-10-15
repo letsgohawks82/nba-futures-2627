@@ -3,8 +3,8 @@
   "SAC",
   "WAS",
   "MIL",
-  "BKN",
   "LAC",
+  "BKN",
   "NOP",
   "CHI",
   "UTA",
@@ -12,8 +12,8 @@
   "MEM"
  ],
  "kappa_hi": 1.57,
- "sigma_base": 3.25,
- "sigma_lo": 2.9250000000000003,
- "sigma_hi": 3.575,
+ "sigma_base": 3.5,
+ "sigma_lo": 3.15,
+ "sigma_hi": 3.8500000000000005,
  "N": 100000
 }

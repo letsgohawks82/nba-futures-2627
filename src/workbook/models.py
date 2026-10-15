@@ -62,7 +62,7 @@ def build_team_ratings(wb):
 
 def build_windist(wb, o):
     ws = wb.create_sheet("M_WinDist"); sheet_header(ws, "M_WinDist - live analytic win distribution (normal approximation) vs sim; reprices when Assumptions / Overrides change")
-    put(ws, "A5", "Wins ~ Normal(mean, sd), mean = 82 x Phi(SRS / s_eff): sd^2 = 82 p (1-p) + (82 phi(z) / sigma_game x sigma_team)^2 with p = mean/82, z = NORMSINV(p). Delta flagged when |analytic - sim| > 2pp.", "text", italic=True)
+    put(ws, "A5", "Wins ~ Normal(mean, sd), mean = 41 + k x SRS (the calibrated projection; the sim is moment-matched to it): sd^2 = 82 p (1-p) + (82 phi(z) / sigma_game x sigma_team)^2 with p = mean/82, z = NORMSINV(p). Delta flagged when |analytic - sim| > 2pp.", "text", italic=True)
     headers(ws, 7, ["Team", "Line", "Mean wins (live)", "SD wins", "P(over) analytic", "P(under) analytic", "P(over) sim", "Delta (pp)", "Flag", "Model fair odds - over", "Model fair odds - under", "Book over", "Book under", "Book fair over (selected)"])
     tr = REG["tr"]; od = REG["odds"]; dv = REG["devig"]
     w = o[(o.market == "WINS") & (o.side == "OVER")]
@@ -71,7 +71,7 @@ def build_windist(wb, o):
         row = 8 + i; orow = od["first"] + idx; abbr = NAME2ABBR[r.selection]
         put(ws, f"A{row}", abbr, "text")
         put(ws, f"B{row}", f"=Odds_Input!E{orow}", "link", "num1")
-        put(ws, f"C{row}", f"=A_games*NORMSDIST(INDEX(M_TeamRatings!$J${tr['first']}:$J${tr['last']},MATCH(A{row},M_TeamRatings!$A${tr['first']}:$A${tr['last']},0))/A_seff)", "link", "num2")
+        put(ws, f"C{row}", f"=INDEX(M_TeamRatings!$K${tr['first']}:$K${tr['last']},MATCH(A{row},M_TeamRatings!$A${tr['first']}:$A${tr['last']},0))", "link", "num2")
         put(ws, f"D{row}", f"=A_sdscale*SQRT(A_games*(C{row}/A_games)*(1-C{row}/A_games)+(A_games*EXP(-NORMSINV(C{row}/A_games)^2/2)/SQRT(2*PI())/A_sigma_game*A_sigma_team)^2)", "formula", "num2")
         put(ws, f"E{row}", f"=1-NORMDIST(B{row},C{row},D{row},TRUE)", "formula", "pct"); put(ws, f"F{row}", f"=1-E{row}", "formula", "pct")
         put(ws, f"G{row}", f"=M_Sims!$CK{{SIMS_ROW_{r.selection}}}", "link", "pct")      # placeholder replaced in M_Sims builder
@@ -130,12 +130,12 @@ def build_sims(wb, o):
     # CI table
     ci0 = pr0 + len(S) + 4
     put(ws, f"A{ci0-1}", "Edge confidence intervals / robustness / portfolio Kelly per odds row (engine output)", "text", bold=True)
-    hd = ["Row id", "EV CI low (80%)", "EV CI high (80%)", "P(EV>0) over parameter draws", "Alt-definition EV", "Alt EV CI low", "Alt EV CI high", "Robust OK", "EV kappa=0", "EV kappa=1.57", "EV sigma-10%", "EV sigma+10%", "Portfolio Kelly (frac of bankroll)", "Bottom-10 projected"]
+    hd = ["Row id", "EV CI low (80%)", "EV CI high (80%)", "P(EV>0) over parameter draws", "Alt-definition EV", "Alt EV CI low", "Alt EV CI high", "Robust OK", "EV kappa=0", "EV kappa=1.57", "EV sigma-10%", "EV sigma+10%", "Portfolio Kelly (frac of bankroll)", "Bottom-10 projected", "EV CI low - zero-sum model (WINS)", "Static block (miscalibrated EV bucket / compression rule)"]
     headers(ws, ci0, hd)
     for i, r in o.iterrows():
         row = ci0 + 1 + i
-        vals = [int(r.row_id), r.ev_lo, r.ev_hi, r.p_ev_pos, r.ev_alt, r.ev_lo_alt, r.ev_hi_alt, int(bool(r.robust_ok)), r.ev_kappa_0, r.ev_kappa_hi, r.ev_sigma_lo, r.ev_sigma_hi, r.kelly_portfolio, int(bool(r.bottom10))]
-        fm = ["int", "num3", "num3", "pct", "num3", "num3", "num3", "int", "num3", "num3", "num3", "num3", "0.0000", "int"]
+        vals = [int(r.row_id), r.ev_lo, r.ev_hi, r.p_ev_pos, r.ev_alt, r.ev_lo_alt, r.ev_hi_alt, int(bool(r.robust_ok)), r.ev_kappa_0, r.ev_kappa_hi, r.ev_sigma_lo, r.ev_sigma_hi, r.kelly_portfolio, int(bool(r.bottom10)), r.ev_lo_zs, int(bool(r.static_block))]
+        fm = ["int", "num3", "num3", "pct", "num3", "num3", "num3", "int", "num3", "num3", "num3", "num3", "0.0000", "int", "num3", "int"]
         for j, (v, f) in enumerate(zip(vals, fm)):
             put(ws, f"{CL(1+j)}{row}", "-" if (isinstance(v, float) and np.isnan(v)) else v, "input", f)
     REG["sims_ci"] = dict(first=ci0 + 1, last=ci0 + len(o))
