@@ -1,10 +1,10 @@
 [
  {
   "name": "lottery_n_draws",
-  "value": 4,
+  "value": 16,
   "units": "draws",
-  "description": "Number of ball draws in the 3-2-1 lottery; remaining picks by reverse record. USER DEFAULT. Evidence (NBA.com, Tankathon, Hoops Rumors) says ALL 16 picks are drawn, i.e. 16 - see G2 report sensitivity.",
-  "type": "assumption",
+  "description": "Number of ball draws; all 16 first-round picks are drawn. Validated vs published #1 odds (5.4/8.1/2.7%) in data/clean/lottery_validation.json.",
+  "type": "documented fact (NBA.com, Tankathon, Hoops Rumors: all 16 picks drawn)",
   "source": "reports/G2_report.md; data/clean/lottery_sensitivity_draws.csv"
  },
  {
@@ -65,18 +65,18 @@
  },
  {
   "name": "cup_nonqualifier_pairing",
-  "value": "random within conference per sim, 1 home 1 away; cross-conference only if counts odd",
+  "value": "random within conference per sim (1 home/1 away) except 2 cross-conference games",
   "units": "rule",
-  "description": "USER SPEC. NOTE: NBA.com says 2 of the 22 non-qualifier games are cross-conference; set cup_nonqualifier_cross_conf_games to reproduce.",
-  "type": "user spec",
+  "description": "Opponents unknown until group play ends; paired randomly per sim.",
+  "type": "documented fact + assumption on pairing",
   "source": "reports/G2_report.md"
  },
  {
   "name": "cup_nonqualifier_cross_conf_games",
-  "value": 0,
+  "value": 2,
   "units": "games",
-  "description": "USER DEFAULT 0 (NBA.com says 2). Toggle.",
-  "type": "assumption",
+  "description": "NBA.com Cup 101: 2 of the 22 non-qualifier games are cross-conference (official; overrides user spec).",
+  "type": "documented fact (NBA.com)",
   "source": "NBA.com Cup 101"
  },
  {
@@ -99,16 +99,24 @@
   "name": "cup_semis_neutral",
   "value": 0,
   "units": "bool",
-  "description": "1 = neutral-site semis (user spec); 0 = higher seed hosts (NBA.com).",
-  "type": "assumption",
+  "description": "NBA.com: semifinals at the higher seed home arena (official).",
+  "type": "documented fact (NBA.com)",
   "source": "NBA.com Cup 101"
  },
  {
   "name": "tank_incentive_toggle_teams",
-  "value": "LAC,TOR",
+  "value": "none",
   "units": "teams",
-  "description": "Teams whose 2027 pick terms are not fully reconciled; tank incentive is a manual toggle, not modeled.",
-  "type": "flag",
+  "description": "LAC/TOR: toggle cleared - LAC-TOR 2027 swap (agreed 6/30, completed 9/14/2026) text in RealGM matches Hoops Rumors. NBA penalty (9/2/2026) took LAC 2029-2033 firsts, not 2027. Win delta of tank toggle computed in G3.",
+  "type": "resolved flag",
   "source": "data/clean/picks_2027_reconciled.csv"
+ },
+ {
+  "name": "w_darko",
+  "value": 0.5,
+  "units": "share",
+  "description": "50/50 box-prior vs DARKO in production. DOCUMENTED RULE, UNTESTED: DARKO has no point-in-time history; backtest used box prior only. Sensitivity in data/clean/sensitivity_w_darko.csv.",
+  "type": "assumption (documented rule, untested)",
+  "source": "reports/G2_addendum.md"
  }
 ]

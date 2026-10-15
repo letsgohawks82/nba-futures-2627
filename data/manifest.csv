@@ -379,3 +379,18 @@ data/clean/benchmark_model_vs_book_wins.csv,derived model output (src/ratings),2
 data/clean/ratings_fit_2027.json,derived model output (src/ratings),2026-10-15T13:43:28-04:00,80,0924cadccca350d3bac5efb2ea598aadd4f878272544f3df26ea6d419e549e43,G2
 params/provenance.json,derived model output (src/ratings),2026-10-15T13:43:28-04:00,291,d319a9c5b81561771199336a8d5357bbe46ef73fcb2137c58a023175919c1f35,G2
 params/overrides_players.csv,derived model output (src/ratings),2026-10-15T13:43:28-04:00,1,44452c38844b5222de0e14487af5acc361aa8f9c1cc23e81915fca43bc66a56f,G2
+data/clean/backtest_calibration.json,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,b94f6ab998fc5b300f68fff3d01797a4d75eafecd560be160db9ca6471238d4b,G2-addendum
+data/clean/backtest_calibration_firstroster.json,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,b8069e53443527ff9ae3b277dfc545187f1046092c906afee066a22af605c348,G2-addendum
+data/clean/backtest_fitlog.csv,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,fe75233b0d99a4fa28f46b169c0d560c5e84bafe3801148202505d730ca660fa,G2-addendum
+data/clean/backtest_fitlog_firstroster.csv,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,5d360f78720b0c8a3ff6925494db9e07a5666bbd1036d2ef5270f4d75bbd5f18,G2-addendum
+data/clean/backtest_fitlog_prevroster.csv,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,c372cad5eb0e9c200542492fa47a7e6c3e9de54e7af61a1a008a90e4dc05b75a,G2-addendum
+data/clean/backtest_metrics.json,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,ca5d5b83368e2d4ee6d1049e052ad1d52772972a4ea6b75c583f74b93842d43c,G2-addendum
+data/clean/backtest_metrics_firstroster.json,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,5f9fac3ae1a72561df06fc2f774c8732f690dd68f2fbd87b0ccfadec65fd842b,G2-addendum
+data/clean/backtest_metrics_prevroster.json,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,f76770793b4e9380f6eaa50a982a1c36f2f9a8fd5938868a0ecea6dff8a841c9,G2-addendum
+data/clean/backtest_predictions.csv,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,a0eb8ec407761f046457d5042d931331489220769d837c9265adb23ebb2fd9fb,G2-addendum
+data/clean/backtest_predictions_firstroster.csv,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,37e21187afdbda1d10a18711a164f64e0ff8f20e5edceb72a01fcd4b41032b3c,G2-addendum
+data/clean/backtest_predictions_prevroster.csv,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,2bb1b1d35414341ec5a7529a731e4c057bd63525e44ccaaabe2051b4977cea04,G2-addendum
+data/clean/lottery_validation.json,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,0ce0a3da8ec705c7965397a87c0a7916f5ee71117194e34d44d2691fed6a61aa,G2-addendum
+data/clean/sensitivity_w_darko.csv,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,9382943c1dad693fb52ea0a76b04a252f940b951e8dd21ab9e81746e10867454,G2-addendum
+params/assumptions.json,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,0faa7b58baaeb5169f111b01fd18664713d3dd31f85cbca5f1da3e835056876c,G2-addendum
+params/provenance.json,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,557a33c4ac7d7cac27dc8fc02922debc6c3ffe0b1c72ba89b87fc1708a2fc4fa,G2-addendum

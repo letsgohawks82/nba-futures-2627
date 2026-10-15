@@ -1,12 +1,12 @@
 {
  "lottery_n_draws": {
-  "value": 4,
-  "method": "assumption",
+  "value": 16,
+  "method": "documented fact",
   "data_window": "n/a",
   "n": null,
   "fit_date": "2026-10-15",
   "code_path": "reports/G2_report.md; data/clean/lottery_sensitivity_draws.csv",
-  "note": "Number of ball draws in the 3-2-1 lottery; remaining picks by reverse record. USER DEFAULT. Evidence (NBA.com, Tankathon, Hoops Rumors) says ALL 16 picks are drawn, i.e. 16 - see G2 report sensitivity."
+  "note": "Number of ball draws; all 16 first-round picks are drawn. Validated vs published #1 odds (5.4/8.1/2.7%) in data/clean/lottery_validation.json."
  },
  "lottery_redraw_blocked": {
   "value": 1,
@@ -81,13 +81,13 @@
   "note": "USER SPEC. NOTE: NBA.com says 2 of the 22 non-qualifier games are cross-conference; set cup_nonqualifier_cross_conf_games to reproduce."
  },
  "cup_nonqualifier_cross_conf_games": {
-  "value": 0,
-  "method": "assumption",
+  "value": 2,
+  "method": "documented fact",
   "data_window": "n/a",
   "n": null,
   "fit_date": "2026-10-15",
   "code_path": "NBA.com Cup 101",
-  "note": "USER DEFAULT 0 (NBA.com says 2). Toggle."
+  "note": "NBA.com Cup 101: 2 of the 22 non-qualifier games are cross-conference (official; overrides user spec)."
  },
  "cup_qf_loser_games": {
   "value": 2,
@@ -109,12 +109,12 @@
  },
  "cup_semis_neutral": {
   "value": 0,
-  "method": "assumption",
+  "method": "documented fact",
   "data_window": "n/a",
   "n": null,
   "fit_date": "2026-10-15",
   "code_path": "NBA.com Cup 101",
-  "note": "1 = neutral-site semis (user spec); 0 = higher seed hosts (NBA.com)."
+  "note": "NBA.com: semifinals at the higher seed home arena (official)."
  },
  "tank_incentive_toggle_teams": {
   "value": "LAC,TOR",
@@ -238,12 +238,13 @@
   "code_path": "derived"
  },
  "w_darko": {
-  "value": 0.35,
-  "method": "ASSUMPTION: DARKO has no archived history so cannot be backtested; sensitivity in data/clean/sensitivity_w_darko.csv",
+  "value": 0.5,
+  "method": "assumption: documented rule, untested",
   "data_window": "n/a",
   "n": null,
   "fit_date": "2026-10-15",
-  "code_path": "src/ratings/project_2027.py"
+  "code_path": "reports/G2_addendum.md",
+  "note": "50/50 box-prior vs DARKO in production. DOCUMENTED RULE, UNTESTED: DARKO has no point-in-time history; backtest used box prior only. Sensitivity in data/clean/sensitivity_w_darko.csv."
  },
  "darko_scale_map [slope, intercept]": {
   "value": [

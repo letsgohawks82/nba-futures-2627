@@ -9,7 +9,7 @@ from ..data.teams import TEAMS
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 C = lambda f: os.path.join(ROOT, "data", "clean", f)
 SEASON = 2027
-W_DARKO_DEFAULT = 0.35          # ASSUMPTION: DARKO has no archived history -> cannot be backtested (see provenance)
+W_DARKO_DEFAULT = 0.50          # DOCUMENTED RULE (untested): 50/50 box-prior vs DARKO; DARKO has no point-in-time history, cannot be backtested
 SEASON_START, SEASON_END = pd.Timestamp("2026-10-20"), pd.Timestamp("2027-04-11")
 
 

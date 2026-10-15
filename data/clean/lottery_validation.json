@@ -1,0 +1,19 @@
+{
+ "max_abs_err_pick1": 0.0008829189189189096,
+ "max_abs_err_pick2": 0.0005757848436671736,
+ "published_pick1_pct": {
+  "two_balls": 5.4,
+  "three_balls": 8.1,
+  "one_ball": 2.7
+ },
+ "sim_pick1_pct": {
+  "two_balls": 5.4,
+  "three_balls": 8.12,
+  "one_ball": 2.73
+ },
+ "floor_violations_bottom3_below_12": 0.0,
+ "sum_prob_each_pick": 0.9999999999999998,
+ "n_balls": 37,
+ "restricted_no_first_P1": 0.0,
+ "restricted_no_top5_P_top5": 0.0
+}

@@ -26,7 +26,7 @@ def conf_rank_probs(mu, sigma, conf, nsim=4000, seed=0):
     return out10, out6
 
 
-def run():
+def run(roster_mode="actual", tag=""):
     D = Data(); ts = wins82(D.ts)
     player_fits, frames = {}, {}
     def pfit(m):
@@ -34,7 +34,7 @@ def run():
         return player_fits[m]
     def frame(s):
         if s not in frames:
-            f = season_frame(D, s, pfit(s - 1)); f = f.merge(ts[ts.season == s][["abbr", "w82"]], on="abbr"); frames[s] = f
+            f = season_frame(D, s, pfit(s - 1), roster_mode=roster_mode); f = f.merge(ts[ts.season == s][["abbr", "w82"]], on="abbr"); frames[s] = f
         return frames[s]
     rows, fitlog = [], []
     for t in TEST:
@@ -48,6 +48,13 @@ def run():
         f["b1_wins"] = np.polyval(b1, f.pw); f["b1_wins"] += 41 - f.b1_wins.mean()
         f["b2_wins"] = 41 + L["k_wins"] * (np.polyval(b2, f.psrs) - np.polyval(b2, f.psrs).mean())
         f["b3_wins"] = f.pw + (41 - f.pw.mean())
+        # B4: prior SRS regressed 1/3 to the mean, continuity-adjusted: srs_hat = (2/3)*prev_srs*(1+kappa*(cont-cont_bar)); kappa fit on training seasons
+        tr = pd.concat([frame(s) for s in range(FIRST_TRAIN, t)]).dropna(subset=["prev_srs", "srs"])
+        a = (2 / 3) * tr.prev_srs.values; x = (tr.continuity - tr.continuity.mean()).values
+        kappa = float(((a * x) * (tr.srs.values - a)).sum() / max(((a * x) ** 2).sum(), 1e-9))
+        a_t = (2 / 3) * f.prev_srs.fillna(0).values; x_t = (f.continuity - tr.continuity.mean()).values
+        s4 = a_t * (1 + kappa * x_t); s4 = s4 - s4.mean()
+        f["b4_wins"] = 41 + L["k_wins"] * s4; f["b4_kappa"] = kappa
         f["sigma"] = L["wins_resid_sd"]; f["test_season"] = t
         f["pred_srs_resid_sd"] = L["srs_resid_sd"]
         rows.append(f); fitlog.append(dict(test_season=t, n_train=L["n"], k_wins=L["k_wins"], wins_resid_sd=L["wins_resid_sd"], beta=L["beta"], player_lam=pfit(t - 1)["lam"], player_M0=pfit(t - 1)["M0"], player_rmse=pfit(t - 1)["rmse"]))
@@ -60,8 +67,8 @@ def run():
     R["p_top10"] = p10; R["p_top6"] = p6
     R["act_top10"] = R.groupby(["test_season", "conf"]).w82.rank(ascending=False, method="first") <= 10
     R["act_top6"] = R.groupby(["test_season", "conf"]).w82.rank(ascending=False, method="first") <= 6
-    R.to_csv(os.path.join(ROOT, "data/clean/backtest_predictions.csv"), index=False)
-    pd.DataFrame(fitlog).to_csv(os.path.join(ROOT, "data/clean/backtest_fitlog.csv"), index=False)
+    R.to_csv(os.path.join(ROOT, f"data/clean/backtest_predictions{tag}.csv"), index=False)
+    pd.DataFrame(fitlog).to_csv(os.path.join(ROOT, f"data/clean/backtest_fitlog{tag}.csv"), index=False)
     return R
 
 
@@ -73,7 +80,7 @@ def metrics(R, rng=np.random.default_rng(42), B=2000):
         return dict(rmse=rm(e), mae=float(np.mean(np.abs(e))),
                     rho=float(np.mean([spearmanr(g[col], g.w82)[0] for _, g in sub.groupby("test_season")])))
     out = {}
-    cols = {"model": "pred_wins", "B1_prev_wins_regress": "b1_wins", "B2_prev_srs": "b2_wins", "B3_naive_prev_wins": "b3_wins"}
+    cols = {"model": "pred_wins", "B1_prev_wins_regress": "b1_wins", "B2_prev_srs": "b2_wins", "B3_naive_prev_wins": "b3_wins", "B4_prev_srs_2of3_continuity": "b4_wins"}
     boots = {k: [] for k in cols}; diffs = {k: [] for k in cols}
     for _ in range(B):
         s = R.iloc[rng.integers(0, n, n)]
@@ -114,14 +121,14 @@ def metrics(R, rng=np.random.default_rng(42), B=2000):
             if m.sum() > 0: cal.append(dict(market=name, bin=f"{bins[i]:.2f}-{min(bins[i+1],1):.2f}", n=int(m.sum()), mean_pred=float(p[m].mean()), freq=float(y[m].mean())))
     out["calibration"] = cal
     # per-season rmse
-    out["by_season"] = {int(t): dict(model=rm(g.pred_wins - g.w82), B1=rm(g.b1_wins - g.w82), B2=rm(g.b2_wins - g.w82)) for t, g in R.groupby("test_season")}
+    out["by_season"] = {int(t): dict(model=rm(g.pred_wins - g.w82), B1=rm(g.b1_wins - g.w82), B2=rm(g.b2_wins - g.w82), B4=rm(g.b4_wins - g.w82)) for t, g in R.groupby("test_season")}
     out["mean_bias_wins"] = float((R.pred_wins - R.w82).mean())
     out["sum_pred_wins_per_season"] = {int(t): float(g.pred_wins.sum()) for t, g in R.groupby("test_season")}
     return out
 
 
 if __name__ == "__main__":
-    R = run(); m = metrics(R)
+    R = run("first", ""); m = metrics(R)
     json.dump(m, open(os.path.join(ROOT, "data/clean/backtest_metrics.json"), "w"), indent=1)
     for k in ["model", "B1_prev_wins_regress", "B2_prev_srs", "B3_naive_prev_wins"]:
         v = m[k]; print(f"{k:24s} RMSE {v['rmse']:.2f} {v['rmse_ci']}  MAE {v['mae']:.2f}  rho {v['rho']:.3f}", v.get("paired_rmse_diff_model_minus_this", ""))

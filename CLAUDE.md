@@ -38,3 +38,8 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 - Cup module spec in params/assumptions.json (NBA.com: semis at higher seed, 2 cross-conf nonqualifier games; user spec differs; toggles).
 - Overrides: params/overrides_players.csv (blank template); ESPN Out injuries applied automatically.
 - run.py ratings = backtest + project_2027.
+
+## G2 addendum (approved w/ changes)
+- lottery_n_draws=16 (documented fact). Cup: NBA.com official (semis at higher seed home; 2 of 22 non-qualifier games cross-conference). Both in params/assumptions.json.
+- Backtest headline = FIRST-TEAM roster proxy RMSE 8.92 [8.42,9.42] (not 8.44, which leaks in-season trades). No-moves bound 10.30 (no better than baselines): skill depends on knowing offseason moves. Strongest baseline B4 RMSE 10.21. DARKO never in backtest; production w_darko=0.5 documented rule, untested.
+- LAC/TOR conflict resolved (timing only; penalty took 2029-33 picks). Tank win-delta to be reported in G3.

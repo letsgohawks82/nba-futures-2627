@@ -165,8 +165,24 @@ def team_features(D, s, P, metric="bpm", roster=None, rating_adj=None, pl=None):
     return pd.DataFrame(out), pl
 
 
-def season_frame(D, s, P, metric="bpm"):
-    f, _ = team_features(D, s, P, metric)
+def prev_roster(D, s):
+    """Pessimistic point-in-time proxy: every player who ended season s-1 with the team (no offseason moves known)."""
+    st = D.st[(D.st.season == s - 1) & D.st.bbref_id.notna()]
+    r = st.rename(columns={"team": "abbr"})[["abbr", "bbref_id"]].drop_duplicates()
+    return r.assign(w_team=1.0)
+
+
+def first_roster(D, s):
+    """Start-of-season proxy: each player on the FIRST team listed for him in season s (bbref lists stints chronologically);
+    no in-season trade leakage. Late-season signings still appear (small residual leakage)."""
+    st = D.st[(D.st.season == s) & D.st.bbref_id.notna()]
+    r = st.drop_duplicates("bbref_id", keep="first").rename(columns={"team": "abbr"})[["abbr", "bbref_id"]]
+    return r.assign(w_team=1.0)
+
+
+def season_frame(D, s, P, metric="bpm", roster_mode="actual"):
+    ro = {"prev": prev_roster, "first": first_roster}.get(roster_mode)
+    f, _ = team_features(D, s, P, metric, roster=(ro(D, s) if ro else None))
     ts = D.ts
     prev = ts[ts.season == s - 1][["abbr", "srs", "wins"]].rename(columns={"srs": "prev_srs", "wins": "prev_wins"})
     cur = ts[ts.season == s][["abbr", "srs", "wins", "conf", "gp", "playoffs"]]
