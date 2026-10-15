@@ -43,10 +43,11 @@ def injury_overrides(R):
     return inj[["name", "team", "status", "type", "detail", "ret", "missed_frac"]]
 
 
-def run(w_darko=W_DARKO_DEFAULT, save=True, overrides=None):
+def run(w_darko=W_DARKO_DEFAULT, save=True, overrides=None, role_override=True):
     D = Data(); T = load_torvik()
     P = fit_player_model(D, 2026); Pr = fit_rookie(D, T, 2026, True)
     R = load_roster(D)
+    n_ov = apply_role_override(D, C("pre_deadline_role_override_2026.csv")) if role_override else 0
     # pick lookup for synthetic ids and 2026 draftees
     for r in R.itertuples():
         if r.pid.startswith("rk_"):

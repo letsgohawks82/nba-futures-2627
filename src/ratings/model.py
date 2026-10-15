@@ -27,6 +27,24 @@ class Data:
         self._prior_cache = {}
 
 
+def apply_role_override(D, path):
+    """Replace tank-mode 2025-26 totals for players of the bottom-8 teams with their PRE-deadline role (games = pre-deadline availability x 82,
+    minutes = pre-deadline mpg x games). Applied after model fits, only for projecting 2026-27 (the sim uses healthy pre-deadline roles)."""
+    import os
+    if not os.path.exists(path):
+        return 0
+    ov = pd.read_csv(path); ps = D.ps; n = 0
+    for r in ov.itertuples():
+        m = (ps.season == 2026) & (ps.bbref_id == r.bbref_id)
+        if m.any():
+            idx = ps.index[m][0]
+            ps.loc[idx, "games"] = r.games_adj; ps.loc[idx, "mp"] = r.mp_adj
+            ps.loc[idx, "gfrac"] = min(r.games_adj / ps.loc[idx, "gp_season"], 1.0); ps.loc[idx, "mpg"] = r.mp_adj / max(r.games_adj, 1)
+            n += 1
+    D._prior_cache.clear()
+    return n
+
+
 def _wols(X, y, w, ridge=0.0):
     W = np.sqrt(w)[:, None]
     A = X * W; b = y * W[:, 0]

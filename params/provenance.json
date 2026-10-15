@@ -230,10 +230,10 @@
   "code_path": "derived"
  },
  "sigma_team_srs": {
-  "value": 3.5,
-  "method": "Calibrated: pooled first-team-roster backtest residuals give 3.15 SRS pts; the G3 variance-ratio test on 2023-24..2025-26 preseason inputs rejected 3.15 (VR 1.28, p=0.03 vs self-consistency ceiling) and 2.74 (VR 1.48, p=0.002); 3.5 gives VR 1.13 (p=0.18), interval coverage 77%/88% for nominal 80/90. Tuned on 90 team-seasons - conservative (wider) by design.",
-  "data_window": "2018-19..2025-26 backtest",
-  "n": 240,
+  "value": 3.25,
+  "method": "Leave-one-season-out CV over 6 full seasons (2019, 2022-26), engine with availability draws ON: log score of actual wins under simulated pmf. Optimum 3.25 (selected in 4 of 6 folds; folds chose 3.25-4.0); predictive SD/realized RMSE = 0.98; variance ratio 1.04 (p=0.33 vs self-consistency ceiling). Replaces 3.5 (tuned earlier on 90 team-seasons).",
+  "data_window": "2018-19, 2021-22..2025-26 preseason inputs",
+  "n": 180,
   "fit_date": "2026-10-15",
   "code_path": "src/sim/calibrate.py; src/ratings/backtest.py"
  },

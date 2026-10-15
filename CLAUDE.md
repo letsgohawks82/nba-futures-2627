@@ -50,3 +50,9 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 - Fits: HCA 1.89, b2b -2.65/+2.53, sigma_game 13.49, post HCA 3.64; kappa 0.28 (CI includes 0; excl. 2020 bubble); playoff lambda 0.58 [0.32,0.80]; sigma_team_srs 3.5 (calibrated by variance ratio, p=0.13).
 - LAC/TOR toggle delta <=0.02 wins -> no no-bet flag. Title market is most sensitive to playoff lambda (OKC 15.6-23.3%).
 - Tests: tests/test_engine.py; independent check: src/verify/title_check.py + compare_title.py (max title diff 0.22pp).
+
+## G3 addendum (conditional approval) - done
+- sigma_team_srs = 3.25 (LOSO CV, availability ON; SD/RMSE 0.98; VR 1.04 p=0.33). Production predictive SD 8.51 wins. kappa production 0.28; robustness upper kappa 1.57; sigma +/-10%.
+- Tank carryover: bottom-8 2025-26 teams had post-deadline lineup collapse (UTA, MEM, WAS, SAC, BKN). params: data/clean/pre_deadline_role_override_2026.csv applied in project_2027 (role_override=True). Max win shift UTA +0.7.
+- Robustness scenarios: data/clean/sim_robust_*.csv; Bet Card rule in src/pricing/robust.py (bottom-10 projected teams need EV>0 under kappa0/kappa_hi/sigma_lo/sigma_hi).
+- Next: G5 team markets (G4 player markets deferred until after Bet Card).

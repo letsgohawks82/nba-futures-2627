@@ -1,0 +1,19 @@
+{
+ "bottom10_projected": [
+  "SAC",
+  "WAS",
+  "MIL",
+  "BKN",
+  "LAC",
+  "NOP",
+  "CHI",
+  "UTA",
+  "DAL",
+  "MEM"
+ ],
+ "kappa_hi": 1.57,
+ "sigma_base": 3.25,
+ "sigma_lo": 2.9250000000000003,
+ "sigma_hi": 3.575,
+ "N": 100000
+}
