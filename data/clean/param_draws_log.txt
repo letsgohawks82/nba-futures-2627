@@ -1,0 +1,6 @@
+draw 0 3 s
+draw 10 28 s
+draw 20 53 s
+draw 30 84 s
+draw 40 113 s
+draw 50 142 s

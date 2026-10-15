@@ -56,3 +56,11 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 - Tank carryover: bottom-8 2025-26 teams had post-deadline lineup collapse (UTA, MEM, WAS, SAC, BKN). params: data/clean/pre_deadline_role_override_2026.csv applied in project_2027 (role_override=True). Max win shift UTA +0.7.
 - Robustness scenarios: data/clean/sim_robust_*.csv; Bet Card rule in src/pricing/robust.py (bottom-10 projected teams need EV>0 under kappa0/kappa_hi/sigma_lo/sigma_hi).
 - Next: G5 team markets (G4 player markets deferred until after Bet Card).
+
+## G5 (2026-10-15) - workbook + team Bet Card, awaiting approval
+- Build: `run.py price` (src/pricing/run_pricing.py) then `run.py build` (src/workbook/build.py -> output/NBA_Futures_Model_v1_YYYYMMDD_MS.xlsx; Excel/xlwings sets Bet_Card + Dashboard dynamic arrays, recalcs, scans errors, reads Checks). Audit: `python -m src.workbook.audit`.
+- 22 tabs; formulas live except engine outputs (M_Sims). Sim staleness via Assumptions key vs M_Sims!B9. bet_card_formula uses LET/FILTER/SORTBY/HSTACK (Excel 365 only).
+- PLAYOFFS market: book prices sum to ~top-8, rule text says top-10 -> unresolved; A_poconf=0 blocks PLAYOFFS bets. 89 qualifying bets otherwise (EV>=3%, CI low>0, robust, not imputed).
+- Bet Card caveat: model-vs-book mean |gap| 3.9 wins; no market benchmark exists; CI = parameter uncertainty only.
+- Gotchas: openpyxl cannot write the spill operator (#) -> set via xlwings formula2; Excel PageSetup/PDF export fails without a printer; numba cache clear needed after engine edits; Bash heredocs with certain quotes fail -> use Write tool.
+- Next: G4 (player markets) then G6 (audit + delivery PDF).

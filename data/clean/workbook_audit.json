@@ -1,0 +1,428 @@
+{
+ "hardcodes": {
+  "Cover": {},
+  "Assumptions": {},
+  "Overrides": {},
+  "Odds_Input": {},
+  "M_DeVig": {},
+  "M_TeamRatings": {},
+  "M_WinDist": {},
+  "M_Sims": {},
+  "M_Lottery2027": {},
+  "M_Players": {},
+  "S_Markets": {},
+  "Bet_Card": {},
+  "Exposure": {},
+  "Dashboard": {
+   "9": [
+    17,
+    "D17"
+   ]
+  },
+  "Sensitivity": {},
+  "Backtest": {},
+  "Tracker": {},
+  "Checks": {},
+  "Data_Sources": {},
+  "Raw_Teams": {},
+  "Raw_Players": {},
+  "Raw_Schedule": {}
+ },
+ "inconsistent": {
+  "Cover": {
+   "A": {
+    "patterns": 21,
+    "dominant_share": 0.048,
+    "n": 21
+   }
+  },
+  "Assumptions": {},
+  "Overrides": {},
+  "Odds_Input": {},
+  "M_DeVig": {},
+  "M_TeamRatings": {
+   "A": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "B": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "C": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "D": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "E": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "F": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "G": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "H": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "I": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "J": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "K": {
+    "patterns": 3,
+    "dominant_share": 0.953,
+    "n": 658
+   },
+   "L": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "M": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "N": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   },
+   "P": {
+    "patterns": 2,
+    "dominant_share": 0.954,
+    "n": 657
+   }
+  },
+  "M_WinDist": {
+   "B": {
+    "patterns": 30,
+    "dominant_share": 0.033,
+    "n": 30
+   },
+   "L": {
+    "patterns": 30,
+    "dominant_share": 0.033,
+    "n": 30
+   },
+   "M": {
+    "patterns": 30,
+    "dominant_share": 0.033,
+    "n": 30
+   },
+   "N": {
+    "patterns": 30,
+    "dominant_share": 0.033,
+    "n": 30
+   }
+  },
+  "M_Sims": {},
+  "M_Lottery2027": {},
+  "M_Players": {},
+  "S_Markets": {
+   "B": {
+    "patterns": 34,
+    "dominant_share": 0.087,
+    "n": 687
+   },
+   "D": {
+    "patterns": 34,
+    "dominant_share": 0.087,
+    "n": 687
+   },
+   "E": {
+    "patterns": 34,
+    "dominant_share": 0.087,
+    "n": 687
+   },
+   "F": {
+    "patterns": 34,
+    "dominant_share": 0.087,
+    "n": 687
+   },
+   "G": {
+    "patterns": 34,
+    "dominant_share": 0.087,
+    "n": 687
+   },
+   "H": {
+    "patterns": 34,
+    "dominant_share": 0.087,
+    "n": 687
+   },
+   "I": {
+    "patterns": 34,
+    "dominant_share": 0.087,
+    "n": 687
+   },
+   "J": {
+    "patterns": 10,
+    "dominant_share": 0.102,
+    "n": 294
+   },
+   "K": {
+    "patterns": 2,
+    "dominant_share": 0.572,
+    "n": 687
+   },
+   "N": {
+    "patterns": 20,
+    "dominant_share": 0.204,
+    "n": 294
+   },
+   "O": {
+    "patterns": 20,
+    "dominant_share": 0.204,
+    "n": 294
+   },
+   "P": {
+    "patterns": 20,
+    "dominant_share": 0.204,
+    "n": 294
+   },
+   "T": {
+    "patterns": 20,
+    "dominant_share": 0.204,
+    "n": 294
+   },
+   "V": {
+    "patterns": 20,
+    "dominant_share": 0.204,
+    "n": 294
+   }
+  },
+  "Bet_Card": {},
+  "Exposure": {
+   "B": {
+    "patterns": 2,
+    "dominant_share": 0.968,
+    "n": 31
+   }
+  },
+  "Dashboard": {
+   "B": {
+    "patterns": 40,
+    "dominant_share": 0.39,
+    "n": 77
+   },
+   "C": {
+    "patterns": 33,
+    "dominant_share": 0.429,
+    "n": 70
+   },
+   "A": {
+    "patterns": 23,
+    "dominant_share": 0.5,
+    "n": 60
+   }
+  },
+  "Sensitivity": {},
+  "Backtest": {},
+  "Tracker": {},
+  "Checks": {
+   "B": {
+    "patterns": 25,
+    "dominant_share": 0.04,
+    "n": 25
+   },
+   "C": {
+    "patterns": 3,
+    "dominant_share": 0.875,
+    "n": 24
+   }
+  },
+  "Data_Sources": {},
+  "Raw_Teams": {},
+  "Raw_Players": {},
+  "Raw_Schedule": {}
+ },
+ "format": {
+  "Cover": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 30.0,
+   "tab_header_rows": true
+  },
+  "Assumptions": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 38.0,
+   "tab_header_rows": true
+  },
+  "Overrides": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 28.0,
+   "tab_header_rows": true
+  },
+  "Odds_Input": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 14.0,
+   "tab_header_rows": true
+  },
+  "M_DeVig": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 14.0,
+   "tab_header_rows": true
+  },
+  "M_TeamRatings": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 24.0,
+   "tab_header_rows": true
+  },
+  "M_WinDist": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 24.0,
+   "tab_header_rows": true
+  },
+  "M_Sims": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 26.0,
+   "tab_header_rows": true
+  },
+  "M_Lottery2027": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 24.0,
+   "tab_header_rows": true
+  },
+  "M_Players": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 28.0,
+   "tab_header_rows": true
+  },
+  "S_Markets": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 24.0,
+   "tab_header_rows": true
+  },
+  "Bet_Card": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 24.0,
+   "tab_header_rows": true
+  },
+  "Exposure": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 40.0,
+   "tab_header_rows": true
+  },
+  "Dashboard": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 34.0,
+   "tab_header_rows": true
+  },
+  "Sensitivity": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 34.0,
+   "tab_header_rows": true
+  },
+  "Backtest": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 40.0,
+   "tab_header_rows": true
+  },
+  "Tracker": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 24.0,
+   "tab_header_rows": true
+  },
+  "Checks": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 82.0,
+   "tab_header_rows": true
+  },
+  "Data_Sources": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 24.0,
+   "tab_header_rows": true
+  },
+  "Raw_Teams": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 24.0,
+   "tab_header_rows": true
+  },
+  "Raw_Players": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 14.0,
+   "tab_header_rows": true
+  },
+  "Raw_Schedule": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 24.0,
+   "tab_header_rows": true
+  }
+ },
+ "circular": {},
+ "external_links": [],
+ "sign_conventions": [
+  "EV = p x decimal - 1 (positive = value)",
+  "American odds: positive = profit on $100, negative = stake to win $100 (converted by decimal formula)",
+  "Edge = model - fair (positive = model above market)",
+  "CLV = closing implied - placed implied (positive = beat the close)",
+  "Kelly floored at 0; stakes never negative",
+  "Wins residual = actual - predicted"
+ ]
+}

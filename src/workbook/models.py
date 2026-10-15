@@ -1,0 +1,197 @@
+"""Workbook model tabs: M_TeamRatings, M_WinDist, M_Sims, M_Lottery2027, M_Players."""
+import json, math, os
+import numpy as np, pandas as pd
+from openpyxl.utils import get_column_letter as CL
+from openpyxl.formatting.rule import CellIsRule, FormulaRule
+from openpyxl.styles import Font, PatternFill
+from .styles import *
+from .core import REG, C, ROOT, name, hash_key_string
+
+TEAMS_N = 30
+
+
+def build_team_ratings(wb):
+    ws = wb.create_sheet("M_TeamRatings"); sheet_header(ws, "M_TeamRatings - player -> team rating build (live). Overrides flow through; minutes are re-scaled to 19,680 per team")
+    rt = REG["raw_teams"]; rp = REG["raw_players"]; ov = REG["ov_player"]; ot = REG["ov_team"]
+    put(ws, "A5", "Team SRS = b0 + b1 x (TeamSum - league mean) + b2 x prior SRS + b3 x continuity x prior SRS (+ override), re-centered to zero-sum; wins = 41 + k x SRS (sums to 1,230).", "text", italic=True)
+    hdr = ["Team", "Conf", "Division", "TeamSum (minutes-weighted rating)", "TeamSum - league mean", "Prior SRS", "Continuity", "Raw SRS", "Team override (SRS)", "Projected SRS", "Projected wins", "ORtg", "DRtg", "Net rating", "Pace",
+           "Rank - wins", "Rank - ORtg", "Rank - DRtg", "Python wins (reference)", "Delta vs Python"]
+    headers(ws, 7, hdr)
+    f, l = 8, 7 + TEAMS_N
+    pb0 = 45; pf, pl = pb0 + 1, pb0 + rp["n"]       # player block rows
+    rng = lambda col: f"${col}${pf}:${col}${pl}"
+    for i in range(TEAMS_N):
+        r = f + i; rr = rt["first"] + i
+        put(ws, f"A{r}", f"=Raw_Teams!A{rr}", "link"); put(ws, f"B{r}", f"=Raw_Teams!B{rr}", "link"); put(ws, f"C{r}", f"=Raw_Teams!C{rr}", "link")
+        put(ws, f"D{r}", f"=SUMIF({rng('A')},A{r},{rng('P')})", "formula", "num3")
+        put(ws, f"E{r}", f"=D{r}-AVERAGE($D${f}:$D${l})", "formula", "num3")
+        put(ws, f"F{r}", f"=Raw_Teams!D{rr}", "link", "num2"); put(ws, f"G{r}", f"=Raw_Teams!F{rr}", "link", "num3")
+        put(ws, f"H{r}", f"=A_b0+A_b1*E{r}+A_b2*F{r}+A_b3*G{r}*F{r}", "formula", "num3")
+        put(ws, f"I{r}", f"=INDEX(Overrides!$B${ot[0]}:$B${ot[1]},MATCH(A{r},Overrides!$A${ot[0]}:$A${ot[1]},0))", "link", "num2")
+        put(ws, f"J{r}", f"=(H{r}-AVERAGE($H${f}:$H${l}))+I{r}-AVERAGE($I${f}:$I${l})", "formula", "num3")
+        put(ws, f"K{r}", f"=A_games/2+A_kwins*J{r}", "formula", "num2")
+        put(ws, f"L{r}", f"=A_lgortg+J{r}/2+((Raw_Teams!J{rr}-AVERAGE(Raw_Teams!$J${rt['first']}:$J${rt['last']}))-(Raw_Teams!K{rr}-AVERAGE(Raw_Teams!$K${rt['first']}:$K${rt['last']})))/2", "formula", "num1")
+        put(ws, f"M{r}", f"=A_lgortg-(J{r}-(L{r}-A_lgortg))", "formula", "num1"); put(ws, f"N{r}", f"=L{r}-M{r}", "formula", "num1")
+        put(ws, f"O{r}", f"=A_paceblend*Raw_Teams!G{rr}+(1-A_paceblend)*AVERAGE(Raw_Teams!$G${rt['first']}:$G${rt['last']})", "formula", "num1")
+        put(ws, f"P{r}", f"=RANK(K{r},$K${f}:$K${l})", "formula", "int"); put(ws, f"Q{r}", f"=RANK(L{r},$L${f}:$L${l})", "formula", "int"); put(ws, f"R{r}", f"=RANK(M{r},$M${f}:$M${l},1)", "formula", "int")
+        put(ws, f"S{r}", f"=Raw_Teams!M{rr}", "link", "num2"); put(ws, f"T{r}", f"=K{r}-S{r}", "formula", "num2")
+    # fix: P in the team table is rank; player-block team sum uses column P of the player block (see below) -> use different columns
+    total = l + 1
+    put(ws, f"A{total}", "League", "text", bold=True); put(ws, f"K{total}", f"=SUM(K{f}:K{l})", "formula", "num2"); total_border(ws, total, 1, 20)
+    REG["tr"] = dict(first=f, last=l, total=total)
+    # player block
+    put(ws, f"A{pb0-2}", "Player build (links to Raw_Players; overrides applied)", "text", bold=True)
+    headers(ws, pb0, ["Team", "Player", "Rating", "Projected minutes", "Projected mpg", "Projected games", "mpg override", "Games override", "Rating adjustment", "Effective minutes (pre-scale)", "Team scale",
+                      "Effective minutes", "Effective rating", "Minutes share of 5 slots", "(placeholder)", "Contribution"], height=30)
+    O_N = f"Overrides!$A${ov[0]}:$A${ov[1]}"
+    for i in range(rp["n"]):
+        r = pf + i; rr = rp["first"] + i
+        put(ws, f"A{r}", f"=Raw_Players!A{rr}", "link"); put(ws, f"B{r}", f"=Raw_Players!B{rr}", "link"); put(ws, f"C{r}", f"=Raw_Players!E{rr}", "link", "num3")
+        put(ws, f"D{r}", f"=Raw_Players!F{rr}", "link", "num1"); put(ws, f"E{r}", f"=Raw_Players!G{rr}", "link", "num1"); put(ws, f"F{r}", f"=Raw_Players!H{rr}", "link", "num1")
+        put(ws, f"G{r}", f'=IFERROR(IF(INDEX(Overrides!$B${ov[0]}:$B${ov[1]},MATCH(B{r},{O_N},0))="","",INDEX(Overrides!$B${ov[0]}:$B${ov[1]},MATCH(B{r},{O_N},0))),"")', "link", "num1")
+        put(ws, f"H{r}", f'=IFERROR(IF(INDEX(Overrides!$C${ov[0]}:$C${ov[1]},MATCH(B{r},{O_N},0))="","",INDEX(Overrides!$C${ov[0]}:$C${ov[1]},MATCH(B{r},{O_N},0))),"")', "link", "num1")
+        put(ws, f"I{r}", f'=IFERROR(IF(INDEX(Overrides!$D${ov[0]}:$D${ov[1]},MATCH(B{r},{O_N},0))="",0,INDEX(Overrides!$D${ov[0]}:$D${ov[1]},MATCH(B{r},{O_N},0))),0)', "link", "num2")
+        put(ws, f"J{r}", f'=IF(AND(G{r}="",H{r}=""),D{r},IF(H{r}="",F{r},H{r})*IF(G{r}="",E{r},G{r}))', "formula", "num1")
+        put(ws, f"K{r}", f"=A_teamminutes/SUMIF({rng('A')},A{r},{rng('J')})", "formula", "num4" if False else "0.0000")
+        put(ws, f"L{r}", f"=J{r}*K{r}", "formula", "num1"); put(ws, f"M{r}", f"=C{r}+I{r}", "formula", "num3"); put(ws, f"N{r}", f"=L{r}/(A_teamminutes/5)", "formula", "num3")
+        put(ws, f"O{r}", None, "text"); put(ws, f"P{r}", f"=N{r}*M{r}", "formula", "num4" if False else "0.0000")
+    # NOTE: team table column D sums player column P (contribution); ranks are columns P..R of the TEAM table (different rows) - no clash
+    REG["tr_players"] = dict(first=pf, last=pl)
+    widths(ws, {"A": 8, "B": 28, "C": 10}); finish(ws, label_cols=("A", "B")); ws.freeze_panes = "B8"
+
+
+def build_windist(wb, o):
+    ws = wb.create_sheet("M_WinDist"); sheet_header(ws, "M_WinDist - live analytic win distribution (normal approximation) vs sim; reprices when Assumptions / Overrides change")
+    put(ws, "A5", "Wins ~ Normal(mean, sd), mean = 82 x Phi(SRS / s_eff): sd^2 = 82 p (1-p) + (82 phi(z) / sigma_game x sigma_team)^2 with p = mean/82, z = NORMSINV(p). Delta flagged when |analytic - sim| > 2pp.", "text", italic=True)
+    headers(ws, 7, ["Team", "Line", "Mean wins (live)", "SD wins", "P(over) analytic", "P(under) analytic", "P(over) sim", "Delta (pp)", "Flag", "Model fair odds - over", "Model fair odds - under", "Book over", "Book under", "Book fair over (selected)"])
+    tr = REG["tr"]; od = REG["odds"]; dv = REG["devig"]
+    w = o[(o.market == "WINS") & (o.side == "OVER")]
+    from ..data.teams import NAME2ABBR
+    for i, (idx, r) in enumerate(w.iterrows()):
+        row = 8 + i; orow = od["first"] + idx; abbr = NAME2ABBR[r.selection]
+        put(ws, f"A{row}", abbr, "text")
+        put(ws, f"B{row}", f"=Odds_Input!E{orow}", "link", "num1")
+        put(ws, f"C{row}", f"=A_games*NORMSDIST(INDEX(M_TeamRatings!$J${tr['first']}:$J${tr['last']},MATCH(A{row},M_TeamRatings!$A${tr['first']}:$A${tr['last']},0))/A_seff)", "link", "num2")
+        put(ws, f"D{row}", f"=A_sdscale*SQRT(A_games*(C{row}/A_games)*(1-C{row}/A_games)+(A_games*EXP(-NORMSINV(C{row}/A_games)^2/2)/SQRT(2*PI())/A_sigma_game*A_sigma_team)^2)", "formula", "num2")
+        put(ws, f"E{row}", f"=1-NORMDIST(B{row},C{row},D{row},TRUE)", "formula", "pct"); put(ws, f"F{row}", f"=1-E{row}", "formula", "pct")
+        put(ws, f"G{row}", f"=M_Sims!$CK{{SIMS_ROW_{r.selection}}}", "link", "pct")      # placeholder replaced in M_Sims builder
+        put(ws, f"H{row}", f"=(E{row}-G{row})*100", "formula", "num1"); put(ws, f"I{row}", f'=IF(ABS(H{row})>2,"CHECK >2pp","")', "flag")
+        put(ws, f"J{row}", f"=IF(E{row}>=0.5,-100*E{row}/(1-E{row}),100*(1-E{row})/E{row})", "formula", "amer"); put(ws, f"K{row}", f"=IF(F{row}>=0.5,-100*F{row}/(1-F{row}),100*(1-F{row})/F{row})", "formula", "amer")
+        put(ws, f"L{row}", f"=Odds_Input!F{orow}", "link", "amer"); put(ws, f"M{row}", f"=Odds_Input!F{orow+1}", "link", "amer")
+        put(ws, f"N{row}", f"=M_DeVig!Q{dv['first']+idx}", "link", "pct")
+    REG["windist"] = dict(first=8, last=7 + len(w), n=len(w), idx=list(w.index), teams=[NAME2ABBR[s] for s in w.selection])
+    ws.conditional_formatting.add(f"I8:I{7+len(w)}", FormulaRule(formula=['LEN(I8)>0'], font=Font(name="Arial", size=10, color=RED, bold=True)))
+    widths(ws, {"A": 8}); finish(ws); ws.freeze_panes = "B8"
+
+
+def build_sims(wb, o):
+    """Values written by Python: clearly labelled engine output with run hash/timestamp. Returns column maps used by S_Markets."""
+    ws = wb.create_sheet("M_Sims"); sheet_header(ws, "M_Sims - ENGINE OUTPUT (values written by Python; do not edit)", span=12)
+    S = pd.read_csv(C("sim_team_summary.csv")).sort_values("team").reset_index(drop=True); meta = json.load(open(C("sim_run_meta.json")))
+    par = meta["par"]; keyvals = [par["sigma_team"], par["HCA"], par["sigma_game"], 0.5, par["tank_kappa"], par["tank_deterrent"], par["tank_on"], par["po_lambda"], par["po_inj_prob"], par["n_draws"],
+                                  par["cup_semis_neutral"], par["cup_cross_games"]]
+    fit = json.load(open(C("ratings_fit_2027.json")))["team_layer"]; keyvals += fit["beta"] + [fit["k_wins"]]
+    key = hash_key_string(keyvals)
+    rows = [("Run timestamp (UTC)", meta["run_utc"]), ("Simulated seasons (N)", meta["n_sims"]), ("Seed", meta["seed"]), ("Engine assumptions hash", meta["assumptions_hash"]), ("Sim assumptions key (stored)", key)]
+    for i, (k, v) in enumerate(rows):
+        put(ws, f"A{5+i}", k, "text", bold=True); put(ws, f"B{5+i}", v, "input")
+    put(ws, "A11", "Status", "text", bold=True); put(ws, "B11", '=IF(A_HashCurrent=B9,"OK - sims match current assumptions","STALE - rerun sims")', "formula")
+    ws.conditional_formatting.add("B11", FormulaRule(formula=['LEFT(B11,5)="STALE"'], font=Font(name="Arial", size=10, color=RED, bold=True)))
+    name(wb, "Sim_Stale", "M_Sims!$B$11"); REG["sims_status"] = "M_Sims!$B$11"; REG["sims_N"] = "M_Sims!$B$6"
+    cols = ["team", "wins_mean", "wins_sd", "p_playoffs", "p_bracket", "p_top6", "p_division", "p_conference", "p_title", "p_cup_group", "p_cup", "p_pick1", "p_top4", "p_top5", "p_lottery", "pick_mean", "se_title", "se_playoffs"]
+    labels = ["Team", "Mean wins", "SD wins", "P(top-10 in conf)", "P(16-team playoffs)", "P(top-6 seed)", "P(division)", "P(conference)", "P(title)", "P(Cup group)", "P(Cup)", "P(#1 pick)", "P(top-4 pick)", "P(top-5 pick)", "P(lottery)", "Mean pick", "MC SE title", "MC SE top-10"]
+    put(ws, "A13", "Team probabilities (100,000 simulated seasons)", "text", bold=True); headers(ws, 14, labels)
+    cm = {c: CL(i + 1) for i, c in enumerate(cols)}
+    for i, r in S.iterrows():
+        row = 15 + i
+        for c in cols:
+            v = r[c]; put(ws, f"{cm[c]}{row}", v if c == "team" else float(v), "input", None if c == "team" else ("pct" if c.startswith(("p_", "se_")) else "num2"))
+    REG["sims_team"] = dict(first=15, last=14 + len(S), cols=cm)
+    # conference-rank distribution (columns after the main table)
+    off = len(cols) + 2
+    for k in range(1, 16):
+        put(ws, f"{CL(off+k)}14", f"P(conf rank {k})", "header")
+        for i, r in S.iterrows():
+            put(ws, f"{CL(off+k)}{15+i}", float(r[f"p_confrank_{k}"]), "input", "pct")
+    REG["sims_rank_col0"] = off
+    # wins pmf
+    H = pd.read_csv(C("sim_robust_wins_hist.csv")); H = H[H.scenario == "base"]
+    pr0 = 15 + len(S) + 3
+    put(ws, f"A{pr0-1}", "Distribution of season wins P(W = w)", "text", bold=True)
+    put(ws, f"A{pr0}", "Team \\ wins", "header")
+    for w in range(83):
+        put(ws, f"{CL(2+w)}{pr0}", w, "header")
+    for i, t in enumerate(S.team):
+        pm = H[H.team == t].sort_values("wins").p.values
+        put(ws, f"A{pr0+1+i}", t, "input")
+        for w in range(83):
+            put(ws, f"{CL(2+w)}{pr0+1+i}", float(pm[w]), "input", "0.00000")
+    REG["sims_pmf"] = dict(hdr=pr0, first=pr0 + 1, last=pr0 + len(S), c0=2, c1=84)
+    # CI table
+    ci0 = pr0 + len(S) + 4
+    put(ws, f"A{ci0-1}", "Edge confidence intervals / robustness / portfolio Kelly per odds row (engine output)", "text", bold=True)
+    hd = ["Row id", "EV CI low (80%)", "EV CI high (80%)", "P(EV>0) over parameter draws", "Alt-definition EV", "Alt EV CI low", "Alt EV CI high", "Robust OK", "EV kappa=0", "EV kappa=1.57", "EV sigma-10%", "EV sigma+10%", "Portfolio Kelly (frac of bankroll)", "Bottom-10 projected"]
+    headers(ws, ci0, hd)
+    for i, r in o.iterrows():
+        row = ci0 + 1 + i
+        vals = [int(r.row_id), r.ev_lo, r.ev_hi, r.p_ev_pos, r.ev_alt, r.ev_lo_alt, r.ev_hi_alt, int(bool(r.robust_ok)), r.ev_kappa_0, r.ev_kappa_hi, r.ev_sigma_lo, r.ev_sigma_hi, r.kelly_portfolio, int(bool(r.bottom10))]
+        fm = ["int", "num3", "num3", "pct", "num3", "num3", "num3", "int", "num3", "num3", "num3", "num3", "0.0000", "int"]
+        for j, (v, f) in enumerate(zip(vals, fm)):
+            put(ws, f"{CL(1+j)}{row}", "-" if (isinstance(v, float) and np.isnan(v)) else v, "input", f)
+    REG["sims_ci"] = dict(first=ci0 + 1, last=ci0 + len(o))
+    widths(ws, {"A": 26, "B": 22}); finish(ws); ws.freeze_panes = "B15"
+    return key
+
+
+def fix_windist_links(wb):
+    """Replace the placeholder P(over) sim formula in M_WinDist with a SUMPRODUCT over the sim pmf."""
+    ws = wb["M_WinDist"]; wd = REG["windist"]; pm = REG["sims_pmf"]
+    hdr = f"M_Sims!${CL(pm['c0'])}${pm['hdr']}:${CL(pm['c1'])}${pm['hdr']}"
+    for i in range(wd["n"]):
+        row = wd["first"] + i
+        trow = f"MATCH(A{row},M_Sims!$A${pm['first']}:$A${pm['last']},0)"
+        ws[f"G{row}"].value = f"=SUMPRODUCT(({hdr}>B{row})*INDEX(M_Sims!${CL(pm['c0'])}${pm['first']}:${CL(pm['c1'])}${pm['last']},{trow},0))"
+
+
+def build_lottery(wb):
+    ws = wb.create_sheet("M_Lottery2027"); sheet_header(ws, "M_Lottery2027 - 3-2-1 lottery rules, restrictions, pick ownership, per-team pick distribution", span=10)
+    rules = [("Teams in lottery", "16 (10 non-play-in, four #9/#10 seeds, two 7v8 play-in losers)", "NBA.com 5/28/2026"),
+             ("Balls", "37: 3 worst x2; 4th-10th worst x3; #9/#10 seeds x2 (4 teams); 7v8 losers x1 (2 teams)", "NBA.com, ESPN, Hoops Rumors"),
+             ("Draws", "All 16 picks drawn (lottery_n_draws = 16)", "NBA.com, Tankathon"),
+             ("Floor", "Three worst records cannot fall below #12; others no lower than #16", "NBA.com"),
+             ("Restrictions", "No #1 in consecutive drafts; no top-5 in three straight; apply to the ORIGINAL team's pick even if traded", "NBA.com, ESPN"),
+             ("2027 restricted", "UTA: no top-5 (top-5 in 2025 and 2026). WAS: no #1 (won 2026 lottery)", "bbref draft history + ESPN"),
+             ("Trade deadline", "Thursday Feb 11, 2027, 3:00 pm ET (tank module evaluation point)", "NBA.com key dates"),
+             ("7v8 loser keeps ball if it wins the 8-seed game", "Assumption (default yes) - not stated explicitly", "assumptions.json")]
+    headers(ws, 6, ["Rule", "Detail", "Source"])
+    for i, (a, b, c) in enumerate(rules):
+        put(ws, f"A{7+i}", a, "text"); put(ws, f"B{7+i}", b, "text"); put(ws, f"C{7+i}", c, "text")
+    r0 = 7 + len(rules) + 2
+    put(ws, f"A{r0-1}", "Per-team 2027 pick distribution (sim) and ownership", "text", bold=True)
+    headers(ws, r0, ["Team", "P(lottery)", "P(#1)", "P(top-4)", "P(top-5)", "Mean pick", "Pick owner / status", "Protection / swap detail", "Tank-incentive factor (kprot)", "Reconciliation discrepancy"])
+    S = REG["sims_team"]; cm = S["cols"]; rec = pd.read_csv(C("picks_2027_reconciled.csv")).set_index("team"); rules_t = pd.read_csv(os.path.join(ROOT, "params/pick_ownership_rules.csv")).set_index("team")
+    own = pd.read_csv(C("picks_2027.csv")).set_index("team")
+    from ..data.teams import TEAMS
+    for i, t in enumerate(sorted(TEAMS)):
+        r = r0 + 1 + i; sr = S["first"] + i
+        put(ws, f"A{r}", t, "text")
+        for col, key in (("B", "p_lottery"), ("C", "p_pick1"), ("D", "p_top4"), ("E", "p_top5"), ("F", "pick_mean")):
+            put(ws, f"{col}{r}", f"=M_Sims!{cm[key]}{sr}", "link", "pct" if col != "F" else "num1")
+        put(ws, f"G{r}", own.loc[t, "owner_status"], "text"); put(ws, f"H{r}", str(own.loc[t, "protection"]) + " | " + str(own.loc[t, "swap_or_conditional_detail"]), "text")
+        put(ws, f"I{r}", int(rules_t.loc[t, "kprot"]), "text"); put(ws, f"J{r}", str(rec.loc[t, "discrepancy"]), "text")
+    widths(ws, {"A": 22, "B": 60, "C": 26, "H": 50, "J": 40}); finish(ws)
+
+
+def build_players(wb):
+    ws = wb.create_sheet("M_Players"); sheet_header(ws, "M_Players - player market probabilities (G4 pending). Current drivers: projected rating, minutes, availability", span=10)
+    put(ws, "A5", "G4 (stat leaders, MVP, DPOY, ROY) is built after the team Bet Card ships. Until then these markets have NO model probability and NO bets. Display-only markets (MIP, 6MOY, COY, Clutch, Cup MVP) show de-vigged fair prices only on S_Markets.", "text", italic=True)
+    headers(ws, 7, ["Player", "Team", "Rating (blended)", "Projected mpg", "Projected games", "P(>=65 games) sim", "DARKO DPM"])
+    P = pd.read_csv(C("player_projection_2027.csv")).sort_values("rating", ascending=False).head(60).reset_index(drop=True)
+    G = pd.read_csv(C("sim_player_games.csv"))
+    for i, r in P.iterrows():
+        row = 8 + i
+        put(ws, f"A{row}", r["name"], "input"); put(ws, f"B{row}", r.abbr, "input"); put(ws, f"C{row}", float(r.rating), "input", "num2"); put(ws, f"D{row}", float(r.proj_mpg), "input", "num1")
+        put(ws, f"E{row}", float(r.proj_gp), "input", "num1")
+        g = G[G.player == r["name"]]
+        put(ws, f"F{row}", float(g.p_ge_65_games.iloc[0]) if len(g) else "-", "input", "pct"); put(ws, f"G{row}", float(r.dpm) if pd.notna(r.dpm) else "-", "input", "num1")
+    widths(ws, {"A": 28}); finish(ws)

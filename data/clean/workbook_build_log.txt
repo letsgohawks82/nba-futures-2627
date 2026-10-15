@@ -1,0 +1,229 @@
+built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xlsx 20.9 s
+{
+ "errors": {
+  "Cover": [
+   0,
+   []
+  ],
+  "Assumptions": [
+   0,
+   []
+  ],
+  "Overrides": [
+   0,
+   []
+  ],
+  "Odds_Input": [
+   0,
+   []
+  ],
+  "M_DeVig": [
+   0,
+   []
+  ],
+  "M_TeamRatings": [
+   0,
+   []
+  ],
+  "M_WinDist": [
+   0,
+   []
+  ],
+  "M_Sims": [
+   0,
+   []
+  ],
+  "M_Lottery2027": [
+   0,
+   []
+  ],
+  "M_Players": [
+   0,
+   []
+  ],
+  "S_Markets": [
+   0,
+   []
+  ],
+  "Bet_Card": [
+   0,
+   []
+  ],
+  "Exposure": [
+   0,
+   []
+  ],
+  "Dashboard": [
+   0,
+   []
+  ],
+  "Sensitivity": [
+   0,
+   []
+  ],
+  "Backtest": [
+   0,
+   []
+  ],
+  "Tracker": [
+   0,
+   []
+  ],
+  "Checks": [
+   0,
+   []
+  ],
+  "Data_Sources": [
+   0,
+   []
+  ],
+  "Raw_Teams": [
+   0,
+   []
+  ],
+  "Raw_Players": [
+   0,
+   []
+  ],
+  "Raw_Schedule": [
+   0,
+   []
+  ]
+ },
+ "checks": [
+  [
+   "Fair probabilities sum to target per market (max deviation, multi-outcome markets)",
+   3.920348490282777e-09,
+   "OK"
+  ],
+  [
+   "Pair markets (WINS/PLAYOFFS): pairs whose fair probabilities do not sum to 1",
+   0.0,
+   "OK"
+  ],
+  [
+   "Model probabilities sum to 1: title",
+   2.220446049250313e-16,
+   "OK"
+  ],
+  [
+   "Model probabilities sum to 2: conference",
+   4.440892098500626e-16,
+   "OK"
+  ],
+  [
+   "Model probabilities sum to 6: division",
+   8.881784197001252e-16,
+   "OK"
+  ],
+  [
+   "Model probabilities sum to 1: Cup",
+   0.0,
+   "OK"
+  ],
+  [
+   "Model probabilities sum to 6: Cup groups",
+   8.881784197001252e-16,
+   "OK"
+  ],
+  [
+   "Model wins sum to 1,230 (live M_TeamRatings)",
+   0.0,
+   "OK"
+  ],
+  [
+   "P(top-10) >= P(top-6): violations",
+   0.0,
+   "OK"
+  ],
+  [
+   "P(conference) <= P(top-10): violations",
+   0.0,
+   "OK"
+  ],
+  [
+   "P(title) <= P(conference): violations",
+   0.0,
+   "OK"
+  ],
+  [
+   "Odds file row count reconciles (rows - expected in E8)",
+   0.0,
+   "OK"
+  ],
+  [
+   "Imputed-odds rows (info; never bet)",
+   4.0,
+   "INFO"
+  ],
+  [
+   "Backfilled-odds rows (info)",
+   11.0,
+   "INFO"
+  ],
+  [
+   "Live analytic wins vs Python reference (max |delta| wins)",
+   0.0,
+   "OK"
+  ],
+  [
+   "Analytic vs sim P(over) deltas > 2pp (count)",
+   8.0,
+   "FLAG"
+  ],
+  [
+   "Sim assumptions key matches current Assumptions (0 = match)",
+   0.0,
+   "OK"
+  ],
+  [
+   "Error cells in M_DeVig (#N/A/#VALUE!/#REF!/...)",
+   0.0,
+   "OK"
+  ],
+  [
+   "Error cells in M_TeamRatings (#N/A/#VALUE!/#REF!/...)",
+   0.0,
+   "OK"
+  ],
+  [
+   "Error cells in M_WinDist (#N/A/#VALUE!/#REF!/...)",
+   0.0,
+   "OK"
+  ],
+  [
+   "Error cells in S_Markets (#N/A/#VALUE!/#REF!/...)",
+   0.0,
+   "OK"
+  ],
+  [
+   "Error cells in Bet_Card (#N/A/#VALUE!/#REF!/...)",
+   0.0,
+   "OK"
+  ],
+  [
+   "Error cells in Exposure (#N/A/#VALUE!/#REF!/...)",
+   0.0,
+   "OK"
+  ],
+  [
+   "Error cells in Dashboard (#N/A/#VALUE!/#REF!/...)",
+   0.0,
+   "OK"
+  ]
+ ],
+ "overall_checks_failing": 0.0,
+ "bet_count": 89.0,
+ "sim_status": "OK - sims match current assumptions",
+ "devig_parity_max_abs": {
+  "mult": 2.220446049250313e-16,
+  "power": 3.214951083130302e-10,
+  "shin": 3.040928064912407e-10,
+  "selected": 3.040928064912407e-10
+ },
+ "team_wins_parity_max_abs": 1.7763568394002505e-14,
+ "wins_sum": 1230.0,
+ "ev_parity_max_abs": 0.00020500000000001073,
+ "qualifying_excel": 89,
+ "qualifying_python": 89
+}

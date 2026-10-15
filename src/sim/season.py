@@ -309,6 +309,10 @@ def run_sims(n, seed, par, conf, div, grp, grp_conf, prevw, rating, pw, pa, pw_p
         ix = np.argsort(rk)
         for k in range(14):
             o_pick[sim, rest[ix[k]]] = 17 + k
+        inb = np.zeros(NT, np.bool_)
+        for c in range(2):
+            for k in range(8):
+                inb[playoff_seed[c, k]] = True
         # ---- outputs
         for t in range(NT):
             o_wins[sim, t] = wins[t]
@@ -329,6 +333,8 @@ def run_sims(n, seed, par, conf, div, grp, grp_conf, prevw, rating, pw, pa, pw_p
                 f |= 8
             if title == t:
                 f |= 16
+            if inb[t]:
+                f |= 128
             if cupgrp[t] == 1:
                 f |= 32
             if cupwin[t] == 1:

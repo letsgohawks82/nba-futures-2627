@@ -15,6 +15,6 @@ def simulate(inp, n, seed=1, verbose=True):
     if verbose: print(f"{n} sims in {time.time()-t:.1f}s")
     return dict(wins=o_wins, conf_rank=o_conf_rank, flags=o_flags, pick=o_pick, gp=o_gp, cupstage=o_cupstage, lotpos=o_lotpos, srs=o_srs, games=o_games, teams=inp["teams"])
 
-FLAGS = dict(playoffs=1, top6=2, division=4, conference=8, title=16, cup_group=32, cup=64)
+FLAGS = dict(playoffs=1, top6=2, division=4, conference=8, title=16, cup_group=32, cup=64, bracket=128)
 def prob(res, name):
     return ((res["flags"] & FLAGS[name]) > 0).mean(0)

@@ -1,0 +1,652 @@
+market,selection,side,line,american,flag,rotation
+TITLE,Atlanta Hawks,YES,,6200.0,,20001.0
+TITLE,Boston Celtics,YES,,1400.0,,20002.0
+TITLE,Brooklyn Nets,YES,,25000.0,,20003.0
+TITLE,Charlotte Hornets,YES,,8600.0,,20004.0
+TITLE,Chicago Bulls,YES,,25000.0,,20005.0
+TITLE,Cleveland Cavaliers,YES,,2400.0,,20006.0
+TITLE,Dallas Mavericks,YES,,16000.0,,20007.0
+TITLE,Denver Nuggets,YES,,2700.0,,20008.0
+TITLE,Detroit Pistons,YES,,3000.0,,20009.0
+TITLE,Golden State Warriors,YES,,5300.0,,20010.0
+TITLE,Houston Rockets,YES,,4900.0,,20011.0
+TITLE,Indiana Pacers,YES,,5000.0,,20012.0
+TITLE,Los Angeles Clippers,YES,,25000.0,,20013.0
+TITLE,Los Angeles Lakers,YES,,3800.0,,20014.0
+TITLE,Memphis Grizzlies,YES,,25000.0,,20015.0
+TITLE,Miami Heat,YES,,2900.0,,20016.0
+TITLE,Milwaukee Bucks,YES,,25000.0,,20017.0
+TITLE,Minnesota Timberwolves,YES,,2400.0,,20018.0
+TITLE,New Orleans Pelicans,YES,,25000.0,,20019.0
+TITLE,New York Knicks,YES,,925.0,,20020.0
+TITLE,Oklahoma City Thunder,YES,,250.0,,20021.0
+TITLE,Orlando Magic,YES,,5500.0,,20022.0
+TITLE,Philadelphia 76ers,YES,,850.0,,20023.0
+TITLE,Phoenix Suns,YES,,18000.0,,20024.0
+TITLE,Portland Trail Blazers,YES,,10000.0,,20025.0
+TITLE,Sacramento Kings,YES,,25000.0,,20026.0
+TITLE,San Antonio Spurs,YES,,250.0,,20027.0
+TITLE,Toronto Raptors,YES,,2600.0,,20028.0
+TITLE,Utah Jazz,YES,,12500.0,,20029.0
+TITLE,Washington Wizards,YES,,14500.0,,20030.0
+PLAYIN_EAST,Atlanta Hawks,YES,,105.0,,20901.0
+PLAYIN_EAST,Boston Celtics,YES,,275.0,,20902.0
+PLAYIN_EAST,Brooklyn Nets,YES,,1400.0,,20903.0
+PLAYIN_EAST,Charlotte Hornets,YES,,135.0,,20904.0
+PLAYIN_EAST,Chicago Bulls,YES,,800.0,,20905.0
+PLAYIN_EAST,Cleveland Cavaliers,YES,,225.0,,20906.0
+PLAYIN_EAST,Detroit Pistons,YES,,300.0,,20907.0
+PLAYIN_EAST,Indiana Pacers,YES,,135.0,,20908.0
+PLAYIN_EAST,Miami Heat,YES,,175.0,,20909.0
+PLAYIN_EAST,Milwaukee Bucks,YES,,1200.0,,20910.0
+PLAYIN_EAST,New York Knicks,YES,,500.0,,20911.0
+PLAYIN_EAST,Orlando Magic,YES,,115.0,,20912.0
+PLAYIN_EAST,Philadelphia 76ers,YES,,300.0,,20913.0
+PLAYIN_EAST,Toronto Raptors,YES,,150.0,,20914.0
+PLAYIN_EAST,Washington Wizards,YES,,225.0,,20915.0
+PLAYIN_WEST,Dallas Mavericks,YES,,135.0,,20921.0
+PLAYIN_WEST,Denver Nuggets,YES,,295.0,,20922.0
+PLAYIN_WEST,Golden State Warriors,YES,,115.0,,20923.0
+PLAYIN_WEST,Houston Rockets,YES,,225.0,,20924.0
+PLAYIN_WEST,Los Angeles Clippers,YES,,350.0,,20925.0
+PLAYIN_WEST,Los Angeles Lakers,YES,,165.0,,20926.0
+PLAYIN_WEST,Minnesota Timberwolves,YES,,250.0,,20928.0
+PLAYIN_WEST,New Orleans Pelicans,YES,,375.0,,20929.0
+PLAYIN_WEST,Oklahoma City Thunder,YES,,4000.0,,20930.0
+PLAYIN_WEST,Phoenix Suns,YES,,-115.0,,20931.0
+PLAYIN_WEST,Portland Trail Blazers,YES,,100.0,,20932.0
+PLAYIN_WEST,Sacramento Kings,YES,,1400.0,,20933.0
+PLAYIN_WEST,San Antonio Spurs,YES,,3500.0,,20934.0
+PLAYIN_WEST,Utah Jazz,YES,,115.0,,20935.0
+DIV_ATLANTIC,Boston Celtics,YES,,205.0,,20101.0
+DIV_ATLANTIC,Brooklyn Nets,YES,,25000.0,,20102.0
+DIV_ATLANTIC,New York Knicks,YES,,175.0,,20103.0
+DIV_ATLANTIC,Philadelphia 76ers,YES,,215.0,,20104.0
+DIV_ATLANTIC,Toronto Raptors,YES,,650.0,,20105.0
+DIV_CENTRAL,Chicago Bulls,YES,,6000.0,,20111.0
+DIV_CENTRAL,Cleveland Cavaliers,YES,,135.0,,20112.0
+DIV_CENTRAL,Detroit Pistons,YES,,125.0,,20113.0
+DIV_CENTRAL,Indiana Pacers,YES,,335.0,,20114.0
+DIV_CENTRAL,Milwaukee Bucks,YES,,16000.0,,20115.0
+DIV_SOUTHEAST,Atlanta Hawks,YES,,250.0,,20121.0
+DIV_SOUTHEAST,Charlotte Hornets,YES,,625.0,,20122.0
+DIV_SOUTHEAST,Miami Heat,YES,,175.0,,20123.0
+DIV_SOUTHEAST,Orlando Magic,YES,,285.0,,20124.0
+DIV_SOUTHEAST,Washington Wizards,YES,,1300.0,,20125.0
+DIV_NORTHWEST,Denver Nuggets,YES,,925.0,,20131.0
+DIV_NORTHWEST,Minnesota Timberwolves,YES,,875.0,,20132.0
+DIV_NORTHWEST,Oklahoma City Thunder,YES,,-650.0,,20133.0
+DIV_NORTHWEST,Portland Trail Blazers,YES,,4000.0,,20134.0
+DIV_NORTHWEST,Utah Jazz,YES,,4500.0,,20135.0
+DIV_PACIFIC,Golden State Warriors,YES,,325.0,,20141.0
+DIV_PACIFIC,Los Angeles Clippers,YES,,2350.0,,20142.0
+DIV_PACIFIC,Los Angeles Lakers,YES,,-175.0,,20143.0
+DIV_PACIFIC,Phoenix Suns,YES,,400.0,,20144.0
+DIV_PACIFIC,Sacramento Kings,YES,,17000.0,,20145.0
+DIV_SOUTHWEST,Dallas Mavericks,YES,,3500.0,,20151.0
+DIV_SOUTHWEST,Houston Rockets,YES,,450.0,,20152.0
+DIV_SOUTHWEST,Memphis Grizzlies,YES,,20000.0,,20153.0
+DIV_SOUTHWEST,New Orleans Pelicans,YES,,18500.0,,20154.0
+DIV_SOUTHWEST,San Antonio Spurs,YES,,-1000.0,,20155.0
+CONF_EAST,Atlanta Hawks,YES,,2000.0,,20041.0
+CONF_EAST,Boston Celtics,YES,,525.0,,20042.0
+CONF_EAST,Brooklyn Nets,YES,,25000.0,,20043.0
+CONF_EAST,Charlotte Hornets,YES,,2900.0,,20044.0
+CONF_EAST,Chicago Bulls,YES,,23000.0,,20045.0
+CONF_EAST,Cleveland Cavaliers,YES,,900.0,,20046.0
+CONF_EAST,Detroit Pistons,YES,,900.0,,20047.0
+CONF_EAST,Indiana Pacers,YES,,1600.0,,20048.0
+CONF_EAST,Miami Heat,YES,,1100.0,,20049.0
+CONF_EAST,Milwaukee Bucks,YES,,25000.0,,20050.0
+CONF_EAST,New York Knicks,YES,,375.0,,20051.0
+CONF_EAST,Orlando Magic,YES,,1950.0,,20052.0
+CONF_EAST,Philadelphia 76ers,YES,,325.0,,20053.0
+CONF_EAST,Toronto Raptors,YES,,900.0,,20054.0
+CONF_EAST,Washington Wizards,YES,,5200.0,,20055.0
+CONF_WEST,Dallas Mavericks,YES,,8100.0,,20061.0
+CONF_WEST,Denver Nuggets,YES,,1400.0,,20062.0
+CONF_WEST,Golden State Warriors,YES,,2600.0,,20063.0
+CONF_WEST,Houston Rockets,YES,,2150.0,,20064.0
+CONF_WEST,Los Angeles Clippers,YES,,24000.0,,20065.0
+CONF_WEST,Los Angeles Lakers,YES,,1725.0,,20066.0
+CONF_WEST,Minnesota Timberwolves,YES,,1250.0,,20068.0
+CONF_WEST,New Orleans Pelicans,YES,,24000.0,,20069.0
+CONF_WEST,Oklahoma City Thunder,YES,,125.0,,20070.0
+CONF_WEST,Phoenix Suns,YES,,8500.0,,20071.0
+CONF_WEST,Portland Trail Blazers,YES,,4900.0,,20072.0
+CONF_WEST,Sacramento Kings,YES,,25000.0,,20073.0
+CONF_WEST,San Antonio Spurs,YES,,150.0,,20074.0
+CONF_WEST,Utah Jazz,YES,,7150.0,,20075.0
+CUP,Oklahoma City Thunder,YES,,275.0,,20701.0
+CUP,San Antonio Spurs,YES,,425.0,,20702.0
+CUP,Boston Celtics,YES,,1000.0,,20703.0
+CUP,Philadelphia 76ers,YES,,1200.0,,20704.0
+CUP,Detroit Pistons,YES,,1300.0,,20705.0
+CUP,New York Knicks,YES,,1200.0,,20706.0
+CUP,Denver Nuggets,YES,,1600.0,,20707.0
+CUP,Toronto Raptors,YES,,1800.0,,20708.0
+CUP,Minnesota Timberwolves,YES,,2000.0,,20709.0
+CUP,Orlando Magic,YES,,2500.0,,20710.0
+CUP,Los Angeles Lakers,YES,,2800.0,,20711.0
+CUP,Houston Rockets,YES,,2800.0,,20712.0
+CUP,Atlanta Hawks,YES,,2800.0,,20713.0
+CUP,Cleveland Cavaliers,YES,,3000.0,,20714.0
+CUP,Miami Heat,YES,,3500.0,,20715.0
+CUP,Indiana Pacers,YES,,4000.0,,20716.0
+CUP,Portland Trail Blazers,YES,,5000.0,,20717.0
+CUP,Phoenix Suns,YES,,5000.0,,20718.0
+CUP,Charlotte Hornets,YES,,5000.0,,20719.0
+CUP,Washington Wizards,YES,,6500.0,,20720.0
+CUP,Golden State Warriors,YES,,5000.0,,20721.0
+CUP,Utah Jazz,YES,,10000.0,,20722.0
+CUP,Dallas Mavericks,YES,,12000.0,,20723.0
+CUP,Los Angeles Clippers,YES,,20000.0,,20724.0
+CUP,Chicago Bulls,YES,,25000.0,,20725.0
+CUP,New Orleans Pelicans,YES,,25000.0,,20726.0
+CUP,Memphis Grizzlies,YES,,25000.0,,20727.0
+CUP,Sacramento Kings,YES,,25000.0,,20728.0
+CUP,Milwaukee Bucks,YES,,25000.0,,20729.0
+CUP,Brooklyn Nets,YES,,25000.0,,20730.0
+CUP_EAST_A,Detroit Pistons,YES,,145.0,,20741.0
+CUP_EAST_A,Toronto Raptors,YES,,180.0,,20742.0
+CUP_EAST_A,Orlando Magic,YES,,250.0,,20743.0
+CUP_EAST_A,Milwaukee Bucks,YES,,1500.0,,20744.0
+CUP_EAST_A,Brooklyn Nets,YES,,1500.0,,20745.0
+CUP_EAST_B,New York Knicks,YES,,225.0,,20751.0
+CUP_EAST_B,Philadelphia 76ers,YES,,225.0,,20752.0
+CUP_EAST_B,Miami Heat,YES,,450.0,,20753.0
+CUP_EAST_B,Cleveland Cavaliers,YES,,450.0,,20754.0
+CUP_EAST_B,Indiana Pacers,YES,,500.0,,20755.0
+CUP_EAST_C,Boston Celtics,YES,,115.0,,20761.0
+CUP_EAST_C,Atlanta Hawks,YES,,280.0,,20762.0
+CUP_EAST_C,Charlotte Hornets,YES,,375.0,,20763.0
+CUP_EAST_C,Washington Wizards,YES,,550.0,,20764.0
+CUP_EAST_C,Chicago Bulls,YES,,1300.0,,20765.0
+CUP_WEST_A,Denver Nuggets,YES,,170.0,,20771.0
+CUP_WEST_A,Houston Rockets,YES,,200.0,,20772.0
+CUP_WEST_A,Phoenix Suns,YES,,400.0,,20773.0
+CUP_WEST_A,Utah Jazz,YES,,600.0,,20774.0
+CUP_WEST_A,Dallas Mavericks,YES,,800.0,,20775.0
+CUP_WEST_B,Oklahoma City Thunder,YES,,-200.0,,20781.0
+CUP_WEST_B,Minnesota Timberwolves,YES,,300.0,,20782.0
+CUP_WEST_B,Los Angeles Clippers,YES,,1100.0,,20783.0
+CUP_WEST_B,Memphis Grizzlies,YES,,1400.0,,20784.0
+CUP_WEST_B,New Orleans Pelicans,YES,,1400.0,,20785.0
+CUP_WEST_C,San Antonio Spurs,YES,,-150.0,,20791.0
+CUP_WEST_C,Los Angeles Lakers,YES,,400.0,,20792.0
+CUP_WEST_C,Portland Trail Blazers,YES,,425.0,,20793.0
+CUP_WEST_C,Golden State Warriors,YES,,550.0,,20794.0
+CUP_WEST_C,Sacramento Kings,YES,,5000.0,,20795.0
+WINS,Boston Celtics,OVER,51.5,110.0,,
+WINS,Boston Celtics,UNDER,51.5,-130.0,,
+WINS,Detroit Pistons,OVER,49.5,115.0,,
+WINS,Detroit Pistons,UNDER,49.5,-135.0,,
+WINS,New York Knicks,OVER,52.5,135.0,,
+WINS,New York Knicks,UNDER,52.5,-155.0,,
+WINS,Philadelphia 76ers,OVER,50.5,,,
+WINS,Philadelphia 76ers,UNDER,50.5,-120.0,,
+WINS,Oklahoma City Thunder,OVER,61.5,-125.0,,
+WINS,Oklahoma City Thunder,UNDER,61.5,105.0,,
+WINS,San Antonio Spurs,OVER,59.5,-135.0,,
+WINS,San Antonio Spurs,UNDER,59.5,115.0,,
+WINS,Atlanta Hawks,OVER,44.5,,,
+WINS,Atlanta Hawks,UNDER,44.5,-125.0,,
+WINS,Milwaukee Bucks,OVER,25.5,-120.0,,
+WINS,Milwaukee Bucks,UNDER,25.5,,,
+WINS,Orlando Magic,OVER,43.5,-130.0,,
+WINS,Orlando Magic,UNDER,43.5,110.0,,
+WINS,Washington Wizards,OVER,35.5,120.0,,
+WINS,Washington Wizards,UNDER,35.5,-140.0,,
+WINS,Brooklyn Nets,OVER,24.5,110.0,,
+WINS,Brooklyn Nets,UNDER,24.5,-130.0,,
+WINS,Charlotte Hornets,OVER,39.5,150.0,,
+WINS,Charlotte Hornets,UNDER,39.5,-170.0,,
+WINS,Chicago Bulls,OVER,28.5,-150.0,,
+WINS,Chicago Bulls,UNDER,28.5,130.0,,
+WINS,Minnesota Timberwolves,OVER,47.5,-120.0,,
+WINS,Minnesota Timberwolves,UNDER,47.5,100.0,,
+WINS,Toronto Raptors,OVER,45.5,-145.0,,
+WINS,Toronto Raptors,UNDER,45.5,125.0,,
+WINS,Indiana Pacers,OVER,44.5,-120.0,,
+WINS,Indiana Pacers,UNDER,44.5,,,
+WINS,Memphis Grizzlies,OVER,28.5,-145.0,,
+WINS,Memphis Grizzlies,UNDER,28.5,125.0,,
+WINS,New Orleans Pelicans,OVER,28.5,-120.0,,
+WINS,New Orleans Pelicans,UNDER,28.5,,,
+WINS,Utah Jazz,OVER,37.5,-135.0,,
+WINS,Utah Jazz,UNDER,37.5,115.0,,
+WINS,Dallas Mavericks,OVER,34.5,-105.0,,
+WINS,Dallas Mavericks,UNDER,34.5,-115.0,,
+WINS,Houston Rockets,OVER,47.5,-160.0,,
+WINS,Houston Rockets,UNDER,47.5,140.0,,
+WINS,Golden St Warriors,OVER,39.5,120.0,,
+WINS,Golden St Warriors,UNDER,39.5,-140.0,,
+WINS,Los Angeles Lakers,OVER,45.5,-140.0,,
+WINS,Los Angeles Lakers,UNDER,45.5,,,
+WINS,Phoenix Suns,OVER,39.5,-115.0,,
+WINS,Phoenix Suns,UNDER,39.5,-105.0,,
+WINS,Portland Trail Blazers,OVER,42.5,115.0,,
+WINS,Portland Trail Blazers,UNDER,42.5,-135.0,,
+WINS,Los Angeles Clippers,OVER,29.5,135.0,,
+WINS,Los Angeles Clippers,UNDER,29.5,-155.0,,
+WINS,Sacramento Kings,OVER,20.5,-135.0,,
+WINS,Sacramento Kings,UNDER,20.5,115.0,,
+WINS,Cleveland Cavaliers,OVER,47.5,-125.0,,
+WINS,Cleveland Cavaliers,UNDER,47.5,105.0,,
+WINS,Denver Nuggets,OVER,49.5,,,
+WINS,Denver Nuggets,UNDER,49.5,-140.0,,
+PLAYOFFS,Boston Celtics,YES,,-875.0,,
+PLAYOFFS,Boston Celtics,NO,,475.0,,
+PLAYOFFS,Detroit Pistons,YES,,-550.0,,
+PLAYOFFS,Detroit Pistons,NO,,375.0,,
+PLAYOFFS,New York Knicks,YES,,-1100.0,,
+PLAYOFFS,New York Knicks,NO,,650.0,,
+PLAYOFFS,Philadelphia 76ers,YES,,-900.0,,
+PLAYOFFS,Philadelphia 76ers,NO,,500.0,,
+PLAYOFFS,Oklahoma City Thunder,YES,,-10000.0,,
+PLAYOFFS,Oklahoma City Thunder,NO,,2350.0,,
+PLAYOFFS,San Antonio Spurs,YES,,-10000.0,,
+PLAYOFFS,San Antonio Spurs,NO,,2350.0,,
+PLAYOFFS,Atlanta Hawks,YES,,-145.0,,
+PLAYOFFS,Atlanta Hawks,NO,,115.0,,
+PLAYOFFS,Milwaukee Bucks,YES,,1700.0,,
+PLAYOFFS,Milwaukee Bucks,NO,,-5700.0,,
+PLAYOFFS,Orlando Magic,YES,,-135.0,,
+PLAYOFFS,Orlando Magic,NO,,105.0,,
+PLAYOFFS,Washington Wizards,YES,,260.0,,
+PLAYOFFS,Washington Wizards,NO,,-340.0,,
+PLAYOFFS,Brooklyn Nets,YES,,1600.0,,
+PLAYOFFS,Brooklyn Nets,NO,,-5600.0,,
+PLAYOFFS,Charlotte Hornets,YES,,160.0,,
+PLAYOFFS,Charlotte Hornets,NO,,-200.0,,
+PLAYOFFS,Chicago Bulls,YES,,1150.0,,
+PLAYOFFS,Chicago Bulls,NO,,-2150.0,,
+PLAYOFFS,Miami Heat,YES,,-300.0,,
+PLAYOFFS,Miami Heat,NO,,235.0,,
+PLAYOFFS,Minnesota Timberwolves,YES,,-950.0,,
+PLAYOFFS,Minnesota Timberwolves,NO,,550.0,,
+PLAYOFFS,Indiana Pacers,YES,,-220.0,,
+PLAYOFFS,Indiana Pacers,NO,,180.0,,
+PLAYOFFS,Memphis Grizzlies,YES,,500.0,,
+PLAYOFFS,Memphis Grizzlies,NO,,-900.0,,
+PLAYOFFS,New Orleans Pelicans,YES,,550.0,,
+PLAYOFFS,New Orleans Pelicans,NO,,-950.0,,
+PLAYOFFS,Utah Jazz,YES,,135.0,,
+PLAYOFFS,Utah Jazz,NO,,-165.0,,
+PLAYOFFS,Dallas Mavericks,YES,,225.0,,
+PLAYOFFS,Dallas Mavericks,NO,,-280.0,,
+PLAYOFFS,Houston Rockets,YES,,-550.0,,
+PLAYOFFS,Houston Rockets,NO,,375.0,,
+PLAYOFFS,Los Angeles Lakers,YES,,-400.0,,
+PLAYOFFS,Los Angeles Lakers,NO,,300.0,,
+PLAYOFFS,Phoenix Suns,YES,,-115.0,,
+PLAYOFFS,Phoenix Suns,NO,,-115.0,,
+PLAYOFFS,Portland Trail Blazers,YES,,-170.0,,
+PLAYOFFS,Portland Trail Blazers,NO,,140.0,,
+PLAYOFFS,Sacramento Kings,YES,,2350.0,,
+PLAYOFFS,Sacramento Kings,NO,,-10000.0,,
+PLAYOFFS,Cleveland Cavaliers,YES,,-550.0,,
+PLAYOFFS,Cleveland Cavaliers,NO,,375.0,,
+PLAYOFFS,Denver Nuggets,YES,,-875.0,,
+PLAYOFFS,Denver Nuggets,NO,,475.0,,
+CLUTCH,Shai Gilgeous Alexander,YES,,800.0,,20531.0
+CLUTCH,Jalen Brunson,YES,,700.0,,20532.0
+CLUTCH,Stephen Curry,YES,,1200.0,,20533.0
+CLUTCH,Victor Wembanyama,YES,,1600.0,,20534.0
+CLUTCH,Luka Doncic,YES,,1200.0,,20535.0
+CLUTCH,Cade Cunningham,YES,,1500.0,,20536.0
+CLUTCH,Tyrese Haliburton,YES,,1800.0,,20537.0
+CLUTCH,Anthony Edwards,YES,,1000.0,,20538.0
+CLUTCH,Nikola Jokic,YES,,1400.0,,20539.0
+CLUTCH,Jayson Tatum,YES,,2500.0,,20540.0
+CLUTCH,Devin Booker,YES,,2800.0,,20541.0
+CLUTCH,Donovan Mitchell,YES,,3500.0,,20542.0
+CLUTCH,Tyrese Maxey,YES,,3000.0,,20543.0
+CLUTCH,Kevin Durant,YES,,3300.0,,20544.0
+CLUTCH,Jamal Murray,YES,,2500.0,,20545.0
+CLUTCH,Jalen Williams,YES,,7000.0,,20546.0
+CLUTCH,Giannis Antetokounmpo,YES,,3500.0,,20547.0
+CLUTCH,DeAaron Fox,YES,,5000.0,,20548.0
+CLUTCH,Trae Young,YES,,4000.0,,20549.0
+CLUTCH,LeBron James,YES,,5500.0,,20550.0
+COY,Darko Rajakovic,YES,,800.0,,20601.0
+COY,Will Hardy,YES,,1000.0,,20602.0
+COY,Erik Spoelstra,YES,,1200.0,,20604.0
+COY,Chris Finch,YES,,1200.0,,20605.0
+COY,Micah Nori,YES,,1400.0,,20606.0
+COY,Dusty May,YES,,1500.0,,20607.0
+COY,Sean Sweeney,YES,,1200.0,,20608.0
+COY,Brian Keefe,YES,,1800.0,,20609.0
+COY,Mitch Johnson,YES,,2200.0,,20610.0
+COY,Rick Carlisle,YES,,1200.0,,20611.0
+COY,Quin Snyder,YES,,2200.0,,20612.0
+COY,Mike Brown,YES,,2500.0,,20613.0
+COY,JJ Redick,YES,,2000.0,,20614.0
+COY,Ime Udoka,YES,,2000.0,,20615.0
+COY,Tiago Splitter,YES,,3000.0,,20616.0
+COY,Steve Kerr,YES,,2800.0,,20617.0
+COY,Mark Daigneault,YES,,2800.0,,20618.0
+COY,Kenny Atkinson,YES,,2500.0,,20619.0
+COY,JB Bickerstaff,YES,,3000.0,,20620.0
+COY,David Adelman,YES,,2500.0,,20621.0
+COY,Charles Lee,YES,,2500.0,,20622.0
+COY,Jordan Ott,YES,,3300.0,,20623.0
+COY,Joe Mazzulla,YES,,3300.0,,20624.0
+COY,Tuomas Lisalo,YES,,4000.0,,20625.0
+COY,Jordi Fernandez,YES,,4000.0,,20626.0
+COY,Taylor Jenkins,YES,,5000.0,,20627.0
+COY,Tyronn Lue,YES,,6000.0,,20628.0
+COY,Jamahl Mosley,YES,,6000.0,,20629.0
+COY,Doug Christie,YES,,8000.0,,20630.0
+DPOY,Victor Wembanyama,YES,,-360.0,,20401.0
+DPOY,Chet Holmgren,YES,,1100.0,,20402.0
+DPOY,Ausar Thompson,YES,,2500.0,,20403.0
+DPOY,Rudy Gobert,YES,,3000.0,,20404.0
+DPOY,Evan Mobley,YES,,4000.0,,20405.0
+DPOY,Scottie Barnes,YES,,5000.0,,20406.0
+DPOY,Bam Adebayo,YES,,4000.0,,20407.0
+DPOY,Giannis Antetokounmpo,YES,,7500.0,,20408.0
+DPOY,Amen Thompson,YES,,7500.0,,20409.0
+DPOY,Jaren Jackson Jr,YES,,7500.0,,20410.0
+DPOY,OG Anunoby,YES,,6500.0,,20411.0
+DPOY,Jaden McDaniels,YES,,10000.0,,20412.0
+DPOY,Dyson Daniels,YES,,7500.0,,20413.0
+DPOY,Ivica Zubac,YES,,15000.0,,20415.0
+DPOY,Donovan Clingan,YES,,15000.0,,20416.0
+DPOY,Cason Wallace,YES,,15000.0,,20417.0
+MIP,Dylan Harper,YES,,900.0,,20331.0
+MIP,Brandon Miller,YES,,900.0,,20332.0
+MIP,Payton Pritchard,YES,,1400.0,,20333.0
+MIP,Kelel Ware,YES,,1600.0,,20334.0
+MIP,Collin Murray Boyles,YES,,2200.0,,20335.0
+MIP,Stephon Castle,YES,,2800.0,,20336.0
+MIP,Peyton Watson,YES,,1800.0,,20337.0
+MIP,Egor Demin,YES,,3500.0,,20338.0
+MIP,Donovan Clingan,YES,,3000.0,,20339.0
+MIP,Naz Reid,YES,,2800.0,,20340.0
+MIP,Reed Sheppard,YES,,4000.0,,20341.0
+MIP,Khaman Maluach,YES,,3500.0,,20342.0
+MIP,Dylan Cardwell,YES,,6000.0,,20343.0
+MIP,Terrence Shannon Jr,YES,,3500.0,,20344.0
+MIP,Matas Buzelis,YES,,3500.0,,20345.0
+MIP,Zach Edey,YES,,2500.0,,20346.0
+MIP,Derik Queen,YES,,5000.0,,20347.0
+MIP,VJ Edgecombe,YES,,4000.0,,20348.0
+MIP,Walker Kessler,YES,,2200.0,,20349.0
+MIP,Jaden McDaniels,YES,,3000.0,,20350.0
+MIP,Joan Beringer,YES,,6000.0,,20351.0
+MIP,Alex Sarr,YES,,4500.0,,20352.0
+MIP,Ousmane Dieng,YES,,5500.0,,20353.0
+MIP,Jared McCain,YES,,5000.0,,20354.0
+MIP,Ausar Thompson,YES,,1800.0,,20355.0
+MIP,Ajay Mitchell,YES,,3000.0,,20356.0
+MIP,Jase Richardson,YES,,6000.0,,20357.0
+MIP,Nique Clifford,YES,,8000.0,,20358.0
+MIP,Hugo Gonzalez,YES,,6500.0,,20359.0
+MIP,Carter Bryant,YES,,5500.0,,20360.0
+MIP,Daniss Jenkins,YES,,6000.0,,20361.0
+MIP,Scoot Henderson,YES,,5000.0,,20362.0
+MIP,Ryan Rollins,YES,,4000.0,,20363.0
+MIP,Kon Knueppel,YES,,5000.0,,20364.0
+MIP,Jaylen Wells,YES,,6000.0,,20365.0
+MIP,Jabari Smith Jr,YES,,5000.0,,20366.0
+MIP,Coby White,YES,,3500.0,,20367.0
+MIP,Cedric Coward,YES,,4000.0,,20368.0
+MIP,Nikola Jovic,YES,,6000.0,,20369.0
+MIP,Cason Wallace,YES,,3000.0,,20370.0
+ROY,Cameron Boozer,YES,,300.0,,20251.0
+ROY,Darryn Peterson,YES,,330.0,,20252.0
+ROY,Caleb Wilson,YES,,350.0,,20253.0
+ROY,AJ Dybantsa,YES,,400.0,,20254.0
+ROY,Darius Acuff Jr,YES,,1200.0,,20255.0
+ROY,Yaxel Lendeborg,YES,,1500.0,,20256.0
+ROY,Mikel Brown Jr,YES,,2000.0,,20257.0
+ROY,Keaton Wagler,YES,,4000.0,,20258.0
+ROY,Nate Ament,YES,,10000.0,,20259.0
+ROY,Kingston Flemings,YES,,10000.0,,20260.0
+ROY,Brayden Burries,YES,,7500.0,,20261.0
+ROY,Morez Johnson Jr,YES,,10000.0,,20262.0
+ROY,Cameron Carr,YES,,10000.0,,20263.0
+ROY,Dailyn Swain,YES,,15000.0,,20264.0
+ROY,Labaron Philon,YES,,15000.0,,20265.0
+CUP_MVP,Shai Gilgeous Alexander,YES,,350.0,,20801.0
+CUP_MVP,Victor Wembanyama,YES,,500.0,,20802.0
+CUP_MVP,Jayson Tatum,YES,,1400.0,,20803.0
+CUP_MVP,Cade Cunningham,YES,,1600.0,,20804.0
+CUP_MVP,Chet Holmgren,YES,,2000.0,,20805.0
+CUP_MVP,Jalen Williams,YES,,2000.0,,20806.0
+CUP_MVP,Jalen Brunson,YES,,1800.0,,20807.0
+CUP_MVP,Nikola Jokic,YES,,2200.0,,20808.0
+CUP_MVP,Luka Doncic,YES,,3000.0,,20809.0
+CUP_MVP,Kawhi Leonard,YES,,2500.0,,20810.0
+CUP_MVP,Anthony Edwards,YES,,3000.0,,20811.0
+CUP_MVP,Stephon Castle,YES,,4000.0,,20812.0
+CUP_MVP,Tyrese Maxey,YES,,4000.0,,20813.0
+CUP_MVP,Paolo Banchero,YES,,4000.0,,20814.0
+CUP_MVP,Jaylen Brown,YES,,4000.0,,20815.0
+CUP_MVP,Giannis Antetokounmpo,YES,,3500.0,,20816.0
+CUP_MVP,LaMelo Ball,YES,,5000.0,,20817.0
+CUP_MVP,Jalen Johnson,YES,,4500.0,,20818.0
+CUP_MVP,Donovan Mitchell,YES,,3300.0,,20819.0
+CUP_MVP,Stephen Curry,YES,,5000.0,,20820.0
+CUP_MVP,Scottie Barnes,YES,,5500.0,,20821.0
+CUP_MVP,LeBron James,YES,,5000.0,,20822.0
+CUP_MVP,Joel Embiid,YES,,5000.0,,20823.0
+CUP_MVP,Paul George,YES,,6000.0,,20824.0
+CUP_MVP,Ausar Thompson,YES,,6500.0,,20825.0
+CUP_MVP,Kevin Durant,YES,,4000.0,,20826.0
+CUP_MVP,DeAaron Fox,YES,,6500.0,,20827.0
+CUP_MVP,Derrick White,YES,,7000.0,,20828.0
+CUP_MVP,Austin Reaves,YES,,7000.0,,20829.0
+CUP_MVP,Alperen Sengun,YES,,6000.0,,20830.0
+CUP_MVP,Desmond Bane,YES,,7000.0,,20831.0
+CUP_MVP,Karl Anthony Towns,YES,,7000.0,,20832.0
+CUP_MVP,Devin Booker,YES,,7500.0,,20833.0
+CUP_MVP,Deni Avdija,YES,,7200.0,,20834.0
+CUP_MVP,James Harden,YES,,8000.0,,20835.0
+CUP_MVP,Franz Wagner,YES,,7000.0,,20836.0
+CUP_MVP,Jamal Murray,YES,,9000.0,,20837.0
+CUP_MVP,Tyrese Haliburton,YES,,7000.0,,20838.0
+CUP_MVP,Pascal Siakam,YES,,8000.0,,20839.0
+CUP_MVP,Jaren Jackson Jr,YES,,15000.0,,20840.0
+LDR_APG,Nikola Jokic,YES,,200.0,,21251.0
+LDR_APG,Trae Young,YES,,280.0,,21252.0
+LDR_APG,Cade Cunningham,YES,,360.0,,21253.0
+LDR_APG,Tyrese Haliburton,YES,,780.0,,21254.0
+LDR_APG,Josh Giddey,YES,,900.0,,21255.0
+LDR_APG,Luka Doncic,YES,,2100.0,,21256.0
+LDR_APG,James Harden,YES,,6000.0,,21257.0
+LDR_APG,LeBron James,YES,,7000.0,,21258.0
+LDR_APG,LaMelo Ball,YES,,7000.0,,21259.0
+LDR_APG,Jalen Johnson,YES,,15000.0,,21260.0
+LDR_APG,Jamal Murray,YES,,15000.0,,21261.0
+LDR_APG,Darius Garland,YES,,17000.0,,21262.0
+LDR_APG,Stephon Castle,YES,,17000.0,,21263.0
+LDR_APG,Shai Gilgeous Alexander,YES,,15000.0,,21264.0
+LDR_APG,Ja Morant,YES,,20000.0,,21265.0
+LDR_APG,De Aaron Fox,YES,,21000.0,,21266.0
+LDR_APG,Tyrese Maxey,YES,,20000.0,,21267.0
+LDR_APG,Dejounte Murray,YES,,25000.0,,21268.0
+LDR_BPG,Victor Wembanyama,YES,,-600.0,,21471.0
+LDR_BPG,Walker Kessler,YES,,1200.0,,21472.0
+LDR_BPG,Chet Holmgren,YES,,3100.0,,21473.0
+LDR_BPG,Alex Sarr,YES,,3600.0,,21474.0
+LDR_BPG,Zach Edey,YES,,4100.0,,21475.0
+LDR_BPG,Anthony Davis,YES,,5200.0,,21476.0
+LDR_BPG,Donovan Clingan,YES,,6500.0,,21477.0
+LDR_BPG,Jaren Jackson Jr,YES,,8500.0,,21478.0
+LDR_BPG,Rudy Gobert,YES,,9500.0,,21479.0
+LDR_BPG,Evan Mobley,YES,,10000.0,,21480.0
+LDR_BPG,Dereck Lively II,YES,,12500.0,,21481.0
+LDR_BPG,Yves Missi,YES,,13000.0,,21482.0
+LDR_BPG,Myles Turner,YES,,12000.0,,21483.0
+LDR_BPG,Kelel Ware,YES,,13000.0,,21484.0
+LDR_BPG,Ryan Kalkbrenner,YES,,14000.0,,21485.0
+LDR_BPG,Daniel Gafford,YES,,16000.0,,21486.0
+LDR_BPG,Nic Claxton,YES,,17000.0,,21487.0
+LDR_BPG,Mitchell Robinson,YES,,17000.0,,21488.0
+LDR_BPG,Ivica Zubac,YES,,18000.0,,21489.0
+LDR_BPG,Jay Huff,YES,,21000.0,,21490.0
+LDR_BPG,Isaiah Stewart,YES,,22000.0,,21491.0
+LDR_BPG,Scottie Barnes,YES,,23000.0,,21492.0
+LDR_BPG,Dylan Cardwell,YES,,24000.0,,21493.0
+LDR_BPG,Khaman Maluach,YES,,24000.0,,21494.0
+LDR_BPG,Robert Williams,YES,,25000.0,,21495.0
+LDR_BPG,Giannis Antetokounmpo,YES,,25000.0,,21496.0
+LDR_BPG,Kristaps Porzingis,YES,,25000.0,,21497.0
+LDR_BPG,Collin Murray Boyles,YES,,25000.0,,21498.0
+LDR_BPG,Neemias Queta,YES,,25000.0,,21499.0
+LDR_BPG,Joel Embiid,YES,,25000.0,,21500.0
+LDR_BPG,Matas Buzelis,YES,,25000.0,,21501.0
+LDR_PPG,Luka Doncic,YES,,-120.0,,21101.0
+LDR_PPG,Shai Gilgeous Alexander,YES,,250.0,,21102.0
+LDR_PPG,Anthony Edwards,YES,,1150.0,,21103.0
+LDR_PPG,Giannis Antetokounmpo,YES,,1400.0,,21104.0
+LDR_PPG,Jayson Tatum,YES,,2500.0,,21105.0
+LDR_PPG,Nikola Jokic,YES,,3400.0,,21106.0
+LDR_PPG,Victor Wembanyama,YES,,3900.0,,21107.0
+LDR_PPG,Donovan Mitchell,YES,,4200.0,,21108.0
+LDR_PPG,Jalen Brunson,YES,,6900.0,,21109.0
+LDR_PPG,Devin Booker,YES,,8000.0,,21110.0
+LDR_PPG,Tyrese Maxey,YES,,8500.0,,21111.0
+LDR_PPG,Kevin Durant,YES,,13000.0,,21112.0
+LDR_PPG,Stephen Curry,YES,,16000.0,,21113.0
+LDR_PPG,Kawhi Leonard,YES,,16000.0,,21114.0
+LDR_PPG,Jaylen Brown,YES,,15000.0,,21115.0
+LDR_PPG,Joel Embiid,YES,,20000.0,,21116.0
+LDR_PPG,Cade Cunningham,YES,,19000.0,,21117.0
+LDR_PPG,Austin Reaves,YES,,20000.0,,21118.0
+LDR_PPG,Michael Porter Jr,YES,,25000.0,,21119.0
+LDR_PPG,Jamal Murray,YES,,25000.0,,21120.0
+LDR_PPG,Deni Avdija,YES,,25000.0,,21121.0
+LDR_RPG,Nikola Jokic,YES,,280.0,,21171.0
+LDR_RPG,Victor Wembanyama,YES,,690.0,,21172.0
+LDR_RPG,Karl Anthony Towns,YES,,700.0,,21173.0
+LDR_RPG,Donovan Clingan,YES,,770.0,,21174.0
+LDR_RPG,Rudy Gobert,YES,,990.0,,21176.0
+LDR_RPG,Zach Edey,YES,,1450.0,,21177.0
+LDR_RPG,Walker Kessler,YES,,1700.0,,21178.0
+LDR_RPG,Kelel Ware,YES,,2000.0,,21179.0
+LDR_RPG,Anthony Davis,YES,,1900.0,,21180.0
+LDR_RPG,Giannis Antetokounmpo,YES,,2250.0,,21181.0
+LDR_RPG,Ivica Zubac,YES,,3600.0,,21182.0
+LDR_RPG,Jalen Duren,YES,,6500.0,,21183.0
+LDR_RPG,Jalen Johnson,YES,,8100.0,,21184.0
+LDR_RPG,Mitchell Robinson,YES,,9100.0,,21185.0
+LDR_RPG,Alperen Segun,YES,,10000.0,,21186.0
+LDR_RPG,DayRon Sharpe,YES,,13000.0,,21187.0
+LDR_RPG,Bam Adebayo,YES,,13000.0,,21188.0
+LDR_RPG,Chet Holmgren,YES,,16000.0,,21189.0
+LDR_RPG,Isaiah Hartenstein,YES,,16000.0,,21190.0
+LDR_RPG,Evan Mobley,YES,,16000.0,,21191.0
+LDR_RPG,Moussa Diabate,YES,,25000.0,,21192.0
+LDR_RPG,Jusuf Nurkic,YES,,25000.0,,21193.0
+LDR_RPG,Julius Randle,YES,,25000.0,,21194.0
+LDR_SPG,Ausar Thompson,YES,,300.0,,21381.0
+LDR_SPG,Cason Wallace,YES,,400.0,,21382.0
+LDR_SPG,Dyson Daniels,YES,,560.0,,21383.0
+LDR_SPG,Matisse Thybulle,YES,,600.0,,21384.0
+LDR_SPG,Tyrese Maxey,YES,,1850.0,,21385.0
+LDR_SPG,Jalen Suggs,YES,,2250.0,,21386.0
+LDR_SPG,Scotty Pippen Jr,YES,,2150.0,,21387.0
+LDR_SPG,Kris Dunn,YES,,2600.0,,21388.0
+LDR_SPG,OG Anunoby,YES,,4100.0,,21389.0
+LDR_SPG,Amen Thompson,YES,,4100.0,,21390.0
+LDR_SPG,Kawhi Leonard,YES,,5100.0,,21391.0
+LDR_SPG,Dejounte Murray,YES,,5200.0,,21392.0
+LDR_SPG,Reed Sheppard,YES,,6600.0,,21393.0
+LDR_SPG,Shai Gilgeous Alexander,YES,,7100.0,,21394.0
+LDR_SPG,Herbert Jones,YES,,7200.0,,21395.0
+LDR_SPG,Josh Hart,YES,,7100.0,,21396.0
+LDR_SPG,Mikal Bridges,YES,,7600.0,,21397.0
+LDR_SPG,Luka Doncic,YES,,7600.0,,21398.0
+LDR_SPG,Nikola Jokic,YES,,8500.0,,21399.0
+LDR_SPG,Alex Caruso,YES,,8100.0,,21400.0
+LDR_SPG,Jordan Goodwin,YES,,8500.0,,21401.0
+LDR_SPG,Ryan Rollins,YES,,9500.0,,21402.0
+LDR_SPG,Jalen Williams,YES,,9100.0,,21403.0
+LDR_SPG,Anthony Black,YES,,9500.0,,21404.0
+LDR_SPG,Scottie Barnes,YES,,10000.0,,21405.0
+LDR_SPG,Jalen Johnson,YES,,12000.0,,21406.0
+LDR_SPG,Jaden McDaniels,YES,,13000.0,,21407.0
+LDR_SPG,Donovan Mitchell,YES,,11000.0,,21408.0
+LDR_SPG,Anthony Edwards,YES,,10000.0,,21409.0
+LDR_SPG,Trey Murphy III,YES,,15000.0,,21410.0
+LDR_SPG,Tari Eason,YES,,16000.0,,21411.0
+LDR_SPG,Nickeil Alexander Walker,YES,,15000.0,,21412.0
+LDR_SPG,Fred VanVleet,YES,,15000.0,,21413.0
+LDR_SPG,Toumani Camara,YES,,15000.0,,21414.0
+LDR_SPG,Davion Mitchell,YES,,16000.0,,21415.0
+LDR_SPG,Tyrese Haliburton,YES,,13000.0,,21416.0
+LDR_SPG,Luguentz Dort,YES,,16000.0,,21417.0
+LDR_SPG,Paul George,YES,,16000.0,,21418.0
+LDR_SPG,Jaren Jackson Jr,YES,,20000.0,,21419.0
+LDR_SPG,VJ Edgecombe,YES,,18000.0,,21420.0
+LDR_SPG,Marcus Smart,YES,,19000.0,,21421.0
+LDR_SPG,LaMelo Ball,YES,,20000.0,,21422.0
+LDR_SPG,Cade Cunningham,YES,,21000.0,,21423.0
+LDR_SPG,Kevin Porter Jr,YES,,21000.0,,21424.0
+LDR_SPG,Franz Wagner,YES,,25000.0,,21425.0
+LDR_SPG,James Harden,YES,,21000.0,,21426.0
+LDR_SPG,Jayson Tatum,YES,,22000.0,,21427.0
+LDR_SPG,Victor Wembanyama,YES,,21000.0,,21428.0
+LDR_TPG,Stephen Curry,YES,,-125.0,,21301.0
+LDR_TPG,Luka Doncic,YES,,350.0,,21302.0
+LDR_TPG,LaMelo Ball,YES,,1100.0,,21303.0
+LDR_TPG,Kon Knueppel,YES,,2000.0,,21304.0
+LDR_TPG,Anthony Edwards,YES,,1900.0,,21305.0
+LDR_TPG,Brandon Miller,YES,,3500.0,,21306.0
+LDR_TPG,Michael Porter Jr,YES,,3800.0,,21307.0
+LDR_TPG,Jayson Tatum,YES,,6500.0,,21308.0
+LDR_TPG,Trey Murphy III,YES,,8000.0,,21309.0
+LDR_TPG,Jamal Murray,YES,,8500.0,,21310.0
+LDR_TPG,Donovan Mitchell,YES,,6900.0,,21311.0
+LDR_TPG,Tyler Herro,YES,,7900.0,,21312.0
+LDR_TPG,Damian Lillard,YES,,7950.0,,21313.0
+LDR_TPG,Tyrese Maxey,YES,,15000.0,,21315.0
+LDR_TPG,Tyrese Haliburton,YES,,11000.0,,21316.0
+LDR_TPG,Ty Jerome,YES,,13000.0,,21317.0
+LDR_TPG,Payton Pritchard,YES,,10000.0,,21318.0
+LDR_TPG,Derrick White,YES,,10000.0,,21319.0
+LDR_TPG,Darius Garland,YES,,12000.0,,21320.0
+LDR_TPG,Reed Sheppard,YES,,15000.0,,21321.0
+LDR_TPG,Nickeil Alexander Walker,YES,,16000.0,,21322.0
+LDR_TPG,Kyrie Irving,YES,,16000.0,,21323.0
+LDR_TPG,Norman Powell,YES,,17000.0,,21324.0
+LDR_TPG,Lauri Markkanen,YES,,20000.0,,21325.0
+LDR_TPG,Klay Thompson,YES,,14000.0,,21326.0
+LDR_TPG,James Harden,YES,,15000.0,,21327.0
+LDR_TPG,Grayson Allen,YES,,20000.0,,21328.0
+LDR_TPG,Duncan Robinson,YES,,20000.0,,21329.0
+LDR_TPG,AJ Green,YES,,25000.0,,21330.0
+LDR_TPG,Tim Hardaway Jr,YES,,26000.0,,21331.0
+LDR_TPG,Sam Merrill,YES,,25000.0,,21332.0
+LDR_TPG,Coby White,YES,,25000.0,,21333.0
+MVP,Victor Wembanyama,YES,,200.0,,20201.0
+MVP,Shai Gilgeous Alexander,YES,,350.0,,20202.0
+MVP,Nikola Jokic,YES,,500.0,,20203.0
+MVP,Luka Doncic,YES,,550.0,,20204.0
+MVP,Giannis Antetokounmpo,YES,,1100.0,,20205.0
+MVP,Cade Cunningham,YES,,2200.0,,20206.0
+MVP,Anthony Edwards,YES,,1700.0,,20207.0
+MVP,Jayson Tatum,YES,,1500.0,,20208.0
+MVP,Jalen Brunson,YES,,3500.0,,20209.0
+MVP,Donovan Mitchell,YES,,8000.0,,20210.0
+MVP,Tyrese Haliburton,YES,,10000.0,,20211.0
+MVP,Cooper Flagg,YES,,15000.0,,20212.0
+MVP,Tyrese Maxey,YES,,10000.0,,20213.0
+MVP,Jaylen Brown,YES,,6500.0,,20214.0
+MVP,Kawhi Leonard,YES,,15000.0,,20215.0
+MVP,Joel Embiid,YES,,15000.0,,20216.0
+MVP,Stephen Curry,YES,,15000.0,,20217.0
+MVP,Devin Booker,YES,,15000.0,,20218.0
+MVP,Kevin Durant,YES,,15000.0,,20219.0
+MVP,Scottie Barnes,YES,,25000.0,,20220.0
+MVP,Deni Avdija,YES,,25000.0,,20221.0
+MVP,LaMelo Ball,YES,,15000.0,,20222.0
+MVP,Jalen Johnson,YES,,25000.0,,20223.0
+MVP,LeBron James,YES,,20000.0,,20224.0
+MVP,Paolo Banchero,YES,,25000.0,,20225.0
+MVP,Zion Williamson,YES,,25000.0,,20226.0
+MVP,Jamal Murray,YES,,25000.0,,20227.0
+MVP,Anthony Davis,YES,,25000.0,,20228.0

@@ -566,3 +566,16 @@ data/clean/sim_robust_wins_hist.csv,derived (G3 addendum),2026-10-15T16:11:34-04
 data/clean/sim_robust_meta.json,derived (G3 addendum),2026-10-15T16:11:34-04:00,1,9f3dae81c160dd29bd1e49435ffe8e6ccaceb512b8d60add9808f76cdd14fa5b,G3-addendum
 data/clean/sim_team_summary.csv,derived (G3 addendum),2026-10-15T16:11:34-04:00,1,3817d98c0c80d0b2c7eac86933a9b38d2bf753326cfb01a724ac9c175c2e15b4,G3-addendum
 params/provenance.json,derived (G3 addendum),2026-10-15T16:11:34-04:00,1,8130edf5f70b7dfd8fa556acf40b63d3125383ff5b0db39cdbc0566a98802a9b,G3-addendum
+data/clean/pricing_table.csv,derived (G5),2026-10-15T16:55:11-04:00,1,a8db305ce2862d261a3aa4bb46b9b6399c70ec9e74cd1a76ff684c32f9bf4548,G5
+data/clean/bet_card.csv,derived (G5),2026-10-15T16:55:11-04:00,1,85269ef2abc501d81d2a8d71b412071fa889ade929794d78634dbbfac5650f5d,G5
+data/clean/portfolio_corr.csv,derived (G5),2026-10-15T16:55:11-04:00,1,bfb291ec253316943d2a64e68dbc63896434449a61e0dd69de4bf724e3cf89ce,G5
+data/clean/portfolio_pnl.npy,derived (G5),2026-10-15T16:55:11-04:00,1,09609ca652d9b3d01e19dac993f28cd59f3eda8685dc19e2cd898dfa15ca9df3,G5
+data/clean/portfolio_summary.json,derived (G5),2026-10-15T16:55:11-04:00,1,a880abb3fdb72f64661b295943b14a40008bbca84b15ef67514882f0371b1ec9,G5
+data/clean/param_draws.npz,derived (G5),2026-10-15T16:55:11-04:00,1,18fafe4fede85b9db774fbfde0848aae7c5aab5ec112fc3c346b3aa73b49ffbc,G5
+data/clean/param_draws_log.txt,derived (G5),2026-10-15T16:55:11-04:00,1,cda2292b3f38cfc63634e4e0d4231b11d575e33e648ddfc192629dd07c9753bc,G5
+data/clean/param_draws_params.csv,derived (G5),2026-10-15T16:55:11-04:00,1,19d3b5ab8f3e922ddd1592ca778166654c0c33013faffb77b138db38debc3648,G5
+data/clean/workbook_audit.json,derived (G5),2026-10-15T16:55:11-04:00,1,e79fc81d1984899ce8510372febe4febf0de15d7407c835c9e5ee86c75a0e883,G5
+data/clean/workbook_build_report.json,derived (G5),2026-10-15T16:55:11-04:00,1,1bbc606ae9ac7ebdd458a9433206ec878c5377f582d351978d7a1ef31d500a03,G5
+data/clean/odds_parsed_from_pdf.csv,derived (G5),2026-10-15T16:55:11-04:00,1,11f6661f7672c32befdd7868bfe475e86491a4335e1cb3069046ef9a6a6edfc0,G5
+data/clean/sim_sensitivity.csv,derived (G5),2026-10-15T16:55:11-04:00,1,373834e978290509ff53e2c308af3b694589b1af5781c7c6a374ffc10264b018,G5
+src/pricing/parse_odds.py,derived (G5),2026-10-15T16:55:11-04:00,1,a8307b0ac939808e50dbb7b9cf6fbb73596b8898bbc4f33c2cb833d10bc098d6,G5
