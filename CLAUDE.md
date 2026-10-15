@@ -43,3 +43,10 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 - lottery_n_draws=16 (documented fact). Cup: NBA.com official (semis at higher seed home; 2 of 22 non-qualifier games cross-conference). Both in params/assumptions.json.
 - Backtest headline = FIRST-TEAM roster proxy RMSE 8.92 [8.42,9.42] (not 8.44, which leaks in-season trades). No-moves bound 10.30 (no better than baselines): skill depends on knowing offseason moves. Strongest baseline B4 RMSE 10.21. DARKO never in backtest; production w_darko=0.5 documented rule, untested.
 - LAC/TOR conflict resolved (timing only; penalty took 2029-33 picks). Tank win-delta to be reported in G3.
+
+## G3 (2026-10-15) - simulation engine done, awaiting approval
+- Code: src/sim/{engine,season,runner,inputs,lottery,fit_game_model,tank_fit,calibrate,run_sim}.py. `run.py sim` = 100k sims (~15s after JIT; clear src/sim/__pycache__/*.nb* after editing engine.py - numba cache is keyed to season.py).
+- par[] layout is documented in engine.py docstring; PAR_NAMES in inputs.py (index 27 = cup_on).
+- Fits: HCA 1.89, b2b -2.65/+2.53, sigma_game 13.49, post HCA 3.64; kappa 0.28 (CI includes 0; excl. 2020 bubble); playoff lambda 0.58 [0.32,0.80]; sigma_team_srs 3.5 (calibrated by variance ratio, p=0.13).
+- LAC/TOR toggle delta <=0.02 wins -> no no-bet flag. Title market is most sensitive to playoff lambda (OKC 15.6-23.3%).
+- Tests: tests/test_engine.py; independent check: src/verify/title_check.py + compare_title.py (max title diff 0.22pp).

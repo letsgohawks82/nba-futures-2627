@@ -394,3 +394,21 @@ data/clean/lottery_validation.json,derived (G2 addendum),2026-10-15T14:09:56-04:
 data/clean/sensitivity_w_darko.csv,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,9382943c1dad693fb52ea0a76b04a252f940b951e8dd21ab9e81746e10867454,G2-addendum
 params/assumptions.json,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,0faa7b58baaeb5169f111b01fd18664713d3dd31f85cbca5f1da3e835056876c,G2-addendum
 params/provenance.json,derived (G2 addendum),2026-10-15T14:09:56-04:00,1,557a33c4ac7d7cac27dc8fc02922debc6c3ffe0b1c72ba89b87fc1708a2fc4fa,G2-addendum
+data/clean/game_model_fit.json,derived (G3),2026-10-15T15:05:02-04:00,1,61d7ac507d93ecd1ab1b287116ce59f0aafa3172d887ec9fb0e6e744e744a321,G3
+data/clean/tank_kappa_fit.json,derived (G3),2026-10-15T15:05:02-04:00,1,3a169b7b7c22e8da49322f81eb4cd292a1bbef48767545af4283c49dcb7541e9,G3
+data/clean/tank_did_table.csv,derived (G3),2026-10-15T15:05:02-04:00,1,63f39b12102d3854d586fa4e6bdf9f85f685df9c58197f6dc55f0deb7a472137,G3
+data/clean/playoff_adj_fit.json,derived (G3),2026-10-15T15:05:02-04:00,1,c30267be318272d45da717ed24663821ae39b4adb49f2bfaa6d2a39e6fbe584c,G3
+data/clean/sim_team_summary.csv,derived (G3),2026-10-15T15:05:02-04:00,1,1f3a0383a7c7aff3c5cba59565ac32e62585308d727a3ccc4fcfb05d09ac3aa7,G3
+data/clean/sim_player_games.csv,derived (G3),2026-10-15T15:05:02-04:00,1,12011bd5a89180965818a4e9396895d5b5c6ae0ef9f8bd0bde66811c0f6997c2,G3
+data/clean/sim_calibration.json,derived (G3),2026-10-15T15:05:02-04:00,1,40168a7352e5fb983c8080489378c97a80985b1d5f243b2a8e0f7fcf4c519cbc,G3
+data/clean/sim_calibration_team_seasons.csv,derived (G3),2026-10-15T15:05:02-04:00,1,982bb8908b1dca0bbaba7f88a57650696d4125b39bc509c80254ba27963120dd,G3
+data/clean/sim_sensitivity.csv,derived (G3),2026-10-15T15:05:02-04:00,1,373834e978290509ff53e2c308af3b694589b1af5781c7c6a374ffc10264b018,G3
+data/clean/verify_title_independent.json,derived (G3),2026-10-15T15:05:02-04:00,1,c2794860f3675d624a16c6358fbe2bbf101f5b00a6e16e699ebcd4e7100e1a40,G3
+data/clean/verify_title_compare.csv,derived (G3),2026-10-15T15:05:02-04:00,1,0fa5459cd681b276752efe88ed7b248aac0699725b140b53bdb1494ca00d1155,G3
+data/clean/tank_effect_on_wins.csv,derived (G3),2026-10-15T15:05:02-04:00,1,645aa2d77748dea7db340f03c00f1dee9f0776eb8ceb7b9b7e32672d07b02a63,G3
+params/pick_value_curve.json,derived (G3),2026-10-15T15:05:02-04:00,1,ca08db20935fed8009d28905aead1953afe9644faf90148623b259bda9dcff64,G3
+params/pick_ownership_rules.csv,derived (G3),2026-10-15T15:05:02-04:00,1,a104d4111c66c18da268dbf0c07217f1ee90a0433deed4e546302c033cde5100,G3
+params/provenance.json,derived (G3),2026-10-15T15:05:02-04:00,1,a4a383b0f2d37603fd55ef200b2aed31d6c4508f07511915b3fed91a190d8133,G3
+params/assumptions.json,derived (G3),2026-10-15T15:05:02-04:00,1,0faa7b58baaeb5169f111b01fd18664713d3dd31f85cbca5f1da3e835056876c,G3
+output/figs/G3_calibration.png,derived (G3),2026-10-15T15:05:02-04:00,1,38cab57fbc0fcba6ddf76b7e968284f838fc17dcac855fa3ea4be2edf396856a,G3
+sims/run_meta.json,derived (G3),2026-10-15T15:05:02-04:00,1,8428f0e6da174ad7ce153b5968ebeba1f1dedb313418b9dab62ac6c773c89c6b,G3

@@ -1,0 +1,31 @@
+team,kprot,fover,note
+ATL,0,,own 2027 1st conveyed to SAS (ATL also holds worse of NOP/MIL but cannot influence)
+BKN,0,,HOU may swap for BKN's (better) pick; BKN holds NYK pick (cannot influence)
+BOS,-1,,own
+CHA,-1,,own
+CHI,-1,,own
+CLE,0,,conveyed into MEM/UTA/PHX cluster
+DAL,2,,conveys to CHA unless top-2 (protected)
+DEN,5,,conveys to OKC/LAC/TOR cluster unless top-5
+DET,-1,,own
+GSW,-1,,own
+HOU,-1,,own (swap right on BKN)
+IND,-1,,own
+LAC,0,,resolved: LAC gets best of (worst of LAC/OKC/DEN pick) vs TOR; its own lottery pick goes to OKC -> 0 (toggle test sets 1)
+LAL,4,,conveys to MEM unless top-4
+MEM,-1,,own
+MIA,14,,conveys to CHA unless in top-14
+MIL,0,,conveyed to NOP/ATL
+MIN,0,,conveyed into cluster
+NOP,-1,,own (gets better of NOP/MIL)
+NYK,0,,conveyed to BKN
+OKC,-1,,own (gets the two best of OKC/LAC/DEN)
+ORL,-1,,own
+PHI,-1,,own
+PHX,0,,conveyed to HOU
+POR,-1,,own
+SAC,-1,,own
+SAS,0,,conveyed to SAC (1-16) / OKC (17-30)
+TOR,0,,gets the worse of cluster pick vs own -> 0 (toggle test sets 1)
+UTA,0,0.33,UTA receives 2nd best of UTA/CLE/MIN (UTA barred top-5) -> approximate partial incentive 0.33
+WAS,-1,,own

@@ -59,7 +59,7 @@ Primary variant: first-team roster. Full tables are in `data/clean/backtest_cali
 - **Information in the disagreement:** the slope of actual-minus-B4 wins on model-minus-B4 wins is **1.16 [0.99, 1.33]**. The model's deviation from B4 is at least fully real, with no shrinkage needed.
 - **P(top-10 in conference):** Brier 0.149 [0.132, 0.167] vs 0.222 climatology; per season 0.156, 0.170, 0.195, 0.178, 0.115, 0.111, 0.122, 0.146.
 - **P(top-6 in conference):** Brier 0.158 [0.144, 0.174] vs 0.240; per season 0.119, 0.098, 0.178, 0.183, 0.181, 0.190, 0.184, 0.135.
-- **Reliability** (in the JSON): bins track the diagonal within sampling error; the over-line probabilities in the 5–15% bin run a little low (freq. above prediction).
+- **Reliability** (in the JSON): most bins sit within about 1–2 standard errors of the diagonal. Two bins of the market-proxy over-line test miss by roughly one standard error each: 0.25–0.40 (predicted 0.33, actual 0.42) and 0.40–0.60 (predicted 0.50, actual 0.44). In the top-10 test the 0.00–0.10 bin is high (predicted 0.08, actual 0.22, n = 9). Samples are small (n = 240).
 - **Caveat:** none of this tests against the market, which is typically sharper than B4.
 
 ## 6. LAC/TOR pick toggle

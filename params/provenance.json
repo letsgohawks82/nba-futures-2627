@@ -222,20 +222,20 @@
   "code_path": "src/ratings/model.py"
  },
  "sigma_team_wins (true-strength shock, wins)": {
-  "value": 6.69,
-  "method": "sqrt(wins_resid_sd^2 - 82*0.25 binomial game variance); G3 re-estimates sigma_team in SRS pts/game from game-level fit",
-  "data_window": "2016-2026",
-  "n": 330,
-  "fit_date": "2026-10-15",
-  "code_path": "derived; src/ratings/backtest.py"
- },
- "sigma_team_srs": {
-  "value": 2.74,
-  "method": "sigma_team_wins / k_wins",
-  "data_window": "2016-2026",
-  "n": 330,
+  "value": 7.69,
+  "method": "see sigma_team_srs",
+  "data_window": "2018-19..2025-26",
+  "n": 240,
   "fit_date": "2026-10-15",
   "code_path": "derived"
+ },
+ "sigma_team_srs": {
+  "value": 3.5,
+  "method": "Calibrated: pooled first-team-roster backtest residuals give 3.15 SRS pts; the G3 variance-ratio test on 2023-24..2025-26 preseason inputs rejected 3.15 (VR 1.28, p=0.03 vs self-consistency ceiling) and 2.74 (VR 1.48, p=0.002); 3.5 gives VR 1.13 (p=0.18), interval coverage 77%/88% for nominal 80/90. Tuned on 90 team-seasons - conservative (wider) by design.",
+  "data_window": "2018-19..2025-26 backtest",
+  "n": 240,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/calibrate.py; src/ratings/backtest.py"
  },
  "w_darko": {
   "value": 0.5,
@@ -288,5 +288,109 @@
   "n": null,
   "fit_date": "2026-10-15",
   "code_path": "src/ratings/model.py"
+ },
+ "game_hca": {
+  "value": 1.8856964143871797,
+  "method": "OLS: margin - srs_diff ~ 1 + b2b_h + b2b_a (home margin pts)",
+  "data_window": "2021-22..2025-26 (end-of-season SRS as strength)",
+  "n": 6153,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/fit_game_model.py"
+ },
+ "game_sigma_game": {
+  "value": 13.486412633669902,
+  "method": "sd of residual margin",
+  "data_window": "2021-22..2025-26 (end-of-season SRS as strength)",
+  "n": 6153,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/fit_game_model.py"
+ },
+ "game_b2b_home": {
+  "value": -2.6541500639904645,
+  "method": "OLS",
+  "data_window": "2021-22..2025-26 (end-of-season SRS as strength)",
+  "n": 6153,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/fit_game_model.py"
+ },
+ "game_b2b_away": {
+  "value": 2.527350064588753,
+  "method": "OLS",
+  "data_window": "2021-22..2025-26 (end-of-season SRS as strength)",
+  "n": 6153,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/fit_game_model.py"
+ },
+ "game_hca_post": {
+  "value": 3.6410619469026555,
+  "method": "mean of (margin - srs_diff) in post-RS games (play-in+playoffs)",
+  "data_window": "2021-22..2025-26 (end-of-season SRS as strength)",
+  "n": 452,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/fit_game_model.py"
+ },
+ "game_sigma_post": {
+  "value": 15.270409503630574,
+  "method": "sd, post-RS games",
+  "data_window": "2021-22..2025-26 (end-of-season SRS as strength)",
+  "n": 452,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/fit_game_model.py"
+ },
+ "po_lambda": {
+  "value": 0.576,
+  "method": "OLS of post-season game margin on [1, SRS diff, playoff-minutes-concentration delta diff]; 80% season-cluster CI [0.32, 0.8]",
+  "data_window": "2015-16..2025-26 post-season games",
+  "n": 956,
+  "fit_date": "2026-10-15",
+  "code_path": "data/clean/playoff_adj_fit.json"
+ },
+ "tank_kappa": {
+  "value": 0.281,
+  "method": "dose-response DiD on old-system incentives, excl. 2020 bubble; 80% CI [-0.52, 1.42] (includes 0: not statistically distinguishable from no effect)",
+  "data_window": "2018-19..2025-26 excl 2020",
+  "n": 210,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/tank_fit.py"
+ },
+ "tank_REF": {
+  "value": 0.555,
+  "method": "90th percentile of positive old-system incentive (pick-value units)",
+  "data_window": "2018-19..2025-26",
+  "n": 210,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/tank_fit.py"
+ },
+ "tank_deterrent": {
+  "value": 0.0,
+  "method": "ASSUMPTION: no commissioner deterrent (conservative)",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/inputs.py"
+ },
+ "po_inj_prob": {
+  "value": 0.07,
+  "method": "ASSUMPTION: per top-8 player chance of missing the whole postseason (not fit)",
+  "data_window": "n/a",
+  "n": null,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/inputs.py"
+ },
+ "avail_concentration": {
+  "value": 3.7,
+  "method": "Beta concentration implied by availability residual sd 0.20 at mean 0.75: a(1-a)/sd^2-1",
+  "data_window": "bbref 2014-2026",
+  "n": 3676,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/inputs.py"
+ },
+ "pick_value_curve": {
+  "value": "params/pick_value_curve.json",
+  "method": "career win shares by pick (mean), power-law fit, drafts 2013-2021 (n=540)",
+  "data_window": "drafts 2013-2021",
+  "n": 540,
+  "fit_date": "2026-10-15",
+  "code_path": "src/sim/inputs.py:fit_pick_value"
  }
 }

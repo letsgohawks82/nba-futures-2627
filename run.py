@@ -10,6 +10,8 @@ def sh(*mod):
 def stage(s):
     if s == "ratings":
         return sh("src.ratings.backtest") or sh("src.ratings.project_2027")
+    if s == "sim":
+        return sh("src.sim.run_sim")
     if s == "pull":
         print("[pull] G1 pulls are cached; re-run src.data.pull_espn / pull_schedule / pull_bbref_hist manually (see CLAUDE.md)")
         return 0
