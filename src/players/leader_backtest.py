@@ -5,7 +5,7 @@ import numpy as np, pandas as pd
 from .rates import table, STATS, C
 from . import leaders as L
 
-def run(n=20000, seed=5, sd_scale=1.0):
+def frame(n=20000, seed=5, sd_scale=1.0):
     R = pd.read_csv(C("g4_rate_backtest.csv")); ps = table(); rng = np.random.default_rng(seed); rows = []
     for s in sorted(R.season.unique()):
         cal = L.calib_from_backtest(R[R.season != s])
@@ -21,7 +21,11 @@ def run(n=20000, seed=5, sd_scale=1.0):
             leaders = set(a[a.pg.round(1) == top].index)
             for b, p in zip(g.bbref_id, pw): rows.append(dict(season=s, stat=sn, bbref_id=b, p=p, win=(1.0 / len(leaders)) if b in leaders else 0.0))
             rows.append(dict(season=s, stat=sn, bbref_id="_missed", p=0.0, win=1.0 - sum(1.0 / len(leaders) for b in g.bbref_id if b in leaders)))
-    D = pd.DataFrame(rows); P = D[D.bbref_id != "_missed"]
+    return pd.DataFrame(rows)
+
+
+def run(n=20000, seed=5, sd_scale=1.0):
+    D = frame(n, seed, sd_scale); P = D[D.bbref_id != "_missed"]
     bins = [0, .02, .05, .15, .35, 1.01]; P = P.assign(bk=pd.cut(P.p, bins, right=False))
     rel = P.groupby("bk", observed=True).agg(n=("p", "size"), mean_p=("p", "mean"), freq=("win", "mean")).reset_index().astype({"bk": str})
     ll = []

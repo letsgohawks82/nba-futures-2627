@@ -32,13 +32,17 @@ def main():
     nm = pd.read_csv(C("name_map.csv")); nm = nm[nm.source == "odds_book"].set_index("source_name").canonical
     o["key"] = [norm(nm.get(s) if isinstance(nm.get(s), str) else s) for s in o.selection]; o["mkey"] = o.market + "|" + o["key"]
     pr = pd.read_csv(C("player_market_probs.csv")); pr["mkey"] = pr.market + "|" + pr.key
-    # stat-leader sharpening: backtest (2019-2026, leave-one-season-out rates) shows the lognormal engine overstates longshots ~2x and understates favourites;
-    # p^gamma renormalised per market (gamma fit on the backtest log score, 1 parameter, see g4_leader_sharpen.json) restores calibration. Awards are not sharpened.
-    gam = json.load(open(C("g4_leader_sharpen.json")))["gamma"]; ld = pr.market.str.startswith("LDR_")
-    for mk, g in pr[ld].groupby("market"):
-        Z = (g.p ** gam).sum()
-        for c in ["p", "p_lo", "p_hi", "p_sd_lo", "p_sd_hi", "p_no65", "p_mpg_lo"]: pr.loc[g.index, c] = (g[c] ** gam) / Z
-    pr = pr.drop_duplicates("mkey").set_index("mkey")
+    # stat-leader sharpening: leave-one-season-out CV (src/players/sharpen_cv.py) shows the lognormal engine overstates longshots and understates favourites even after the SD fix;
+    # p^gamma renormalised per market restores calibration. Production = pooled gamma; Tier 1 must also survive the gamma 80% CI bounds. Awards are not sharpened.
+    sh = json.load(open(C("g4_leader_sharpen.json"))); gam = sh["gamma"]; ld = pr.market.str.startswith("LDR_"); PCOLS = ["p", "p_lo", "p_hi", "p_sd_lo", "p_sd_hi", "p_no65", "p_mpg_lo"]
+    def sharpen(pr0, gm):
+        q = pr0.copy()
+        for mk, g in q[q.market.str.startswith("LDR_")].groupby("market"):
+            Z = (g.p ** gm).sum()
+            for c in PCOLS: q.loc[g.index, c] = (g[c] ** gm) / Z
+        return q.drop_duplicates("mkey").set_index("mkey")
+    pr_raw = pr; pr = sharpen(pr_raw, gam); pr_alt = {"lo": sharpen(pr_raw, sh["gamma_ci80"][0]), "hi": sharpen(pr_raw, sh["gamma_ci80"][1])}
+
     for c in ["p", "p_lo", "p_hi", "p_sd_lo", "p_sd_hi", "p_no65", "p_mpg_lo", "proj_mpg", "proj_gp", "rating", "pg_PPG", "pg_RPG", "pg_APG", "pg_SPG", "pg_BPG", "pg_TPG"]:
         o[c] = o.mkey.map(pr[c]) if c in pr else np.nan
     o["modelled"] = o.market.isin(PLAYER_MARKETS); o["display_only"] = o.market.isin(DISPLAY)
@@ -72,7 +76,12 @@ def main():
             t.append(f"rating {r.rating:+.1f}; proj {r.pg_PPG:.1f}p/{r.pg_RPG:.1f}r/{r.pg_APG:.1f}a/{r.pg_SPG:.1f}s/{r.pg_BPG:.1f}b in {r.proj_mpg:.0f} mpg; {r.proj_gp:.0f} games")
         return "; ".join(t)
     o["driver"] = [driver(r) for r in o.itertuples()] if False else [driver(r) for _, r in o.iterrows()]
-    o["tier1"] = o.tier2 & (o.ev75 >= A["min_ev"]) & (o.ev_lo75 > 0) & o.fair_ge_5
+    def t1_at(prx):
+        pp = o.mkey.map(prx.p).fillna(0.0); pl = o.mkey.map(prx.p_lo).fillna(0.0)
+        wc = pd.concat([ev(o.mkey.map(prx[c]).fillna(0.0), A["shrink"]) for c in ("p_sd_lo", "p_sd_hi", "p_mpg_lo", "p_no65")], axis=1).min(axis=1)
+        return o.modelled & (ev(pp, A["shrink_t1"]) >= A["min_ev"]) & (ev(pl, A["shrink_t1"]) > 0) & (wc >= A["min_ev"])
+    o["tier1_gamma_lo"] = t1_at(pr_alt["lo"]); o["tier1_gamma_hi"] = t1_at(pr_alt["hi"])
+    o["tier1"] = o.tier2 & (o.ev75 >= A["min_ev"]) & (o.ev_lo75 > 0) & o.fair_ge_5 & o.tier1_gamma_lo & o.tier1_gamma_hi
     # stakes
     o["stake_t2"] = 0.0; o["stake_t1"] = 0.0
     for mk, g in o[o.tier2].groupby("market"):

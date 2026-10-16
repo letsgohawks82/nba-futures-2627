@@ -1,0 +1,478 @@
+{
+ "per_player": [
+  {
+   "stat": "PPG",
+   "player": "Shai Gilgeous-Alexander",
+   "sim_mean": 28.522,
+   "sim_sd": 3.885,
+   "hist_n": 7,
+   "hist_sd_levels": 8.131,
+   "hist_yoy_sd": 4.172
+  },
+  {
+   "stat": "PPG",
+   "player": "Luka Doncic",
+   "sim_mean": 28.552,
+   "sim_sd": 3.89,
+   "hist_n": 8,
+   "hist_sd_levels": 4.111,
+   "hist_yoy_sd": 4.421
+  },
+  {
+   "stat": "PPG",
+   "player": "Anthony Edwards",
+   "sim_mean": 26.045,
+   "sim_sd": 3.548,
+   "hist_n": 6,
+   "hist_sd_levels": 3.657,
+   "hist_yoy_sd": 0.858
+  },
+  {
+   "stat": "PPG",
+   "player": "Kevin Durant",
+   "sim_mean": 24.43,
+   "sim_sd": 3.328,
+   "hist_n": 6,
+   "hist_sd_levels": 1.655,
+   "hist_yoy_sd": 2.251
+  },
+  {
+   "stat": "PPG",
+   "player": "Donovan Mitchell",
+   "sim_mean": 24.244,
+   "sim_sd": 3.303,
+   "hist_n": 8,
+   "hist_sd_levels": 1.786,
+   "hist_yoy_sd": 2.411
+  },
+  {
+   "stat": "RPG",
+   "player": "Rudy Gobert",
+   "sim_mean": 10.557,
+   "sim_sd": 1.984,
+   "hist_n": 8,
+   "hist_sd_levels": 1.258,
+   "hist_yoy_sd": 1.67
+  },
+  {
+   "stat": "RPG",
+   "player": "Domantas Sabonis",
+   "sim_mean": 11.027,
+   "sim_sd": 2.072,
+   "hist_n": 7,
+   "hist_sd_levels": 1.492,
+   "hist_yoy_sd": 1.292
+  },
+  {
+   "stat": "RPG",
+   "player": "Nikola Jokic",
+   "sim_mean": 10.343,
+   "sim_sd": 1.943,
+   "hist_n": 8,
+   "hist_sd_levels": 1.327,
+   "hist_yoy_sd": 1.556
+  },
+  {
+   "stat": "RPG",
+   "player": "Ivica Zubac",
+   "sim_mean": 9.902,
+   "sim_sd": 1.861,
+   "hist_n": 8,
+   "hist_sd_levels": 2.086,
+   "hist_yoy_sd": 1.795
+  },
+  {
+   "stat": "RPG",
+   "player": "Donovan Clingan",
+   "sim_mean": 9.556,
+   "sim_sd": 1.796,
+   "hist_n": 2,
+   "hist_sd_levels": NaN,
+   "hist_yoy_sd": NaN
+  },
+  {
+   "stat": "APG",
+   "player": "Nikola Jokic",
+   "sim_mean": 8.256,
+   "sim_sd": 1.911,
+   "hist_n": 8,
+   "hist_sd_levels": 1.387,
+   "hist_yoy_sd": 1.045
+  },
+  {
+   "stat": "APG",
+   "player": "Tyrese Haliburton",
+   "sim_mean": 8.386,
+   "sim_sd": 1.941,
+   "hist_n": 5,
+   "hist_sd_levels": 2.223,
+   "hist_yoy_sd": 2.04
+  },
+  {
+   "stat": "APG",
+   "player": "Cade Cunningham",
+   "sim_mean": 8.104,
+   "sim_sd": 1.876,
+   "hist_n": 4,
+   "hist_sd_levels": 1.922,
+   "hist_yoy_sd": 0.586
+  },
+  {
+   "stat": "APG",
+   "player": "Luka Doncic",
+   "sim_mean": 7.482,
+   "sim_sd": 1.732,
+   "hist_n": 8,
+   "hist_sd_levels": 1.117,
+   "hist_yoy_sd": 1.641
+  },
+  {
+   "stat": "APG",
+   "player": "Trae Young",
+   "sim_mean": 7.626,
+   "sim_sd": 1.765,
+   "hist_n": 7,
+   "hist_sd_levels": 1.128,
+   "hist_yoy_sd": 0.417
+  },
+  {
+   "stat": "SPG",
+   "player": "Dyson Daniels",
+   "sim_mean": 1.57,
+   "sim_sd": 0.338,
+   "hist_n": 4,
+   "hist_sd_levels": 0.967,
+   "hist_yoy_sd": 1.354
+  },
+  {
+   "stat": "SPG",
+   "player": "Cason Wallace",
+   "sim_mean": 1.447,
+   "sim_sd": 0.311,
+   "hist_n": 3,
+   "hist_sd_levels": 0.544,
+   "hist_yoy_sd": 0.463
+  },
+  {
+   "stat": "SPG",
+   "player": "Ausar Thompson",
+   "sim_mean": 1.434,
+   "sim_sd": 0.308,
+   "hist_n": 3,
+   "hist_sd_levels": 0.466,
+   "hist_yoy_sd": 0.172
+  },
+  {
+   "stat": "SPG",
+   "player": "Kawhi Leonard",
+   "sim_mean": 1.467,
+   "sim_sd": 0.315,
+   "hist_n": 6,
+   "hist_sd_levels": 0.182,
+   "hist_yoy_sd": 0.23
+  },
+  {
+   "stat": "SPG",
+   "player": "Shai Gilgeous-Alexander",
+   "sim_mean": 1.391,
+   "sim_sd": 0.299,
+   "hist_n": 7,
+   "hist_sd_levels": 0.324,
+   "hist_yoy_sd": 0.305
+  },
+  {
+   "stat": "BPG",
+   "player": "Victor Wembanyama",
+   "sim_mean": 2.659,
+   "sim_sd": 0.779,
+   "hist_n": 3,
+   "hist_sd_levels": 0.381,
+   "hist_yoy_sd": 0.705
+  },
+  {
+   "stat": "BPG",
+   "player": "Chet Holmgren",
+   "sim_mean": 1.748,
+   "sim_sd": 0.512,
+   "hist_n": 2,
+   "hist_sd_levels": NaN,
+   "hist_yoy_sd": NaN
+  },
+  {
+   "stat": "BPG",
+   "player": "Walker Kessler",
+   "sim_mean": 1.822,
+   "sim_sd": 0.534,
+   "hist_n": 3,
+   "hist_sd_levels": 0.034,
+   "hist_yoy_sd": 0.067
+  },
+  {
+   "stat": "BPG",
+   "player": "Donovan Clingan",
+   "sim_mean": 1.472,
+   "sim_sd": 0.431,
+   "hist_n": 2,
+   "hist_sd_levels": NaN,
+   "hist_yoy_sd": NaN
+  },
+  {
+   "stat": "BPG",
+   "player": "Rudy Gobert",
+   "sim_mean": 1.472,
+   "sim_sd": 0.431,
+   "hist_n": 8,
+   "hist_sd_levels": 0.449,
+   "hist_yoy_sd": 0.645
+  },
+  {
+   "stat": "TPG",
+   "player": "Stephen Curry",
+   "sim_mean": 3.96,
+   "sim_sd": 0.845,
+   "hist_n": 7,
+   "hist_sd_levels": 0.367,
+   "hist_yoy_sd": 0.468
+  },
+  {
+   "stat": "TPG",
+   "player": "Luka Doncic",
+   "sim_mean": 3.434,
+   "sim_sd": 0.733,
+   "hist_n": 8,
+   "hist_sd_levels": 0.61,
+   "hist_yoy_sd": 0.576
+  },
+  {
+   "stat": "TPG",
+   "player": "LaMelo Ball",
+   "sim_mean": 3.344,
+   "sim_sd": 0.714,
+   "hist_n": 4,
+   "hist_sd_levels": 0.943,
+   "hist_yoy_sd": 0.61
+  },
+  {
+   "stat": "TPG",
+   "player": "Anthony Edwards",
+   "sim_mean": 3.134,
+   "sim_sd": 0.669,
+   "hist_n": 6,
+   "hist_sd_levels": 0.643,
+   "hist_yoy_sd": 0.94
+  },
+  {
+   "stat": "TPG",
+   "player": "Donovan Mitchell",
+   "sim_mean": 2.863,
+   "sim_sd": 0.611,
+   "hist_n": 8,
+   "hist_sd_levels": 0.432,
+   "hist_yoy_sd": 0.358
+  }
+ ],
+ "pooled_top10_yoy": {
+  "PPG": {
+   "yoy_sd": 2.902709199008466,
+   "implied_idio_sd": 2.052525358431458,
+   "n": 61,
+   "top10_mean_level": 28.708373413759
+  },
+  "RPG": {
+   "yoy_sd": 1.4679157833948255,
+   "implied_idio_sd": 1.0379732046492443,
+   "n": 60,
+   "top10_mean_level": 11.926030138020906
+  },
+  "APG": {
+   "yoy_sd": 1.6163415865662059,
+   "implied_idio_sd": 1.1429260965747872,
+   "n": 64,
+   "top10_mean_level": 8.637808008379299
+  },
+  "SPG": {
+   "yoy_sd": 0.2997574530556171,
+   "implied_idio_sd": 0.211960527766835,
+   "n": 60,
+   "top10_mean_level": 1.7697574771553677
+  },
+  "BPG": {
+   "yoy_sd": 0.5061973717749315,
+   "implied_idio_sd": 0.3579355942008619,
+   "n": 56,
+   "top10_mean_level": 2.066427512913611
+  },
+  "TPG": {
+   "yoy_sd": 0.5033801712794139,
+   "implied_idio_sd": 0.35594353262651934,
+   "n": 62,
+   "top10_mean_level": 3.5891480151795796
+  }
+ },
+ "resid_by_rank": {
+  "PPG": {
+   "1-5": {
+    "n": 40,
+    "log_sd": 0.12371479824919078,
+    "abs_sd": 3.4781873550092826,
+    "bias": 0.004098697508733281
+   },
+   "6-15": {
+    "n": 80,
+    "log_sd": 0.10872413158004465,
+    "abs_sd": 2.721593180720977,
+    "bias": 0.01182020049140326
+   },
+   "16-30": {
+    "n": 120,
+    "log_sd": 0.15396408420893293,
+    "abs_sd": 3.371622778773542,
+    "bias": -0.027683396961619942
+   }
+  },
+  "RPG": {
+   "1-5": {
+    "n": 40,
+    "log_sd": 0.1040111343720849,
+    "abs_sd": 1.2562928818923231,
+    "bias": 0.00010245367930880044
+   },
+   "6-15": {
+    "n": 80,
+    "log_sd": 0.16494116146405205,
+    "abs_sd": 1.5836645047496027,
+    "bias": -0.01823256483367967
+   },
+   "16-30": {
+    "n": 120,
+    "log_sd": 0.22175010237103093,
+    "abs_sd": 1.698213991232522,
+    "bias": -0.022751598499266147
+   }
+  },
+  "APG": {
+   "1-5": {
+    "n": 40,
+    "log_sd": 0.1735125378538886,
+    "abs_sd": 1.4681758726505354,
+    "bias": -0.015519730020243728
+   },
+   "6-15": {
+    "n": 80,
+    "log_sd": 0.20181617904613083,
+    "abs_sd": 1.3586315069230623,
+    "bias": 0.0020587162901738927
+   },
+   "16-30": {
+    "n": 120,
+    "log_sd": 0.26405554995130515,
+    "abs_sd": 1.3639239843480373,
+    "bias": -0.04605799316783794
+   }
+  },
+  "SPG": {
+   "1-5": {
+    "n": 40,
+    "log_sd": 0.17792803981372848,
+    "abs_sd": 0.26686696117300124,
+    "bias": -0.017742894852135364
+   },
+   "6-15": {
+    "n": 80,
+    "log_sd": 0.19500556643821879,
+    "abs_sd": 0.28064631959981845,
+    "bias": 0.021016161075728353
+   },
+   "16-30": {
+    "n": 120,
+    "log_sd": 0.2342794463562715,
+    "abs_sd": 0.31224122868329074,
+    "bias": -0.05480725397775093
+   }
+  },
+  "BPG": {
+   "1-5": {
+    "n": 40,
+    "log_sd": 0.2449835676101582,
+    "abs_sd": 0.49892790865302333,
+    "bias": -0.032872386633281694
+   },
+   "6-15": {
+    "n": 80,
+    "log_sd": 0.2758459720404203,
+    "abs_sd": 0.4114466540229967,
+    "bias": -0.0023733986467452837
+   },
+   "16-30": {
+    "n": 120,
+    "log_sd": 0.3165480128947028,
+    "abs_sd": 0.32490771177477384,
+    "bias": -0.07455879569874267
+   }
+  },
+  "TPG": {
+   "1-5": {
+    "n": 40,
+    "log_sd": 0.17868595846649965,
+    "abs_sd": 0.6538941931322619,
+    "bias": 0.017814852402529467
+   },
+   "6-15": {
+    "n": 80,
+    "log_sd": 0.1896019437439203,
+    "abs_sd": 0.4981583093953765,
+    "bias": -0.0019069472478644288
+   },
+   "16-30": {
+    "n": 120,
+    "log_sd": 0.23602522734302414,
+    "abs_sd": 0.5346626920298555,
+    "bias": -0.0479954384499095
+   }
+  }
+ },
+ "sim_log_sd": {
+  "PPG": {
+   "slope": 0.7977334057411525,
+   "intercept": 5.255463242285058,
+   "sd": 0.13622324817286308,
+   "pred_lo": 18.164612089399046,
+   "bias": -0.009218515398886669
+  },
+  "RPG": {
+   "slope": 0.9895938564692918,
+   "intercept": -0.21953307694122148,
+   "sd": 0.18790299337853222,
+   "pred_lo": 7.389061425362186,
+   "bias": -0.017436245247641497
+  },
+  "APG": {
+   "slope": 0.9143909754189335,
+   "intercept": 0.5034256181753335,
+   "sd": 0.2314634575897934,
+   "pred_lo": 4.857997575122693,
+   "bias": -0.02492937949056829
+  },
+  "SPG": {
+   "slope": 0.7113422542134521,
+   "intercept": 0.33264519138641596,
+   "sd": 0.2150005640523147,
+   "pred_lo": 1.156603728248124,
+   "bias": -0.023355389105655242
+  },
+  "BPG": {
+   "slope": 0.9706682292073499,
+   "intercept": -0.026792013307188403,
+   "sd": 0.2930973791679006,
+   "pred_lo": 0.9430848049627396,
+   "bias": -0.0435492618371667
+  },
+  "TPG": {
+   "slope": 0.9433242514365987,
+   "intercept": 0.10962520141198419,
+   "sd": 0.2134709562755993,
+   "pred_lo": 2.0305862579912763,
+   "bias": -0.021664226240487975
+  }
+ }
+}

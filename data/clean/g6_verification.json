@@ -1,0 +1,309 @@
+{
+ "devig_tier1": [
+  {
+   "bet": "CONF_EAST Toronto Raptors YES",
+   "n_group": 15,
+   "own_fair": 0.08312808749983627,
+   "table_fair": 0.0831280874998362,
+   "abs_diff": 6.938893903907228e-17
+  },
+  {
+   "bet": "DIV_ATLANTIC Toronto Raptors YES",
+   "n_group": 5,
+   "own_fair": 0.10533246132793171,
+   "table_fair": 0.1053324613279317,
+   "abs_diff": 1.3877787807814457e-17
+  },
+  {
+   "bet": "PLAYIN_EAST Chicago Bulls YES",
+   "n_group": 15,
+   "own_fair": 0.09313639095115624,
+   "table_fair": 0.0931363909511543,
+   "abs_diff": 1.942890293094024e-15
+  },
+  {
+   "bet": "PLAYOFFS Minnesota Timberwolves NO",
+   "n_group": 2,
+   "own_fair": 0.12454212454212463,
+   "table_fair": 0.1245421245421244,
+   "abs_diff": 2.220446049250313e-16
+  },
+  {
+   "bet": "ROY AJ Dybantsa",
+   "n_group": 16,
+   "own_fair": 0.17697118755206512,
+   "table_fair": 0.1769711875520651,
+   "abs_diff": 2.7755575615628914e-17
+  },
+  {
+   "bet": "LDR_RPG Domantas Sabonis",
+   "n_group": 24,
+   "own_fair": 0.08645179429369128,
+   "table_fair": 0.0864517942936912,
+   "abs_diff": 8.326672684688674e-17
+  },
+  {
+   "bet": "LDR_RPG Rudy Gobert",
+   "n_group": 24,
+   "own_fair": 0.07889645645234929,
+   "table_fair": 0.0788964564523492,
+   "abs_diff": 8.326672684688674e-17
+  },
+  {
+   "bet": "LDR_APG Tyrese Haliburton",
+   "n_group": 18,
+   "own_fair": 0.0990710040980045,
+   "table_fair": 0.0990710040980044,
+   "abs_diff": 9.71445146547012e-17
+  },
+  {
+   "bet": "LDR_TPG LaMelo Ball",
+   "n_group": 33,
+   "own_fair": 0.07134840039779543,
+   "table_fair": 0.0713484003977987,
+   "abs_diff": 3.2751579226442118e-15
+  }
+ ],
+ "devig_random10": [
+  {
+   "group": "('DIV_PACIFIC',)",
+   "n": 5,
+   "sum_shin": 1.0,
+   "max_abs_diff_vs_table_3methods": 2.6922908347160046e-15
+  },
+  {
+   "group": "('PLAYOFFS', 'Los Angeles Lakers')",
+   "n": 2,
+   "sum_shin": 1.0,
+   "max_abs_diff_vs_table_3methods": 2.498001805406602e-16
+  },
+  {
+   "group": "('WINS', 'Cleveland Cavaliers', '47.5')",
+   "n": 2,
+   "sum_shin": 1.0000000000000002,
+   "max_abs_diff_vs_table_3methods": 1.0935696792557792e-14
+  },
+  {
+   "group": "('WINS', 'Dallas Mavericks', '34.5')",
+   "n": 2,
+   "sum_shin": 1.0,
+   "max_abs_diff_vs_table_3methods": 8.271161533457416e-15
+  },
+  {
+   "group": "('WINS', 'Phoenix Suns', '39.5')",
+   "n": 2,
+   "sum_shin": 1.0,
+   "max_abs_diff_vs_table_3methods": 8.271161533457416e-15
+  },
+  {
+   "group": "('DIV_CENTRAL',)",
+   "n": 5,
+   "sum_shin": 1.0000000000000002,
+   "max_abs_diff_vs_table_3methods": 1.4988010832439613e-15
+  },
+  {
+   "group": "('PLAYIN_WEST',)",
+   "n": 15,
+   "sum_shin": 3.9999999999999996,
+   "max_abs_diff_vs_table_3methods": 1.1102230246251565e-14
+  },
+  {
+   "group": "('WINS', 'Minnesota Timberwolves', '47.5')",
+   "n": 2,
+   "sum_shin": 1.0,
+   "max_abs_diff_vs_table_3methods": 9.2148511043888e-15
+  },
+  {
+   "group": "('WINS', 'Oklahoma City Thunder', '61.5')",
+   "n": 2,
+   "sum_shin": 1.0000000000000002,
+   "max_abs_diff_vs_table_3methods": 1.0935696792557792e-14
+  },
+  {
+   "group": "('WINS', 'Los Angeles Clippers', '29.5')",
+   "n": 2,
+   "sum_shin": 1.0,
+   "max_abs_diff_vs_table_3methods": 4.3520742565306136e-14
+  }
+ ],
+ "bets": [
+  {
+   "bet": "CONF_EAST Toronto Raptors YES",
+   "american": 900.0,
+   "own_fair": 0.08312808749983627,
+   "engine_fair": 0.0831280874998362,
+   "model": 0.17624,
+   "own_ev": 0.7624,
+   "own_ev_shrunk75": 0.064060656248772,
+   "own_single_kelly": 0.0017794626735769998,
+   "own_joint_stake": 0.0,
+   "engine_joint_stake": 0.0,
+   "xl_fair": 0.08312808747053048,
+   "xl_model": 0.17624,
+   "xl_ev": 0.7624,
+   "xl_stake": 0
+  },
+  {
+   "bet": "DIV_ATLANTIC Toronto Raptors YES",
+   "american": 650.0,
+   "own_fair": 0.10533246132793171,
+   "engine_fair": 0.1053324613279317,
+   "model": 0.3341,
+   "own_ev": 1.50575,
+   "own_ev_shrunk75": 0.21893259496961592,
+   "own_single_kelly": 0.008420484421908304,
+   "own_joint_stake": 0.0081755914973523,
+   "engine_joint_stake": 0.008175848470437336,
+   "xl_fair": 0.10533246134600585,
+   "xl_model": 0.3341,
+   "xl_ev": 1.50575,
+   "xl_stake": 0.0081758484704373
+  },
+  {
+   "bet": "PLAYIN_EAST Chicago Bulls YES",
+   "american": 800.0,
+   "own_fair": 0.09313639095115624,
+   "engine_fair": 0.0931363909511543,
+   "model": 0.25403,
+   "own_ev": 1.28627,
+   "own_ev_shrunk75": 0.2002381389203045,
+   "own_single_kelly": 0.006257441841259516,
+   "own_joint_stake": 0.006121873521360464,
+   "engine_joint_stake": 0.006121940054563565,
+   "xl_fair": 0.09313639113390823,
+   "xl_model": 0.25403,
+   "xl_ev": 1.28627,
+   "xl_stake": 0.0061219400545635
+  },
+  {
+   "bet": "PLAYOFFS Minnesota Timberwolves NO",
+   "american": 550.0,
+   "own_fair": 0.12454212454212463,
+   "engine_fair": 0.1245421245421244,
+   "model": 0.31825,
+   "own_ev": 1.068625,
+   "own_ev_shrunk75": 0.12429910714285741,
+   "own_single_kelly": 0.0056499594155844275,
+   "own_joint_stake": 0.005772075746345734,
+   "engine_joint_stake": 0.005772198499751795,
+   "xl_fair": 0.12454212450038653,
+   "xl_model": 0.31825000000000003,
+   "xl_ev": 1.0686250000000004,
+   "xl_stake": 0.0057721984997517
+  },
+  {
+   "bet": "ROY AJ Dybantsa YES",
+   "american": 400.0,
+   "own_fair": 0.17697118755206512,
+   "engine_fair": 0.1769711875520651,
+   "model": 0.32688,
+   "own_ev": 0.6344000000000001,
+   "own_ev_shrunk75": 0.0722419533202443,
+   "own_single_kelly": 0.004515122082515269,
+   "own_joint_stake": 0.004356918548557423,
+   "engine_joint_stake": 0.004356884185535766,
+   "xl_fair": 0.1769711875520651,
+   "xl_model": 0.32688,
+   "xl_ev": 0.6344000000000001,
+   "xl_stake": 0.0043568841855357
+  },
+  {
+   "bet": "LDR_RPG Domantas Sabonis YES",
+   "american": 900.0,
+   "own_fair": 0.08645179429369128,
+   "engine_fair": 0.0864517942936912,
+   "model": 0.2106556266416665,
+   "own_ev": 1.106556266416665,
+   "own_ev_shrunk75": 0.17502752380685083,
+   "own_single_kelly": 0.004861875661301412,
+   "own_joint_stake": 0.005862311647163834,
+   "engine_joint_stake": 0.005861855307994224,
+   "xl_fair": 0.0864517942936912,
+   "xl_model": 0.2106556266416665,
+   "xl_ev": 1.106556266416665,
+   "xl_stake": 0.0058618553079942
+  },
+  {
+   "bet": "LDR_RPG Rudy Gobert YES",
+   "american": 990.0,
+   "own_fair": 0.07889645645234929,
+   "engine_fair": 0.0788964564523492,
+   "model": 0.2557668653321399,
+   "own_ev": 1.7878588321203246,
+   "own_ev_shrunk75": 0.3419432395280366,
+   "own_single_kelly": 0.008634930291112036,
+   "own_joint_stake": 0.009163492354671813,
+   "engine_joint_stake": 0.009163605870794036,
+   "xl_fair": 0.0788964564523492,
+   "xl_model": 0.2557668653321399,
+   "xl_ev": 1.7878588321203246,
+   "xl_stake": 0.009163605870794
+  },
+  {
+   "bet": "LDR_APG Tyrese Haliburton YES",
+   "american": 780.0,
+   "own_fair": 0.0990710040980045,
+   "engine_fair": 0.0990710040980044,
+   "model": 0.2213094426478753,
+   "own_ev": 0.9475230953013027,
+   "own_ev_shrunk75": 0.14074940087215526,
+   "own_single_kelly": 0.004511198745902412,
+   "own_joint_stake": 0.004414654675322003,
+   "engine_joint_stake": 0.004414625887716229,
+   "xl_fair": 0.0990710040980044,
+   "xl_model": 0.2213094426478753,
+   "xl_ev": 0.9475230953013027,
+   "xl_stake": 0.0044146258877162
+  },
+  {
+   "bet": "LDR_TPG LaMelo Ball YES",
+   "american": 1100.0,
+   "own_fair": 0.07134840039779543,
+   "engine_fair": 0.0713484003977987,
+   "model": 0.1949018106301297,
+   "own_ev": 1.3388217275615566,
+   "own_ev_shrunk75": 0.22684103547054812,
+   "own_single_kelly": 0.005155478078876094,
+   "own_joint_stake": 0.005134058162492433,
+   "engine_joint_stake": 0.005134058547604049,
+   "xl_fair": 0.0713484003977987,
+   "xl_model": 0.1949018106301297,
+   "xl_ev": 1.3388217275615566,
+   "xl_stake": 0.005134058547604
+  }
+ ],
+ "team_model_from_sims": [
+  {
+   "bet": "CONF_EAST Toronto Raptors YES",
+   "sim_marginal": 0.17624,
+   "table_model": 0.17624,
+   "abs_diff": 0.0
+  },
+  {
+   "bet": "DIV_ATLANTIC Toronto Raptors YES",
+   "sim_marginal": 0.3341,
+   "table_model": 0.3341,
+   "abs_diff": 0.0
+  },
+  {
+   "bet": "PLAYIN_EAST Chicago Bulls YES",
+   "sim_marginal": 0.25403,
+   "table_model": 0.25403,
+   "abs_diff": 0.0
+  },
+  {
+   "bet": "PLAYOFFS Minnesota Timberwolves NO",
+   "sim_marginal": 0.31825,
+   "table_model": 0.31825,
+   "abs_diff": 0.0
+  }
+ ],
+ "max_fair_diff": 3.2751579226442118e-15,
+ "max_random_devig_diff": 4.3520742565306136e-14,
+ "max_stake_diff": 4.563391696101732e-07,
+ "total_stake_own": 0.049000976153266006,
+ "total_stake_engine": 0.049001016824396997,
+ "max_xl_fair_diff": 1.827519940933442e-10,
+ "max_xl_stake_diff": 9.454242944073599e-17,
+ "n_xl_matched": 9
+}

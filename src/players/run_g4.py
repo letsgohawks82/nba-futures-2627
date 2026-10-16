@@ -32,11 +32,13 @@ def tdef_model(m):
     return dict(coef=b.tolist(), sd=float(res.std()))
 
 
-def run_sims(pool, gp, wins_p, cal, coefs, rookie_fit, tdef_fit, bpm_fit, dbpm_fit, rng, sd_scale=1.0, toggle65=True, mpg_sd=0.32):
+def run_sims(pool, gp, wins_p, cal, coefs, rookie_fit, tdef_fit, bpm_fit, dbpm_fit, rng, sd_scale=1.0, toggle65=True, mpg_sd=0.32, cap=None):
     """One batch of n sims given gp (n,m) and team win fraction (n,m). Returns dict market -> (m,) mean win credit."""
     n, m = gp.shape; out = {}
     st = L.draw_stats(pool, cal, n, rng, sd_scale)
-    for sn in L.SN: out["LDR_" + sn] = L.leader_credit(st[sn], gp, total_alt=L.TOTAL_ALT[sn])
+    for sn in L.SN:
+        out["LDR_" + sn] = L.leader_credit(st[sn], gp, total_alt=L.TOTAL_ALT[sn])
+        if cap is not None: cap["LDR_" + sn] = L.leader_winner(st[sn], gp, rng, L.TOTAL_ALT[sn])
     elig = (gp >= ASSUME["award_min_games"]) & (pool.proj_mpg.values[None, :] >= ASSUME["award_min_mpg"]) if toggle65 else np.ones_like(gp, bool)
     gum = lambda: rng.gumbel(size=(n, m)).astype(np.float32)
     # MVP
@@ -44,12 +46,14 @@ def run_sims(pool, gp, wins_p, cal, coefs, rookie_fit, tdef_fit, bpm_fit, dbpm_f
     F = dict(bpm=bpm, ppg=st["PPG"], win=wins_p, gp=gp.astype(np.float32), prev_mvp=np.repeat(pool.prev_mvp.values[None, :], n, 0))
     u = sum(coefs["MVP"][f] * A.zf(f, F[f]) for f in A.FEATS["MVP"]) + gum()
     u = np.where(elig & (pool.rookie.values[None, :] | True), u, -np.inf); out["MVP"] = _argmax_credit(u)
+    if cap is not None: cap["MVP"] = np.where(np.isfinite(u.max(1)), u.argmax(1), -1)
     # DPOY
     dbpm = pool.dbpm_hat.values[None, :] + dbpm_fit["sd"] * rng.standard_normal((n, m)).astype(np.float32)
     tb = tdef_fit["coef"]; tdef = tb[0] + tb[1] * wins_p + tb[2] * dbpm + tb[3] * pool.cls.eq("B").values[None, :] + tdef_fit["sd"] * rng.standard_normal((n, m)).astype(np.float32)
     F = dict(dbpm=dbpm, stocks=st["SPG"] + st["BPG"], blkpg=st["BPG"], win=wins_p, tdef=tdef, big=np.repeat(pool.cls.eq("B").values[None, :].astype(np.float32), n, 0), gp=gp.astype(np.float32), prev_dpoy=np.repeat(pool.prev_dpoy.values[None, :], n, 0))
     u = sum(coefs["DPOY"][f] * A.zf(f, F[f]) for f in A.FEATS["DPOY"]) + gum()
     u = np.where(elig, u, -np.inf); out["DPOY"] = _argmax_credit(u)
+    if cap is not None: cap["DPOY"] = np.where(np.isfinite(u.max(1)), u.argmax(1), -1)
     # ROY (2026 draft class only): per-36 box rates from draft slot and age, minutes = projected mpg x lognormal(minutes SD)
     rk = pool.draft26.values
     mpg = pool.proj_mpg.values[None, :] * np.exp(mpg_sd * rng.standard_normal((n, m)) - 0.5 * mpg_sd ** 2)
@@ -58,6 +62,7 @@ def run_sims(pool, gp, wins_p, cal, coefs, rookie_fit, tdef_fit, bpm_fit, dbpm_f
     F = dict(ppg=pts36 * mpg / 36.0, rebast=ra36 * mpg / 36.0, gp=gp.astype(np.float32), lnpick=np.repeat(np.log(pool.pick.values)[None, :], n, 0))
     u = sum(coefs["ROY"][f] * A.zf(f, F[f]) for f in A.FEATS["ROY"]) + gum()
     u = np.where(elig & rk[None, :], u, -np.inf); out["ROY"] = _argmax_credit(u)
+    if cap is not None: cap["ROY"] = np.where(np.isfinite(u.max(1)), u.argmax(1), -1)
     return out
 
 

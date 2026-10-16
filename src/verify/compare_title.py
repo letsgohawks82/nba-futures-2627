@@ -8,7 +8,7 @@ from src.sim.runner import simulate, prob
 C = lambda f: os.path.join(os.path.dirname(__file__), "..", "..", "data", "clean", f)
 ind = json.load(open(C("verify_title_independent.json"))); N2 = ind["N"]
 lt = lottery_tables(16, 40_000)
-inp = build({"_lottery_tables": lt, "avail_on": 0.0, "tank_on": 0.0, "po_lambda": 0.0, "po_inj_prob": 0.0, "cup_on": 0.0})
+inp = build({"_lottery_tables": lt, "_calibrate": False, "avail_on": 0.0, "tank_on": 0.0, "po_lambda": 0.0, "po_inj_prob": 0.0, "cup_on": 0.0})
 r = simulate(inp, 200_000, 123, verbose=False)
 teams = inp["teams"]; assert teams == ind["teams"]
 rows = []

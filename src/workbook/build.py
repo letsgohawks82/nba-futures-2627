@@ -41,7 +41,7 @@ def post_excel(path):
     out = {}
     try:
         wb = app.books.open(os.path.abspath(path))
-        ws = wb.sheets["Bet_Card"]; ws.range("A8").formula2 = pt.bet_card_formula(); t1s = wb.sheets["Tier1_Card"]; t1s.range("A8").formula2 = pt.tier1_formula()
+        ws = wb.sheets["Bet_Card"]; ws.range("A8").formula2 = pt.bet_card_formula(); t1s = wb.sheets["Tier1_Card"]; t1s.range("A8").formula2 = pt.tier1_formula(); t1s.range("A41").formula2 = pt.player_tier1_formula()
         d = wb.sheets["Dashboard"]
         for k in range(1, 11):
             r = 16 + k
@@ -56,6 +56,10 @@ def post_excel(path):
         for j, f in enumerate(fm1):
             t1s.range((8, 1 + j), (8 + max(n1, 1) + 3, 1 + j)).number_format = f
         for rr in t1s.range((8, 1), (8 + max(n1, 1) + 3, 14)):
+            rr.api.Font.Name = "Arial"; rr.api.Font.Size = 10
+        for j, f in enumerate(["@", "@", "@", "+0;-0", "0.00%", "0.00%", "0.0%", "0.0%", "0.0000", "$#,##0", "@"]):
+            t1s.range((41, 1 + j), (60, 1 + j)).number_format = f
+        for rr in t1s.range((41, 1), (60, 11)):
             rr.api.Font.Name = "Arial"; rr.api.Font.Size = 10
         for j, f in enumerate(fm):
             ws.range((8, 1 + j), (8 + max(n, 1) + 5, 1 + j)).number_format = f

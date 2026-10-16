@@ -76,6 +76,20 @@ def run(path):
     # (5)/(6) static convention checks recorded by name
     out["sign_conventions"] = ["EV = p x decimal - 1 (positive = value)", "American odds: positive = profit on $100, negative = stake to win $100 (converted by decimal formula)", "Edge = model - fair (positive = model above market)",
                                "CLV = closing implied - placed implied (positive = beat the close)", "Kelly floored at 0; stakes never negative", "Wins residual = actual - predicted"]
+    # (5b) numeric sign checks on cached values; (6) summary tabs linked (formula cells that reference other tabs)
+    vb = openpyxl.load_workbook(path, data_only=True); mp = vb["M_Players"]; bad_ev = bad_stake = 0; n = 0
+    for r in mp.iter_rows(min_row=8, values_only=True):
+        if r[0] is None or not isinstance(r[4], (int, float)): continue
+        n += 1; bad_ev += abs((r[6] * r[4] - 1) - r[9]) > 1e-9; bad_stake += (isinstance(r[15], (int, float)) and r[15] < 0)
+    sm = vb["S_Markets"]; neg = sum(1 for row in sm.iter_rows(min_row=8, min_col=35, max_col=36, values_only=True) for v in row if isinstance(v, (int, float)) and v < 0)
+    out["sign_checks"] = dict(m_players_rows=n, ev_formula_mismatch=int(bad_ev), negative_player_stakes=int(bad_stake), negative_team_stakes=int(neg))
+    linked = {}
+    for sh, cells in (("Dashboard", ["B6", "B7", "B8", "B9", "B10", "B11", "B12", "B13", "B17"]), ("Exposure", ["B14", "B15"]), ("Tier1_Card", ["A8", "A41"]), ("Bet_Card", ["A8"])):
+        for c in cells:
+            v = wb[sh][c].value; v = getattr(v, "text", v)
+            linked[f"{sh}!{c}"] = bool(isinstance(v, str) and v.startswith("=") and re.search(r"[A-Za-z_]+!", v))
+    out["summary_links"] = linked
+    out["summary_hardcoded_engine_outputs"] = ["Exposure!B8:B13 (joint-Kelly engine summary from the sims)", "M_Sims (engine), M_Players probabilities/stakes (engine)"]
     return out
 
 
@@ -85,5 +99,6 @@ if __name__ == "__main__":
     json.dump(r, open(os.path.join(ROOT, "data/clean/workbook_audit.json"), "w"), indent=1)
     print("HARDCODES:"); [print(" ", s, v) for s, v in r["hardcodes"].items() if v]
     print("INCONSISTENT COLUMNS:"); [print(" ", s, v) for s, v in r["inconsistent"].items() if v]
+    print("SIGN:", r["sign_checks"]); print("SUMMARY LINKS:", {k: v for k, v in r["summary_links"].items() if not v} or "all linked")
     print("FORMAT:"); [print(" ", s, v) for s, v in r["format"].items() if v["non_arial10_cells"] or v["merged"] or not v["tab_header_rows"] or v["gridlines"]]
     print("CIRCULAR:", r["circular"], "| EXTERNAL LINKS:", r["external_links"])

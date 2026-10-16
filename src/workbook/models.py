@@ -185,12 +185,13 @@ def build_lottery(wb):
 
 def build_players(wb):
     ws = wb.create_sheet("M_Players"); sheet_header(ws, "M_Players - player markets (G4): stat leaders, MVP, DPOY, ROY", span=14)
-    put(ws, "A4", "Probabilities are simulation outputs (100k season sims; 80% interval = season-block bootstrap of the rate/award fits); EV, shrunk EV and the Tier tests are live formulas on Assumptions. Stat-leader probabilities are sharpened p^1.4 (backtest calibration). TPG = three-pointers made per game. Display-only markets (MIP, 6MOY, COY, Clutch, Cup MVP) are on S_Markets.", "text", italic=True)
+    put(ws, "A4", "Probabilities are simulation outputs (100k season sims; 80% interval = season-block bootstrap of the rate/award fits); EV, shrunk EV and the Tier tests are live formulas on Assumptions. Stat-leader probabilities are sharpened p^gamma (gamma from leave-one-season-out CV; see Backtest notes / G6 report). TPG = three-pointers made per game. Display-only markets (MIP, 6MOY, COY, Clutch, Cup MVP) are on S_Markets.", "text", italic=True)
     put(ws, "A5", "Tier 1 here = Tier 2 test + fair >= A_t1_fair + edge survives A_t1_shrink; stakes are multi-outcome fractional Kelly on the shrunk probability within each market (cap 3% per market); Tier 2 stakes are not shown.", "text", italic=True)
     cols = ["Market", "Selection", "Team", "American", "Decimal", "Fair prob (Shin)", "Model prob", "Model p 10th pct", "Model p 90th pct", "EV (model)", "EV (shrunk)", "EV lo (shrunk)", "Worst scenario EV (shrunk)", "Tier 2",
-            "Tier 1", "Tier 1 stake (frac)", "Tier 1 stake ($)", "Proj mpg", "Proj games", "Driver"]
+            "Tier 1", "Tier 1 stake (frac)", "Tier 1 stake ($)", "Proj mpg", "Proj games", "Driver", "Tier 1 holds at sharpening-exponent CI bounds (engine)"]
     headers(ws, 7, cols, height=45)
     o = pd.read_csv(C("player_pricing_table.csv")); o = o[o.modelled].copy()
+    put(ws, "A6", "Engine Tier 1 count (players)", "text", bold=True); put(ws, "B6", int(o.tier1.sum()), "input", "int")
     o["ord"] = o.market.map({m: i for i, m in enumerate(["MVP", "DPOY", "ROY", "LDR_PPG", "LDR_RPG", "LDR_APG", "LDR_SPG", "LDR_BPG", "LDR_TPG"])})
     o = o.sort_values(["ord", "fair"], ascending=[True, False]).reset_index(drop=True)
     for i, r in o.iterrows():
@@ -201,8 +202,8 @@ def build_players(wb):
         put(ws, f"J{k}", f"=G{k}*E{k}-1", "formula", "pct"); put(ws, f"K{k}", f"=((1-A_shrink)*G{k}+A_shrink*F{k})*E{k}-1", "formula", "pct")
         put(ws, f"L{k}", f"=((1-A_shrink)*H{k}+A_shrink*F{k})*E{k}-1", "formula", "pct"); put(ws, f"M{k}", float(r.ev_s_worst_scenario), "input", "pct")
         put(ws, f"N{k}", f"=AND(K{k}>=A_minev,L{k}>0,M{k}>=A_minev)", "formula")
-        put(ws, f"O{k}", f"=AND(N{k},F{k}>=A_t1_fair,((1-A_t1_shrink)*G{k}+A_t1_shrink*F{k})*E{k}-1>=A_minev,((1-A_t1_shrink)*H{k}+A_t1_shrink*F{k})*E{k}-1>0)", "formula")
+        put(ws, f"O{k}", f"=AND(N{k},U{k},F{k}>=A_t1_fair,((1-A_t1_shrink)*G{k}+A_t1_shrink*F{k})*E{k}-1>=A_minev,((1-A_t1_shrink)*H{k}+A_t1_shrink*F{k})*E{k}-1>0)", "formula")
         put(ws, f"P{k}", float(r.stake_t1), "input", "0.0000"); put(ws, f"Q{k}", f'=IF(AND(O{k},ISNUMBER(A_bankroll)),P{k}*A_bankroll,"-")', "formula", "money")
-        put(ws, f"R{k}", float(r.proj_mpg) if pd.notna(r.proj_mpg) else "-", "input", "num1"); put(ws, f"S{k}", float(r.proj_gp) if pd.notna(r.proj_gp) else "-", "input", "num1"); put(ws, f"T{k}", str(r.driver) if isinstance(r.driver, str) else "", "text")
+        put(ws, f"R{k}", float(r.proj_mpg) if pd.notna(r.proj_mpg) else "-", "input", "num1"); put(ws, f"S{k}", float(r.proj_gp) if pd.notna(r.proj_gp) else "-", "input", "num1"); put(ws, f"T{k}", str(r.driver) if isinstance(r.driver, str) else "", "text"); put(ws, f"U{k}", bool(r.tier1_gamma_lo and r.tier1_gamma_hi), "input")
     last = 7 + len(o); REG["m_players"] = dict(first=8, last=last)
     widths(ws, {"A": 12, "B": 28, "T": 90}); finish(ws)

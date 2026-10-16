@@ -79,3 +79,6 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 ## G4 (2026-10-15) - player markets built, awaiting approval
 - LDR_TPG = THREE-POINTERS MADE per game (not turnovers; G1 note was wrong). src/players/*, `run.py sim` ends with run_g4; `run.py price` ends with price_players. Leader probs sharpened p^1.4 (g4_leader_sharpen.json). 5 player Tier 1 bets (2.3% stake) on M_Players; not yet merged into Tier1_Card/Exposure. Report reports/G4_report.md.
 - Next: G6 (independent verification, final report, PDF); merge player Tier 1 into Exposure if Max wants.
+
+## G6 (2026-10-15) - done, awaiting approval
+- Leader sharpening gamma by LOSO CV = 1.50 [1.30,1.75]; SD/calibration now on top-15. Joint Kelly (src/pricing/joint.py; run.py price order: run_pricing, tier1, price_players, joint) -> 9 Tier 1 bets, 4.9% stake. Tier1_Card player block at row 41; Exposure has joint corr. Independent verify: src/verify/g6_independent.py. PDF via src/workbook/export_pdf.py (matplotlib, no printer needed). Final report reports/G6_final.md.

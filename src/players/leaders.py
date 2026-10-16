@@ -10,11 +10,15 @@ TOTAL_ALT = {"PPG": 1400, "RPG": 800, "APG": 400, "SPG": 125, "BPG": 100, "TPG":
 SN = list(STATS)
 
 
-def calib_from_backtest(R, seasons=None):
+TOP_K = 15          # contender group the calibration/SD is estimated on (top-15 predicted per stat-season; the pooled top-30 over-states the SD for leaders, see g4_variance_check.json)
+
+
+def calib_from_backtest(R, seasons=None, top_k=None):
     """Per stat: (slope, intercept, rel_sd of act/cal_pred, pred_lo) fit on the top-30 predicted players of the given seasons."""
     out = {}
     for sn in SN:
         g = R[R.stat == sn]
+        g = g[g.groupby("season").pred.rank(ascending=False) <= (top_k or TOP_K)]
         if seasons is not None: g = pd.concat([g[g.season == s] for s in seasons])
         b = np.polyfit(g.pred, g.act, 1); cal = np.polyval(b, g.pred)
         lr = np.log(g.act.clip(lower=0.05) / cal)
@@ -62,3 +66,10 @@ def run(pool, gp, cal, n_chunk=20_000, seed=3, sd_scale=1.0):
         for sn in SN: acc[sn] += leader_credit(st[sn], gp[done:done + k], total_alt=TOTAL_ALT[sn]) * k
         done += k
     return pd.DataFrame({sn: acc[sn] / N for sn in SN}, index=pool.index)
+
+
+def leader_winner(vals, gp, rng, total_alt=np.inf):
+    """Per-sim winning player index (-1 if nobody qualifies); ties at the 0.1-rounded value broken at random (expected value equals the dead-heat 1/k credit)."""
+    ok = (gp >= QUAL_GAMES) | (vals * gp >= total_alt)
+    v = np.where(ok, np.round(vals, 1), -1.0) + rng.random(vals.shape) * 1e-3
+    j = v.argmax(1); return np.where(v.max(1) > 0, j, -1)

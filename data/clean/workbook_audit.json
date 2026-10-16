@@ -4,7 +4,7 @@
   "Assumptions": {
    "30": [
     1,
-    "B43"
+    "B48"
    ]
   },
   "Overrides": {},
@@ -17,6 +17,7 @@
   "M_Players": {},
   "S_Markets": {},
   "Bet_Card": {},
+  "Tier1_Card": {},
   "Exposure": {},
   "Dashboard": {
    "9": [
@@ -36,9 +37,9 @@
  "inconsistent": {
   "Cover": {
    "A": {
-    "patterns": 21,
-    "dominant_share": 0.048,
-    "n": 21
+    "patterns": 22,
+    "dominant_share": 0.045,
+    "n": 22
    }
   },
   "Assumptions": {},
@@ -213,12 +214,37 @@
     "dominant_share": 0.204,
     "n": 294
    },
+   "U": {
+    "patterns": 20,
+    "dominant_share": 0.204,
+    "n": 294
+   },
    "V": {
     "patterns": 20,
     "dominant_share": 0.204,
     "n": 294
    },
    "W": {
+    "patterns": 20,
+    "dominant_share": 0.204,
+    "n": 294
+   },
+   "AH": {
+    "patterns": 20,
+    "dominant_share": 0.204,
+    "n": 294
+   },
+   "AI": {
+    "patterns": 20,
+    "dominant_share": 0.204,
+    "n": 294
+   },
+   "AK": {
+    "patterns": 20,
+    "dominant_share": 0.204,
+    "n": 294
+   },
+   "AL": {
     "patterns": 20,
     "dominant_share": 0.204,
     "n": 294
@@ -230,18 +256,19 @@
    }
   },
   "Bet_Card": {},
+  "Tier1_Card": {},
   "Exposure": {
    "B": {
-    "patterns": 2,
-    "dominant_share": 0.968,
-    "n": 31
+    "patterns": 4,
+    "dominant_share": 0.909,
+    "n": 33
    }
   },
   "Dashboard": {
    "B": {
     "patterns": 40,
-    "dominant_share": 0.39,
-    "n": 77
+    "dominant_share": 0.385,
+    "n": 78
    },
    "C": {
     "patterns": 33,
@@ -259,14 +286,14 @@
   "Tracker": {},
   "Checks": {
    "B": {
-    "patterns": 25,
-    "dominant_share": 0.04,
-    "n": 25
+    "patterns": 29,
+    "dominant_share": 0.034,
+    "n": 29
    },
    "C": {
     "patterns": 3,
-    "dominant_share": 0.875,
-    "n": 24
+    "dominant_share": 0.893,
+    "n": 28
    }
   },
   "Data_Sources": {},
@@ -342,7 +369,7 @@
    "non_arial10_cells": 0,
    "merged": 0,
    "gridlines": false,
-   "min_label_width": 28.0,
+   "min_label_width": 24.0,
    "tab_header_rows": true
   },
   "S_Markets": {
@@ -359,11 +386,18 @@
    "min_label_width": 24.0,
    "tab_header_rows": true
   },
+  "Tier1_Card": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 24.0,
+   "tab_header_rows": true
+  },
   "Exposure": {
    "non_arial10_cells": 0,
    "merged": 0,
    "gridlines": false,
-   "min_label_width": 40.0,
+   "min_label_width": 46.0,
    "tab_header_rows": true
   },
   "Dashboard": {
@@ -439,5 +473,31 @@
   "CLV = closing implied - placed implied (positive = beat the close)",
   "Kelly floored at 0; stakes never negative",
   "Wins residual = actual - predicted"
+ ],
+ "sign_checks": {
+  "m_players_rows": 236,
+  "ev_formula_mismatch": 0,
+  "negative_player_stakes": 0,
+  "negative_team_stakes": 0
+ },
+ "summary_links": {
+  "Dashboard!B6": true,
+  "Dashboard!B7": true,
+  "Dashboard!B8": true,
+  "Dashboard!B9": true,
+  "Dashboard!B10": true,
+  "Dashboard!B11": true,
+  "Dashboard!B12": true,
+  "Dashboard!B13": false,
+  "Dashboard!B17": true,
+  "Exposure!B14": true,
+  "Exposure!B15": true,
+  "Tier1_Card!A8": true,
+  "Tier1_Card!A41": true,
+  "Bet_Card!A8": true
+ },
+ "summary_hardcoded_engine_outputs": [
+  "Exposure!B8:B13 (joint-Kelly engine summary from the sims)",
+  "M_Sims (engine), M_Players probabilities/stakes (engine)"
  ]
 }
