@@ -12,3 +12,4 @@ output/figs/pdf_p*.png
 data/clean/prelock_backup/
 chain_*.sh
 nohup.out
+audit_pack/
