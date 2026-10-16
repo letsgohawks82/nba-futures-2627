@@ -14,9 +14,9 @@ def stage(s):
     if s == "ratings":
         return sh("src.ratings.backtest") or sh("src.ratings.project_2027")
     if s == "sim":
-        return sh("src.sim.run_sim") or sh("src.sim.robust") or sh("src.pricing.param_draws")
+        return sh("src.sim.run_sim") or sh("src.sim.robust") or sh("src.pricing.param_draws") or sh("src.players.run_g4")
     if s == "price":
-        return sh("src.pricing.run_pricing") or sh("src.pricing.tier1")
+        return sh("src.pricing.run_pricing") or sh("src.pricing.tier1") or sh("src.pricing.price_players")
     if s == "build":
         return sh("src.workbook.build")
     if s == "verify":

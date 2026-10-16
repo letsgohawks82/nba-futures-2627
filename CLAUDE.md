@@ -71,3 +71,11 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 - PLAYOFFS = 16-team field (Bracket), user-confirmed; confirm with book. PLAYOFFS portfolio outcome now uses the bracket flag (bit 128).
 - Model vs market: RMSE 4.22, slope .76, compression slope -0.24 [-0.34,-0.13]; backtest residual slope +0.015 (no over-regression). Roster audit: ESPN vs model 0 diffs; Robinson signed with BOS (FA).
 - New modules: src/pricing/{diagnostics,drivers,compression}.py, src/sim/{meanmatch,sensitivity}.py.
+
+## G5 Tier 1 (2026-10-15)
+- Tier 1 = filter tab (Tier1_Card) over the 52-bet Tier 2 card; Tier 2 unstaked by default (Assumptions tier2_staking_on=0). Code src/pricing/tier1.py (run via `run.py price`). Funnel 52 -> 27 (shrink .75) -> 20 (fair>=5%) -> 19 (direction) -> 4 (named driver). Stake 2.0% total, cap 10%. Report reports/G5_tier1.md.
+- Next: G4 player markets (user: awards/stat leaders are softer markets).
+
+## G4 (2026-10-15) - player markets built, awaiting approval
+- LDR_TPG = THREE-POINTERS MADE per game (not turnovers; G1 note was wrong). src/players/*, `run.py sim` ends with run_g4; `run.py price` ends with price_players. Leader probs sharpened p^1.4 (g4_leader_sharpen.json). 5 player Tier 1 bets (2.3% stake) on M_Players; not yet merged into Tier1_Card/Exposure. Report reports/G4_report.md.
+- Next: G6 (independent verification, final report, PDF); merge player Tier 1 into Exposure if Max wants.

@@ -184,15 +184,25 @@ def build_lottery(wb):
 
 
 def build_players(wb):
-    ws = wb.create_sheet("M_Players"); sheet_header(ws, "M_Players - player market probabilities (G4 pending). Current drivers: projected rating, minutes, availability", span=10)
-    put(ws, "A5", "G4 (stat leaders, MVP, DPOY, ROY) is built after the team Bet Card ships. Until then these markets have NO model probability and NO bets. Display-only markets (MIP, 6MOY, COY, Clutch, Cup MVP) show de-vigged fair prices only on S_Markets.", "text", italic=True)
-    headers(ws, 7, ["Player", "Team", "Rating (blended)", "Projected mpg", "Projected games", "P(>=65 games) sim", "DARKO DPM"])
-    P = pd.read_csv(C("player_projection_2027.csv")).sort_values("rating", ascending=False).head(60).reset_index(drop=True)
-    G = pd.read_csv(C("sim_player_games.csv"))
-    for i, r in P.iterrows():
-        row = 8 + i
-        put(ws, f"A{row}", r["name"], "input"); put(ws, f"B{row}", r.abbr, "input"); put(ws, f"C{row}", float(r.rating), "input", "num2"); put(ws, f"D{row}", float(r.proj_mpg), "input", "num1")
-        put(ws, f"E{row}", float(r.proj_gp), "input", "num1")
-        g = G[G.player == r["name"]]
-        put(ws, f"F{row}", float(g.p_ge_65_games.iloc[0]) if len(g) else "-", "input", "pct"); put(ws, f"G{row}", float(r.dpm) if pd.notna(r.dpm) else "-", "input", "num1")
-    widths(ws, {"A": 28}); finish(ws)
+    ws = wb.create_sheet("M_Players"); sheet_header(ws, "M_Players - player markets (G4): stat leaders, MVP, DPOY, ROY", span=14)
+    put(ws, "A4", "Probabilities are simulation outputs (100k season sims; 80% interval = season-block bootstrap of the rate/award fits); EV, shrunk EV and the Tier tests are live formulas on Assumptions. Stat-leader probabilities are sharpened p^1.4 (backtest calibration). TPG = three-pointers made per game. Display-only markets (MIP, 6MOY, COY, Clutch, Cup MVP) are on S_Markets.", "text", italic=True)
+    put(ws, "A5", "Tier 1 here = Tier 2 test + fair >= A_t1_fair + edge survives A_t1_shrink; stakes are multi-outcome fractional Kelly on the shrunk probability within each market (cap 3% per market); Tier 2 stakes are not shown.", "text", italic=True)
+    cols = ["Market", "Selection", "Team", "American", "Decimal", "Fair prob (Shin)", "Model prob", "Model p 10th pct", "Model p 90th pct", "EV (model)", "EV (shrunk)", "EV lo (shrunk)", "Worst scenario EV (shrunk)", "Tier 2",
+            "Tier 1", "Tier 1 stake (frac)", "Tier 1 stake ($)", "Proj mpg", "Proj games", "Driver"]
+    headers(ws, 7, cols, height=45)
+    o = pd.read_csv(C("player_pricing_table.csv")); o = o[o.modelled].copy()
+    o["ord"] = o.market.map({m: i for i, m in enumerate(["MVP", "DPOY", "ROY", "LDR_PPG", "LDR_RPG", "LDR_APG", "LDR_SPG", "LDR_BPG", "LDR_TPG"])})
+    o = o.sort_values(["ord", "fair"], ascending=[True, False]).reset_index(drop=True)
+    for i, r in o.iterrows():
+        k = 8 + i
+        put(ws, f"A{k}", r.market, "input"); put(ws, f"B{k}", r.selection, "input"); put(ws, f"C{k}", r.team if isinstance(r.team, str) else "-", "input"); put(ws, f"D{k}", int(r.american), "input", "0")
+        put(ws, f"E{k}", f"=IF(D{k}>0,1+D{k}/100,1+100/ABS(D{k}))", "formula", "num3"); put(ws, f"F{k}", float(r.fair), "input", "pct2")
+        put(ws, f"G{k}", float(r.p), "input", "pct2"); put(ws, f"H{k}", float(r.p_lo), "input", "pct2"); put(ws, f"I{k}", float(r.p_hi), "input", "pct2")
+        put(ws, f"J{k}", f"=G{k}*E{k}-1", "formula", "pct"); put(ws, f"K{k}", f"=((1-A_shrink)*G{k}+A_shrink*F{k})*E{k}-1", "formula", "pct")
+        put(ws, f"L{k}", f"=((1-A_shrink)*H{k}+A_shrink*F{k})*E{k}-1", "formula", "pct"); put(ws, f"M{k}", float(r.ev_s_worst_scenario), "input", "pct")
+        put(ws, f"N{k}", f"=AND(K{k}>=A_minev,L{k}>0,M{k}>=A_minev)", "formula")
+        put(ws, f"O{k}", f"=AND(N{k},F{k}>=A_t1_fair,((1-A_t1_shrink)*G{k}+A_t1_shrink*F{k})*E{k}-1>=A_minev,((1-A_t1_shrink)*H{k}+A_t1_shrink*F{k})*E{k}-1>0)", "formula")
+        put(ws, f"P{k}", float(r.stake_t1), "input", "0.0000"); put(ws, f"Q{k}", f'=IF(AND(O{k},ISNUMBER(A_bankroll)),P{k}*A_bankroll,"-")', "formula", "money")
+        put(ws, f"R{k}", float(r.proj_mpg) if pd.notna(r.proj_mpg) else "-", "input", "num1"); put(ws, f"S{k}", float(r.proj_gp) if pd.notna(r.proj_gp) else "-", "input", "num1"); put(ws, f"T{k}", str(r.driver) if isinstance(r.driver, str) else "", "text")
+    last = 7 + len(o); REG["m_players"] = dict(first=8, last=last)
+    widths(ws, {"A": 12, "B": 28, "T": 90}); finish(ws)
