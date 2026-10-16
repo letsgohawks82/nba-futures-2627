@@ -33,15 +33,15 @@ Before the fix, the simulated top-5 values were 7-17% below history: PPG −6.9%
 Games of the simulated top 5 match history (67-71). The residual BPG gap is Wembanyama-era minutes. **γ was re-fit:** the CV is unchanged at **γ = 1.50, 80% CI [1.30, 1.75]**, because the leader backtest uses prior-season minutes and does not depend on the production minutes model. Player Tier 1 bets are required to hold at both CI bounds. The bets that survive do.
 
 ## 2. Jokic (after the fix)
-- **RPG:** 12.0 calibrated projection (rate × 34.9 mpg), 61 projected games, P(≥58 games) 64%, **P(lead) 19.6%, the model's top RPG name by a point before the Sabonis tie**; rivals Sabonis 12.3 (53 games, 16.3%), Towns 11.2, Gobert 11.1.
-- **APG:** 9.5 projected, same minutes and games, **P(lead) 23.1%, the model's top APG name**; rivals Trae Young 9.7 (but only 50 games), Haliburton 9.0 (52 games), Cunningham 8.8.
+- **RPG:** 12.0 calibrated projection (rate × 34.9 mpg), 61 projected games, P(≥58 games) 64%, **P(lead) 19.6%** (the highest RPG probability of any player; Sabonis is higher on projection, 12.3, but has 53 games); rivals Sabonis 12.3 (53 games, 16.3%), Towns 11.2, Gobert 11.1.
+- **APG:** 9.5 projected, same minutes and games, **P(lead) 23.1%, the highest APG probability**; rivals Trae Young 9.7 (but only 50 games), Haliburton 9.0 (52 games), Cunningham 8.8.
 - **Why he was not the top rival before.** The minutes deflation took him from 33.9 to 30.0 mpg, which cut his RPG and APG by about 12%. With the fix he is the leading or co-leading rival in both. His remaining discount is games: 61 projected, 64% to reach 58.
 
 ## 3. Toronto Atlantic with NYK and PHI at market-implied wins
 NYK set to 50.5 wins and PHI to 50.0 (book line plus fair-probability median; the other 28 teams shifted −0.43 wins each so the league still sums to 1,230). 100k mean-matched sims plus 40 parameter draws:
 - **TOR division title 22.6% [21.6, 24.5]** (was 33.4%), against a book fair of 10.5%. EV at 0.75 shrink is +1.6% with a lower bound of −0.3%.
 - **TOR East title 14.9% [13.7, 16.7]**, against a fair of 8.3%. EV at 0.75 shrink is negative (lower bound −3.4%).
-- Neither passes the Tier 1 test, so **both Toronto bets leave Tier 1** (still Tier 2). Most of the edge came from the model having NYK and PHI far below the book; with Kawhi/Dick as the only driver, the Raptors are about 50% the book's price too low in the division but not enough at the honest weight. Rule recorded in `params/tier1_overrides.json`.
+- Neither passes the Tier 1 test, so **both Toronto bets leave Tier 1** (still Tier 2). Most of the original edge came from the model having NYK and PHI 6-7 wins below the book; with Kawhi/Dick as the only driver, the Raptors are still 2× the book's division price, but that does not survive the 0.75 shrink. Rule recorded in `params/tier1_overrides.json`.
 
 ## 4. Rookie usage
 Top ROY candidates vs the last five winners (ppg and mpg actual: Barnes 15.3 / 35.4, Banchero 20.0 / 33.8, Wembanyama 21.4 / 29.7, Castle 14.7 / 26.7, Flagg 21.0 / 33.5):
