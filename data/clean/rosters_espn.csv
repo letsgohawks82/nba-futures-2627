@@ -123,10 +123,10 @@ CLE,4683747,Jaylon Tyson,G,23,"6' 6""",215 lbs,3.0,California,20.0,Active,[],200
 CLE,5106261,Ernest Udeh Jr.,C,22,"6' 11""",266 lbs,0.0,Miami,39.0,Active,[],2004-01-08T08:00Z
 CLE,4576087,Peyton Watson,G,24,"6' 8""",200 lbs,5.0,UCLA,8.0,Active,[],2002-09-11T07:00Z
 CLE,5457832,Noam Yaacov,G,21,"6' 1""",,0.0,,30.0,Active,[],2004-10-20T07:00Z
-DAL,4593125,Santi Aldama,F,25,"7' 0""",215 lbs,6.0,Loyola Maryland,34.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-14T22:34Z""}]",2001-01-10T08:00Z
+DAL,4593125,Santi Aldama,F,25,"7' 0""",215 lbs,6.0,Loyola Maryland,34.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T17:46Z""}]",2001-01-10T08:00Z
 DAL,5148538,Tarik Biberovic,F,25,"6' 7""",218 lbs,0.0,,13.0,Active,[],2001-01-28T08:00Z
 DAL,4432582,Max Christie,G,23,"6' 5""",190 lbs,5.0,Michigan State,0.0,Active,[],2003-02-10T08:00Z
-DAL,4701208,Moussa Cisse,C,24,"6' 11""",220 lbs,2.0,Memphis,30.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T03:14Z""}]",2002-09-10T07:00Z
+DAL,4701208,Moussa Cisse,C,24,"6' 11""",220 lbs,2.0,Memphis,30.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T19:32Z""}]",2002-09-10T07:00Z
 DAL,5279129,Sergio de Larrea,F,20,"6' 7""",202 lbs,0.0,,55.0,Active,[],2005-12-04T08:00Z
 DAL,5105411,Jorge Diaz Graham,F,23,"6' 11""",205 lbs,0.0,Oregon State,,Active,[],2003-06-29T07:00Z
 DAL,5041939,Cooper Flagg,F,19,"6' 9""",205 lbs,2.0,Duke,32.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-14T22:24Z""}]",2006-12-21T08:00Z
@@ -142,7 +142,7 @@ DAL,3138160,Caleb Martin,F,31,"6' 5""",205 lbs,8.0,Nevada,16.0,Active,[],1995-09
 DAL,4898238,John Poulakidas,G,23,"6' 6""",205 lbs,2.0,Yale,1.0,Active,[],2003-04-04T08:00Z
 DAL,2531367,Dwight Powell,F,35,"6' 10""",240 lbs,13.0,Stanford,7.0,Active,[],1991-07-20T07:00Z
 DAL,5211175,Zaccharie Risacher,F,21,"6' 8""",200 lbs,3.0,,10.0,Active,[],2005-04-08T07:00Z
-DAL,4432107,Marcus Sasser,G,26,"6' 1""",195 lbs,4.0,Houston,8.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-14T22:43Z""}]",2000-09-21T07:00Z
+DAL,4432107,Marcus Sasser,G,26,"6' 1""",195 lbs,4.0,Houston,8.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T17:45Z""}]",2000-09-21T07:00Z
 DAL,4278078,P.J. Washington,F,28,"6' 7""",230 lbs,8.0,Kentucky,25.0,Active,[],1998-08-23T07:00Z
 DEN,4277848,Marvin Bagley III,F,27,"6' 10""",235 lbs,9.0,Duke,3.0,Active,[],1999-03-14T08:00Z
 DEN,4431767,Christian Braun,G,25,"6' 6""",220 lbs,5.0,Kansas,0.0,Active,[],2001-04-17T07:00Z
@@ -206,16 +206,17 @@ GSW,4997536,Gui Santos,F,24,"6' 7""",185 lbs,4.0,,15.0,Active,[],2002-06-22T07:0
 GSW,4433159,Dalen Terry,G,24,"6' 6""",210 lbs,5.0,Arizona,21.0,Active,[],2002-07-12T07:00Z
 GSW,5170949,Alex Toohey,F,22,"6' 8""",223 lbs,2.0,,22.0,Active,[],2004-05-05T07:00Z
 GSW,4397040,Brandon Williams,G,26,"6' 1""",190 lbs,5.0,Arizona,12.0,Active,[],1999-11-22T08:00Z
-HOU,2991235,Steven Adams,C,33,"6' 11""",265 lbs,14.0,Pittsburgh,12.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-11T10:06Z""}]",1993-07-20T07:00Z
+HOU,2991235,Steven Adams,C,33,"6' 11""",265 lbs,14.0,Pittsburgh,12.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-16T01:44Z""}]",1993-07-20T07:00Z
 HOU,3037789,Bogdan Bogdanovic,G,34,"6' 5""",225 lbs,10.0,,31.0,Active,[],1992-08-18T07:00Z
 HOU,3102529,Clint Capela,C,32,"6' 10""",256 lbs,13.0,,30.0,Active,[],1994-05-18T07:00Z
 HOU,4683860,Quadir Copeland,G,23,"6' 6""",220 lbs,0.0,NC State,25.0,Active,[],2003-09-01T07:00Z
 HOU,4592857,Isaiah Crawford,F,24,"6' 6""",220 lbs,3.0,Louisiana Tech,27.0,Active,[],2001-11-01T08:00Z
-HOU,3202,Kevin Durant,F,38,"6' 11""",240 lbs,20.0,Texas,7.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-09T15:03Z""}]",1988-09-29T07:00Z
+HOU,3202,Kevin Durant,F,38,"6' 11""",240 lbs,20.0,Texas,7.0,Active,[],1988-09-29T07:00Z
 HOU,4433192,Tari Eason,F,25,"6' 8""",215 lbs,5.0,LSU,17.0,Active,[],2001-05-10T07:00Z
+HOU,4432394,Cameron Matthews,F,24,"6' 7""",235 lbs,0.0,Mississippi State,,Active,[],2001-12-23T08:00Z
 HOU,4709131,Sean Pedulla,G,24,"6' 1""",195 lbs,2.0,Ole Miss,0.0,Active,[],2002-10-10T07:00Z
 HOU,5105553,Julian Phillips,F,22,"6' 6""",198 lbs,6.0,Tennessee,3.0,Active,[],2003-11-05T08:00Z
-HOU,4871144,Alperen Sengun,C,24,"6' 11""",243 lbs,6.0,,28.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-11T10:05Z""}]",2002-07-25T07:00Z
+HOU,4871144,Alperen Sengun,C,24,"6' 11""",243 lbs,6.0,,28.0,Active,[],2002-07-25T07:00Z
 HOU,4711272,Reed Sheppard,G,22,"6' 2""",185 lbs,3.0,Kentucky,15.0,Active,[],2004-06-24T07:00Z
 HOU,2990992,Marcus Smart,G,32,"6' 3""",220 lbs,13.0,Oklahoma State,36.0,Active,[],1994-03-06T08:00Z
 HOU,4432639,Jabari Smith Jr.,F,23,"6' 11""",220 lbs,5.0,Auburn,10.0,Active,[],2003-05-13T07:00Z
@@ -223,7 +224,7 @@ HOU,3136777,Jae'Sean Tate,F,30,"6' 4""",230 lbs,7.0,Ohio State,8.0,Active,[],199
 HOU,4684740,Amen Thompson,G,23,"6' 7""",200 lbs,4.0,,1.0,Active,[],2003-01-30T08:00Z
 HOU,5105837,Bruce Thornton,G,23,"6' 0""",223 lbs,0.0,Ohio State,2.0,Active,[],2003-09-14T07:00Z
 HOU,4432827,Oscar Tshiebwe,C,26,"6' 8""",255 lbs,4.0,Kentucky,9.0,Active,[],1999-11-27T08:00Z
-HOU,2991230,Fred VanVleet,G,32,"6' 0""",197 lbs,9.0,Wichita State,5.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-11T10:01Z""}]",1994-02-25T08:00Z
+HOU,2991230,Fred VanVleet,G,32,"6' 0""",197 lbs,9.0,Wichita State,5.0,Active,[],1994-02-25T08:00Z
 IND,4431752,Kobe Brown,G,26,"6' 7""",250 lbs,4.0,Missouri,24.0,Active,[],2000-01-01T08:00Z
 IND,5157066,Johnny Furphy,G,21,"6' 8""",200 lbs,3.0,Kansas,12.0,Active,[],2004-12-07T08:00Z
 IND,4396993,Tyrese Haliburton,G,26,"6' 5""",185 lbs,7.0,Iowa State,0.0,Active,[],2000-02-29T08:00Z
@@ -233,7 +234,7 @@ IND,3999,James Johnson,F,39,"6' 7""",240 lbs,17.0,Wake Forest,16.0,Active,[],198
 IND,2530530,T.J. McConnell,G,34,"6' 1""",190 lbs,12.0,Arizona,9.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-14T00:19Z""}]",1992-03-25T08:00Z
 IND,2580365,Larry Nance Jr.,F,33,"6' 6""",245 lbs,12.0,Wyoming,22.0,Active,[],1993-01-01T08:00Z
 IND,4395712,Andrew Nembhard,G,26,"6' 4""",191 lbs,5.0,Gonzaga,2.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-14T00:16Z""}]",2000-01-16T08:00Z
-IND,4396909,Aaron Nesmith,G,26,"6' 5""",215 lbs,7.0,Vanderbilt,23.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-14T00:17Z""}]",1999-10-16T07:00Z
+IND,4396909,Aaron Nesmith,G,27,"6' 5""",215 lbs,7.0,Vanderbilt,23.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T17:33Z""}]",1999-10-16T07:00Z
 IND,3133603,Kelly Oubre Jr.,G,30,"6' 8""",203 lbs,12.0,Kansas,10.0,Active,[],1995-12-09T08:00Z
 IND,4433076,Ben Sheppard,G,25,"6' 6""",190 lbs,4.0,Belmont,26.0,Active,[],2001-07-16T07:00Z
 IND,3149673,Pascal Siakam,F,32,"6' 8""",245 lbs,11.0,New Mexico State,43.0,Active,[],1994-04-02T08:00Z
@@ -265,7 +266,7 @@ LAC,4702785,Jahmyl Telfort,F,25,"6' 7""",225 lbs,0.0,Butler,19.0,Active,[],2001-
 LAC,5254165,Keaton Wagler,G,19,"6' 5""",188 lbs,0.0,Illinois,1.0,Active,[],2007-02-03T08:00Z
 LAC,4683935,Blake Wesley,G,23,"6' 4""",190 lbs,5.0,Notre Dame,20.0,Active,[],2003-03-16T08:00Z
 LAC,4397355,DeAndre Williams,F,30,"6' 9""",205 lbs,,Memphis,,Active,[],1996-10-04T07:00Z
-LAL,5113969,Cameron Carr,G,21,"6' 5""",184 lbs,0.0,Baylor,43.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-14T00:41Z""}]",2004-11-21T08:00Z
+LAL,5113969,Cameron Carr,G,21,"6' 5""",184 lbs,0.0,Baylor,43.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T20:09Z""}]",2004-11-21T08:00Z
 LAL,4684443,Rafael Castro,F,23,"6' 9""",224 lbs,0.0,George Washington,,Active,[],2003-03-30T08:00Z
 LAL,3945274,Luka Doncic,G,27,"6' 8""",230 lbs,9.0,,77.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-14T00:33Z""}]",1999-02-28T08:00Z
 LAL,4397014,Quentin Grimes,G,26,"6' 4""",210 lbs,6.0,Houston,5.0,Active,[],2000-05-08T07:00Z
@@ -281,11 +282,11 @@ LAL,4278580,Sandro Mamukelashvili,F,27,"6' 9""",240 lbs,6.0,Seton Hall,54.0,Acti
 LAL,4702972,Chris Manon,G,24,"6' 4""",209 lbs,2.0,Vanderbilt,30.0,Active,[],2001-12-09T08:00Z
 LAL,5114350,AK Okereke,F,23,"6' 7""",244 lbs,0.0,Vanderbilt,31.0,Active,[],2003-07-02T07:00Z
 LAL,4066457,Austin Reaves,G,28,"6' 5""",197 lbs,6.0,Oklahoma,15.0,Active,[],1998-05-29T07:00Z
-LAL,4277811,Collin Sexton,G,27,"6' 3""",190 lbs,9.0,Alabama,10.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-14T00:39Z""}]",1999-01-04T08:00Z
-LAL,5060631,Adou Thiero,F,22,"6' 8""",220 lbs,2.0,Arkansas,1.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-14T00:37Z""}]",2004-05-08T07:00Z
+LAL,4277811,Collin Sexton,G,27,"6' 3""",190 lbs,9.0,Alabama,10.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T20:06Z""}]",1999-01-04T08:00Z
+LAL,5060631,Adou Thiero,F,22,"6' 8""",220 lbs,2.0,Arkansas,1.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T20:02Z""}]",2004-05-08T07:00Z
 LAL,3907498,Matisse Thybulle,G,29,"6' 5""",202 lbs,8.0,Washington,26.0,Active,[],1997-03-04T08:00Z
 LAL,4278077,Jarred Vanderbilt,F,27,"6' 8""",214 lbs,9.0,Kentucky,2.0,Active,[],1999-04-03T08:00Z
-LAL,4433137,Ziaire Williams,F,25,"6' 9""",185 lbs,6.0,Stanford,11.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-14T00:35Z""}]",2001-09-12T07:00Z
+LAL,4433137,Ziaire Williams,F,25,"6' 9""",185 lbs,6.0,Stanford,11.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T20:02Z""}]",2001-09-12T07:00Z
 MEM,5041935,Cameron Boozer,F,19,"6' 8""",253 lbs,0.0,Duke,27.0,Active,[],2007-07-18T07:00Z
 MEM,4896372,Walter Clayton Jr.,G,23,"6' 4""",195 lbs,2.0,Florida,4.0,Active,[],2003-03-06T08:00Z
 MEM,5105817,Carson Cooper,C,22,"6' 11""",245 lbs,0.0,Michigan State,20.0,Active,[],2004-04-09T07:00Z
@@ -298,7 +299,7 @@ MEM,4065733,Ty Jerome,G,29,"6' 5""",195 lbs,8.0,Virginia,2.0,Active,[],1997-07-0
 MEM,5231919,Karim Lopez,F,19,"6' 8""",222 lbs,0.0,,35.0,Active,[],2007-04-12T07:00Z
 MEM,4683934,Jahmai Mashack,G,23,"6' 3""",197 lbs,2.0,Tennessee,21.0,Active,[],2002-11-10T08:00Z
 MEM,4594326,Kris Murray,F,26,"6' 8""",218 lbs,4.0,Iowa,17.0,Active,[],2000-08-19T07:00Z
-MEM,4432185,Micah Peavy,G,25,"6' 7""",220 lbs,2.0,Georgetown,7.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-10T02:41Z""}]",2001-07-16T07:00Z
+MEM,4432185,Micah Peavy,G,25,"6' 7""",220 lbs,2.0,Georgetown,7.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T19:05Z""}]",2001-07-16T07:00Z
 MEM,4431785,Scotty Pippen Jr.,G,25,"6' 2""",170 lbs,5.0,Vanderbilt,1.0,Active,[],2000-11-10T08:00Z
 MEM,4593016,Quinten Post,C,26,"7' 0""",238 lbs,3.0,Boston College,41.0,Active,[],2000-03-21T08:00Z
 MEM,4595400,Olivier-Maxence Prosper,F,24,"6' 7""",230 lbs,4.0,Marquette,18.0,Active,[],2002-07-03T07:00Z
@@ -356,7 +357,7 @@ MIN,4432816,LaMelo Ball,G,25,"6' 7""",180 lbs,7.0,,1.0,Active,[],2001-08-22T07:0
 MIN,5279133,Joan Beringer,F,19,"6' 11""",230 lbs,2.0,,19.0,Active,[],2006-11-11T08:00Z
 MIN,4432247,Jaylen Clark,G,25,"6' 5""",205 lbs,3.0,UCLA,7.0,Active,[],2001-10-13T07:00Z
 MIN,3934673,Donte DiVincenzo,G,29,"6' 4""",203 lbs,9.0,Villanova,0.0,Active,"[{""status"": ""Out"", ""date"": ""2026-10-05T20:53Z""}]",1997-01-31T08:00Z
-MIN,4397002,Ayo Dosunmu,G,26,"6' 4""",200 lbs,6.0,Illinois,13.0,Active,[],2000-01-17T08:00Z
+MIN,4397002,Ayo Dosunmu,G,26,"6' 4""",200 lbs,6.0,Illinois,13.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T20:11Z""}]",2000-01-17T08:00Z
 MIN,4594268,Anthony Edwards,G,25,"6' 4""",225 lbs,7.0,Georgia,5.0,Active,[],2001-08-05T07:00Z
 MIN,5061585,Isaiah Evans,F,20,"6' 6""",186 lbs,0.0,Duke,33.0,Active,[],2005-12-06T08:00Z
 MIN,4592699,Enrique Freeman,F,26,"6' 9""",220 lbs,3.0,Akron,25.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T02:49Z""}]",2000-07-29T07:00Z
@@ -398,23 +399,23 @@ NOP,4395628,Zion Williamson,F,26,"6' 6""",284 lbs,7.0,Duke,1.0,Active,[],2000-07
 NYK,4397018,Ochai Agbaji,G,26,"6' 5""",215 lbs,5.0,Kansas,30.0,Active,[],2000-04-20T07:00Z
 NYK,4683730,Jaden Akins,G,23,"6' 4""",195 lbs,0.0,Michigan State,14.0,Active,[],2003-02-25T08:00Z
 NYK,4277869,Jose Alvarado,G,28,"6' 0""",179 lbs,6.0,Georgia Tech,5.0,Active,[],1998-04-12T07:00Z
-NYK,3934719,OG Anunoby,F,29,"6' 7""",240 lbs,10.0,Indiana,8.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-13T02:40Z""}]",1997-07-17T07:00Z
+NYK,3934719,OG Anunoby,F,29,"6' 7""",240 lbs,10.0,Indiana,8.0,Active,[],1997-07-17T07:00Z
 NYK,4065673,Tony Bradley,C,28,"6' 10""",248 lbs,9.0,North Carolina,18.0,Active,[],1998-01-08T08:00Z
-NYK,3147657,Mikal Bridges,G,30,"6' 6""",209 lbs,9.0,Villanova,25.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-13T02:47Z""}]",1996-08-30T07:00Z
+NYK,3147657,Mikal Bridges,G,30,"6' 6""",209 lbs,9.0,Villanova,25.0,Active,[],1996-08-30T07:00Z
 NYK,4065670,Bruce Brown,G,30,"6' 4""",202 lbs,9.0,Miami,1.0,Active,[],1996-08-15T07:00Z
-NYK,3934672,Jalen Brunson,G,30,"6' 2""",190 lbs,9.0,Villanova,11.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-13T02:20Z""}]",1996-08-31T07:00Z
+NYK,3934672,Jalen Brunson,G,30,"6' 2""",190 lbs,9.0,Villanova,11.0,Active,[],1996-08-31T07:00Z
 NYK,2528426,Jordan Clarkson,G,34,"6' 5""",194 lbs,13.0,Missouri,0.0,Active,[],1992-06-07T07:00Z
 NYK,5211983,Pacome Dadiet,F,21,"6' 9""",210 lbs,3.0,,4.0,Active,[],2005-07-27T07:00Z
 NYK,5289900,Mohamed Diawara,F,21,"6' 9""",225 lbs,2.0,,51.0,Active,[],2005-04-29T07:00Z
 NYK,6585,Andre Drummond,C,33,"6' 11""",279 lbs,15.0,UConn,0.0,Active,[],1993-08-10T07:00Z
 NYK,3914285,Drew Eubanks,F,29,"6' 10""",245 lbs,9.0,Oregon State,19.0,Active,"[{""status"": ""Out"", ""date"": ""2026-10-15T14:42Z""}]",1997-02-01T08:00Z
-NYK,3062679,Josh Hart,G,31,"6' 5""",215 lbs,10.0,Villanova,3.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-13T02:40Z""}]",1995-03-06T08:00Z
+NYK,3062679,Josh Hart,G,31,"6' 5""",215 lbs,10.0,Villanova,3.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-16T03:42Z""}]",1995-03-06T08:00Z
 NYK,4433225,Tyler Kolek,G,25,"6' 2""",195 lbs,3.0,Marquette,13.0,Active,[],2001-03-27T08:00Z
 NYK,4431823,Miles McBride,G,26,"6' 2""",195 lbs,6.0,West Virginia,2.0,Active,[],2000-09-08T07:00Z
 NYK,4411057,Kevin McCullar Jr.,G,25,"6' 6""",210 lbs,3.0,Kansas,9.0,Active,[],2001-03-15T08:00Z
 NYK,4838721,Tyler Nickel,F,23,"6' 8""",217 lbs,0.0,Vanderbilt,55.0,Active,[],2003-09-05T07:00Z
 NYK,3914044,Landry Shamet,G,29,"6' 5""",190 lbs,9.0,Wichita State,44.0,Active,[],1997-03-13T08:00Z
-NYK,3136195,Karl-Anthony Towns,C,30,"7' 0""",248 lbs,12.0,Kentucky,32.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-13T02:47Z""}]",1995-11-15T08:00Z
+NYK,3136195,Karl-Anthony Towns,C,30,"7' 0""",248 lbs,12.0,Kentucky,32.0,Active,[],1995-11-15T08:00Z
 NYK,4432808,James Wiseman,C,25,"6' 11""",240 lbs,7.0,Memphis,35.0,Active,[],2001-03-31T08:00Z
 OKC,4684208,Brooks Barnhizer,F,24,"6' 6""",226 lbs,2.0,Northwestern,23.0,Active,[],2002-03-02T08:00Z
 OKC,2991350,Alex Caruso,G,32,"6' 5""",186 lbs,10.0,Texas A&M,9.0,Active,[],1994-02-28T08:00Z
@@ -422,21 +423,21 @@ OKC,5105800,Josh Dix,G,22,"6' 5""",206 lbs,0.0,Creighton,21.0,Active,[],2004-06-
 OKC,4278073,Shai Gilgeous-Alexander,G,28,"6' 6""",195 lbs,9.0,Kentucky,2.0,Active,[],1998-07-12T07:00Z
 OKC,4222252,Isaiah Hartenstein,C,28,"7' 0""",250 lbs,9.0,,55.0,Active,[],1998-05-05T07:00Z
 OKC,5116468,Andrew Holifield,F,22,"6' 8""",195 lbs,0.0,Lamar,17.0,Active,[],2004-02-02T08:00Z
-OKC,4433255,Chet Holmgren,C,24,"7' 1""",208 lbs,4.0,Gonzaga,7.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-13T22:32Z""}]",2002-05-01T07:00Z
+OKC,4433255,Chet Holmgren,C,24,"7' 1""",208 lbs,4.0,Gonzaga,7.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-16T00:16Z""}]",2002-05-01T07:00Z
 OKC,5174983,Aday Mara,C,21,"7' 3""",262 lbs,0.0,Michigan,15.0,Active,[],2005-04-07T07:00Z
 OKC,4683778,Jared McCain,G,22,"6' 3""",195 lbs,3.0,Duke,3.0,Active,[],2004-02-20T08:00Z
 OKC,4685802,Robert McCray V,G,24,"6' 4""",188 lbs,,Florida State,16.0,Active,[],2002-09-26T07:00Z
-OKC,4900671,Ajay Mitchell,G,24,"6' 4""",190 lbs,3.0,UC Santa Barbara,25.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-13T22:29Z""}]",2002-06-25T07:00Z
+OKC,4900671,Ajay Mitchell,G,24,"6' 4""",190 lbs,3.0,UC Santa Barbara,25.0,Active,[],2002-06-25T07:00Z
 OKC,5106270,Otega Oweh,G,23,"6' 4""",217 lbs,0.0,Kentucky,13.0,Active,"[{""status"": ""Out"", ""date"": ""2026-10-15T01:22Z""}]",2003-06-21T07:00Z
 OKC,4897155,Anthony Pritchard,G,23,"6' 1""",186 lbs,0.0,Central Michigan,5.0,Active,[],2003-05-06T07:00Z
 OKC,4277923,Zhaire Smith,G,27,"6' 3""",199 lbs,3.0,Texas Tech,40.0,Active,[],1999-06-04T07:00Z
-OKC,5061603,Thomas Sorber,C,20,"6' 9""",250 lbs,0.0,Georgetown,12.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-13T22:28Z""}]",2005-12-25T08:00Z
+OKC,5061603,Thomas Sorber,C,20,"6' 9""",250 lbs,0.0,Georgetown,12.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-16T00:24Z""}]",2005-12-25T08:00Z
 OKC,5241364,Bennett Stirtz,G,23,"6' 4""",190 lbs,0.0,Iowa,14.0,Active,[],2003-10-03T07:00Z
 OKC,5109790,Christoph Tilly,C,23,"7' 0""",242 lbs,0.0,Ohio State,33.0,Active,[],2003-01-28T08:00Z
-OKC,5159925,Nikola Topic,G,21,"6' 6""",200 lbs,2.0,,44.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-13T22:26Z""}]",2005-08-10T07:00Z
-OKC,4683692,Cason Wallace,G,22,"6' 3""",195 lbs,4.0,Kentucky,22.0,Active,[],2003-11-07T08:00Z
+OKC,5159925,Nikola Topic,G,21,"6' 6""",200 lbs,2.0,,44.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-16T00:17Z""}]",2005-08-10T07:00Z
+OKC,4683692,Cason Wallace,G,22,"6' 3""",195 lbs,4.0,Kentucky,22.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-16T00:19Z""}]",2003-11-07T08:00Z
 OKC,4593803,Jalen Williams,G,25,"6' 5""",211 lbs,5.0,Santa Clara,8.0,Active,[],2001-04-14T07:00Z
-OKC,4432823,Jaylin Williams,F,24,"6' 9""",240 lbs,5.0,Arkansas,6.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-13T22:35Z""}]",2002-06-29T07:00Z
+OKC,4432823,Jaylin Williams,F,24,"6' 9""",240 lbs,5.0,Arkansas,6.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-16T00:21Z""}]",2002-06-29T07:00Z
 OKC,3133626,Kenrich Williams,G,31,"6' 7""",210 lbs,9.0,TCU,34.0,Active,[],1994-12-02T08:00Z
 ORL,4432573,Paolo Banchero,F,23,"6' 10""",250 lbs,5.0,Duke,5.0,Active,[],2002-11-12T08:00Z
 ORL,4066320,Desmond Bane,G,28,"6' 6""",215 lbs,7.0,TCU,3.0,Active,[],1998-06-25T07:00Z
@@ -460,7 +461,7 @@ ORL,4432165,Jalen Suggs,G,25,"6' 5""",205 lbs,6.0,Gonzaga,4.0,Active,[],2001-06-
 ORL,6478,Nikola Vucevic,C,35,"6' 9""",260 lbs,16.0,USC,9.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-13T21:48Z""}]",1990-10-24T07:00Z
 ORL,4566434,Franz Wagner,F,25,"6' 10""",220 lbs,6.0,Michigan,22.0,Active,[],2001-08-27T07:00Z
 PHI,4870562,Dominick Barlow,F,23,"6' 9""",238 lbs,5.0,,25.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-13T17:29Z""}]",2003-05-26T07:00Z
-PHI,5105637,Adem Bona,C,23,"6' 10""",239 lbs,3.0,UCLA,30.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-12T17:27Z""}]",2003-03-28T08:00Z
+PHI,5105637,Adem Bona,C,23,"6' 10""",239 lbs,3.0,UCLA,30.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T17:26Z""}]",2003-03-28T08:00Z
 PHI,3917376,Jaylen Brown,G,29,"6' 6""",223 lbs,11.0,California,7.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-10T22:49Z""}]",1996-10-24T07:00Z
 PHI,2581018,Kentavious Caldwell-Pope,G,33,"6' 5""",213 lbs,14.0,Georgia,1.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-10T22:52Z""}]",1993-02-18T08:00Z
 PHI,5124612,VJ Edgecombe,G,21,"6' 5""",180 lbs,2.0,Baylor,77.0,Active,[],2005-07-30T07:00Z
@@ -476,7 +477,7 @@ PHI,4702049,Duke Miles,G,24,"6' 1""",180 lbs,0.0,Vanderbilt,31.0,Active,[],2002-
 PHI,4592444,Jameer Nelson Jr.,G,25,"6' 1""",201 lbs,0.0,TCU,14.0,Active,[],2001-08-07T07:00Z
 PHI,4873090,Labaron Philon Jr.,G,20,"6' 3""",179 lbs,0.0,Alabama,0.0,Active,[],2005-11-24T08:00Z
 PHI,5099752,Rayan Rupert,G,22,"6' 7""",207 lbs,4.0,,12.0,Active,[],2004-05-31T07:00Z
-PHI,4351851,Anfernee Simons,G,27,"6' 4""",206 lbs,9.0,,5.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-12T17:24Z""}]",1999-06-08T07:00Z
+PHI,4351851,Anfernee Simons,G,27,"6' 4""",206 lbs,9.0,,5.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-15T17:28Z""}]",1999-06-08T07:00Z
 PHI,4897471,Saint Thomas,F,23,"6' 8""",236 lbs,0.0,USC,19.0,Active,[],2003-05-01T07:00Z
 PHI,3912848,Dean Wade,F,29,"6' 9""",223 lbs,8.0,Kansas State,45.0,Active,[],1996-11-20T08:00Z
 PHI,4432446,Jabari Walker,F,24,"6' 7""",240 lbs,5.0,Colorado,33.0,Active,[],2002-07-30T07:00Z
@@ -494,7 +495,7 @@ PHX,4437244,Jalen Green,G,24,"6' 4""",186 lbs,6.0,,4.0,Active,"[{""status"": ""D
 PHX,4291678,Haywood Highsmith,F,29,"6' 5""",220 lbs,7.0,Wheeling,19.0,Active,[],1996-12-09T08:00Z
 PHX,4702602,CJ Huntley,F,24,"6' 10""",230 lbs,2.0,App State,21.0,Active,[],2002-01-06T08:00Z
 PHX,4601023,Oso Ighodaro,F,24,"6' 11""",235 lbs,3.0,Marquette,11.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-14T23:38Z""}]",2002-07-14T07:00Z
-PHX,3913174,Luke Kennard,G,30,"6' 5""",206 lbs,10.0,Duke,8.0,Active,[],1996-06-24T07:00Z
+PHX,3913174,Luke Kennard,G,30,"6' 5""",206 lbs,10.0,Duke,8.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-16T14:00Z""}]",1996-06-24T07:00Z
 PHX,5203685,Khaman Maluach,C,20,"7' 2""",250 lbs,2.0,Duke,10.0,Active,[],2006-09-14T07:00Z
 PHX,5041953,Koa Peat,F,19,"6' 8""",245 lbs,0.0,Arizona,18.0,Active,[],2007-01-20T08:00Z
 PHX,4066268,Duop Reath,C,30,"6' 9""",245 lbs,4.0,LSU,26.0,Active,[],1996-06-26T07:00Z
@@ -569,8 +570,10 @@ TOR,4432737,Jaden Bradley,G,23,"6' 3""",205 lbs,0.0,Arizona,8.0,Active,[],2003-0
 TOR,4433138,Nimari Burnett,G,24,"6' 5""",195 lbs,0.0,Michigan,25.0,Active,[],2001-12-20T08:00Z
 TOR,4898260,Tyson Degenhart,F,24,"6' 7""",232 lbs,0.0,Boise State,,Active,[],2002-10-13T07:00Z
 TOR,5149115,Allen Graves,F,20,"6' 8""",225 lbs,0.0,Santa Clara,22.0,Active,[],2006-07-28T07:00Z
+TOR,4590360,Chucky Hepburn,G,23,"6' 0""",193 lbs,1.0,Louisville,24.0,Active,"[{""status"": ""Day-To-Day"", ""date"": ""2026-10-12T20:12Z""}]",2003-02-09T08:00Z
 TOR,4432190,Andre Jackson Jr.,G,24,"6' 6""",209 lbs,3.0,UConn,44.0,Active,[],2001-11-13T08:00Z
 TOR,4431684,Trayce Jackson-Davis,F,26,"6' 9""",245 lbs,3.0,Indiana,32.0,Active,[],2000-02-22T08:00Z
+TOR,4395623,Trey Jemison III,C,26,"6' 10""",270 lbs,3.0,UAB,50.0,Active,[],1999-11-28T08:00Z
 TOR,4279143,Tyreke Key,G,27,"6' 2""",207 lbs,2.0,Tennessee,11.0,Active,[],1998-10-29T08:00Z
 TOR,6450,Kawhi Leonard,F,35,"6' 6""",225 lbs,15.0,San Diego State,2.0,Active,[],1991-06-29T07:00Z
 TOR,4702656,Alijah Martin,G,24,"6' 2""",212 lbs,1.0,Florida,55.0,Active,[],2001-12-26T08:00Z

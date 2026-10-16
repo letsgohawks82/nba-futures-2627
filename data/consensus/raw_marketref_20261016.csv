@@ -1,0 +1,70 @@
+market,source,url,date,selection,price_or_pct
+TITLE,Kalshi,https://defirate.com/odds/nba-championship/,2026-10-15,San Antonio Spurs,22
+TITLE,Kalshi,https://defirate.com/odds/nba-championship/,2026-10-15,Oklahoma City Thunder,23
+TITLE,Kalshi,https://defirate.com/odds/nba-championship/,2026-10-15,Philadelphia 76ers,11
+TITLE,Kalshi,https://defirate.com/odds/nba-championship/,2026-10-15,New York Knicks,9
+TITLE,Kalshi,https://defirate.com/odds/nba-championship/,2026-10-15,Minnesota Timberwolves,8
+TITLE,Kalshi,https://defirate.com/odds/nba-championship/,2026-10-15,Boston Celtics,5
+TITLE,Kalshi,https://defirate.com/odds/nba-championship/,2026-10-15,Miami Heat,6
+TITLE,Kalshi,https://defirate.com/odds/nba-championship/,2026-10-15,Toronto Raptors,3
+TITLE,Kalshi,https://defirate.com/odds/nba-championship/,2026-10-15,Denver Nuggets,3
+TITLE,Kalshi,https://defirate.com/odds/nba-championship/,2026-10-15,Los Angeles Lakers,4
+TITLE,Polymarket,https://defirate.com/odds/nba-championship/,2026-10-15,San Antonio Spurs,21
+TITLE,Polymarket,https://defirate.com/odds/nba-championship/,2026-10-15,Oklahoma City Thunder,20
+TITLE,Polymarket,https://defirate.com/odds/nba-championship/,2026-10-15,Philadelphia 76ers,10.4
+TITLE,Polymarket,https://defirate.com/odds/nba-championship/,2026-10-15,New York Knicks,8
+TITLE,Polymarket,https://defirate.com/odds/nba-championship/,2026-10-15,Minnesota Timberwolves,6.6
+TITLE,Polymarket,https://defirate.com/odds/nba-championship/,2026-10-15,Boston Celtics,6
+TITLE,Polymarket,https://defirate.com/odds/nba-championship/,2026-10-15,Miami Heat,3.8
+TITLE,Polymarket,https://defirate.com/odds/nba-championship/,2026-10-15,Toronto Raptors,3.5
+TITLE,Polymarket,https://defirate.com/odds/nba-championship/,2026-10-15,Denver Nuggets,3.3
+TITLE,Polymarket,https://defirate.com/odds/nba-championship/,2026-10-15,Los Angeles Lakers,2.6
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,San Antonio Spurs,35
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Oklahoma City Thunder,34
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Minnesota Timberwolves,12
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Denver Nuggets,7
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Los Angeles Lakers,7.4
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Houston Rockets,4.7
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Golden State Warriors,4.4
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Portland Trail Blazers,2.6
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Dallas Mavericks,2.3
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Utah Jazz,1.4
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Phoenix Suns,1.0
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Sacramento Kings,1.2
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,New Orleans Pelicans,0.7
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Los Angeles Clippers,0.6
+CONF_WEST,"Polymarket (thin, $53k)",https://polymarket.com/event/nba-2027-western-conference-champion-20260624160106318,2026-10-16,Memphis Grizzlies,0.4
+MVP,Kalshi,https://kalshi.com/nba/mvp-odds,2026-10-15,Victor Wembanyama,33
+MVP,Kalshi,https://kalshi.com/nba/mvp-odds,2026-10-15,Shai Gilgeous Alexander,16
+MVP,Kalshi,https://kalshi.com/nba/mvp-odds,2026-10-15,Luka Doncic,15
+MVP,Kalshi,https://kalshi.com/nba/mvp-odds,2026-10-15,Nikola Jokic,15
+MVP,Kalshi,https://kalshi.com/nba/mvp-odds,2026-10-15,Anthony Edwards,8
+MVP,Kalshi,https://kalshi.com/nba/mvp-odds,2026-10-15,Giannis Antetokounmpo,7
+MVP,Kalshi,https://kalshi.com/nba/mvp-odds,2026-10-15,Jayson Tatum,6
+MVP,Kalshi,https://kalshi.com/nba/mvp-odds,2026-10-15,Cade Cunningham,3
+MVP,Kalshi,https://kalshi.com/nba/mvp-odds,2026-10-15,Jalen Brunson,3
+MVP,Kalshi,https://kalshi.com/nba/mvp-odds,2026-10-15,Jaylen Brown,2
+ROY,Kalshi,https://kalshi.com/nba/rookie-of-the-year-odds,2026-10-15,Cameron Boozer,24
+ROY,Kalshi,https://kalshi.com/nba/rookie-of-the-year-odds,2026-10-15,AJ Dybantsa,19
+ROY,Kalshi,https://kalshi.com/nba/rookie-of-the-year-odds,2026-10-15,Caleb Wilson,19
+ROY,Kalshi,https://kalshi.com/nba/rookie-of-the-year-odds,2026-10-15,Darryn Peterson,17
+ROY,Kalshi,https://kalshi.com/nba/rookie-of-the-year-odds,2026-10-15,Yaxel Lendeborg,13
+ROY,Kalshi,https://kalshi.com/nba/rookie-of-the-year-odds,2026-10-15,Darius Acuff Jr,10
+ROY,Kalshi,https://kalshi.com/nba/rookie-of-the-year-odds,2026-10-15,Mikel Brown Jr,2
+ROY,Kalshi,https://kalshi.com/nba/rookie-of-the-year-odds,2026-10-15,Keaton Wagler,2
+ROY,Kalshi,https://kalshi.com/nba/rookie-of-the-year-odds,2026-10-15,Brayden Burries,1
+ROY,Polymarket,https://www.covers.com/nba/rookie-of-the-year-odds,2026-10-12,Cameron Boozer,23
+ROY,Polymarket,https://www.covers.com/nba/rookie-of-the-year-odds,2026-10-12,Caleb Wilson,21
+ROY,Polymarket,https://www.covers.com/nba/rookie-of-the-year-odds,2026-10-12,AJ Dybantsa,20
+ROY,Polymarket,https://www.covers.com/nba/rookie-of-the-year-odds,2026-10-12,Darryn Peterson,17
+ROY,Polymarket,https://www.covers.com/nba/rookie-of-the-year-odds,2026-10-12,Darius Acuff Jr,10
+ROY,Polymarket,https://www.covers.com/nba/rookie-of-the-year-odds,2026-10-12,Yaxel Lendeborg,8
+DPOY,Kalshi,https://kalshi.com/markets/kxnbadpoy/nba-defensive-player-of-the-year/kxnbadpoy-27,2026-10-16,Victor Wembanyama,73
+DPOY,Kalshi,https://kalshi.com/markets/kxnbadpoy/nba-defensive-player-of-the-year/kxnbadpoy-27,2026-10-16,Chet Holmgren,8
+MVP,NBA GM survey (% votes),https://www.nba.com/news/2026-27-nba-gm-survey,2026-10-15,Victor Wembanyama,77
+MVP,NBA GM survey (% votes),https://www.nba.com/news/2026-27-nba-gm-survey,2026-10-15,Nikola Jokic,10
+MVP,NBA GM survey (% votes),https://www.nba.com/news/2026-27-nba-gm-survey,2026-10-15,Anthony Edwards,7
+ROY,NBA GM survey (% votes),https://www.nba.com/news/2026-27-nba-gm-survey,2026-10-15,Cameron Boozer,50
+ROY,NBA GM survey (% votes),https://www.nba.com/news/2026-27-nba-gm-survey,2026-10-15,Caleb Wilson,20
+ROY,NBA GM survey (% votes),https://www.nba.com/news/2026-27-nba-gm-survey,2026-10-15,AJ Dybantsa,17
+ROY,NBA GM survey (% votes),https://www.nba.com/news/2026-27-nba-gm-survey,2026-10-15,Darryn Peterson,13

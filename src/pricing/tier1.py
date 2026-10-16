@@ -73,11 +73,13 @@ def run(table="pricing_table.csv"):
     o["t1_named"] = o.team.map(lambda t: bool(facts[t]["named"]) if t in facts else False)
     o["t1_driver"] = o.team.map(lambda t: " | ".join(facts[t]["facts"]) if t in facts else "")
     # WINS: the consensus rule replaces the named-driver rule
-    T, stat, exp = CS.table(o); cons = []; basis = []
+    T, summ = CS.table(o); cons = []; basis = []
     for r in o.itertuples():
         if r.market != "WINS" or r.team not in T.index: cons.append("n/a"); basis.append(""); continue
         t = T.loc[r.team]; ok = bool(t.pass_over if r.side == "OVER" else t.pass_under); cons.append("PASS" if ok else "FAIL")
-        basis.append(f"bias-adj gap vs market median {t['median']:.1f}: model {t.gap_model:+.1f}; " + "; ".join(f"{k} {t['gap_' + k]:+.1f}" for k in stat) + " | expert (display): " + "; ".join(f"{k} {t['gap_' + k]:+.1f}" for k in exp))
+        ra = "; ".join(f"{k} {t['res_' + k]:+.1f}" for k in ("ours", "PredictionEngine")); rb = "; ".join(f"{k} {t['res_' + k]:+.1f}" for k in summ if summ[k]["method"] == "results_based")
+        dsp = "; ".join(f"{k} {t['res_' + k]:+.1f}" for k in summ if summ[k]["type"] in ("MARKET_INFORMED", "EXPERT"))
+        basis.append(f"residuals vs market median {t['median']:.1f}: roster-aware [{ra}]; results-based {'(counted)' if t.rb_eligible else '(ignored: ' + t.rb_reason + ')'} [{rb}]; display [{dsp}]")
     o["t1_cons"] = cons; o["t1_cons_basis"] = basis
     isw = o.market == "WINS"; o["t1_named"] = np.where(isw, o.t1_cons == "PASS", o.t1_named); o["t1_driver"] = np.where(isw, o.t1_cons_basis, o.t1_driver)
     ps_ = (0.25 * o.model_prob + 0.75 * o.fair); dm = 1.0 / ps_.clip(lower=1e-9)
@@ -85,7 +87,8 @@ def run(table="pricing_table.csv"):
     o["t1_gap_srs"] = o.team.map(lambda t: facts[t]["gap_srs"] if t in facts else np.nan); o["t1_cover"] = o.team.map(lambda t: facts[t]["coverage"] if t in facts else np.nan)
     ovr = json.load(open(os.path.join(ROOT, "params/tier1_overrides.json")))
     o["t1_excluded"] = False; o["t1_scenario_ok"] = True; o["t1_scenario_ev75"] = np.nan; o["t1_scenario_lo75"] = np.nan
-    for e in ovr.get("exclude", []): o.loc[(o.market == e["market"]) & (o.team == e["team"]), "t1_excluded"] = True
+    for e in ovr.get("exclude", []) + ovr.get("hold", []):
+        if "team" in e: o.loc[(o.market == e["market"]) & (o.team == e["team"]), "t1_excluded"] = True
     g = ovr.get("scenario_gate")
     if g and os.path.exists(C(g["file"])):
         sc = json.load(open(C(g["file"]))); base_lo = {}

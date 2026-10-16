@@ -7,7 +7,7 @@ from . import core, models, pricing_tabs as pt, consensus_tabs as ct
 from .core import REG, C, ROOT
 
 TAB_ORDER = ["Cover", "Assumptions", "Overrides", "Odds_Input", "M_DeVig", "M_TeamRatings", "M_WinDist", "M_Sims", "M_Lottery2027", "M_Players", "S_Markets", "Bet_Card", "Tier1_Card", "Exposure", "Dashboard", "Sensitivity", "Backtest",
-             "Tracker", "Checks", "Data_Sources", "Raw_Teams", "Raw_Players", "Raw_Schedule", "Raw_Consensus"]
+             "Tracker", "Checks", "Data_Sources", "Raw_Teams", "Raw_Players", "Raw_Schedule", "Raw_Consensus", "Raw_MarketRef"]
 
 
 def build(path):
@@ -15,7 +15,7 @@ def build(path):
     wb = Workbook(); wb.remove(wb.active)
     core.build_assumptions(wb); T, P = core.build_raw(wb); core.build_overrides(wb, P); odds = core.build_odds(wb); core.build_devig(wb, odds)
     ct.build_consensus(wb); models.build_team_ratings(wb); models.build_windist(wb, odds); key = models.build_sims(wb, o); models.fix_windist_links(wb); models.build_lottery(wb); models.build_players(wb)
-    pt.build_smarkets(wb, o); pt.build_betcard(wb); pt.build_tier1(wb, o)
+    pt.build_smarkets(wb, o); ct.build_marketref(wb, o); pt.build_betcard(wb); pt.build_tier1(wb, o)
     Q = o[o.qualifies]
     pt.build_exposure(wb, Q); pt.build_dashboard(wb, o); pt.build_sensitivity(wb); pt.build_backtest(wb); pt.build_tracker(wb); pt.build_checks(wb, o); pt.build_sources(wb); pt.build_cover(wb, key)
     wb._sheets = [wb[n] for n in TAB_ORDER]

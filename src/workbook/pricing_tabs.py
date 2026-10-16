@@ -78,8 +78,8 @@ def build_smarkets(wb, o):
                 longshot = f"IF(I{r}<A_longthr,(1-A_shrink)*M_Sims!K{cir}+A_shrink*(I{r}*G{r}-1)>=A_minev,TRUE)"
                 contf = f'IF(AND(OR(A{r}="WINS",A{r}="PLAYOFFS",LEFT(A{r},4)="DIV_"),{cont}<A_contthr),AND(((1-A_contshrink)*J{r}+A_contshrink*I{r})*G{r}-1>=A_minev,(1-A_contshrink)*N{r}+A_contshrink*(I{r}*G{r}-1)>0),TRUE)'
                 put(ws, f"W{r}", f'=AND(H{r}<>"IMPUTED_20C_LADDER",L{r}>=A_minev,N{r}>0,V{r}=1,IF(A{r}="PLAYOFFS",A_poconf=1,TRUE),{zs},AF{r}>=A_minev,AG{r}>0,{longshot},{contf},M_Sims!P{cir}=0)', "formula")
-                put(ws, f"AH{r}", f"=AND(W{r},I{r}>=A_t1_fair,((1-A_t1_shrink)*J{r}+A_t1_shrink*I{r})*G{r}-1>=A_minev,(1-A_t1_shrink)*N{r}+A_t1_shrink*(I{r}*G{r}-1)>0,IF(A{r}=\"WINS\",AN{r}=\"PASS\",M_Sims!Q{cir}=1))", "formula")
-                put(ws, f"AI{r}", f"=IF(AH{r},MIN(M_Sims!R{cir}*A_t1_cap/A_t1_engcap,IF(A{r}=\"WINS\",A_wins_stake*IF({cont}<A_contthr,A_lowcont_mult,1),1)),0)", "formula", "0.0000")
+                put(ws, f"AH{r}", f"=AND(W{r},I{r}>=A_t1_fair,((1-A_t1_shrink)*J{r}+A_t1_shrink*I{r})*G{r}-1>=A_minev,(1-A_t1_shrink)*N{r}+A_t1_shrink*(I{r}*G{r}-1)>0,IF(A{r}=\"WINS\",AN{r}=\"PASS\",M_Sims!Q{cir}=1),M_Sims!T{cir}=0)", "formula")
+                put(ws, f"AI{r}", f"=IF(AH{r},MIN(M_Sims!R{cir}*A_t1_cap/A_t1_engcap,IF(A{r}=\"WINS\",IF(INDEX(M_WinDist!${REG["windist_strong"]}${REG["windist"]["first"]}:${REG["windist_strong"]}${REG["windist"]["last"]},MATCH($C{r},M_WinDist!$A${REG["windist"]["first"]}:$A${REG["windist"]["last"]},0)),A_wins_stake,A_wins_stake_low)*IF({cont}<A_contthr,A_lowcont_mult,1),1)),0)", "formula", "0.0000")
                 pw_ = REG["windist_pass"]; wd_ = REG["windist"]
                 put(ws, f"AN{r}", (f'=IF(D{r}="OVER",IF(INDEX(M_WinDist!${pw_[0]}${wd_["first"]}:${pw_[0]}${wd_["last"]},MATCH($C{r},M_WinDist!$A${wd_["first"]}:$A${wd_["last"]},0)),"PASS","FAIL"),IF(INDEX(M_WinDist!${pw_[1]}${wd_["first"]}:${pw_[1]}${wd_["last"]},MATCH($C{r},M_WinDist!$A${wd_["first"]}:$A${wd_["last"]},0)),"PASS","FAIL"))' if m == "WINS" else "n/a"), "formula" if m == "WINS" else "text")
                 ps_ = f"((1-A_t1_shrink)*J{r}+A_t1_shrink*I{r})"; put(ws, f"AO{r}", f"=IF(1/{ps_}>=2,(1/{ps_}-1)*100,-100/(1/{ps_}-1))", "formula", "amer")
@@ -148,7 +148,7 @@ def build_tier1(wb, o):
     ws = wb.create_sheet("Tier1_Card"); sheet_header(ws, "Tier1_Card - the staked card (8 bets): min acceptable price, live price check, consensus basis", span=14)
     put(ws, "A5", "Tier 1 tests: on the Bet Card; edge survives shrink 0.75; fair >= 5%; direction rule; then team non-WINS = named driver, WINS = external consensus (our bias-adjusted gap and one STAT_MODEL gap, both >= A_cons_min); player bets = Tier 2 test + holds at the sharpening-exponent CI bounds. Stakes = joint Kelly on shared sims (WINS capped; ROY x A_roy_stake_mult), total capped at A_t1_cap.", "text", italic=True)
     put(ws, "A6", "=Sim_Stale", "link"); ws["A6"].font = font(RED, bold=True)
-    labels = ["Group", "Market", "Selection", "Side", "Line", "Book American", "Live price (input)", "Min acceptable price", "Book rule confirmed? (Y/N)", "Still bet?", "Fair prob", "Model prob", "EV per $1", "EV at shrink 0.75", "Stake (frac of bankroll)", "Stake $", "Consensus (WINS)", "Driver / consensus basis", "Lock (CST)", "Rule", "Live Tier 1 status"]
+    labels = ["Group", "Market", "Selection", "Side", "Line", "Book American", "Live price (input)", "Min acceptable price", "Book rule confirmed? (Y/N)", "Still bet?", "Fair prob", "Model prob", "EV per $1", "EV at shrink 0.75", "Stake (frac of bankroll)", "Stake $", "Consensus (WINS)", "Driver / consensus basis", "Lock (CST)", "Rule", "Live Tier 1 status", "Exchange average prob", "Blended prob (book fair + exchange) / 2", "Model vs exchange flag"]
     headers(ws, 7, labels, height=45)
     sm = REG["smk"]; mp = REG["m_players"]; rows = []
     T = o[o.tier1].copy(); T["src"] = "team"
@@ -167,7 +167,7 @@ def build_tier1(wb, o):
             put(ws, f"C{r}", f"={src('B')}", "link"); put(ws, f"D{r}", f"={src('D')}", "link"); put(ws, f"E{r}", f"={src('E')}", "link", "num1"); put(ws, f"F{r}", f"={src('F')}", "link", "amer")
             put(ws, f"H{r}", f"={src('AO')}", "link", "amer"); put(ws, f"K{r}", f"={src('I')}", "link", "pct"); put(ws, f"L{r}", f"={src('J')}", "link", "pct"); put(ws, f"M{r}", f"={src('L')}", "link", "pct")
             put(ws, f"N{r}", f"=((1-A_t1_shrink)*{src('J')}+A_t1_shrink*{src('I')})*{src('G')}-1", "formula", "pct"); put(ws, f"O{r}", f"={src('AI')}", "link", "0.0000"); put(ws, f"Q{r}", f"={src('AN')}", "link")
-            put(ws, f"R{r}", str(x.t1_driver) if isinstance(x.t1_driver, str) else "", "text"); put(ws, f"S{r}", x.lock_cst, "text"); put(ws, f"T{r}", x.rule_text, "text"); put(ws, f"U{r}", f"={src('AH')}", "link")
+            put(ws, f"R{r}", str(x.t1_driver) if isinstance(x.t1_driver, str) else "", "text"); put(ws, f"S{r}", x.lock_cst, "text"); put(ws, f"T{r}", x.rule_text, "text"); put(ws, f"U{r}", f"={src('AH')}", "link"); put(ws, f"V{r}", "n/a", "text"); put(ws, f"W{r}", "n/a", "text"); put(ws, f"X{r}", "n/a", "text")
             key = x.market
         else:
             pr_ = mp["rowmap"][(x.market, x.selection)]; src = lambda c: f"M_Players!{c}{pr_}"
@@ -175,6 +175,7 @@ def build_tier1(wb, o):
             put(ws, f"H{r}", f"={src('W')}", "link", "amer"); put(ws, f"K{r}", f"={src('F')}", "link", "pct"); put(ws, f"L{r}", f"={src('G')}", "link", "pct"); put(ws, f"M{r}", f"={src('J')}", "link", "pct")
             put(ws, f"N{r}", f"=((1-A_t1_shrink)*{src('G')}+A_t1_shrink*{src('F')})*{src('E')}-1", "formula", "pct"); put(ws, f"O{r}", f"={src('P')}", "link", "0.0000"); put(ws, f"Q{r}", "n/a", "text")
             put(ws, f"R{r}", str(x.driver), "text"); put(ws, f"S{r}", "Tue 10/20 02:10 PM CST", "text"); put(ws, f"T{r}", "All in, no refunds; dead-heat rules apply to stat leaders; official qualification", "text"); put(ws, f"U{r}", f"={src('O')}", "link")
+            put(ws, f"V{r}", f"={src('Y')}", "link", "pct"); put(ws, f"W{r}", f"={src('Z')}", "link", "pct"); put(ws, f"X{r}", f"={src('AB')}", "link", "flag")
         put(ws, f"G{r}", f"=F{r}", "input", "amer"); ws[f"G{r}"].value = None      # live price: blue input, blank = use the book price in the check
         put(ws, f"I{r}", "N" if x.market in need else "n/a", "input")
         ws[f"G{r}"].value = None

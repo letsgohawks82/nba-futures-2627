@@ -4,7 +4,7 @@
   "Assumptions": {
    "30": [
     1,
-    "B54"
+    "B56"
    ]
   },
   "Overrides": {},
@@ -33,7 +33,8 @@
   "Raw_Teams": {},
   "Raw_Players": {},
   "Raw_Schedule": {},
-  "Raw_Consensus": {}
+  "Raw_Consensus": {},
+  "Raw_MarketRef": {}
  },
  "inconsistent": {
   "Cover": {
@@ -50,78 +51,78 @@
   "M_TeamRatings": {
    "A": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "B": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "C": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "D": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "E": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "F": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "G": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "H": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "I": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "J": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "K": {
     "patterns": 3,
     "dominant_share": 0.953,
-    "n": 658
+    "n": 661
    },
    "L": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "M": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "N": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    },
    "P": {
     "patterns": 2,
-    "dominant_share": 0.954,
-    "n": 657
+    "dominant_share": 0.955,
+    "n": 660
    }
   },
   "M_WinDist": {
@@ -144,6 +145,41 @@
     "patterns": 30,
     "dominant_share": 0.033,
     "n": 30
+   },
+   "P": {
+    "patterns": 5,
+    "dominant_share": 0.882,
+    "n": 34
+   },
+   "R": {
+    "patterns": 5,
+    "dominant_share": 0.882,
+    "n": 34
+   },
+   "T": {
+    "patterns": 5,
+    "dominant_share": 0.882,
+    "n": 34
+   },
+   "V": {
+    "patterns": 5,
+    "dominant_share": 0.882,
+    "n": 34
+   },
+   "X": {
+    "patterns": 5,
+    "dominant_share": 0.882,
+    "n": 34
+   },
+   "Z": {
+    "patterns": 5,
+    "dominant_share": 0.882,
+    "n": 34
+   },
+   "AB": {
+    "patterns": 5,
+    "dominant_share": 0.882,
+    "n": 34
    }
   },
   "M_Sims": {},
@@ -301,7 +337,19 @@
   "Raw_Teams": {},
   "Raw_Players": {},
   "Raw_Schedule": {},
-  "Raw_Consensus": {}
+  "Raw_Consensus": {},
+  "Raw_MarketRef": {
+   "F": {
+    "patterns": 2,
+    "dominant_share": 0.6,
+    "n": 115
+   },
+   "G": {
+    "patterns": 2,
+    "dominant_share": 0.6,
+    "n": 115
+   }
+  }
  },
  "format": {
   "Cover": {
@@ -466,6 +514,13 @@
    "tab_header_rows": true
   },
   "Raw_Consensus": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 24.0,
+   "tab_header_rows": true
+  },
+  "Raw_MarketRef": {
    "non_arial10_cells": 0,
    "merged": 0,
    "gridlines": false,

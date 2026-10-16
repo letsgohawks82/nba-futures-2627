@@ -1,50 +1,62 @@
 {
+ "source_regressions": {
+  "PredictionEngine": {
+   "slope": 0.7323511984041479,
+   "resid_sd": 3.9999695576107253
+  },
+  "Opta TRACR": {
+   "slope": 0.6554198275382986,
+   "resid_sd": 3.6066473618574446
+  },
+  "Massey (80->82 scaled)": {
+   "slope": 0.5366571894946014,
+   "resid_sd": 4.111629979891089
+  },
+  "ESPN projection": {
+   "slope": 0.9488455337505504,
+   "resid_sd": 1.91039996689492
+  },
+  "TeamRankings": {
+   "slope": 0.9717462069865994,
+   "resid_sd": 0.6876204924970919
+  },
+  "Bleacher Report": {
+   "slope": 1.029036579452316,
+   "resid_sd": 3.1944066360148105
+  },
+  "ours": {
+   "slope": 0.7551146289206357,
+   "resid_sd": 2.9560097342883016
+  }
+ },
  "consensus_check": [
   {
    "bet": "Washington Wizards UNDER",
    "market_median": 34.03650137741047,
-   "bias": 2.228319559228651,
-   "gap_model": -8.450654277432559,
-   "gap_stat": {
-    "predictionengine": -7.764820936639118
-   },
+   "res_ours": -6.679847948294796,
+   "res_predictionengine": -7.13566253734362,
    "own_pass": true,
-   "excel": "PASS",
-   "match": true
-  },
-  {
-   "bet": "Miami Heat UNDER",
-   "market_median": 45.98347107438017,
-   "bias": -1.5947107438016541,
-   "gap_model": -7.072163713017739,
-   "gap_stat": {
-    "predictionengine": -5.588760330578518
-   },
-   "own_pass": true,
+   "own_strong": true,
    "excel": "PASS",
    "match": true
   },
   {
    "bet": "Utah Jazz UNDER",
    "market_median": 38.742634159507,
-   "bias": 0.7223570689577605,
-   "gap_model": -6.195550096575145,
-   "gap_stat": {
-    "predictionengine": -5.564991228464761
-   },
+   "res_ours": -5.470007413360776,
+   "res_predictionengine": -5.182204520161058,
    "own_pass": true,
+   "own_strong": true,
    "excel": "PASS",
    "match": true
   },
   {
    "bet": "Portland Trail Blazers OVER",
    "market_median": 41.25736584049301,
-   "bias": -0.08235706895776275,
-   "gap_model": 4.320802559608674,
-   "gap_stat": {
-    "predictionengine": 5.124991228464752
-   },
+   "res_ours": 3.286274573591257,
+   "res_predictionengine": 5.376128719603955,
    "own_pass": true,
+   "own_strong": false,
    "excel": "PASS",
    "match": true
   }
@@ -55,13 +67,6 @@
    "n_group": 2,
    "own_fair": 0.5643939393939396,
    "table_fair": 0.5643939393939396,
-   "abs_diff": 0.0
-  },
-  {
-   "bet": "WINS Miami Heat UNDER",
-   "n_group": 2,
-   "own_fair": 0.5227272727272727,
-   "table_fair": 0.5227272727272727,
    "abs_diff": 0.0
   },
   {
@@ -84,27 +89,6 @@
    "own_fair": 0.12454212454212463,
    "table_fair": 0.1245421245421244,
    "abs_diff": 2.220446049250313e-16
-  },
-  {
-   "bet": "ROY AJ Dybantsa",
-   "n_group": 16,
-   "own_fair": 0.17697118755206512,
-   "table_fair": 0.1769711875520651,
-   "abs_diff": 2.7755575615628914e-17
-  },
-  {
-   "bet": "LDR_RPG Domantas Sabonis",
-   "n_group": 24,
-   "own_fair": 0.08645179429369128,
-   "table_fair": 0.0864517942936912,
-   "abs_diff": 8.326672684688674e-17
-  },
-  {
-   "bet": "LDR_TPG LaMelo Ball",
-   "n_group": 33,
-   "own_fair": 0.07134840039779543,
-   "table_fair": 0.0713484003977987,
-   "abs_diff": 3.2751579226442118e-15
   }
  ],
  "devig_random10": [
@@ -175,196 +159,114 @@
    "american": -140.0,
    "own_fair": 0.5643939393939396,
    "engine_fair": 0.5643939393939396,
-   "model": 0.82253,
-   "own_ev": 0.41005142857142873,
-   "own_ev_shrunk75": 0.07816220779220817,
-   "own_single_kelly": 0.027356772727272854,
-   "own_joint_stake": 0.005,
-   "engine_joint_stake": 0.005,
+   "model": 0.7893100000000001,
+   "own_ev": 0.3531028571428574,
+   "own_ev_shrunk75": 0.06392506493506533,
+   "own_single_kelly": 0.022373772727272864,
+   "own_joint_stake": 0.0075,
+   "engine_joint_stake": 0.0075,
    "xl_fair": 0.5643939394033716,
-   "xl_model": 0.82284,
-   "xl_ev": 0.41058285714285736,
-   "xl_stake": 0.005,
-   "xl_min_price": -169.54574191754227,
+   "xl_model": 0.7891,
+   "xl_ev": 0.35274285714285725,
+   "xl_stake": 0.0075,
+   "xl_min_price": -163.5535403076409,
    "xl_cons": "PASS",
-   "own_min_price": -169.48944611956645
-  },
-  {
-   "bet": "WINS Miami Heat UNDER",
-   "american": -120.0,
-   "own_fair": 0.5227272727272727,
-   "engine_fair": 0.5227272727272727,
-   "model": 0.83278,
-   "own_ev": 0.5267633333333335,
-   "own_ev_shrunk75": 0.10044083333333331,
-   "own_single_kelly": 0.03013224999999999,
-   "own_joint_stake": 0.0034999999999999996,
-   "engine_joint_stake": 0.0034999999999999996,
-   "xl_fair": 0.5227272727000886,
-   "xl_model": 0.83294,
-   "xl_ev": 0.5270566666666667,
-   "xl_stake": 0.0034999999999999,
-   "xl_min_price": -150.17540706242747,
-   "xl_cons": "PASS",
-   "own_min_price": -150.15037448648104
+   "own_min_price": -163.59001209518726
   },
   {
    "bet": "WINS Utah Jazz UNDER",
    "american": 115.0,
    "own_fair": 0.44532409698169223,
    "engine_fair": 0.4453240969816922,
-   "model": 0.68997,
-   "own_ev": 0.4834354999999999,
-   "own_ev_shrunk75": 0.08894398138297865,
-   "own_single_kelly": 0.01933564812673449,
-   "own_joint_stake": 0.005,
-   "engine_joint_stake": 0.005,
+   "model": 0.67727,
+   "own_ev": 0.4561305,
+   "own_ev_shrunk75": 0.08211773138297884,
+   "own_single_kelly": 0.017851680735430184,
+   "own_joint_stake": 0.0075,
+   "engine_joint_stake": 0.0075,
    "xl_fair": 0.44532409697922487,
-   "xl_model": 0.6898199999999999,
-   "xl_ev": 0.4831129999999997,
-   "xl_stake": 0.005,
-   "xl_min_price": -102.61292576452605,
+   "xl_model": 0.6772099999999999,
+   "xl_ev": 0.4560014999999997,
+   "xl_stake": 0.0075,
+   "xl_min_price": -101.32697538154075,
    "xl_cons": "PASS",
-   "own_min_price": -102.628321434179
+   "own_min_price": -101.33305544855554
   },
   {
    "bet": "WINS Portland Trail Blazers OVER",
    "american": 115.0,
    "own_fair": 0.44532409698169223,
    "engine_fair": 0.4453240969816922,
-   "model": 0.6405700000000001,
-   "own_ev": 0.3772255000000002,
-   "own_ev_shrunk75": 0.062391481382978675,
-   "own_single_kelly": 0.013563365518038844,
+   "model": 0.58198,
+   "own_ev": 0.25125700000000006,
+   "own_ev_shrunk75": 0.030899356382978693,
+   "own_single_kelly": 0.006717251387604064,
    "own_joint_stake": 0.005,
    "engine_joint_stake": 0.005,
    "xl_fair": 0.44532409697922487,
-   "xl_model": 0.6404700000000001,
-   "xl_ev": 0.37701050000000014,
+   "xl_model": 0.5815699999999998,
+   "xl_ev": 0.25037549999999964,
    "xl_stake": 0.005,
-   "xl_min_price": 102.3838499277557,
+   "xl_min_price": 108.60035363517366,
    "xl_cons": "PASS",
-   "own_min_price": 102.37361063938653
+   "own_min_price": 108.55576120868933
   },
   {
    "bet": "PLAYOFFS Minnesota Timberwolves NO",
    "american": 550.0,
    "own_fair": 0.12454212454212463,
    "engine_fair": 0.1245421245421244,
-   "model": 0.31825,
-   "own_ev": 1.068625,
-   "own_ev_shrunk75": 0.12429910714285741,
-   "own_single_kelly": 0.0056499594155844275,
-   "own_joint_stake": 0.005799991574996337,
-   "engine_joint_stake": 0.005800938753362468,
+   "model": 0.32606,
+   "own_ev": 1.11939,
+   "own_ev_shrunk75": 0.13699035714285746,
+   "own_single_kelly": 0.006226834415584429,
+   "own_joint_stake": 0.006307303621980621,
+   "engine_joint_stake": 0.006307269889649284,
    "xl_fair": 0.12454212450038653,
-   "xl_model": 0.31825000000000003,
-   "xl_ev": 1.0686250000000004,
-   "xl_stake": 0.0058009387533624,
-   "xl_min_price": 478.1379670125845,
+   "xl_model": 0.32606,
+   "xl_ev": 1.11939,
+   "xl_stake": 0.0063072698896492,
+   "xl_min_price": 471.684707819077,
    "xl_cons": "n/a",
-   "own_min_price": 478.1379669079544
-  },
-  {
-   "bet": "ROY AJ Dybantsa YES",
-   "american": 400.0,
-   "own_fair": 0.17697118755206512,
-   "engine_fair": 0.1769711875520651,
-   "model": 0.4343,
-   "own_ev": 1.1715,
-   "own_ev_shrunk75": 0.20651695332024422,
-   "own_single_kelly": 0.012907309582515264,
-   "own_joint_stake": 0.005334834029273411,
-   "engine_joint_stake": 0.005335478970046247,
-   "xl_fair": 0.1769711875520651,
-   "xl_model": 0.4343,
-   "xl_ev": 1.1715,
-   "xl_stake": 0.0053354789700462,
-   "xl_min_price": 314.4160582443848,
-   "xl_cons": "n/a",
-   "own_min_price": 314.4160582443848
-  },
-  {
-   "bet": "LDR_RPG Domantas Sabonis YES",
-   "american": 900.0,
-   "own_fair": 0.08645179429369128,
-   "engine_fair": 0.0864517942936912,
-   "model": 0.2109058173577223,
-   "own_ev": 1.109058173577223,
-   "own_ev_shrunk75": 0.1756530005969903,
-   "own_single_kelly": 0.004879250016583064,
-   "own_joint_stake": 0.004850209678744713,
-   "engine_joint_stake": 0.0048489106817490866,
-   "xl_fair": 0.0864517942936912,
-   "xl_model": 0.2109058173577223,
-   "xl_ev": 1.109058173577223,
-   "xl_stake": 0.004848910681749,
-   "xl_min_price": 750.5911178657359,
-   "xl_cons": "n/a",
-   "own_min_price": 750.5911178657353
-  },
-  {
-   "bet": "LDR_TPG LaMelo Ball YES",
-   "american": 1100.0,
-   "own_fair": 0.07134840039779543,
-   "engine_fair": 0.0713484003977987,
-   "model": 0.1844654797751664,
-   "own_ev": 1.2135857573019968,
-   "own_ev_shrunk75": 0.19553204290565818,
-   "own_single_kelly": 0.0044439100660376854,
-   "own_joint_stake": 0.0045337661643279435,
-   "engine_joint_stake": 0.004535539545885641,
-   "xl_fair": 0.0713484003977987,
-   "xl_model": 0.1844654797751664,
-   "xl_ev": 1.2135857573019968,
-   "xl_stake": 0.0045355395458856,
-   "xl_min_price": 903.737212332221,
-   "xl_cons": "n/a",
-   "own_min_price": 903.7372123322458
+   "own_min_price": 471.6847077167696
   }
  ],
  "team_model_from_sims": [
   {
    "bet": "WINS Washington Wizards UNDER",
-   "sim_marginal": 0.82253,
-   "table_model": 0.82253,
-   "abs_diff": 0.0
-  },
-  {
-   "bet": "WINS Miami Heat UNDER",
-   "sim_marginal": 0.83278,
-   "table_model": 0.83278,
-   "abs_diff": 0.0
+   "sim_marginal": 0.78931,
+   "table_model": 0.7893100000000001,
+   "abs_diff": 1.1102230246251565e-16
   },
   {
    "bet": "WINS Utah Jazz UNDER",
-   "sim_marginal": 0.68997,
-   "table_model": 0.68997,
+   "sim_marginal": 0.67727,
+   "table_model": 0.67727,
    "abs_diff": 0.0
   },
   {
    "bet": "WINS Portland Trail Blazers OVER",
-   "sim_marginal": 0.64057,
-   "table_model": 0.6405700000000001,
-   "abs_diff": 1.1102230246251565e-16
+   "sim_marginal": 0.58198,
+   "table_model": 0.58198,
+   "abs_diff": 0.0
   },
   {
    "bet": "PLAYOFFS Minnesota Timberwolves NO",
-   "sim_marginal": 0.31825,
-   "table_model": 0.31825,
+   "sim_marginal": 0.32606,
+   "table_model": 0.32606,
    "abs_diff": 0.0
   }
  ],
- "max_fair_diff": 3.2751579226442118e-15,
+ "max_fair_diff": 2.220446049250313e-16,
  "max_random_devig_diff": 4.3520742565306136e-14,
- "max_stake_diff": 1.773381557697816e-06,
- "max_uncapped_stake_diff": 2.9621712434781816e-06,
- "total_stake_own": 0.039018801447342405,
- "total_uncapped_own": 0.1,
- "total_stake_engine": 0.039020867951043446,
- "max_xl_min_price_diff": 0.05629579797582096,
+ "max_stake_diff": 3.373233133704273e-08,
+ "max_uncapped_stake_diff": 2.0154546676387844e-06,
+ "total_stake_own": 0.02630730362198062,
+ "total_uncapped_own": 0.0520763351329605,
+ "total_stake_engine": 0.026307269889649286,
+ "max_xl_min_price_diff": 0.044592426484328485,
  "consensus_all_match": true,
  "max_xl_fair_diff": 4.1738099088028946e-11,
- "max_xl_stake_diff": 9.974659986866641e-17,
- "n_xl_matched": 8
+ "max_xl_stake_diff": 8.413408858487514e-17,
+ "n_xl_matched": 4
 }

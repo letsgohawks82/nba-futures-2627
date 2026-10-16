@@ -39,7 +39,10 @@ def run_sims(pool, gp, wins_p, cal, coefs, rookie_fit, tdef_fit, bpm_fit, dbpm_f
     for sn in L.SN:
         out["LDR_" + sn] = L.leader_credit(st[sn], gp, total_alt=L.TOTAL_ALT[sn])
         if cap is not None: cap["LDR_" + sn] = L.leader_winner(st[sn], gp, rng, L.TOTAL_ALT[sn])
-    elig = (gp >= ASSUME["award_min_games"]) & (pool.proj_mpg.values[None, :] >= ASSUME["award_min_mpg"]) if toggle65 else np.ones_like(gp, bool)
+    # award eligibility: >= 65 games and >= 20 mpg in the SIMULATED season (minutes noise: rookies mpg_sd, veterans 0.12 = LOSO RMSE ~2.2 mpg on 30), so low-projected-minute players keep a real chance
+    sd_m = np.where(pool.rookie.values, mpg_sd, 0.12)[None, :]
+    mpg_sim = pool.proj_mpg.values[None, :] * np.exp(sd_m * rng.standard_normal((n, m)) - 0.5 * sd_m ** 2)
+    elig = (gp >= ASSUME["award_min_games"]) & (mpg_sim >= ASSUME["award_min_mpg"]) if toggle65 else np.ones_like(gp, bool)
     gum = lambda: rng.gumbel(size=(n, m)).astype(np.float32)
     # MVP
     bpm = pool.rating.values[None, :] + bpm_fit["sd"] * rng.standard_normal((n, m)).astype(np.float32)
@@ -56,7 +59,7 @@ def run_sims(pool, gp, wins_p, cal, coefs, rookie_fit, tdef_fit, bpm_fit, dbpm_f
     if cap is not None: cap["DPOY"] = np.where(np.isfinite(u.max(1)), u.argmax(1), -1)
     # ROY (2026 draft class only): per-36 box rates from draft slot and age, minutes = projected mpg x lognormal(minutes SD)
     rk = pool.draft26.values
-    mpg = pool.proj_mpg.values[None, :] * np.exp(mpg_sd * rng.standard_normal((n, m)) - 0.5 * mpg_sd ** 2)
+    mpg = mpg_sim
     pts36 = np.exp(rookie_fit["pts36"]["coef"][0] + rookie_fit["pts36"]["coef"][1] * np.log(pool.pick.values) + rookie_fit["pts36"]["coef"][2] * (pool.age.values - 20.0))[None, :] * np.exp(rookie_fit["pts36"]["sd"] * rng.standard_normal((n, m)))
     ra36 = np.exp(rookie_fit["ra36"]["coef"][0] + rookie_fit["ra36"]["coef"][1] * np.log(pool.pick.values) + rookie_fit["ra36"]["coef"][2] * (pool.age.values - 20.0))[None, :] * np.exp(rookie_fit["ra36"]["sd"] * rng.standard_normal((n, m)))
     F = dict(ppg=pts36 * mpg / 36.0, rebast=ra36 * mpg / 36.0, gp=gp.astype(np.float32), lnpick=np.repeat(np.log(pool.pick.values)[None, :], n, 0))

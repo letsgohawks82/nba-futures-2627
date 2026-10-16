@@ -1,15 +1,15 @@
-pool 368 gp ready 2.4
-point done 38.7
-draw 10 70.8
-draw 20 102.5
-draw 30 134.8
-draw 40 169.1
-LDR_PPG [['Shai Gilgeous-Alexander', 0.174, 0.104, 0.262], ['Luka Doncic', 0.17, 0.103, 0.256], ['Giannis Antetokounmpo', 0.079, 0.055, 0.097], ['Nikola Jokic', 0.058, 0.049, 0.061], ['Anthony Edwards', 0.058, 0.049, 0.058], ['Tyrese Maxey', 0.042, 0.032, 0.043]]
-LDR_RPG [['Nikola Jokic', 0.196, 0.167, 0.22], ['Domantas Sabonis', 0.163, 0.14, 0.187], ['Karl-Anthony Towns', 0.115, 0.105, 0.12], ['Rudy Gobert', 0.104, 0.099, 0.111], ['Victor Wembanyama', 0.076, 0.072, 0.077], ['Jalen Duren', 0.064, 0.059, 0.067]]
-LDR_APG [['Nikola Jokic', 0.231, 0.218, 0.265], ['Trae Young', 0.223, 0.207, 0.253], ['Tyrese Haliburton', 0.13, 0.127, 0.142], ['Cade Cunningham', 0.129, 0.124, 0.135], ['James Harden', 0.054, 0.048, 0.056], ['Luka Doncic', 0.054, 0.049, 0.057]]
-LDR_SPG [['Dyson Daniels', 0.187, 0.133, 0.276], ['Cason Wallace', 0.075, 0.065, 0.094], ['Kawhi Leonard', 0.048, 0.042, 0.059], ['Tyrese Maxey', 0.044, 0.04, 0.048], ['Shai Gilgeous-Alexander', 0.042, 0.039, 0.046], ['Luka Doncic', 0.038, 0.035, 0.043]]
-LDR_BPG [['Victor Wembanyama', 0.641, 0.583, 0.727], ['Walker Kessler', 0.083, 0.074, 0.085], ['Chet Holmgren', 0.074, 0.065, 0.081], ['Anthony Davis', 0.05, 0.038, 0.054], ['Myles Turner', 0.039, 0.03, 0.043], ['Rudy Gobert', 0.022, 0.015, 0.027]]
-LDR_TPG [['Stephen Curry', 0.205, 0.162, 0.273], ['LaMelo Ball', 0.134, 0.115, 0.164], ['Luka Doncic', 0.126, 0.102, 0.157], ['Anthony Edwards', 0.062, 0.057, 0.067], ['Kon Knueppel', 0.049, 0.045, 0.05], ['Donovan Mitchell', 0.044, 0.041, 0.047]]
-MVP [['Shai Gilgeous-Alexander', 0.299, 0.247, 0.351], ['Nikola Jokic', 0.189, 0.147, 0.225], ['Victor Wembanyama', 0.114, 0.098, 0.128], ['Luka Doncic', 0.061, 0.042, 0.08], ['Kawhi Leonard', 0.033, 0.022, 0.039], ['Donovan Mitchell', 0.018, 0.012, 0.022]]
-DPOY [['Victor Wembanyama', 0.457, 0.437, 0.468], ['Chet Holmgren', 0.119, 0.099, 0.157], ['Shai Gilgeous-Alexander', 0.053, 0.033, 0.063], ['Nikola Jokic', 0.036, 0.029, 0.047], ['Scottie Barnes', 0.033, 0.027, 0.04], ['Cason Wallace', 0.03, 0.015, 0.04]]
-ROY [['AJ Dybantsa', 0.434, 0.41, 0.494], ['Darryn Peterson', 0.273, 0.265, 0.279], ['Cameron Boozer', 0.154, 0.134, 0.161], ['Caleb Wilson', 0.094, 0.074, 0.102], ['Mikel Brown Jr.', 0.045, 0.033, 0.053]]
+pool 368 gp ready 2.7
+point done 41.5
+draw 10 74.0
+draw 20 107.5
+draw 30 140.0
+draw 40 171.9
+LDR_PPG [['Shai Gilgeous-Alexander', 0.184, 0.127, 0.278], ['Luka Doncic', 0.178, 0.122, 0.278], ['Giannis Antetokounmpo', 0.083, 0.069, 0.098], ['Nikola Jokic', 0.061, 0.055, 0.065], ['Anthony Edwards', 0.06, 0.054, 0.063], ['Tyrese Maxey', 0.044, 0.034, 0.045]]
+LDR_RPG [['Nikola Jokic', 0.25, 0.227, 0.304], ['Domantas Sabonis', 0.201, 0.188, 0.248], ['Rudy Gobert', 0.146, 0.141, 0.159], ['Jalen Duren', 0.099, 0.085, 0.1], ['Anthony Davis', 0.074, 0.069, 0.076], ['Giannis Antetokounmpo', 0.059, 0.052, 0.062]]
+LDR_APG [['Nikola Jokic', 0.234, 0.216, 0.261], ['Trae Young', 0.226, 0.211, 0.254], ['Tyrese Haliburton', 0.133, 0.128, 0.145], ['Cade Cunningham', 0.133, 0.128, 0.139], ['Luka Doncic', 0.056, 0.05, 0.06], ['James Harden', 0.056, 0.051, 0.059]]
+LDR_SPG [['Dyson Daniels', 0.199, 0.129, 0.263], ['Kawhi Leonard', 0.052, 0.041, 0.06], ['Tyrese Maxey', 0.048, 0.042, 0.053], ['Shai Gilgeous-Alexander', 0.046, 0.041, 0.05], ['Cason Wallace', 0.042, 0.038, 0.046], ['Luka Doncic', 0.041, 0.038, 0.044]]
+LDR_BPG [['Victor Wembanyama', 0.451, 0.393, 0.545], ['Chet Holmgren', 0.13, 0.124, 0.136], ['Anthony Davis', 0.086, 0.08, 0.088], ['Myles Turner', 0.07, 0.065, 0.075], ['Walker Kessler', 0.059, 0.054, 0.062], ['Rudy Gobert', 0.042, 0.033, 0.046]]
+LDR_TPG [['Stephen Curry', 0.22, 0.21, 0.272], ['Luka Doncic', 0.144, 0.136, 0.173], ['Anthony Edwards', 0.073, 0.07, 0.079], ['LaMelo Ball', 0.072, 0.068, 0.08], ['Kon Knueppel', 0.058, 0.054, 0.06], ['Donovan Mitchell', 0.051, 0.049, 0.054]]
+MVP [['Shai Gilgeous-Alexander', 0.307, 0.267, 0.384], ['Nikola Jokic', 0.215, 0.176, 0.235], ['Victor Wembanyama', 0.084, 0.068, 0.094], ['Luka Doncic', 0.059, 0.045, 0.07], ['Kawhi Leonard', 0.03, 0.022, 0.035], ['Donovan Mitchell', 0.02, 0.015, 0.022]]
+DPOY [['Victor Wembanyama', 0.41, 0.379, 0.435], ['Chet Holmgren', 0.136, 0.098, 0.173], ['Shai Gilgeous-Alexander', 0.061, 0.034, 0.081], ['Nikola Jokic', 0.047, 0.034, 0.057], ['Scottie Barnes', 0.033, 0.027, 0.037], ['Cason Wallace', 0.026, 0.014, 0.038]]
+ROY [['AJ Dybantsa', 0.463, 0.422, 0.548], ['Cameron Boozer', 0.167, 0.149, 0.171], ['Darryn Peterson', 0.128, 0.122, 0.135], ['Caleb Wilson', 0.053, 0.043, 0.056], ['Keaton Wagler', 0.039, 0.029, 0.043], ['Yaxel Lendeborg', 0.037, 0.023, 0.048]]

@@ -50,7 +50,7 @@ def build():
     ps = table(); M0 = json.load(open(C("g4_rate_fit.json")))["M0"]; M0 = {STATS[k]: v for k, v in M0.items()}
     pr = project(ps, SEASON, M0)
     dh, dprior = dbpm_hat(ps, SEASON)
-    P["proj_mpg_team_layer"] = P.proj_mpg; P["proj_mpg"] = star_protected_mpg(P)
+    P["proj_mpg_team_layer"] = P.proj_mpg      # the team layer now allocates star-protected minutes itself (G8); no second adjustment here
     P["key"] = P.name.map(norm)
     P = P.merge(G[["team", "slot", "bbref_id"]].rename(columns={"team": "abbr", "bbref_id": "gid"}), left_on=["abbr", "bbref_id"], right_on=["abbr", "gid"], how="left")
     P["slotted"] = P.slot.notna()

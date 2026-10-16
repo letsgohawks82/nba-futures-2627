@@ -63,10 +63,16 @@ def build_team_ratings(wb):
 def build_windist(wb, o):
     ws = wb.create_sheet("M_WinDist"); sheet_header(ws, "M_WinDist - live analytic win distribution (normal approximation) vs sim; reprices when Assumptions / Overrides change")
     put(ws, "A5", "Wins ~ Normal(mean, sd), mean = 41 + k x SRS (the calibrated projection; the sim is moment-matched to it): sd^2 = 82 p (1-p) + (82 phi(z) / sigma_game x sigma_team)^2 with p = mean/82, z = NORMSINV(p). Delta flagged when |analytic - sim| > 2pp.", "text", italic=True)
-    headers(ws, 7, ["Team", "Line", "Mean wins (live)", "SD wins", "P(over) analytic", "P(under) analytic", "P(over) sim", "Delta (pp)", "Flag", "Model fair odds - over", "Model fair odds - under", "Book over", "Book under", "Book fair over (selected)", "Market fair median wins", "Compression bias (wins)", "Our gap, bias-adjusted (wins)"] + [f"Gap: {REG['cons']['names'][k]} ({REG['cons']['types'][k]})" for k in REG["cons"]["types"]] + ["Consensus PASS for OVER", "Consensus PASS for UNDER"])
+    srcs = ["ours"] + REG["cons"]["order"]
+    hdr = ["Team", "Line", "Mean wins (live)", "SD wins", "P(over) analytic", "P(under) analytic", "P(over) sim", "Delta (pp)", "Flag", "Model fair odds - over", "Model fair odds - under", "Book over", "Book under", "Book fair over (selected)", "Market fair median wins"]
+    for k in srcs: hdr += [f"Proj: {k}", f"Residual: {k}"]
+    hdr += ["Results-based sources count? (engine)", "Why not (engine)", "Roster-aware residuals both >= strong", "Consensus PASS for OVER", "Consensus PASS for UNDER"]
+    headers(ws, 7, hdr, height=45)
     tr = REG["tr"]; od = REG["odds"]; dv = REG["devig"]
     w = o[(o.market == "WINS") & (o.side == "OVER")]
     from ..data.teams import NAME2ABBR
+    from ..pricing import consensus as CSE
+    rb_elig = CSE.rb_eligible()
     for i, (idx, r) in enumerate(w.iterrows()):
         row = 8 + i; orow = od["first"] + idx; abbr = NAME2ABBR[r.selection]
         put(ws, f"A{row}", abbr, "text")
@@ -79,15 +85,28 @@ def build_windist(wb, o):
         put(ws, f"J{row}", f"=IF(E{row}>=0.5,-100*E{row}/(1-E{row}),100*(1-E{row})/E{row})", "formula", "amer"); put(ws, f"K{row}", f"=IF(F{row}>=0.5,-100*F{row}/(1-F{row}),100*(1-F{row})/F{row})", "formula", "amer")
         put(ws, f"L{row}", f"=Odds_Input!F{orow}", "link", "amer"); put(ws, f"M{row}", f"=Odds_Input!F{orow+1}", "link", "amer")
         put(ws, f"N{row}", f"=M_DeVig!Q{dv['first']+idx}", "link", "pct")
-        cs = REG["cons"]; put(ws, f"O{row}", f"=B{row}+(N{row}-0.5)/A_p_per_win", "formula", "num2"); put(ws, f"P{row}", f"=A_comp_slope*(O{row}-A_games/2)", "formula", "num2"); put(ws, f"Q{row}", f"=(C{row}-O{row})-P{row}", "formula", "num2")
-        gcols = {}
-        for j, (k, tp) in enumerate(cs["types"].items()):
-            col = CL(18 + j); gcols[k] = col; rng = f"Raw_Consensus!${cs['cols'][k]}${cs['first']}:${cs['cols'][k]}${cs['last']}"
-            put(ws, f"{col}{row}", f"=(INDEX({rng},MATCH($A{row},Raw_Consensus!$A${cs['first']}:$A${cs['last']},0))-$O{row})-$P{row}", "formula", "num2")
-        st = [gcols[k] for k, tp in cs["types"].items() if tp == "STAT_MODEL"]; pc = CL(18 + len(gcols))
-        put(ws, f"{pc}{row}", "=AND(Q{r}>=A_cons_min,OR({o}))".format(r=row, o=",".join(f"{c}{row}>=A_cons_min" for c in st)), "formula")
-        put(ws, f"{CL(19 + len(gcols))}{row}", "=AND(Q{r}<=-A_cons_min,OR({o}))".format(r=row, o=",".join(f"{c}{row}<=-A_cons_min" for c in st)), "formula")
-        REG["windist_pass"] = (pc, CL(19 + len(gcols)))
+        cs = REG["cons"]; put(ws, f"O{row}", f"=B{row}+(N{row}-0.5)/A_p_per_win", "formula", "num2")
+        pc = {}; rc = {}
+        for j, k in enumerate(srcs):
+            pcol = CL(16 + 2 * j); rcol = CL(17 + 2 * j); pc[k] = pcol; rc[k] = rcol
+            if k == "ours": put(ws, f"{pcol}{row}", f"=C{row}", "formula", "num2")
+            else:
+                rng = f"Raw_Consensus!${cs['cols'][k]}${cs['first']}:${cs['cols'][k]}${cs['last']}"
+                put(ws, f"{pcol}{row}", f"=INDEX({rng},MATCH($A{row},Raw_Consensus!$A${cs['first']}:$A${cs['last']},0))", "link", "num2")
+            put(ws, f"{rcol}{row}", f"={pcol}{row}-(INTERCEPT({pcol}$8:{pcol}$37,$O$8:$O$37)+SLOPE({pcol}$8:{pcol}$37,$O$8:$O$37)*$O{row})", "formula", "num2")
+        base = 16 + 2 * len(srcs); rb = rb_elig.get(abbr, (True, ""))
+        put(ws, f"{CL(base)}{row}", "Y" if rb[0] else "N", "input"); put(ws, f"{CL(base+1)}{row}", rb[1], "text")
+        ra = [rc["ours"], rc["PredictionEngine"]]; rbs = [rc[k] for k in cs["order"] if cs["methods"][k] == "results_based"]
+        put(ws, f"{CL(base+2)}{row}", f"=AND(ABS({ra[0]}{row})>=A_cons_strong,ABS({ra[1]}{row})>=A_cons_strong)", "formula")
+        put(ws, f"{CL(base+3)}{row}", f'=AND({ra[0]}{row}>=A_cons_min,{ra[1]}{row}>=A_cons_min,NOT(AND({CL(base)}{row}="Y",{rbs[0]}{row}<=-A_cons_min,{rbs[1]}{row}<=-A_cons_min)))', "formula")
+        put(ws, f"{CL(base+4)}{row}", f'=AND({ra[0]}{row}<=-A_cons_min,{ra[1]}{row}<=-A_cons_min,NOT(AND({CL(base)}{row}="Y",{rbs[0]}{row}>=A_cons_min,{rbs[1]}{row}>=A_cons_min)))', "formula")
+        REG["windist_pass"] = (CL(base + 3), CL(base + 4)); REG["windist_strong"] = CL(base + 2)
+    n_ = len(w); sr = 8 + n_ + 1
+    put(ws, f"A{sr}", "Per-source regression of projection on the market fair median (30 teams)", "text", bold=True)
+    for j, k in enumerate(srcs):
+        pcol = CL(16 + 2 * j); rcol = CL(17 + 2 * j)
+        for t_, (lab, f_) in enumerate((("Slope", f"=SLOPE({pcol}8:{pcol}{7+n_},$O$8:$O${7+n_})"), ("Intercept", f"=INTERCEPT({pcol}8:{pcol}{7+n_},$O$8:$O${7+n_})"), ("Residual SD", f"=STDEV({rcol}8:{rcol}{7+n_})"), ("R-squared", f"=RSQ({pcol}8:{pcol}{7+n_},$O$8:$O${7+n_})"))):
+            put(ws, f"A{sr+1+t_}", lab, "text"); put(ws, f"{pcol}{sr+1+t_}", f_, "formula", "num3")
     REG["windist"] = dict(first=8, last=7 + len(w), n=len(w), idx=list(w.index), teams=[NAME2ABBR[s] for s in w.selection])
     ws.conditional_formatting.add(f"I8:I{7+len(w)}", FormulaRule(formula=['LEN(I8)>0'], font=Font(name="Arial", size=10, color=RED, bold=True)))
     widths(ws, {"A": 8}); finish(ws); ws.freeze_panes = "B8"
@@ -140,12 +159,12 @@ def build_sims(wb, o):
     # CI table
     ci0 = pr0 + len(S) + 4
     put(ws, f"A{ci0-1}", "Edge confidence intervals / robustness / portfolio Kelly per odds row (engine output)", "text", bold=True)
-    hd = ["Row id", "EV CI low (80%)", "EV CI high (80%)", "P(EV>0) over parameter draws", "Alt-definition EV", "Alt EV CI low", "Alt EV CI high", "Robust OK", "EV kappa=0", "EV kappa=1.57", "EV sigma-10%", "EV sigma+10%", "Portfolio Kelly (frac of bankroll)", "Bottom-10 projected", "EV CI low - zero-sum model (WINS)", "Static block (miscalibrated EV bucket / compression rule)", "Tier 1 static OK (direction rule + named driver)", "Tier 1 portfolio Kelly (frac, engine cap)", "Tier 1 named driver"]
+    hd = ["Row id", "EV CI low (80%)", "EV CI high (80%)", "P(EV>0) over parameter draws", "Alt-definition EV", "Alt EV CI low", "Alt EV CI high", "Robust OK", "EV kappa=0", "EV kappa=1.57", "EV sigma-10%", "EV sigma+10%", "Portfolio Kelly (frac of bankroll)", "Bottom-10 projected", "EV CI low - zero-sum model (WINS)", "Static block (miscalibrated EV bucket / compression rule)", "Tier 1 static OK (direction rule + named driver)", "Tier 1 portfolio Kelly (frac, engine cap)", "Tier 1 named driver", "Engine exclusion / hold (Tier 1)"]
     headers(ws, ci0, hd)
     for i, r in o.iterrows():
         row = ci0 + 1 + i
-        vals = [int(r.row_id), r.ev_lo, r.ev_hi, r.p_ev_pos, r.ev_alt, r.ev_lo_alt, r.ev_hi_alt, int(bool(r.robust_ok)), r.ev_kappa_0, r.ev_kappa_hi, r.ev_sigma_lo, r.ev_sigma_hi, r.kelly_portfolio, int(bool(r.bottom10)), r.ev_lo_zs, int(bool(r.static_block)), int(bool(r.t1_static_ok)), r.tier1_kelly, (r.t1_driver if isinstance(r.t1_driver, str) else "-")]
-        fm = ["int", "num3", "num3", "pct", "num3", "num3", "num3", "int", "num3", "num3", "num3", "num3", "0.0000", "int", "num3", "int", "int", "0.0000", "text"]
+        vals = [int(r.row_id), r.ev_lo, r.ev_hi, r.p_ev_pos, r.ev_alt, r.ev_lo_alt, r.ev_hi_alt, int(bool(r.robust_ok)), r.ev_kappa_0, r.ev_kappa_hi, r.ev_sigma_lo, r.ev_sigma_hi, r.kelly_portfolio, int(bool(r.bottom10)), r.ev_lo_zs, int(bool(r.static_block)), int(bool(r.t1_static_ok)), r.tier1_kelly, (r.t1_driver if isinstance(r.t1_driver, str) else "-"), int(bool(r.t1_excluded))]
+        fm = ["int", "num3", "num3", "pct", "num3", "num3", "num3", "int", "num3", "num3", "num3", "num3", "0.0000", "int", "num3", "int", "int", "0.0000", "text", "int"]
         for j, (v, f) in enumerate(zip(vals, fm)):
             put(ws, f"{CL(1+j)}{row}", "-" if (isinstance(v, float) and np.isnan(v)) else v, "input", f)
     REG["sims_ci"] = dict(first=ci0 + 1, last=ci0 + len(o))
@@ -197,8 +216,10 @@ def build_players(wb):
     put(ws, "A4", "Probabilities are simulation outputs (100k season sims; 80% interval = season-block bootstrap of the rate/award fits); EV, shrunk EV and the Tier tests are live formulas on Assumptions. Stat-leader probabilities are sharpened p^gamma (gamma from leave-one-season-out CV; see Backtest notes / G6 report). TPG = three-pointers made per game. Display-only markets (MIP, 6MOY, COY, Clutch, Cup MVP) are on S_Markets.", "text", italic=True)
     put(ws, "A5", "Tier 1 here = Tier 2 test + fair >= A_t1_fair + edge survives A_t1_shrink; stakes are multi-outcome fractional Kelly on the shrunk probability within each market (cap 3% per market); Tier 2 stakes are not shown.", "text", italic=True)
     cols = ["Market", "Selection", "Team", "American", "Decimal", "Fair prob (Shin)", "Model prob", "Model p 10th pct", "Model p 90th pct", "EV (model)", "EV (shrunk)", "EV lo (shrunk)", "Worst scenario EV (shrunk)", "Tier 2",
-            "Tier 1", "Tier 1 stake (frac)", "Tier 1 stake ($)", "Proj mpg", "Proj games", "Driver", "Tier 1 holds at sharpening-exponent CI bounds (engine)", "Joint-Kelly stake before ROY multiplier (engine)", "Min acceptable price (EV at shrink 0.75 = 0)", "Consensus"]
+            "Tier 1", "Tier 1 stake (frac)", "Tier 1 stake ($)", "Proj mpg", "Proj games", "Driver", "Tier 1 holds at sharpening-exponent CI bounds (engine)", "Joint-Kelly stake before ROY multiplier (engine)", "Min acceptable price (EV at shrink 0.75 = 0)", "Consensus", "Exchange average prob (Raw_MarketRef)", "Blended prob (book fair + exchange) / 2", "EV at blended prob", "Model vs exchange flag", "Engine exclusion (news / user)"]
     headers(ws, 7, cols, height=45)
+    from ..pricing import marketref as _MR
+    _n = len(_MR.load()); _m0, _m1 = 8, 7 + _n
     o = pd.read_csv(C("player_pricing_table.csv")); o = o[o.modelled].copy()
     put(ws, "A6", "Engine Tier 1 count (players)", "text", bold=True); put(ws, "B6", int(o.tier1.sum()), "input", "int")
     o["ord"] = o.market.map({m: i for i, m in enumerate(["MVP", "DPOY", "ROY", "LDR_PPG", "LDR_RPG", "LDR_APG", "LDR_SPG", "LDR_BPG", "LDR_TPG"])})
@@ -210,8 +231,11 @@ def build_players(wb):
         put(ws, f"G{k}", float(r.p), "input", "pct2"); put(ws, f"H{k}", float(r.p_lo), "input", "pct2"); put(ws, f"I{k}", float(r.p_hi), "input", "pct2")
         put(ws, f"J{k}", f"=G{k}*E{k}-1", "formula", "pct"); put(ws, f"K{k}", f"=((1-A_shrink)*G{k}+A_shrink*F{k})*E{k}-1", "formula", "pct")
         put(ws, f"L{k}", f"=((1-A_shrink)*H{k}+A_shrink*F{k})*E{k}-1", "formula", "pct"); put(ws, f"M{k}", float(r.ev_s_worst_scenario), "input", "pct")
-        put(ws, f"N{k}", f"=AND(K{k}>=A_minev,L{k}>0,M{k}>=A_minev)", "formula")
-        put(ws, f"O{k}", f"=AND(N{k},U{k},F{k}>=A_t1_fair,((1-A_t1_shrink)*G{k}+A_t1_shrink*F{k})*E{k}-1>=A_minev,((1-A_t1_shrink)*H{k}+A_t1_shrink*F{k})*E{k}-1>0)", "formula")
+        put(ws, f"N{k}", f"=AND(K{k}>=A_minev,L{k}>0,M{k}>=A_minev,OR(NOT(ISNUMBER(Y{k})),AA{k}>0))", "formula")
+        put(ws, f"Y{k}", f'=IFERROR(AVERAGEIFS(Raw_MarketRef!$G${_m0}:$G${_m1},Raw_MarketRef!$A${_m0}:$A${_m1},A{k},Raw_MarketRef!$D${_m0}:$D${_m1},B{k},Raw_MarketRef!$H${_m0}:$H${_m1},"Y"),"-")', "formula", "pct2")
+        put(ws, f"Z{k}", f"=IF(ISNUMBER(Y{k}),(F{k}+Y{k})/2,F{k})", "formula", "pct2"); put(ws, f"AA{k}", f"=Z{k}*E{k}-1", "formula", "pct")
+        put(ws, f"AB{k}", f'=IF(ISNUMBER(Y{k}),IF(OR(G{k}/Y{k}>A_blend_ratio,G{k}/Y{k}<1/A_blend_ratio),"FLAG: >"&A_blend_ratio&"x apart",""),"")', "flag"); put(ws, f"AC{k}", bool(r.t1_excluded), "input")
+        put(ws, f"O{k}", f"=AND(N{k},U{k},NOT(AC{k}),F{k}>=A_t1_fair,((1-A_t1_shrink)*G{k}+A_t1_shrink*F{k})*E{k}-1>=A_minev,((1-A_t1_shrink)*H{k}+A_t1_shrink*F{k})*E{k}-1>0)", "formula")
         put(ws, f"V{k}", float(r.stake_t1_premult if r.market == "ROY" else r.stake_t1), "input", "0.0000"); put(ws, f"P{k}", f'=V{k}*IF(A{k}="ROY",A_roy_stake_mult,1)', "formula", "0.0000")
         ps_ = f"((1-A_t1_shrink)*G{k}+A_t1_shrink*F{k})"; put(ws, f"W{k}", f"=IF(1/{ps_}>=2,(1/{ps_}-1)*100,-100/(1/{ps_}-1))", "formula", "amer"); put(ws, f"X{k}", "n/a", "text"); put(ws, f"Q{k}", f'=IF(AND(O{k},ISNUMBER(A_bankroll)),P{k}*A_bankroll,"-")', "formula", "money")
         put(ws, f"R{k}", float(r.proj_mpg) if pd.notna(r.proj_mpg) else "-", "input", "num1"); put(ws, f"S{k}", float(r.proj_gp) if pd.notna(r.proj_gp) else "-", "input", "num1"); put(ws, f"T{k}", str(r.driver) if isinstance(r.driver, str) else "", "text"); put(ws, f"U{k}", bool(r.tier1_gamma_lo and r.tier1_gamma_hi), "input")

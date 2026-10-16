@@ -95,6 +95,10 @@
   "Raw_Consensus": [
    0,
    []
+  ],
+  "Raw_MarketRef": [
+   0,
+   []
   ]
  },
  "checks": [
@@ -110,12 +114,12 @@
   ],
   [
    "Model probabilities sum to 1: title",
-   2.220446049250313e-16,
+   0.0,
    "OK"
   ],
   [
    "Model probabilities sum to 2: conference",
-   0.0,
+   4.440892098500626e-16,
    "OK"
   ],
   [
@@ -125,12 +129,12 @@
   ],
   [
    "Model probabilities sum to 1: Cup",
-   0.0,
+   2.220446049250313e-16,
    "OK"
   ],
   [
    "Model probabilities sum to 6: Cup groups",
-   1.7763568394002505e-15,
+   8.881784197001252e-16,
    "OK"
   ],
   [
@@ -240,8 +244,8 @@
   ]
  ],
  "overall_checks_failing": 0.0,
- "bet_count": 52.0,
- "tier1_count": 8.0,
+ "bet_count": 39.0,
+ "tier1_count": 4.0,
  "sim_status": "OK - sims match current assumptions",
  "devig_parity_max_abs": {
   "mult": 2.220446049250313e-16,
@@ -249,9 +253,9 @@
   "shin": 3.040928064912407e-10,
   "selected": 3.040928064912407e-10
  },
- "team_wins_parity_max_abs": 1.7763568394002505e-14,
+ "team_wins_parity_max_abs": 1.4210854715202004e-14,
  "wins_sum": 1230.0,
- "ev_parity_max_abs": 0.0018450000000003741,
- "qualifying_excel": 52,
- "qualifying_python": 52
+ "ev_parity_max_abs": 0.0015479999999994387,
+ "qualifying_excel": 39,
+ "qualifying_python": 39
 }

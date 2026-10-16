@@ -6,6 +6,7 @@ import numpy as np, pandas as pd
 from scipy.optimize import minimize
 from .price import load_odds, add_devig
 from ..data.namemap import norm
+from . import marketref as MR
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 C = lambda f: os.path.join(ROOT, "data", "clean", f)
@@ -59,7 +60,11 @@ def main():
     o["fair_ge_5"] = o.fair >= A["fair_min"]
     o["longshot_ok"] = np.where(o.fair < 0.05, scen["sd_hi"] >= A["min_ev"], True)
     ok = o.modelled & (o.ev_s >= A["min_ev"]) & (o.ev_lo_s > 0)
-    o["tier2"] = ok & o.robust_ok & o.longshot_ok
+    ex = MR.exchange_avg(); o["exch_avg"] = [float(ex.get((m_, k_), np.nan)) for m_, k_ in zip(o.market, o.key)]
+    o["blended"] = np.where(o.exch_avg.notna(), (o.fair + o.exch_avg) / 2, o.fair); o["ev_blend"] = o.blended * o.dec - 1
+    o["blend_ok"] = o.exch_avg.isna() | (o.ev_blend > 0)                                 # gate: EV > 0 at the blended probability as well as at the model probability
+    o["exch_ratio_flag"] = o.exch_avg.notna() & o.modelled & (((o.p / o.exch_avg) > 2.0) | ((o.p / o.exch_avg) < 0.5))
+    o["tier2"] = ok & o.robust_ok & o.longshot_ok & o.blend_ok
     # driver text: the projection facts behind each probability
     pool = pd.read_csv(C("g4_pool.csv")).set_index("key")
     P = pd.read_csv(C("player_projection_2027.csv")); P["key"] = P.name.map(norm); P = P.drop_duplicates("key").set_index("key")
@@ -85,7 +90,10 @@ def main():
         wc = pd.concat([ev(o.mkey.map(prx[c]).fillna(0.0), A["shrink"]) for c in ("p_sd_lo", "p_sd_hi", "p_mpg_lo", "p_no65")], axis=1).min(axis=1)
         return o.modelled & (ev(pp, A["shrink_t1"]) >= A["min_ev"]) & (ev(pl, A["shrink_t1"]) > 0) & (wc >= A["min_ev"])
     o["tier1_gamma_lo"] = t1_at(pr_alt["lo"]); o["tier1_gamma_hi"] = t1_at(pr_alt["hi"])
-    o["tier1"] = o.tier2 & (o.ev75 >= A["min_ev"]) & (o.ev_lo75 > 0) & o.fair_ge_5 & o.tier1_gamma_lo & o.tier1_gamma_hi
+    ovr = json.load(open(os.path.join(ROOT, "params/tier1_overrides.json"))); o["t1_excluded"] = False
+    for e in ovr.get("exclude", []) + ovr.get("hold", []):
+        if "selection" in e: o.loc[(o.market == e["market"]) & (o.selection == e["selection"]), "t1_excluded"] = True
+    o["tier1"] = o.tier2 & (o.ev75 >= A["min_ev"]) & (o.ev_lo75 > 0) & o.fair_ge_5 & o.tier1_gamma_lo & o.tier1_gamma_hi & ~o.t1_excluded
     # stakes
     o["stake_t2"] = 0.0; o["stake_t1"] = 0.0
     for mk, g in o[o.tier2].groupby("market"):

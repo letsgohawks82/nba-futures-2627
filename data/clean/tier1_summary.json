@@ -1,15 +1,15 @@
 {
  "waterfall": {
-  "tier2_all": 52,
-  "shrink075": 27,
+  "tier2_all": 39,
+  "shrink075": 22,
   "fair_ge_5pct": 20,
-  "direction_rule": 19,
-  "named_driver": 5,
-  "total_stake_frac": 0.09655035634259404,
-  "exp_return_model": 0.04816688358829786,
-  "p_profit": 0.88461,
-  "p05": -0.02361769684213818,
-  "worst": -0.09655035634259404
+  "direction_rule": 20,
+  "named_driver": 4,
+  "total_stake_frac": 0.05207451277355535,
+  "exp_return_model": 0.024796946359901,
+  "p_profit": 0.68767,
+  "p05": -0.01378888236045597,
+  "worst": -0.05207451277355535
  },
  "top5": [
   "OKC",
@@ -149,10 +149,14 @@
    "gap_wins": -3.008,
    "gap_srs": 1.2326334156510597,
    "direction": -1,
-   "coverage": 0.0,
-   "named": false,
-   "facts": [],
-   "fact_effects": []
+   "coverage": 1.368472607699465,
+   "named": true,
+   "facts": [
+    "Tyrese Haliburton projected 52 games (injury/age history; costs 1.7 SRS vs full health)"
+   ],
+   "fact_effects": [
+    -1.69
+   ]
   },
   "LAC": {
    "team": "LAC",
@@ -193,13 +197,13 @@
    "gap_wins": -8.498,
    "gap_srs": 3.4823533132322817,
    "direction": -1,
-   "coverage": 0.5152887259450103,
-   "named": false,
+   "coverage": 0.6388539213160678,
+   "named": true,
    "facts": [
-    "Giannis Antetokounmpo projected 53 games (injury/age history; costs 1.8 SRS vs full health)"
+    "Giannis Antetokounmpo projected 53 games (injury/age history; costs 2.2 SRS vs full health)"
    ],
    "fact_effects": [
-    -1.79
+    -2.22
    ]
   },
   "MIL": {
@@ -261,12 +265,14 @@
    "gap_wins": -3.501,
    "gap_srs": 1.434657442883763,
    "direction": -1,
-   "coverage": 0.7076730952845692,
+   "coverage": 1.439376599415259,
    "named": true,
    "facts": [
+    "Jalen Williams projected 54 games (injury/age history; costs 1.0 SRS vs full health)",
     "Isaiah Joe gone (1507 min at +2.5 BPM last year; -1.0 SRS)"
    ],
    "fact_effects": [
+    -1.05,
     -1.02
    ]
   },
@@ -275,20 +281,28 @@
    "gap_wins": -0.567,
    "gap_srs": 0.23234812056986395,
    "direction": -1,
-   "coverage": 0.0,
-   "named": false,
-   "facts": [],
-   "fact_effects": []
+   "coverage": 4.430927215132399,
+   "named": true,
+   "facts": [
+    "Franz Wagner projected 54 games (injury/age history; costs 1.0 SRS vs full health)"
+   ],
+   "fact_effects": [
+    -1.03
+   ]
   },
   "PHI": {
    "team": "PHI",
    "gap_wins": -5.61,
    "gap_srs": 2.298894102992834,
    "direction": -1,
-   "coverage": 0.0,
+   "coverage": 0.5222069028616396,
    "named": false,
-   "facts": [],
-   "fact_effects": []
+   "facts": [
+    "LeBron James projected 54 games (injury/age history; costs 1.2 SRS vs full health)"
+   ],
+   "fact_effects": [
+    -1.2
+   ]
   },
   "PHX": {
    "team": "PHX",
@@ -335,14 +349,14 @@
    "gap_wins": 2.944,
    "gap_srs": 1.2064071727648669,
    "direction": 1,
-   "coverage": 3.1808754740299507,
+   "coverage": 3.35433005265831,
    "named": true,
    "facts": [
-    "Kawhi Leonard rated +6.1 (DARKO +6.3), 30 mpg, 56 g (new to team; +2.8 SRS vs 2025-26)",
+    "Kawhi Leonard rated +6.1 (DARKO +6.3), 32 mpg, 56 g (new to team; +3.0 SRS vs 2025-26)",
     "Gradey Dick gone (1067 min at -3.6 BPM last year; +1.0 SRS)"
    ],
    "fact_effects": [
-    2.8,
+    3.01,
     1.04
    ]
   },
@@ -361,10 +375,16 @@
    "gap_wins": -6.289,
    "gap_srs": 2.577138148613535,
    "direction": -1,
-   "coverage": 0.0,
-   "named": false,
-   "facts": [],
-   "fact_effects": []
+   "coverage": 0.9385566953371028,
+   "named": true,
+   "facts": [
+    "Anthony Davis projected 50 games (injury/age history; costs 1.3 SRS vs full health)",
+    "AJ Dybantsa rated -1.8 (no DARKO), 30 mpg, 80 g (new to team; -1.1 SRS vs 2025-26)"
+   ],
+   "fact_effects": [
+    -1.28,
+    -1.14
+   ]
   }
  }
 }

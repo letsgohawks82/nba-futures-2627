@@ -44,15 +44,15 @@ def main(seed=909):
     for a in range(0, N, 20_000):
         cap = {}; G.run_sims(pool, gp[a:a + 20_000], wp[a:a + 20_000], cal, coef, rookie_fit, tdef_fit, bpm_fit, dbpm_fit, rng, cap=cap)
         for mk in win: win[mk][a:a + 20_000] = cap[mk]
-    Xp = np.stack([win[r.market] == int(np.where(keys == r.key)[0][0]) for r in Pl.itertuples()], 1)
+    Xp = np.stack([win[r.market] == int(np.where(keys == r.key)[0][0]) for r in Pl.itertuples()], 1) if len(Pl) else np.zeros((N, 0), bool)
     X = np.concatenate([Xt, Xp], 1); dec = np.concatenate([T.dec.values, Pl.dec.values]); fair = np.concatenate([T.fair.values, Pl.fair.values]); pm = np.concatenate([T.model_prob.values, Pl.model_prob.values])
     p_stake = (1 - SHRINK_T1) * pm + SHRINK_T1 * fair
     f0, f_full, wt = portfolio_kelly(X, dec, p_stake, KF, CAP)                     # (a) joint Kelly with no caps / multipliers
-    pr = CS.params(); n_t = len(T)
+    pr = CS.params(); n_t = len(T); CT = CS.table(pd.read_csv(C("pricing_table.csv")))[0]
     cont = T.continuity.fillna(1.0).values if "continuity" in T else np.ones(n_t)
     caps = np.full(len(dec), np.inf)
     for j, r in enumerate(T.itertuples()):
-        if r.market == "WINS": caps[j] = pr["wins_stake_cap"] * (pr["lowcont_mult"] if r.continuity < pr["lowcont_thr"] else 1.0)
+        if r.market == "WINS": caps[j] = (pr["wins_stake_base"] if bool(CT.strong[r.team]) else pr["wins_stake_low"]) * (pr["lowcont_mult"] if r.continuity < pr["lowcont_thr"] else 1.0)
     roy = [n_t + j for j, r in enumerate(Pl.itertuples()) if r.market == "ROY"]
     fixed = {j: pr["roy_stake_mult"] * f0[j] for j in roy}                          # (b) ROY stake fixed at mult x joint stake
     Rm_ = np.where(X, (dec - 1.0)[None, :], -1.0); m_ = len(dec)

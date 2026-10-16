@@ -43,13 +43,30 @@ def own_min(ps):
     return (d - 1) * 100.0 if d >= 2 else -100.0 / (d - 1)
 
 
-def own_consensus(r, fair_over):
-    """WINS consensus re-derived from the raw inputs only: market median from the de-vigged OVER probability, compression bias, bias-adjusted gaps."""
-    pr = json.load(open(os.path.join(ROOT, "params/tier1_overrides.json"))); src = json.load(open(os.path.join(ROOT, "data/consensus/sources.json")))["sources"]
-    rows = list(csv.DictReader(open(os.path.join(ROOT, "data/consensus/consensus_wins_2026-10-15.csv")))); M = {x["team"]: x for x in rows}
+def all_residuals():
+    """Per-source regression residuals on the market fair median, re-derived from the raw odds + raw consensus file only (own Shin de-vig of every WINS pair, numpy OLS)."""
+    rows, grp = groups(); med = {}
+    teams = {}
+    for x in csv.DictReader(open(C("pricing_table.csv"), encoding="utf-8")):
+        if x["market"] == "WINS" and x["side"] == "OVER": teams[(x["selection"], x["line"])] = x["team"]
+    for k, v in grp.items():
+        if k[0] != "WINS": continue
+        pi = [1 / dec(float(r["american"])) for _, r in v]; fair = shin(pi); pos = [j for j, (_, r) in enumerate(v) if r["side"] == "OVER"][0]
+        pr0 = json.load(open(os.path.join(ROOT, "params/tier1_overrides.json")))
+        med[teams[(k[1], k[2])]] = float(k[2]) + (fair[pos] - 0.5) / pr0["p_per_win"]
     tp = {x["abbr"]: float(x["pred_wins"]) for x in csv.DictReader(open(C("team_projection_2027.csv")))}
-    line = float(r["line"]); med = line + (fair_over - 0.5) / pr["p_per_win"]; bias = pr["comp_slope"] * (med - 41.0)
-    return med, bias, tp, M, pr, src
+    raw = {}
+    for x in csv.DictReader(open(os.path.join(ROOT, "data/consensus/raw_consensus_20261016.csv"), encoding="utf-8")): raw.setdefault(x["source"], {})[x["team"]] = float(x["proj_wins"])
+    raw["ours"] = tp; T = sorted(med); xs = np.array([med[t] for t in T]); out = {}
+    for src, d in raw.items():
+        ys = np.array([d[t] for t in T]); b, a_ = np.polyfit(xs, ys, 1); out[src] = dict(slope=float(b), intercept=float(a_), res={t: float(y - (a_ + b * x)) for t, x, y in zip(T, xs, ys)})
+    return med, out
+
+
+def own_consensus(team, side, med, res, pr):
+    ra = [res["ours"]["res"][team], res["PredictionEngine"]["res"][team]]; sign = 1 if side == "OVER" else -1
+    ok = all(sign * x >= pr["cons_min"] for x in ra); strong = all(abs(x) >= pr["cons_strong"] for x in ra)
+    return ra, ok, strong
 
 
 def groups():
@@ -128,9 +145,11 @@ def main():
     jt = json.load(open(C("joint_summary.json"))); eng = np.array(list(jt["stakes"].values())); eng0 = np.array(list(jt["uncapped_joint"].values()))
     pr_ = json.load(open(os.path.join(ROOT, "params/tier1_overrides.json")))
     f0, w, mu_t = kelly_solver(Xs, dec_, p_stake)                                           # (a) no caps / multipliers
+    med_, res_ = all_residuals(); pr__ = json.load(open(os.path.join(ROOT, "params/tier1_overrides.json")))
+    own_strong = {j: own_consensus(r["team"], r["side"], med_, res_, pr__)[2] for j, r in enumerate(labels) if r["market"] == "WINS"}
     ub = np.full(len(labels), np.inf); fixed = {}
     for j, r in enumerate(labels):
-        if r["market"] == "WINS": ub[j] = pr_["wins_stake_cap"] * (pr_["lowcont_mult"] if float(r["continuity"]) < pr_["lowcont_thr"] else 1.0)
+        if r["market"] == "WINS": ub[j] = (pr_["wins_stake_base"] if own_strong[j] else pr_["wins_stake_low"]) * (pr_["lowcont_mult"] if float(r["continuity"]) < pr_["lowcont_thr"] else 1.0)
         if r["market"] == "ROY": fixed[j] = pr_["roy_stake_mult"] * f0[j]
     f, w, mu_t = kelly_solver(Xs, dec_, p_stake, ub=ub, fixed=fixed)                       # (b) WINS capped, ROY fixed at the multiplied stake
     ev = pm * dec_ - 1; ev75 = p_stake * dec_ - 1
@@ -156,13 +175,10 @@ def main():
     cons_rows = []
     for j, r in enumerate(t1):
         if r["market"] != "WINS": continue
-        k, v = group_for(r); sh, mu, pw, vv = devig_group(k, v); over_pos = [jj for jj, (ii, rr) in enumerate(v) if rr["side"] == "OVER"][0]
-        med, bias, tp, M, pr, src = own_consensus(r, sh[over_pos]); t = r["team"]; sign = 1 if r["side"] == "OVER" else -1
-        g_model = (tp[t] - med) - bias; stat = [x["id"] for x in src if x["type"] == "STAT_MODEL"]; g_stat = {i: (float(M[t][i]) - med) - bias for i in stat}
-        ok = sign * g_model >= pr["cons_min"] and any(sign * g >= pr["cons_min"] for g in g_stat.values())
-        xv = xl.get((r["market"], r["selection"]), {}).get("cons")
-        cons_rows.append(dict(bet=f'{r["selection"]} {r["side"]}', market_median=med, bias=bias, gap_model=g_model, gap_stat=g_stat, own_pass=ok, excel=xv, match=(xv == ("PASS" if ok else "FAIL"))))
-    res = dict(consensus_check=cons_rows, devig_tier1=checks, devig_random10=rnd, bets=table, team_model_from_sims=team_rows,
+        ra, ok, strong = own_consensus(r["team"], r["side"], med_, res_, pr__); xv = xl.get((r["market"], r["selection"]), {}).get("cons")
+        cons_rows.append(dict(bet=f'{r["selection"]} {r["side"]}', market_median=med_[r["team"]], res_ours=ra[0], res_predictionengine=ra[1], own_pass=ok, own_strong=strong, excel=xv, match=(xv == ("PASS" if ok else "FAIL"))))
+    slopes = {k: dict(slope=v["slope"], resid_sd=float(np.std(list(v["res"].values()), ddof=2))) for k, v in res_.items()}
+    res = dict(source_regressions=slopes, consensus_check=cons_rows, devig_tier1=checks, devig_random10=rnd, bets=table, team_model_from_sims=team_rows,
                max_fair_diff=max(c["abs_diff"] for c in checks), max_random_devig_diff=max(r["max_abs_diff_vs_table_3methods"] for r in rnd),
                max_stake_diff=float(np.abs(f - eng).max()), max_uncapped_stake_diff=float(np.abs(f0 - eng0).max()), total_stake_own=float(f.sum()), total_uncapped_own=float(f0.sum()), total_stake_engine=float(eng.sum()),
                max_xl_min_price_diff=max((abs(t["xl_min_price"] - t["own_min_price"]) for t in table if t["xl_min_price"] is not None), default=None), consensus_all_match=all(c["match"] for c in cons_rows),

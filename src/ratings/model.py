@@ -145,7 +145,12 @@ def predict_players(D, s, P, metric="bpm", roster_ids=None, ages=None):
     return df
 
 
-def allocate_minutes(d):
+STAR_PROTECT = True; STAR_K = 3          # K = 3 minimises minutes RMSE on the 2022-26 backtest (src/ratings/minutes_backtest.py): stars bias -0.4 mpg vs -1.8 normalised
+_MPG_CAL = dict(a=6.638110739949375, b=0.8343405725166403)       # actual mpg ~ a + b mpg_hat on the top-40 mpg_hat players, 2022-26 (src/players/mpg_calib.py -> data/clean/g4_mpg_calib.json)
+
+
+def allocate_minutes_normalised(d):
+    """Original G2 allocation: every player's expected minutes scaled proportionally to team minutes (deflates stars 6-12%)."""
     raw = (d.mpg_hat * d.gfrac_hat * 82 * d.w_team).values.astype(float)
     cap = np.maximum(MPG_CAP * 82 * d.gfrac_hat.values * d.w_team.values, 1e-6)
     m = raw.copy()
@@ -154,6 +159,29 @@ def allocate_minutes(d):
         if tot <= 0: break
         m = np.minimum(m * (TEAM_MIN / tot), cap)
         if abs(m.sum() - TEAM_MIN) < 1: break
+    return m
+
+
+def allocate_minutes(d):
+    """Star-protected allocation (G8 fix): the top-5 by mpg_hat keep their per-game minutes (veteran mpg_hat calibrated by a + b x mpg_hat, capped at MPG_CAP; players without history keep mpg_hat);
+    the remaining players absorb the scaling to team minutes. Coaches protect starters' minutes; proportional scaling deflated stars 6-12%."""
+    if not STAR_PROTECT: return allocate_minutes_normalised(d)
+    g = (d.gfrac_hat * 82 * d.w_team).values.astype(float); mh = d.mpg_hat.values.astype(float); n = len(d)
+    nh = d.no_history.fillna(False).values.astype(bool) if "no_history" in d else np.zeros(n, bool)
+    order = np.argsort(-np.where(g > 0, mh, -1)); top = [i for i in order[:STAR_K] if g[i] > 0]
+    adj = np.where(nh, mh, _MPG_CAL["a"] + _MPG_CAL["b"] * mh)
+    m = np.zeros(n); prot = {i: min(adj[i], MPG_CAP) * g[i] for i in top}
+    for i, v in prot.items(): m[i] = v
+    rest = [i for i in range(n) if i not in prot]; room = TEAM_MIN - sum(prot.values())
+    if room <= 0:
+        sc = TEAM_MIN / sum(prot.values()); return m * sc
+    raw = np.array([mh[i] * g[i] for i in rest]); cap = np.array([MPG_CAP * g[i] for i in rest]); x = raw.copy()
+    for _ in range(60):
+        tot = x.sum()
+        if tot <= 0: break
+        x = np.minimum(x * (room / tot), cap)
+        if abs(x.sum() - room) < 1: break
+    for k, i in enumerate(rest): m[i] = x[k]
     return m
 
 

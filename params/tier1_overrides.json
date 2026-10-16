@@ -4,6 +4,17 @@
    "market": "PLAYIN_EAST",
    "team": "CHI",
    "reason": "user 2026-10-15: weak driver (bench departure Dillingham)"
+  },
+  {
+   "market": "LDR_RPG",
+   "team": "SAC",
+   "reason": "news 2026-10-16: Sabonis missed preseason games 10/8, 10/10, 10/13 (undisclosed; RotoWire est. return 10/16); meniscus surgery Feb, 19 games last season; no-bet unless he plays normal minutes 10/16",
+   "selection": "Domantas Sabonis"
+  },
+  {
+   "market": "PLAYOFFS",
+   "team": "CHI",
+   "reason": "same weak driver as the CHI play-in bet you cut on 2026-10-15 (Dillingham departure)"
   }
  ],
  "scenario_gate": {
@@ -24,12 +35,41 @@
   "reason": "user 2026-10-15: Tier 1 only if the edge survives with NYK and PHI at market-implied wins (Kawhi/Dick sole driver)"
  },
  "roy_stake_mult": 0.5,
- "wins_stake_cap": 0.005,
  "lowcont_mult": 0.7,
  "lowcont_thr": 0.55,
- "comp_slope": -0.32,
  "cons_min": 2.5,
  "p_per_win": 0.044,
  "roy_stake_mult_provenance": "user override 2026-10-15: ROY voting model trained on 12-13 winners; rookie minutes unknowable pre-season",
- "comp_slope_provenance": "G5 compression test (point -0.24, 80% CI [-0.34,-0.13]); user set -0.32 on 2026-10-15 (inside the CI)"
+ "wins_stake_base": 0.0075,
+ "wins_stake_low": 0.005,
+ "cons_strong": 4.0,
+ "rb_min_continuity": 0.7,
+ "rb_min_games_prev": 41,
+ "blend_ratio_flag": 2.0,
+ "roster_aware": [
+  "ours",
+  "PredictionEngine"
+ ],
+ "hold": [
+  {
+   "market": "WINS",
+   "team": "MIA",
+   "reason": "passes the roster-aware consensus rule but you expected it to drop; HOLD pending your decision (Giannis availability thesis)"
+  },
+  {
+   "market": "PLAYOFFS",
+   "team": "MIA",
+   "reason": "new Tier 1 candidate after the minutes fix, same Giannis-availability thesis as MIA U; HOLD pending your decision"
+  },
+  {
+   "market": "PLAYOFFS",
+   "team": "IND",
+   "reason": "new Tier 1 candidate after the minutes fix (Haliburton availability); HOLD pending your decision"
+  },
+  {
+   "market": "LDR_RPG",
+   "selection": "Rudy Gobert",
+   "reason": "new player Tier 1 candidate not on your expected list; HOLD pending your decision"
+  }
+ ]
 }
