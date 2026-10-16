@@ -1,6 +1,6 @@
 # G8 final report: consensus v2, market-reference gate, minutes fix (2026-10-16)
 
-**Status: built and verified; not staked. Five bets pass the rules but are not on your expected list, so I have put them on HOLD (excluded from Tier 1, still on the Bet Card as Tier 2) until you decide.** Everything else follows your spec. Workbook `output/NBA_Futures_Model_v1_20261015_MS.xlsx` (25 tabs: new `Raw_MarketRef`, rebuilt `Raw_Consensus`), PDF `output/NBA_Futures_Dashboard_BetCard_20261016.pdf`. Excel: 0 error cells, 0 failing checks.
+**FINAL (2026-10-16): the 4-bet card at 2.63% is approved. The held bets (MIA U, MIA playoffs NO, IND playoffs NO, Gobert RPG) stay on hold, not released. MVP, DPOY and ROY are now display-only, and stat-leader markets are eligible only when an external reference exists (none does today, so no player bets).** Everything else follows your spec. Workbook `output/NBA_Futures_Model_v1_20261015_MS.xlsx` (25 tabs: new `Raw_MarketRef`, rebuilt `Raw_Consensus`), PDF `output/NBA_Futures_Dashboard_BetCard_20261016.pdf`. Excel: 0 error cells, 0 failing checks.
 
 ## 1. The card the rules produce (4 bets, 2.63% of bankroll, cap 10%)
 | # | Selection | Book | Min price | Model | Blended | Market fair | EV | Stake | Consensus residuals (wins) and basis |
@@ -83,3 +83,8 @@ Sabonis: RPG bet on no-bet (override; still modelled). Lendeborg: 27 mpg overrid
 - One external roster-aware model (PredictionEngine) gates every WINS bet; all three are cases where our projection and PredictionEngine agree and Opta/Massey would agree too, but those two are results-based and compressed.
 - Player-market minutes remain the most fragile input (LaMelo flips between top-3 and top-5 protection; Gobert and Sabonis likewise).
 - `run.py prelock` should be re-run 10/18-19; it now also re-prices the consensus and exchange layers (exchange prices and the consensus file are manual inputs and are not re-pulled).
+
+## 9. Final decisions (2026-10-16)
+- Held bets stay held; Tier 1 = WAS U (0.75%), UTA U (0.75%), POR O (0.50%), MIN NO (0.63%), total 2.63%.
+- **MVP / DPOY / ROY are display-only**: model vs exchanges and the GM survey fail sanity checks (Dybantsa ROY 46% vs about 19%, Wembanyama MVP 8% vs 33%) and the voting models are trained on only 12-13 winners. Probabilities remain visible on `M_Players` with the exchange comparison.
+- **Stat-leader bets** need an external reference (an exchange average); none exists, so none are eligible (LaMelo, Sabonis and Gobert are all inactive for this reason as well as the earlier rules). Add exchange or survey prices to `Raw_MarketRef` to re-enable a leader market.

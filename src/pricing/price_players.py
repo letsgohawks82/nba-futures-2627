@@ -64,7 +64,10 @@ def main():
     o["blended"] = np.where(o.exch_avg.notna(), (o.fair + o.exch_avg) / 2, o.fair); o["ev_blend"] = o.blended * o.dec - 1
     o["blend_ok"] = o.exch_avg.isna() | (o.ev_blend > 0)                                 # gate: EV > 0 at the blended probability as well as at the model probability
     o["exch_ratio_flag"] = o.exch_avg.notna() & o.modelled & (((o.p / o.exch_avg) > 2.0) | ((o.p / o.exch_avg) < 0.5))
-    o["tier2"] = ok & o.robust_ok & o.longshot_ok & o.blend_ok
+    # G8 decision (user, 2026-10-16): MVP / DPOY / ROY are DISPLAY-ONLY (voting models trained on 12-13 winners, fail sanity checks vs exchanges and the GM survey);
+    # stat-leader bets are eligible only when an external reference (exchange average) exists - none does today
+    o["display_block"] = o.market.isin(["MVP", "DPOY", "ROY"]) | (o.market.str.startswith("LDR_") & o.exch_avg.isna())
+    o["tier2"] = ok & o.robust_ok & o.longshot_ok & o.blend_ok & ~o.display_block
     # driver text: the projection facts behind each probability
     pool = pd.read_csv(C("g4_pool.csv")).set_index("key")
     P = pd.read_csv(C("player_projection_2027.csv")); P["key"] = P.name.map(norm); P = P.drop_duplicates("key").set_index("key")

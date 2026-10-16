@@ -214,9 +214,9 @@ def build_lottery(wb):
 def build_players(wb):
     ws = wb.create_sheet("M_Players"); sheet_header(ws, "M_Players - player markets (G4): stat leaders, MVP, DPOY, ROY", span=14)
     put(ws, "A4", "Probabilities are simulation outputs (100k season sims; 80% interval = season-block bootstrap of the rate/award fits); EV, shrunk EV and the Tier tests are live formulas on Assumptions. Stat-leader probabilities are sharpened p^gamma (gamma from leave-one-season-out CV; see Backtest notes / G6 report). TPG = three-pointers made per game. Display-only markets (MIP, 6MOY, COY, Clutch, Cup MVP) are on S_Markets.", "text", italic=True)
-    put(ws, "A5", "Tier 1 here = Tier 2 test + fair >= A_t1_fair + edge survives A_t1_shrink; stakes are multi-outcome fractional Kelly on the shrunk probability within each market (cap 3% per market); Tier 2 stakes are not shown.", "text", italic=True)
+    put(ws, "A5", "Tier 1 here = Tier 2 test + fair >= A_t1_fair + edge survives A_t1_shrink; stakes are multi-outcome fractional Kelly on the shrunk probability within each market (cap 3% per market); Tier 2 stakes are not shown. MVP / DPOY / ROY are DISPLAY-ONLY (decision 2026-10-16: voting models trained on 12-13 winners and they fail sanity checks against the exchanges); stat-leader bets need an external reference (none exists today).", "text", italic=True)
     cols = ["Market", "Selection", "Team", "American", "Decimal", "Fair prob (Shin)", "Model prob", "Model p 10th pct", "Model p 90th pct", "EV (model)", "EV (shrunk)", "EV lo (shrunk)", "Worst scenario EV (shrunk)", "Tier 2",
-            "Tier 1", "Tier 1 stake (frac)", "Tier 1 stake ($)", "Proj mpg", "Proj games", "Driver", "Tier 1 holds at sharpening-exponent CI bounds (engine)", "Joint-Kelly stake before ROY multiplier (engine)", "Min acceptable price (EV at shrink 0.75 = 0)", "Consensus", "Exchange average prob (Raw_MarketRef)", "Blended prob (book fair + exchange) / 2", "EV at blended prob", "Model vs exchange flag", "Engine exclusion (news / user)"]
+            "Tier 1", "Tier 1 stake (frac)", "Tier 1 stake ($)", "Proj mpg", "Proj games", "Driver", "Tier 1 holds at sharpening-exponent CI bounds (engine)", "Joint-Kelly stake before ROY multiplier (engine)", "Min acceptable price (EV at shrink 0.75 = 0)", "Consensus", "Exchange average prob (Raw_MarketRef)", "Blended prob (book fair + exchange) / 2", "EV at blended prob", "Model vs exchange flag", "Engine exclusion (news / user)", "Display-only / no external reference (engine)"]
     headers(ws, 7, cols, height=45)
     from ..pricing import marketref as _MR
     _n = len(_MR.load()); _m0, _m1 = 8, 7 + _n
@@ -231,10 +231,10 @@ def build_players(wb):
         put(ws, f"G{k}", float(r.p), "input", "pct2"); put(ws, f"H{k}", float(r.p_lo), "input", "pct2"); put(ws, f"I{k}", float(r.p_hi), "input", "pct2")
         put(ws, f"J{k}", f"=G{k}*E{k}-1", "formula", "pct"); put(ws, f"K{k}", f"=((1-A_shrink)*G{k}+A_shrink*F{k})*E{k}-1", "formula", "pct")
         put(ws, f"L{k}", f"=((1-A_shrink)*H{k}+A_shrink*F{k})*E{k}-1", "formula", "pct"); put(ws, f"M{k}", float(r.ev_s_worst_scenario), "input", "pct")
-        put(ws, f"N{k}", f"=AND(K{k}>=A_minev,L{k}>0,M{k}>=A_minev,OR(NOT(ISNUMBER(Y{k})),AA{k}>0))", "formula")
+        put(ws, f"N{k}", f"=AND(K{k}>=A_minev,L{k}>0,M{k}>=A_minev,OR(NOT(ISNUMBER(Y{k})),AA{k}>0),NOT(AD{k}))", "formula")
         put(ws, f"Y{k}", f'=IFERROR(AVERAGEIFS(Raw_MarketRef!$G${_m0}:$G${_m1},Raw_MarketRef!$A${_m0}:$A${_m1},A{k},Raw_MarketRef!$D${_m0}:$D${_m1},B{k},Raw_MarketRef!$H${_m0}:$H${_m1},"Y"),"-")', "formula", "pct2")
         put(ws, f"Z{k}", f"=IF(ISNUMBER(Y{k}),(F{k}+Y{k})/2,F{k})", "formula", "pct2"); put(ws, f"AA{k}", f"=Z{k}*E{k}-1", "formula", "pct")
-        put(ws, f"AB{k}", f'=IF(ISNUMBER(Y{k}),IF(OR(G{k}/Y{k}>A_blend_ratio,G{k}/Y{k}<1/A_blend_ratio),"FLAG: >"&A_blend_ratio&"x apart",""),"")', "flag"); put(ws, f"AC{k}", bool(r.t1_excluded), "input")
+        put(ws, f"AB{k}", f'=IF(ISNUMBER(Y{k}),IF(OR(G{k}/Y{k}>A_blend_ratio,G{k}/Y{k}<1/A_blend_ratio),"FLAG: >"&A_blend_ratio&"x apart",""),"")', "flag"); put(ws, f"AC{k}", bool(r.t1_excluded), "input"); put(ws, f"AD{k}", bool(r.display_block), "input")
         put(ws, f"O{k}", f"=AND(N{k},U{k},NOT(AC{k}),F{k}>=A_t1_fair,((1-A_t1_shrink)*G{k}+A_t1_shrink*F{k})*E{k}-1>=A_minev,((1-A_t1_shrink)*H{k}+A_t1_shrink*F{k})*E{k}-1>0)", "formula")
         put(ws, f"V{k}", float(r.stake_t1_premult if r.market == "ROY" else r.stake_t1), "input", "0.0000"); put(ws, f"P{k}", f'=V{k}*IF(A{k}="ROY",A_roy_stake_mult,1)', "formula", "0.0000")
         ps_ = f"((1-A_t1_shrink)*G{k}+A_t1_shrink*F{k})"; put(ws, f"W{k}", f"=IF(1/{ps_}>=2,(1/{ps_}-1)*100,-100/(1/{ps_}-1))", "formula", "amer"); put(ws, f"X{k}", "n/a", "text"); put(ws, f"Q{k}", f'=IF(AND(O{k},ISNUMBER(A_bankroll)),P{k}*A_bankroll,"-")', "formula", "money")

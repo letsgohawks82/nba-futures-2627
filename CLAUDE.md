@@ -91,3 +91,8 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 
 ## G8 (2026-10-16)
 - Team-layer minutes: allocate_minutes now star-protected (top-3 by mpg_hat keep a+b*mpg_hat minutes; src/ratings/model.py STAR_K=3, backtest src/ratings/minutes_backtest.py); team layer refit, sims re-run. Consensus v2 (src/pricing/consensus.py): per-source regression residuals, roster-aware pair (ours+PredictionEngine) must agree >=2.5; results-based sources only veto. Data: data/consensus/raw_consensus_20261016.csv, raw_marketref_20261016.csv. Blended-probability gate (src/pricing/marketref.py, price_players). params/tier1_overrides.json has exclude + HOLD lists (MIA U/NO, IND NO, Gobert RPG, CHI playoffs, Sabonis). Card = WAS U, UTA U, POR O, MIN NO (2.63%). Report reports/G8_final.md. Awaiting user decision on HOLD items.
+
+## Known weaknesses for next season (G8 decision, 2026-10-16)
+- MVP / DPOY / ROY models are DISPLAY-ONLY: voting models trained on 12-13 winners, rookie minutes unknowable pre-season, and they fail sanity checks against exchanges and the GM survey (Dybantsa ROY 46% vs ~19%, Wembanyama MVP 8% vs 33%). Revisit with a longer voting history (pre-2014 pools), a proper candidate-pool/ballot model, and a minutes model that handles Wembanyama-type availability before re-enabling.
+- Stat-leader bets are eligible only with an external reference (exchange average in Raw_MarketRef); none exists today so no player bets. Leader probabilities are very sensitive to minutes allocation (LaMelo/Gobert flip between top-3 and top-5 minutes protection).
+- Final G8 card: WAS U, UTA U, POR O, MIN NO (2.63%); held (not released): MIA U/NO, IND NO, Gobert RPG.
