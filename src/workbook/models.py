@@ -95,6 +95,7 @@ def build_sims(wb, o):
     rows = [("Run timestamp (UTC)", meta["run_utc"]), ("Simulated seasons (N)", meta["n_sims"]), ("Seed", meta["seed"]), ("Engine assumptions hash", meta["assumptions_hash"]), ("Sim assumptions key (stored)", key)]
     for i, (k, v) in enumerate(rows):
         put(ws, f"A{5+i}", k, "text", bold=True); put(ws, f"B{5+i}", v, "input")
+    put(ws, "A12", "Engine Tier 1 count", "text", bold=True); put(ws, "B12", int(o.tier1.sum()), "input", "int"); put(ws, "C12", "Engine Tier 2 (full card) count", "text", bold=True); put(ws, "D12", int(o.qualifies.sum()), "input", "int")
     put(ws, "A11", "Status", "text", bold=True); put(ws, "B11", '=IF(A_HashCurrent=B9,"OK - sims match current assumptions","STALE - rerun sims")', "formula")
     ws.conditional_formatting.add("B11", FormulaRule(formula=['LEFT(B11,5)="STALE"'], font=Font(name="Arial", size=10, color=RED, bold=True)))
     name(wb, "Sim_Stale", "M_Sims!$B$11"); REG["sims_status"] = "M_Sims!$B$11"; REG["sims_N"] = "M_Sims!$B$6"
@@ -130,12 +131,12 @@ def build_sims(wb, o):
     # CI table
     ci0 = pr0 + len(S) + 4
     put(ws, f"A{ci0-1}", "Edge confidence intervals / robustness / portfolio Kelly per odds row (engine output)", "text", bold=True)
-    hd = ["Row id", "EV CI low (80%)", "EV CI high (80%)", "P(EV>0) over parameter draws", "Alt-definition EV", "Alt EV CI low", "Alt EV CI high", "Robust OK", "EV kappa=0", "EV kappa=1.57", "EV sigma-10%", "EV sigma+10%", "Portfolio Kelly (frac of bankroll)", "Bottom-10 projected", "EV CI low - zero-sum model (WINS)", "Static block (miscalibrated EV bucket / compression rule)"]
+    hd = ["Row id", "EV CI low (80%)", "EV CI high (80%)", "P(EV>0) over parameter draws", "Alt-definition EV", "Alt EV CI low", "Alt EV CI high", "Robust OK", "EV kappa=0", "EV kappa=1.57", "EV sigma-10%", "EV sigma+10%", "Portfolio Kelly (frac of bankroll)", "Bottom-10 projected", "EV CI low - zero-sum model (WINS)", "Static block (miscalibrated EV bucket / compression rule)", "Tier 1 static OK (direction rule + named driver)", "Tier 1 portfolio Kelly (frac, engine cap)", "Tier 1 named driver"]
     headers(ws, ci0, hd)
     for i, r in o.iterrows():
         row = ci0 + 1 + i
-        vals = [int(r.row_id), r.ev_lo, r.ev_hi, r.p_ev_pos, r.ev_alt, r.ev_lo_alt, r.ev_hi_alt, int(bool(r.robust_ok)), r.ev_kappa_0, r.ev_kappa_hi, r.ev_sigma_lo, r.ev_sigma_hi, r.kelly_portfolio, int(bool(r.bottom10)), r.ev_lo_zs, int(bool(r.static_block))]
-        fm = ["int", "num3", "num3", "pct", "num3", "num3", "num3", "int", "num3", "num3", "num3", "num3", "0.0000", "int", "num3", "int"]
+        vals = [int(r.row_id), r.ev_lo, r.ev_hi, r.p_ev_pos, r.ev_alt, r.ev_lo_alt, r.ev_hi_alt, int(bool(r.robust_ok)), r.ev_kappa_0, r.ev_kappa_hi, r.ev_sigma_lo, r.ev_sigma_hi, r.kelly_portfolio, int(bool(r.bottom10)), r.ev_lo_zs, int(bool(r.static_block)), int(bool(r.t1_static_ok)), r.tier1_kelly, (r.t1_driver if isinstance(r.t1_driver, str) else "-")]
+        fm = ["int", "num3", "num3", "pct", "num3", "num3", "num3", "int", "num3", "num3", "num3", "num3", "0.0000", "int", "num3", "int", "int", "0.0000", "text"]
         for j, (v, f) in enumerate(zip(vals, fm)):
             put(ws, f"{CL(1+j)}{row}", "-" if (isinstance(v, float) and np.isnan(v)) else v, "input", f)
     REG["sims_ci"] = dict(first=ci0 + 1, last=ci0 + len(o))

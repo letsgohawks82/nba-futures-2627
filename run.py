@@ -16,7 +16,7 @@ def stage(s):
     if s == "sim":
         return sh("src.sim.run_sim") or sh("src.sim.robust") or sh("src.pricing.param_draws")
     if s == "price":
-        return sh("src.pricing.run_pricing")
+        return sh("src.pricing.run_pricing") or sh("src.pricing.tier1")
     if s == "build":
         return sh("src.workbook.build")
     if s == "verify":

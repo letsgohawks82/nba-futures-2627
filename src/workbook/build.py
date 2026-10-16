@@ -6,7 +6,7 @@ from .styles import *
 from . import core, models, pricing_tabs as pt
 from .core import REG, C, ROOT
 
-TAB_ORDER = ["Cover", "Assumptions", "Overrides", "Odds_Input", "M_DeVig", "M_TeamRatings", "M_WinDist", "M_Sims", "M_Lottery2027", "M_Players", "S_Markets", "Bet_Card", "Exposure", "Dashboard", "Sensitivity", "Backtest",
+TAB_ORDER = ["Cover", "Assumptions", "Overrides", "Odds_Input", "M_DeVig", "M_TeamRatings", "M_WinDist", "M_Sims", "M_Lottery2027", "M_Players", "S_Markets", "Bet_Card", "Tier1_Card", "Exposure", "Dashboard", "Sensitivity", "Backtest",
              "Tracker", "Checks", "Data_Sources", "Raw_Teams", "Raw_Players", "Raw_Schedule"]
 
 
@@ -15,7 +15,7 @@ def build(path):
     wb = Workbook(); wb.remove(wb.active)
     core.build_assumptions(wb); T, P = core.build_raw(wb); core.build_overrides(wb, P); odds = core.build_odds(wb); core.build_devig(wb, odds)
     models.build_team_ratings(wb); models.build_windist(wb, odds); key = models.build_sims(wb, o); models.fix_windist_links(wb); models.build_lottery(wb); models.build_players(wb)
-    pt.build_smarkets(wb, o); pt.build_betcard(wb)
+    pt.build_smarkets(wb, o); pt.build_betcard(wb); pt.build_tier1(wb)
     Q = o[o.qualifies]
     pt.build_exposure(wb, Q); pt.build_dashboard(wb, o); pt.build_sensitivity(wb); pt.build_backtest(wb); pt.build_tracker(wb); pt.build_checks(wb, o); pt.build_sources(wb); pt.build_cover(wb, key)
     wb._sheets = [wb[n] for n in TAB_ORDER]
@@ -41,7 +41,7 @@ def post_excel(path):
     out = {}
     try:
         wb = app.books.open(os.path.abspath(path))
-        ws = wb.sheets["Bet_Card"]; ws.range("A8").formula2 = pt.bet_card_formula()
+        ws = wb.sheets["Bet_Card"]; ws.range("A8").formula2 = pt.bet_card_formula(); t1s = wb.sheets["Tier1_Card"]; t1s.range("A8").formula2 = pt.tier1_formula()
         d = wb.sheets["Dashboard"]
         for k in range(1, 11):
             r = 16 + k
@@ -50,11 +50,16 @@ def post_excel(path):
         app.api.CalculateFullRebuild() if hasattr(app.api, "CalculateFullRebuild") else app.calculate()
         app.calculate()
         # number formats / widths for the spilled Bet Card
-        fm = ["@", "@", "@", "0.0", "+0;-0", "0.0%", "0.0%", "0.0%", "0.0%", "0.0000", "$#,##0", "0.0000", "$#,##0", "@", "@"]
-        n = int(wb.sheets["Dashboard"].range("B6").value or 0)
+        fm = ["@", "@", "@", "0.0", "+0;-0", "0.0%", "0.0%", "0.0%", "0.0%", "@", "0.0000", "$#,##0", "0.0000", "$#,##0", "@", "@"]
+        fm1 = ["@", "@", "@", "0.0", "+0;-0", "0.0%", "0.0%", "0.0%", "0.0%", "0.00%", "$#,##0", "@", "@", "@"]
+        n = int(wb.sheets["Dashboard"].range("B7").value or 0); n1 = int(wb.sheets["Dashboard"].range("B6").value or 0)
+        for j, f in enumerate(fm1):
+            t1s.range((8, 1 + j), (8 + max(n1, 1) + 3, 1 + j)).number_format = f
+        for rr in t1s.range((8, 1), (8 + max(n1, 1) + 3, 14)):
+            rr.api.Font.Name = "Arial"; rr.api.Font.Size = 10
         for j, f in enumerate(fm):
             ws.range((8, 1 + j), (8 + max(n, 1) + 5, 1 + j)).number_format = f
-        for rr in ws.range((8, 1), (8 + max(n, 1) + 5, 15)):
+        for rr in ws.range((8, 1), (8 + max(n, 1) + 5, 16)):
             rr.api.Font.Name = "Arial"; rr.api.Font.Size = 10
         app.calculate()
         wb.save()
@@ -73,8 +78,8 @@ def post_excel(path):
         ck = wb.sheets["Checks"]; r0 = REG["checks"]
         out["checks"] = [(ck.range(f"A{r}").value, ck.range(f"B{r}").value, ck.range(f"C{r}").value) for r in range(r0["first"], r0["last"] + 1)]
         out["overall_checks_failing"] = ck.range(f"B{r0['overall']}").value
-        out["bet_count"] = wb.sheets["Dashboard"].range("B6").value
-        out["sim_status"] = wb.sheets["Dashboard"].range("B12").value
+        out["bet_count"] = wb.sheets["Dashboard"].range("B7").value; out["tier1_count"] = wb.sheets["Dashboard"].range("B6").value
+        out["sim_status"] = wb.sheets["Dashboard"].range("B13").value
         # parity: Excel fair probabilities vs Python pricing table
         o = pd.read_csv(C("pricing_table.csv")); dv = REG["devig"]
         xs = wb.sheets["M_DeVig"].range(f"N{dv['first']}:Q{dv['last']}").value

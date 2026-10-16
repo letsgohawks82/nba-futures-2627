@@ -1,4 +1,4 @@
-built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xlsx 18.4 s
+built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xlsx 19.4 s
 {
  "errors": {
   "Cover": [
@@ -46,6 +46,10 @@ built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xl
    []
   ],
   "Bet_Card": [
+   0,
+   []
+  ],
+  "Tier1_Card": [
    0,
    []
   ],
@@ -177,6 +181,21 @@ built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xl
    "OK"
   ],
   [
+   "Live Tier 1 count vs engine Tier 1 count (0 = match; differs after changing thresholds)",
+   0.0,
+   "OK"
+  ],
+  [
+   "Live Tier 2 count vs engine Tier 2 count (0 = match)",
+   0.0,
+   "OK"
+  ],
+  [
+   "Tier 1 total stake within cap (excess over A_t1_cap, 0 = OK)",
+   0.0,
+   "OK"
+  ],
+  [
    "Error cells in M_DeVig (#N/A/#VALUE!/#REF!/...)",
    0.0,
    "OK"
@@ -202,6 +221,11 @@ built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xl
    "OK"
   ],
   [
+   "Error cells in Tier1_Card (#N/A/#VALUE!/#REF!/...)",
+   0.0,
+   "OK"
+  ],
+  [
    "Error cells in Exposure (#N/A/#VALUE!/#REF!/...)",
    0.0,
    "OK"
@@ -214,6 +238,7 @@ built C:\Users\Max Shiner\Desktop\NBA\output\NBA_Futures_Model_v1_20261015_MS.xl
  ],
  "overall_checks_failing": 0.0,
  "bet_count": 52.0,
+ "tier1_count": 4.0,
  "sim_status": "OK - sims match current assumptions",
  "devig_parity_max_abs": {
   "mult": 2.220446049250313e-16,

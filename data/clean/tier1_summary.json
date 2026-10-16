@@ -1,0 +1,370 @@
+{
+ "waterfall": {
+  "tier2_all": 52,
+  "shrink075": 27,
+  "fair_ge_5pct": 20,
+  "direction_rule": 19,
+  "named_driver": 4,
+  "total_stake_frac": 0.020055526311868473,
+  "exp_return_model": 0.02640595678597606,
+  "p_profit": 0.65912,
+  "p05": -0.020055526311868473,
+  "worst": -0.020055526311868473
+ },
+ "top5": [
+  "OKC",
+  "SAS",
+  "BOS",
+  "NYK",
+  "PHI"
+ ],
+ "bottom5": [
+  "SAC",
+  "BKN",
+  "MIL",
+  "LAC",
+  "NOP"
+ ],
+ "team_facts": {
+  "ATL": {
+   "team": "ATL",
+   "gap_wins": -3.153,
+   "gap_srs": 1.2920522471900902,
+   "direction": -1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "BKN": {
+   "team": "BKN",
+   "gap_wins": 7.806,
+   "gap_srs": 3.198782062025323,
+   "direction": 1,
+   "coverage": 0.4072820513985136,
+   "named": false,
+   "facts": [
+    "Jalen Wilson gone (859 min at -5.6 BPM last year; +1.3 SRS)"
+   ],
+   "fact_effects": [
+    1.3
+   ]
+  },
+  "BOS": {
+   "team": "BOS",
+   "gap_wins": 0.613,
+   "gap_srs": 0.251198232644315,
+   "direction": 1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "CHA": {
+   "team": "CHA",
+   "gap_wins": 0.776,
+   "gap_srs": 0.3179931949950872,
+   "direction": 1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "CHI": {
+   "team": "CHI",
+   "gap_wins": 1.813,
+   "gap_srs": 0.7429402867604292,
+   "direction": 1,
+   "coverage": 1.71394753391209,
+   "named": true,
+   "facts": [
+    "Rob Dillingham gone (644 min at -7.3 BPM last year; +1.3 SRS)"
+   ],
+   "fact_effects": [
+    1.27
+   ]
+  },
+  "CLE": {
+   "team": "CLE",
+   "gap_wins": -1.606,
+   "gap_srs": 0.6581147824253996,
+   "direction": -1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "DAL": {
+   "team": "DAL",
+   "gap_wins": -0.225,
+   "gap_srs": 0.09220163514677142,
+   "direction": -1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "DEN": {
+   "team": "DEN",
+   "gap_wins": -0.706,
+   "gap_srs": 0.28930824183831383,
+   "direction": -1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "DET": {
+   "team": "DET",
+   "gap_wins": -1.081,
+   "gap_srs": 0.44297763374959953,
+   "direction": -1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "GSW": {
+   "team": "GSW",
+   "gap_wins": 5.76,
+   "gap_srs": 2.360361859757348,
+   "direction": 1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "HOU": {
+   "team": "HOU",
+   "gap_wins": 3.851,
+   "gap_srs": 1.5780822086676298,
+   "direction": 1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "IND": {
+   "team": "IND",
+   "gap_wins": -3.008,
+   "gap_srs": 1.2326334156510597,
+   "direction": -1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "LAC": {
+   "team": "LAC",
+   "gap_wins": 3.431,
+   "gap_srs": 1.4059724897269898,
+   "direction": 1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "LAL": {
+   "team": "LAL",
+   "gap_wins": -0.783,
+   "gap_srs": 0.3208616903107645,
+   "direction": -1,
+   "coverage": 5.890637573845109,
+   "named": true,
+   "facts": [
+    "LeBron James gone (1989 min at +3.5 BPM last year; -1.9 SRS)"
+   ],
+   "fact_effects": [
+    -1.89
+   ]
+  },
+  "MEM": {
+   "team": "MEM",
+   "gap_wins": 6.365,
+   "gap_srs": 2.608281812040889,
+   "direction": 1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "MIA": {
+   "team": "MIA",
+   "gap_wins": -8.498,
+   "gap_srs": 3.4823533132322817,
+   "direction": -1,
+   "coverage": 0.5152887259450103,
+   "named": false,
+   "facts": [
+    "Giannis Antetokounmpo projected 53 games (injury/age history; costs 1.8 SRS vs full health)"
+   ],
+   "fact_effects": [
+    -1.79
+   ]
+  },
+  "MIL": {
+   "team": "MIL",
+   "gap_wins": 3.923,
+   "gap_srs": 1.6075867319145967,
+   "direction": 1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "MIN": {
+   "team": "MIN",
+   "gap_wins": -3.551,
+   "gap_srs": 1.4551466951386014,
+   "direction": -1,
+   "coverage": 0.7276633947023918,
+   "named": true,
+   "facts": [
+    "Julius Randle gone (2610 min at +1.5 BPM last year; -1.1 SRS)"
+   ],
+   "fact_effects": [
+    -1.06
+   ]
+  },
+  "NOP": {
+   "team": "NOP",
+   "gap_wins": 2.925,
+   "gap_srs": 1.1986212569080283,
+   "direction": 1,
+   "coverage": 2.0368980708934092,
+   "named": true,
+   "facts": [
+    "Micah Peavy gone (913 min at -5.2 BPM last year; +1.3 SRS)",
+    "Jordan Hawkins gone (692 min at -6.2 BPM last year; +1.2 SRS)"
+   ],
+   "fact_effects": [
+    1.28,
+    1.16
+   ]
+  },
+  "NYK": {
+   "team": "NYK",
+   "gap_wins": -6.613,
+   "gap_srs": 2.709908503224886,
+   "direction": -1,
+   "coverage": 0.41094534510603214,
+   "named": false,
+   "facts": [
+    "Mitchell Robinson gone (1175 min at +3.5 BPM last year; -1.1 SRS)"
+   ],
+   "fact_effects": [
+    -1.11
+   ]
+  },
+  "OKC": {
+   "team": "OKC",
+   "gap_wins": -3.501,
+   "gap_srs": 1.434657442883763,
+   "direction": -1,
+   "coverage": 0.7076730952845692,
+   "named": true,
+   "facts": [
+    "Isaiah Joe gone (1507 min at +2.5 BPM last year; -1.0 SRS)"
+   ],
+   "fact_effects": [
+    -1.02
+   ]
+  },
+  "ORL": {
+   "team": "ORL",
+   "gap_wins": -0.567,
+   "gap_srs": 0.23234812056986395,
+   "direction": -1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "PHI": {
+   "team": "PHI",
+   "gap_wins": -5.61,
+   "gap_srs": 2.298894102992834,
+   "direction": -1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "PHX": {
+   "team": "PHX",
+   "gap_wins": -0.184,
+   "gap_srs": 0.07540044829780418,
+   "direction": -1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "POR": {
+   "team": "POR",
+   "gap_wins": 4.299,
+   "gap_srs": 1.7616659088709792,
+   "direction": 1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "SAC": {
+   "team": "SAC",
+   "gap_wins": 2.259,
+   "gap_srs": 0.925704416873585,
+   "direction": 1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "SAS": {
+   "team": "SAS",
+   "gap_wins": -6.76,
+   "gap_srs": 2.77014690485411,
+   "direction": -1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "TOR": {
+   "team": "TOR",
+   "gap_wins": 2.944,
+   "gap_srs": 1.2064071727648669,
+   "direction": 1,
+   "coverage": 3.1808754740299507,
+   "named": true,
+   "facts": [
+    "Kawhi Leonard rated +6.1 (DARKO +6.3), 30 mpg, 56 g (new to team; +2.8 SRS vs 2025-26)",
+    "Gradey Dick gone (1067 min at -3.6 BPM last year; +1.0 SRS)"
+   ],
+   "fact_effects": [
+    2.8,
+    1.04
+   ]
+  },
+  "UTA": {
+   "team": "UTA",
+   "gap_wins": -5.45,
+   "gap_srs": 2.2333284957773523,
+   "direction": -1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  },
+  "WAS": {
+   "team": "WAS",
+   "gap_wins": -6.289,
+   "gap_srs": 2.577138148613535,
+   "direction": -1,
+   "coverage": 0.0,
+   "named": false,
+   "facts": [],
+   "fact_effects": []
+  }
+ }
+}

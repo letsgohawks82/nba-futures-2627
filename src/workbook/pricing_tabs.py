@@ -20,7 +20,7 @@ def build_smarkets(wb, o):
     put(ws, "A5", "Edge colours: green = EV >= min EV with CI low > 0; red = EV < 0. Imputed (orange) sides are never bet. Model probabilities are sim-based (M_Sims); WINS also shown live in M_WinDist.", "text", italic=True)
     put(ws, "L5", "=Sim_Stale", "link"); ws["L5"].font = font(RED, bold=True)
     hdr = ["Market", "Selection", "Team", "Side", "Line", "Book American", "Decimal", "Flag", "Fair prob (de-vig)", "Model prob", "Model / fair price (American)", "EV per $1", "Edge (model-fair, pp)", "EV CI low (80%)", "EV CI high (80%)", "P(EV>0)",
-           "Staking prob (shrunk)", "Naive Kelly (frac)", "Naive stake $", "Portfolio Kelly (frac)", "Portfolio stake $", "Robust OK", "Qualifies", "Lock (CST)", "Rule", "Row id", "Sim status", "Live analytic P (WINS, reprices with Overrides)", "Live analytic EV (WINS)", "Zero-sum model P (WINS, means rescaled to book sum)", "Zero-sum EV (WINS)", "EV at shrunk probability", "EV CI low at shrunk probability"]
+           "Staking prob (shrunk)", "Naive Kelly (frac)", "Naive stake $", "Portfolio Kelly (frac)", "Portfolio stake $", "Robust OK", "Qualifies", "Lock (CST)", "Rule", "Row id", "Sim status", "Live analytic P (WINS, reprices with Overrides)", "Live analytic EV (WINS)", "Zero-sum model P (WINS, means rescaled to book sum)", "Zero-sum EV (WINS)", "EV at shrunk probability", "EV CI low at shrunk probability", "Tier 1 (live)", "Tier 1 stake (frac)", "Tier 1 stake $", "Named driver", "Portfolio Kelly (numeric, for sorting)", "Tier"]
     headers(ws, 7, hdr, height=30)
     S = REG["sims_team"]; cm = S["cols"]; sf, sl = S["first"], S["last"]
     pm = REG["sims_pmf"]; rk0 = REG["sims_rank_col0"]; ci = REG["sims_ci"]; od = REG["odds"]; dv = REG["devig"]
@@ -30,7 +30,7 @@ def build_smarkets(wb, o):
         sub = o[o.market == m]
         if sub.empty: continue
         put(ws, f"A{r}", m, "text", bold=True); put(ws, f"B{r}", f"{len(sub)} selections - {sub.rule_text.iloc[0]}", "text", italic=True)
-        for col in range(1, 30): ws.cell(row=r, column=col).border = Border(bottom=THIN)
+        for col in range(1, 40): ws.cell(row=r, column=col).border = Border(bottom=THIN)
         r += 1
         for idx, x in sub.iterrows():
             rowmap[idx] = r; orow = od["first"] + idx; dvr = dv["first"] + idx; cir = ci["first"] + idx
@@ -60,9 +60,9 @@ def build_smarkets(wb, o):
                 else:
                     put(ws, f"N{r}", f"=M_Sims!B{cir}", "link", "pct"); put(ws, f"O{r}", f"=M_Sims!C{cir}", "link", "pct")
                 put(ws, f"P{r}", f"=M_Sims!D{cir}", "link", "pct")
-                put(ws, f"Q{r}", f"=(1-A_shrink)*J{r}+A_shrink*I{r}", "formula", "pct"); put(ws, f"R{r}", f"=MAX(0,(Q{r}*G{r}-1)/(G{r}-1))*A_kelly", "formula", "0.0000")
-                put(ws, f"S{r}", f'=IF(A_bankroll="","-",MIN(A_maxbet,R{r}*A_bankroll))', "formula", "money")
-                put(ws, f"T{r}", f"=M_Sims!M{cir}", "link", "0.0000"); put(ws, f"U{r}", f'=IF(A_bankroll="","-",MIN(A_maxbet,T{r}*A_bankroll))', "formula", "money")
+                put(ws, f"Q{r}", f"=(1-A_shrink)*J{r}+A_shrink*I{r}", "formula", "pct"); put(ws, f"R{r}", f'=IF(A_tier2_on=1,MAX(0,(Q{r}*G{r}-1)/(G{r}-1))*A_kelly,"-")', "formula", "0.0000")
+                put(ws, f"S{r}", f'=IF(OR(A_bankroll="",A_tier2_on<>1),"-",MIN(A_maxbet,MAX(0,(Q{r}*G{r}-1)/(G{r}-1))*A_kelly*A_bankroll))', "formula", "money")
+                put(ws, f"T{r}", f'=IF(A_tier2_on=1,M_Sims!M{cir},"-")', "link", "0.0000"); put(ws, f"U{r}", f'=IF(OR(A_bankroll="",A_tier2_on<>1),"-",MIN(A_maxbet,M_Sims!M{cir}*A_bankroll))', "formula", "money")
                 put(ws, f"V{r}", f"=M_Sims!H{cir}", "link", "int")
                 put(ws, f"AF{r}", f"=Q{r}*G{r}-1", "formula", "pct"); put(ws, f"AG{r}", f"=(1-A_shrink)*N{r}+A_shrink*(I{r}*G{r}-1)", "formula", "pct")
                 if m == "WINS":
@@ -78,11 +78,17 @@ def build_smarkets(wb, o):
                 longshot = f"IF(I{r}<A_longthr,(1-A_shrink)*M_Sims!K{cir}+A_shrink*(I{r}*G{r}-1)>=A_minev,TRUE)"
                 contf = f'IF(AND(OR(A{r}="WINS",A{r}="PLAYOFFS",LEFT(A{r},4)="DIV_"),{cont}<A_contthr),AND(((1-A_contshrink)*J{r}+A_contshrink*I{r})*G{r}-1>=A_minev,(1-A_contshrink)*N{r}+A_contshrink*(I{r}*G{r}-1)>0),TRUE)'
                 put(ws, f"W{r}", f'=AND(H{r}<>"IMPUTED_20C_LADDER",L{r}>=A_minev,N{r}>0,V{r}=1,IF(A{r}="PLAYOFFS",A_poconf=1,TRUE),{zs},AF{r}>=A_minev,AG{r}>0,{longshot},{contf},M_Sims!P{cir}=0)', "formula")
+                put(ws, f"AH{r}", f"=AND(W{r},I{r}>=A_t1_fair,((1-A_t1_shrink)*J{r}+A_t1_shrink*I{r})*G{r}-1>=A_minev,(1-A_t1_shrink)*N{r}+A_t1_shrink*(I{r}*G{r}-1)>0,M_Sims!Q{cir}=1)", "formula")
+                put(ws, f"AI{r}", f"=IF(AH{r},M_Sims!R{cir}*A_t1_cap/A_t1_engcap,0)", "formula", "0.0000")
+                put(ws, f"AJ{r}", f'=IF(OR(A_bankroll="",NOT(AH{r})),"-",MIN(A_maxbet,AI{r}*A_bankroll))', "formula", "money")
+                put(ws, f"AK{r}", f'=IF(AH{r},M_Sims!S{cir},"-")', "link")
+                put(ws, f"AL{r}", f"=M_Sims!M{cir}", "link", "0.0000"); put(ws, f"AM{r}", f'=IF(W{r},IF(AH{r},"Tier 1","Tier 2"),"-")', "formula")
             else:
                 put(ws, f"J{r}", "-", "text", align="right"); put(ws, f"K{r}", f"=IF(I{r}>=0.5,-100*I{r}/(1-I{r}),100*(1-I{r})/I{r})", "formula", "amer")
                 for col in "LMNOPQRSTUV": put(ws, f"{col}{r}", "-", "text", align="right")
                 put(ws, f"W{r}", False, "text")
-                for col in ("AD", "AE", "AF", "AG"): put(ws, f"{col}{r}", "-", "text", align="right")
+                for col in ("AD", "AE", "AF", "AG", "AI", "AJ", "AK", "AM"): put(ws, f"{col}{r}", "-", "text", align="right")
+                put(ws, f"AH{r}", False, "text"); put(ws, f"AL{r}", 0, "text")
             if m == "WINS":
                 wd = REG["windist"]
                 put(ws, f"AB{r}", f'=INDEX(IF(D{r}="OVER",M_WinDist!$E${wd["first"]}:$E${wd["last"]},M_WinDist!$F${wd["first"]}:$F${wd["last"]}),MATCH($C{r},M_WinDist!$A${wd["first"]}:$A${wd["last"]},0))', "link", "pct")
@@ -107,9 +113,9 @@ def build_smarkets(wb, o):
 def build_betcard(wb):
     ws = wb.create_sheet("Bet_Card"); sheet_header(ws, "Bet_Card - all qualifying bets (dynamic FILTER/SORTBY over S_Markets)", span=15)
     sm = REG["smk"]
-    put(ws, "A5", "Qualifies = EV >= min EV AND edge CI low > 0 AND robustness filter AND not imputed AND (WINS) survives the zero-sum rescale AND the edge survives the shrink toward the market. Stake = portfolio Kelly (correlation-aware), naive shown beside it. Lock times in CST.", "text", italic=True)
+    put(ws, "A5", "Tier 1 = conservative subset (see Tier1_Card, has stakes). Tier 2 = everything on this card, NO stake by default (Assumptions: tier2_staking_on). Qualifies = EV >= min EV AND edge CI low > 0 AND robustness filter AND not imputed AND (WINS) survives the zero-sum rescale AND the edge survives the shrink toward the market. Stake = portfolio Kelly (correlation-aware), naive shown beside it. Lock times in CST.", "text", italic=True)
     put(ws, "A6", "=Sim_Stale", "link"); ws["A6"].font = font(RED, bold=True)
-    labels = ["Market", "Selection", "Side", "Line", "Book American", "Fair prob", "Model prob", "EV per $1", "EV CI low", "Naive Kelly", "Naive stake $", "Portfolio Kelly", "Portfolio stake $", "Lock (CST)", "Rule"]
+    labels = ["Market", "Selection", "Side", "Line", "Book American", "Fair prob", "Model prob", "EV per $1", "EV CI low", "Tier", "Naive Kelly", "Naive stake $", "Portfolio Kelly", "Portfolio stake $", "Lock (CST)", "Rule"]
     headers(ws, 7, labels)
     REG["bc"] = dict(first=8, cols=labels)
     widths(ws, {"A": 16, "B": 28, "N": 24, "O": 60}); finish(ws); ws.freeze_panes = "C8"
@@ -118,33 +124,56 @@ def build_betcard(wb):
 
 def bet_card_formula():
     sm = REG["smk"]
-    d = f"S_Markets!$A${sm['first']}:$AA${sm['last']}"
-    cols = [1, 2, 4, 5, 6, 9, 10, 12, 14, 18, 19, 20, 21, 24, 25]
+    d = f"S_Markets!$A${sm['first']}:$AM${sm['last']}"
+    cols = [1, 2, 4, 5, 6, 9, 10, 12, 14, 39, 18, 19, 20, 21, 24, 25]
     pick = ",".join(f"INDEX(s,0,{c})" for c in cols)
     return (f'=LET(d,{d},q,INDEX(d,0,23),f,FILTER(d,q=TRUE,"No qualifying bets"),'
-            f'IF(COLUMNS(f)<2,f,LET(s,SORTBY(f,INDEX(f,0,20),-1),HSTACK({pick}))))')
+            f'IF(COLUMNS(f)<2,f,LET(s,SORTBY(f,INDEX(f,0,38),-1),HSTACK({pick}))))')
+
+
+def tier1_formula():
+    sm = REG["smk"]
+    d = f"S_Markets!$A${sm['first']}:$AM${sm['last']}"
+    cols = [1, 2, 4, 5, 6, 9, 10, 12, 14, 35, 36, 37, 24, 25]
+    pick = ",".join(f"INDEX(s,0,{c})" for c in cols)
+    return (f'=LET(d,{d},q,INDEX(d,0,34),f,FILTER(d,q=TRUE,"No Tier 1 bets"),'
+            f'IF(COLUMNS(f)<2,f,LET(s,SORTBY(f,INDEX(f,0,35),-1),HSTACK({pick}))))')
+
+
+def build_tier1(wb):
+    ws = wb.create_sheet("Tier1_Card"); sheet_header(ws, "Tier1_Card - conservative subset of the Bet Card (stakes shown here by default)", span=14)
+    put(ws, "A5", "Tier 1 filters (all must hold): (1) on the Bet Card; (2) edge survives shrink 0.75 (model weight 0.25); (3) market fair probability >= 5%; (4) not against a market top-5 team or for a bottom-5 team (wins, playoffs, division, conference, title); (5) a NAMED DRIVER - verifiable arrival / departure / availability facts of >= 1.0 SRS covering >= 60% of the model-vs-market gap; (6) total exposure capped at 10% of bankroll.", "text", italic=True)
+    put(ws, "A6", "=Sim_Stale", "link"); ws["A6"].font = font(RED, bold=True)
+    labels = ["Market", "Selection", "Side", "Line", "Book American", "Fair prob", "Model prob", "EV per $1", "EV CI low", "Tier 1 stake (frac of bankroll)", "Tier 1 stake $", "Named driver (player / roster facts)", "Lock (CST)", "Rule"]
+    headers(ws, 7, labels)
+    widths(ws, {"A": 16, "B": 28, "L": 90, "M": 24, "N": 60}); finish(ws); ws.freeze_panes = "C8"
+    return ws
 
 
 def build_exposure(wb, Q):
     ws = wb.create_sheet("Exposure"); sheet_header(ws, "Exposure - portfolio P&L distribution from the sims (per $1 of bankroll; x bankroll when entered)", span=8)
-    ps = json.load(open(C("portfolio_summary.json"))); s = ps["summary"]
-    put(ws, "A5", "Engine output for the default Bet Card (stakes = portfolio Kelly at current Assumptions). If you change min EV / shrink / Kelly fraction, rerun `run.py price` to refresh.", "text", italic=True)
+    t1 = json.load(open(C("tier1_summary.json")))["waterfall"]; s = json.load(open(C("portfolio_summary.json")))["summary"]
+    put(ws, "A5", "Engine output. Tier 1 is the staked card (cap 10% of bankroll). Tier 2 (the full Bet Card) is shown only as 'if staked' and has no stake by default. Rerun `run.py price` after changing thresholds.", "text", italic=True)
     headers(ws, 7, ["Metric", "Per $1 bankroll", "In $ (needs bankroll)"])
-    items = [("Bets", s["n_bets"], "int"), ("Total stake (fraction of bankroll)", s["total_stake_frac"], "pct"), ("Expected return (model, fraction)", s["exp_return_frac"], "pct"), ("Expected return (shrunk-prob tilt, fraction)", s["exp_return_tilted"], "pct"),
-             ("P(profit)", s["p_profit"], "pct"), ("Median return", s["median"], "pct"), ("5th percentile", s["p05"], "pct"), ("95th percentile", s["p95"], "pct"), ("1st percentile (drawdown scenario)", s["p01"], "pct"), ("Worst simulated season", s["worst"], "pct")]
-    for i, (k, v, f) in enumerate(items):
+    t1_items = [("TIER 1 - bets", t1["named_driver"], "int"), ("Tier 1 - total stake (fraction of bankroll)", t1.get("total_stake_frac", 0.0), "pct2"), ("Tier 1 - expected return (model world)", t1.get("exp_return_model", 0.0), "pct2"),
+                ("Tier 1 - P(profit)", t1.get("p_profit", 0.0), "pct"), ("Tier 1 - 5th percentile", t1.get("p05", 0.0), "pct2"), ("Tier 1 - worst simulated season", t1.get("worst", 0.0), "pct2")]
+    for i, (k, v, f) in enumerate(t1_items):
         r = 8 + i; put(ws, f"A{r}", k, "text"); put(ws, f"B{r}", float(v), "input", f)
-        if f == "pct" and k not in ("P(profit)",): put(ws, f"C{r}", f'=IF(A_bankroll="","-",B{r}*A_bankroll)', "formula", "money")
+        if f == "pct2": put(ws, f"C{r}", f'=IF(A_bankroll="","-",B{r}*A_bankroll)', "formula", "money")
         else: put(ws, f"C{r}", "-", "text", align="right")
-    put(ws, "A20", "Exposure by team (fraction of bankroll)", "text", bold=True); headers(ws, 21, ["Team", "Portfolio stake (frac)", "Stake $"])
+    t2 = [("TIER 2 (full card, only if staked) - bets", s["n_bets"], "int"), ("Tier 2 - total stake if staked", s["total_stake_frac"], "pct"), ("Tier 2 - expected return (model world)", s["exp_return_frac"], "pct"), ("Tier 2 - expected return at shrunk probabilities", s["exp_return_tilted"], "pct"),
+          ("Tier 2 - P(profit)", s["p_profit"], "pct"), ("Tier 2 - 5th percentile", s["p05"], "pct"), ("Tier 2 - 1st percentile", s["p01"], "pct"), ("Tier 2 - worst simulated season", s["worst"], "pct")]
+    for i, (k, v, f) in enumerate(t2):
+        r = 16 + i; put(ws, f"A{r}", k, "text"); put(ws, f"B{r}", float(v), "input", f); put(ws, f"C{r}", "-", "text", align="right")
+    put(ws, "A26", "Tier 1 exposure by team (fraction of bankroll)", "text", bold=True); headers(ws, 27, ["Team", "Tier 1 stake (frac)", "Stake $"])
     sm = REG["smk"]
     for i, t in enumerate(sorted(set(NAME2ABBR.values()))):
-        r = 22 + i; put(ws, f"A{r}", t, "text")
-        put(ws, f"B{r}", f'=SUMIFS(S_Markets!$T${sm["first"]}:$T${sm["last"]},S_Markets!$C${sm["first"]}:$C${sm["last"]},A{r},S_Markets!$W${sm["first"]}:$W${sm["last"]},TRUE)', "link", "pct2")
+        r = 28 + i; put(ws, f"A{r}", t, "text")
+        put(ws, f"B{r}", f'=SUMIFS(S_Markets!$AI${sm["first"]}:$AI${sm["last"]},S_Markets!$C${sm["first"]}:$C${sm["last"]},A{r},S_Markets!$AH${sm["first"]}:$AH${sm["last"]},TRUE)', "link", "pct2")
         put(ws, f"C{r}", f'=IF(A_bankroll="","-",B{r}*A_bankroll)', "formula", "money")
-    put(ws, "A52", "Total", "text", bold=True); put(ws, "B52", "=SUM(B22:B51)", "formula", "pct2"); total_border(ws, 52, 1, 3)
-    REG["exp_team"] = (22, 51)
-    put(ws, "E7", "Correlation of bet outcomes (Bet Card, sim-based)", "text", bold=True)
+    put(ws, "A58", "Total", "text", bold=True); put(ws, "B58", "=SUM(B28:B57)", "formula", "pct2"); total_border(ws, 58, 1, 3)
+    REG["exp_team"] = (28, 57)
+    put(ws, "E7", "Correlation of Tier 2 bet outcomes (sim-based)", "text", bold=True)
     if Q is not None and len(Q) > 1 and os.path.exists(C("portfolio_corr.csv")):
         Cm = pd.read_csv(C("portfolio_corr.csv"), index_col=0); n = min(len(Cm), 40)
         for j in range(n):
@@ -153,7 +182,7 @@ def build_exposure(wb, Q):
             for k in range(n):
                 put(ws, f"{CL(6+k)}{9+j}", float(Cm.iloc[j, k]), "input", "0.00")
         ws.conditional_formatting.add(f"F9:{CL(5+n)}{8+n}", ColorScaleRule(start_type="num", start_value=-0.3, start_color="FFFFFF", end_type="num", end_value=1, end_color="8EA9DB"))
-    widths(ws, {"A": 40, "B": 18, "C": 20, "E": 42}); finish(ws)
+    widths(ws, {"A": 46, "B": 18, "C": 20, "E": 42}); finish(ws)
 
 
 def build_dashboard(wb, o):
@@ -161,16 +190,17 @@ def build_dashboard(wb, o):
     sm = REG["smk"]; ps = json.load(open(C("portfolio_summary.json")))["summary"]
     W = f"S_Markets!$W${sm['first']}:$W${sm['last']}"; T = f"S_Markets!$T${sm['first']}:$T${sm['last']}"; R = f"S_Markets!$R${sm['first']}:$R${sm['last']}"
     headers(ws, 5, ["Metric", "Value"])
-    mets = [("Bet count", f"=COUNTIF({W},TRUE)", "int"), ("Total stake (portfolio Kelly)", f'=IF(A_bankroll="","-",SUMIFS({T},{W},TRUE)*A_bankroll)', "money"),
-            ("Total stake (fraction of bankroll)", f"=SUMIFS({T},{W},TRUE)", "pct"), ("Portfolio EV (fraction of bankroll, model)", f"=Exposure!B10", "pct"), ("P(profit)", "=Exposure!B12", "pct"),
-            ("Largest single-team exposure (frac)", f"=MAX(Exposure!B{REG['exp_team'][0]}:B{REG['exp_team'][1]})", "pct2"), ("Sim status", "=Sim_Stale", None)]
+    AH = f"S_Markets!$AH${sm['first']}:$AH${sm['last']}"; AI = f"S_Markets!$AI${sm['first']}:$AI${sm['last']}"
+    mets = [("Tier 1 bet count", f"=COUNTIF({AH},TRUE)", "int"), ("Tier 2 (full card) bet count - no stake by default", f"=COUNTIF({W},TRUE)", "int"), ("Tier 1 total stake (fraction of bankroll)", f"=SUMIFS({AI},{AH},TRUE)", "pct2"),
+            ("Tier 1 total stake $", f'=IF(A_bankroll="","-",SUMIFS({AI},{AH},TRUE)*A_bankroll)', "money"), ("Tier 1 expected return (model world)", "=Exposure!B10", "pct2"), ("Tier 1 P(profit)", "=Exposure!B11", "pct"),
+            ("Largest single-team Tier 1 exposure (frac)", f"=MAX(Exposure!B{REG['exp_team'][0]}:B{REG['exp_team'][1]})", "pct2"), ("Sim status", "=Sim_Stale", None)]
     for i, (k, f, fm) in enumerate(mets):
         put(ws, f"A{6+i}", k, "text"); put(ws, f"B{6+i}", f, "link", fm)
-    put(ws, "A15", "Top-10 edges (Bet Card, by EV)", "text", bold=True); headers(ws, 16, ["#", "Bet", "EV per $1", "EV CI low"])
+    put(ws, "A15", "Top-10 Tier 2 bets (ranked by portfolio Kelly)", "text", bold=True); headers(ws, 16, ["#", "Bet", "EV per $1", "EV CI low"])
     for k in range(1, 11):
         r = 16 + k
         put(ws, f"A{r}", k, "text"); put(ws, f"B{r}", "-", "link"); put(ws, f"C{r}", 0, "link", "pct"); put(ws, f"D{r}", 0, "link", "pct")      # replaced by dynamic-array formulas in Excel post-processing
-    ch = BarChart(); ch.type = "bar"; ch.title = "Top-10 edges: EV per $1"; ch.height = 8; ch.width = 16
+    ch = BarChart(); ch.type = "bar"; ch.title = "Top-10 bets: EV per $1"; ch.height = 8; ch.width = 16
     ch.add_data(Reference(ws, min_col=3, min_row=16, max_row=26), titles_from_data=True); ch.set_categories(Reference(ws, min_col=2, min_row=17, max_row=26)); ws.add_chart(ch, "F5")
     # wins scatter helper
     wd = REG["windist"]
@@ -286,7 +316,11 @@ def build_checks(wb, o):
     chk.append(("Live analytic wins vs Python reference (max |delta| wins)", f"=MAX(INDEX(ABS(M_TeamRatings!T{tr['first']}:T{tr['last']}),0))"))
     chk.append(("Analytic vs sim P(over) deltas > 2pp (count)", f'=COUNTIF(M_WinDist!I{REG["windist"]["first"]}:I{REG["windist"]["last"]},"CHECK*")'))
     chk.append(("Sim assumptions key matches current Assumptions (0 = match)", '=IF(A_HashCurrent=M_Sims!B9,0,1)'))
-    for sh, rng in (("M_DeVig", f"A8:S{dv['last']}"), ("M_TeamRatings", f"A8:T{tr['last']}"), ("M_WinDist", f"A8:N{REG['windist']['last']}"), ("S_Markets", f"A8:AA{REG['smk']['last']}"), ("Bet_Card", "A8:O80"), ("Exposure", "A8:C52"), ("Dashboard", "A6:D80")):
+    smk_ = REG["smk"]
+    chk.append(("Live Tier 1 count vs engine Tier 1 count (0 = match; differs after changing thresholds)", f'=COUNTIF(S_Markets!$AH${smk_["first"]}:$AH${smk_["last"]},TRUE)-M_Sims!B12'))
+    chk.append(("Live Tier 2 count vs engine Tier 2 count (0 = match)", f'=COUNTIF(S_Markets!$W${smk_["first"]}:$W${smk_["last"]},TRUE)-M_Sims!D12'))
+    chk.append(("Tier 1 total stake within cap (excess over A_t1_cap, 0 = OK)", f'=MAX(0,SUMIFS(S_Markets!$AI${smk_["first"]}:$AI${smk_["last"]},S_Markets!$AH${smk_["first"]}:$AH${smk_["last"]},TRUE)-A_t1_cap)'))
+    for sh, rng in (("M_DeVig", f"A8:S{dv['last']}"), ("M_TeamRatings", f"A8:T{tr['last']}"), ("M_WinDist", f"A8:N{REG['windist']['last']}"), ("S_Markets", f"A8:AA{REG['smk']['last']}"), ("Bet_Card", "A8:P80"), ("Tier1_Card", "A8:N40"), ("Exposure", "A8:C58"), ("Dashboard", "A6:D80")):
         chk.append((f"Error cells in {sh} (#N/A/#VALUE!/#REF!/...)", f"=SUMPRODUCT(--ISERROR({sh}!{rng}))"))
     for i, (k, fm) in enumerate(chk):
         r = 8 + i; put(ws, f"A{r}", k, "text"); put(ws, f"B{r}", fm, "formula", "0.0000"); put(ws, f"C{r}", f'=IF(ABS(B{r})<0.0001,"OK","CHECK")', "formula")
@@ -324,8 +358,8 @@ def build_cover(wb, key):
     for i, (k, v) in enumerate(rows):
         put(ws, f"A{7+i}", k, "text", bold=True); put(ws, f"B{7+i}", v, "link" if str(v).startswith("=") else "text")
     put(ws, "A17", "Navigation", "text", bold=True)
-    tabs = ["Assumptions", "Overrides", "Odds_Input", "M_DeVig", "M_TeamRatings", "M_WinDist", "M_Sims", "M_Lottery2027", "M_Players", "S_Markets", "Bet_Card", "Exposure", "Dashboard", "Sensitivity", "Backtest", "Tracker", "Checks", "Data_Sources", "Raw_Teams", "Raw_Players", "Raw_Schedule"]
+    tabs = ["Assumptions", "Overrides", "Odds_Input", "M_DeVig", "M_TeamRatings", "M_WinDist", "M_Sims", "M_Lottery2027", "M_Players", "S_Markets", "Bet_Card", "Tier1_Card", "Exposure", "Dashboard", "Sensitivity", "Backtest", "Tracker", "Checks", "Data_Sources", "Raw_Teams", "Raw_Players", "Raw_Schedule"]
     for i, t in enumerate(tabs):
         put(ws, f"A{18+i}", f'=HYPERLINK("#\'{t}\'!A1","{t}")', "formula"); ws[f"A{18+i}"].font = Font(name="Arial", size=10, color="0563C1", underline="single")
-    put(ws, "A40", "Open items: PLAYOFFS market definition (top-8 pricing vs top-10 rule text) is UNCONFIRMED - PLAYOFFS bets are blocked until Assumptions!playoffs_rule_confirmed = 1. G4 player markets pending.", "flag", wrap=False)
+    put(ws, "A41", "Open items: PLAYOFFS = 16-team playoff field (user-confirmed from implied sums) - CONFIRM WITH BOOK. Tier 1 (Tier1_Card) is the staked card; Tier 2 (Bet_Card) has no stake by default. G4 player markets pending.", "flag", wrap=False)
     widths(ws, {"A": 30, "B": 100}); finish(ws, label_cols=("A", "B"))
