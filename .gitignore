@@ -1,6 +1,14 @@
 .venv/
-__pycache__/
-*.pyc
 data/raw/
 sims/
+__pycache__/
+*.pyc
+.env
+*.env
+.env.*
 ~$*
+output/*_prev*.xlsx
+output/figs/pdf_p*.png
+data/clean/prelock_backup/
+chain_*.sh
+nohup.out

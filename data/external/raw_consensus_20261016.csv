@@ -1,0 +1,181 @@
+source,source_type,method,url,pull_date,team,proj_wins
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,BOS,45.7
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,DET,46.9
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,NYK,53.6
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,PHI,48.1
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,OKC,56.0
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,SAS,56.8
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,ATL,39.8
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,MIL,34.3
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,ORL,46.9
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,WAS,28.5
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,BKN,29.8
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,CHA,45.9
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,CHI,33.1
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,MIA,38.8
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,MIN,40.8
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,TOR,47.7
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,IND,37.0
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,MEM,28.0
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,NOP,34.3
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,UTA,33.9
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,DAL,37.0
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,HOU,43.9
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,GSW,35.4
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,LAL,47.8
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,PHX,38.9
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,POR,46.3
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,LAC,30.6
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,SAC,26.2
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,CLE,49.6
+PredictionEngine,STAT_MODEL,roster_aware,https://predictionengine.app/nba-season-predictions,2026-10-15,DEN,48.4
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,BOS,49.0
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,DET,48.5
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,NYK,51.3
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,PHI,42.1
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,OKC,56.1
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,SAS,54.1
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,ATL,43.6
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,MIL,31.4
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,ORL,42.1
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,WAS,27.8
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,BKN,28.8
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,CHA,41.4
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,CHI,34.3
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,MIA,44.4
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,MIN,42.6
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,TOR,46.6
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,IND,35.3
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,MEM,33.3
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,NOP,34.8
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,UTA,32.0
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,DAL,34.5
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,HOU,50.1
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,GSW,43.2
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,LAL,41.2
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,PHX,40.8
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,POR,43.1
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,LAC,38.0
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,SAC,28.4
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,CLE,44.8
+Opta TRACR,STAT_MODEL,results_based,user paste (The Analyst),2026-10-16,DEN,46.2
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,BOS,47.91
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,DET,47.84
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,NYK,54.49
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,PHI,39.88
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,OKC,53.33
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,SAS,52.9
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,ATL,42.81
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,MIL,34.32
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,ORL,41.87
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,WAS,28.83
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,BKN,29.32
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,CHA,44.63
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,CHI,34.71
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,MIA,42.27
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,MIN,43.94
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,TOR,44.99
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,IND,35.33
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,MEM,33.37
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,NOP,36.71
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,UTA,31.91
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,DAL,34.01
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,HOU,44.1
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,GSW,38.62
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,LAL,43.3
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,PHX,40.96
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,POR,42.2
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,LAC,42.99
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,SAC,32.12
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,CLE,45.5
+Massey (80->82 scaled),STAT_MODEL,results_based,user paste (masseyratings.com),2026-10-16,DEN,45.15
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,BOS,51.3
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,DET,49.4
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,NYK,51.7
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,PHI,47.5
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,OKC,60.7
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,SAS,59.1
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,ATL,42.2
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,MIL,26.3
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,ORL,42.9
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,WAS,32.4
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,BKN,25.0
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,CHA,39.9
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,CHI,28.3
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,MIA,45.6
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,MIN,47.8
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,TOR,45.5
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,IND,42.0
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,MEM,29.4
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,NOP,28.1
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,UTA,35.4
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,DAL,33.8
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,HOU,46.7
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,GSW,43.6
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,LAL,45.4
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,PHX,40.4
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,POR,41.4
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,LAC,30.1
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,SAC,21.7
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,CLE,47.9
+ESPN projection,MARKET_INFORMED,market_prior,user paste (ESPN),2026-10-16,DEN,48.7
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,BOS,50.6
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,DET,47.6
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,NYK,51.3
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,PHI,49.8
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,OKC,61.3
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,SAS,59.7
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,ATL,44.1
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,MIL,25.8
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,ORL,43.6
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,WAS,34.3
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,BKN,24.6
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,CHA,37.8
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,CHI,29.6
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,MIA,45.9
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,MIN,47.5
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,TOR,46.6
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,IND,44.4
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,MEM,30.2
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,NOP,28.9
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,UTA,37.9
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,DAL,33.3
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,HOU,47.9
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,GSW,37.2
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,LAL,45.0
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,PHX,39.2
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,POR,41.1
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,LAC,28.2
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,SAC,21.4
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,CLE,47.3
+TeamRankings,MARKET_INFORMED,market_prior,user paste (teamrankings.com),2026-10-16,DEN,47.9
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,BOS,52
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,DET,50
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,NYK,53
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,PHI,50
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,OKC,56
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,SAS,55
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,ATL,45
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,MIL,18
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,ORL,45
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,WAS,38
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,BKN,22
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,CHA,41
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,CHI,28
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,MIA,49
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,MIN,49
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,TOR,48
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,IND,46
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,MEM,31
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,NOP,27
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,UTA,38
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,DAL,38
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,HOU,50
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,GSW,34
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,LAL,48
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,PHX,34
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,POR,42
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,LAC,24
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,SAC,20
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,CLE,49
+Bleacher Report,EXPERT,expert,https://bleacherreport.com/articles/25458880,2026-10-15,DEN,50
