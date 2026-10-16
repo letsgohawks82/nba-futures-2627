@@ -237,7 +237,7 @@
  ],
  "overall_checks_failing": 0.0,
  "bet_count": 52.0,
- "tier1_count": 9.0,
+ "tier1_count": 4.0,
  "sim_status": "OK - sims match current assumptions",
  "devig_parity_max_abs": {
   "mult": 2.220446049250313e-16,

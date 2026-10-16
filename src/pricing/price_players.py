@@ -63,6 +63,8 @@ def main():
     # driver text: the projection facts behind each probability
     pool = pd.read_csv(C("g4_pool.csv")).set_index("key")
     P = pd.read_csv(C("player_projection_2027.csv")); P["key"] = P.name.map(norm); P = P.drop_duplicates("key").set_index("key")
+    roy_lines = {x["player"].replace(" Jr.", ""): x for x in json.load(open(C("g4_jokic_rookie.json")))["roy_candidates"]}
+    roy_lines.update({x["player"]: x for x in json.load(open(C("g4_jokic_rookie.json")))["roy_candidates"]})
     def driver(r):
         if not r.modelled or pd.isna(r.p) or r.p <= 0: return ""
         k = r["key"]; t = []
@@ -72,6 +74,8 @@ def main():
             t.append(f"proj {s} {mine:.1f} in {r.proj_mpg:.0f} mpg; {r.proj_gp:.0f} games projected")
             top = comp[comp.key != k].head(1)
             if len(top): t.append(f"model rival {top.player.iloc[0]} {top['pg_' + s].iloc[0]:.1f} (p={top.p.iloc[0]:.0%})")
+        elif r.market == "ROY" and r["selection"] in roy_lines:
+            x = roy_lines[r["selection"]]; t.append(f"pick {x['pick']:.0f}, age {x['age']:.0f}: {x['proj_mpg_minutes_model']:.0f} mpg (slot/age fit {x['mpg_from_slot_age_fit']:.0f}) x {x['pts36_fit']:.1f} pts/36 = {x['ppg_with_minutes_model']:.1f} ppg; {r.proj_gp:.0f} games projected; last 5 ROY winners averaged 18.5 ppg in 31.8 mpg")
         else:
             t.append(f"rating {r.rating:+.1f}; proj {r.pg_PPG:.1f}p/{r.pg_RPG:.1f}r/{r.pg_APG:.1f}a/{r.pg_SPG:.1f}s/{r.pg_BPG:.1f}b in {r.proj_mpg:.0f} mpg; {r.proj_gp:.0f} games")
         return "; ".join(t)

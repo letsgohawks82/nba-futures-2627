@@ -62,7 +62,7 @@ def run_sims(pool, gp, wins_p, cal, coefs, rookie_fit, tdef_fit, bpm_fit, dbpm_f
     F = dict(ppg=pts36 * mpg / 36.0, rebast=ra36 * mpg / 36.0, gp=gp.astype(np.float32), lnpick=np.repeat(np.log(pool.pick.values)[None, :], n, 0))
     u = sum(coefs["ROY"][f] * A.zf(f, F[f]) for f in A.FEATS["ROY"]) + gum()
     u = np.where(elig & rk[None, :], u, -np.inf); out["ROY"] = _argmax_credit(u)
-    if cap is not None: cap["ROY"] = np.where(np.isfinite(u.max(1)), u.argmax(1), -1)
+    if cap is not None: cap["ROY"] = np.where(np.isfinite(u.max(1)), u.argmax(1), -1); cap["ROY_ppg"] = F["ppg"]; cap["ROY_mpg"] = mpg
     return out
 
 

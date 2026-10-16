@@ -82,6 +82,8 @@ def build(overrides=None, season_label=2027):
         grp_conf[g] = conf[IDX[members[0]]]
     prevw = tp.prev_wins.values.astype(float)
     rating = tp.pred_srs.values.astype(float)
+    shift = np.asarray(overrides.get("srs_shift", np.zeros(30)), float)          # scenario: add an SRS shift per team (zero-sum), target wins move with it
+    rating = rating + shift
     # players
     pw = np.zeros((30, K_TOP)); pa = np.zeros((30, K_TOP)); pw_po = np.zeros((30, K_TOP)); po_delta = np.zeros(30)
     pnames = [[""] * K_TOP for _ in range(30)]; pids = [[""] * K_TOP for _ in range(30)]
@@ -128,7 +130,7 @@ def build(overrides=None, season_label=2027):
                 gh=gh, ga=ga, gb2bh=gb2bh, gb2ba=gb2ba, gday=gday, gcup=gcup, deadline_day=deadline_day, cup_ko_day=cup_ko_day,
                 pickval=val, Pgen=Pgen, Pnf=Pnf, Pnt5=Pnt5, kprot=kprot, fover=fover, nf_team=IDX["WAS"], nt5_team=IDX["UTA"],
                 teams=TEAM_LIST, pnames=pnames, pids=pids, par_dict=par, sched=g)
-    out["target_wins"] = tp.pred_wins.values.astype(float); out["rating_raw"] = rating.copy()
+    out["target_wins"] = tp.pred_wins.values.astype(float) + kw * shift; out["rating_raw"] = rating.copy()
     if overrides.get("_calibrate", True):
         from .meanmatch import calibrate_ratings
         out["rating"], out["calibration_hist"] = calibrate_ratings(out, out["target_wins"], n=overrides.get("_cal_n", 15_000), iters=overrides.get("_cal_iters", 6))

@@ -1,0 +1,13 @@
+{
+  "exclude": [
+    {"market": "PLAYIN_EAST", "team": "CHI", "reason": "user 2026-10-15: weak driver (bench departure Dillingham)"}
+  ],
+  "scenario_gate": {
+    "team": "TOR",
+    "markets": ["DIV_ATLANTIC", "CONF_EAST"],
+    "file": "scenario_nyk_phi_market.json",
+    "point_keys": {"DIV_ATLANTIC": "div_TOR", "CONF_EAST": "conf_TOR"},
+    "ci_keys": {"DIV_ATLANTIC": "div_lo", "CONF_EAST": "conf_lo"},
+    "reason": "user 2026-10-15: Tier 1 only if the edge survives with NYK and PHI at market-implied wins (Kawhi/Dick sole driver)"
+  }
+}

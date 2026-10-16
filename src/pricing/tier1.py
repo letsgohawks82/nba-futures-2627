@@ -72,7 +72,17 @@ def run(table="pricing_table.csv"):
     o["t1_named"] = o.team.map(lambda t: bool(facts[t]["named"]) if t in facts else False)
     o["t1_driver"] = o.team.map(lambda t: " | ".join(facts[t]["facts"]) if t in facts else "")
     o["t1_gap_srs"] = o.team.map(lambda t: facts[t]["gap_srs"] if t in facts else np.nan); o["t1_cover"] = o.team.map(lambda t: facts[t]["coverage"] if t in facts else np.nan)
-    o["t1_static_ok"] = o.t1_direction & o.t1_named          # engine-side static part; shrink/fair tests are live in the workbook
+    ovr = json.load(open(os.path.join(ROOT, "params/tier1_overrides.json")))
+    o["t1_excluded"] = False; o["t1_scenario_ok"] = True; o["t1_scenario_ev75"] = np.nan; o["t1_scenario_lo75"] = np.nan
+    for e in ovr.get("exclude", []): o.loc[(o.market == e["market"]) & (o.team == e["team"]), "t1_excluded"] = True
+    g = ovr.get("scenario_gate")
+    if g and os.path.exists(C(g["file"])):
+        sc = json.load(open(C(g["file"]))); base_lo = {}
+        for i, r in o[(o.team == g["team"]) & o.market.isin(g["markets"])].iterrows():
+            p_s = sc["point"][g["point_keys"][r.market]]; p_lo = sc["ci"][g["ci_keys"][r.market]]
+            ev_s = (0.25 * p_s + 0.75 * r.fair) * r.dec - 1; lo_s = (0.25 * p_lo + 0.75 * r.fair) * r.dec - 1
+            o.loc[i, ["t1_scenario_ev75", "t1_scenario_lo75"]] = [ev_s, lo_s]; o.loc[i, "t1_scenario_ok"] = bool(ev_s >= 0.03 and lo_s > 0)
+    o["t1_static_ok"] = o.t1_direction & o.t1_named & ~o.t1_excluded & o.t1_scenario_ok          # engine-side static part; shrink/fair tests are live in the workbook
     o["tier1"] = o.qualifies & o.t1_shrink75 & o.t1_fair5 & o.t1_static_ok
     wf = dict(tier2_all=int(o.qualifies.sum()), shrink075=int((o.qualifies & o.t1_shrink75).sum()), fair_ge_5pct=int((o.qualifies & o.t1_shrink75 & o.t1_fair5).sum()),
               direction_rule=int((o.qualifies & o.t1_shrink75 & o.t1_fair5 & o.t1_direction).sum()), named_driver=int(o.tier1.sum()))

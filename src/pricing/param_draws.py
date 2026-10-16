@@ -17,10 +17,10 @@ def rating_vectors():
         out[w] = o.set_index("abbr").loc[TEAM_LIST].pred_srs.values
     return out
 
-def run(M=60, N=15_000, seed=99):
+def run(M=60, N=15_000, seed=99, srs_shift=None, out_name="param_draws.npz"):
     gm = json.load(open(os.path.join(ROOT, "data/clean/game_model_fit.json"))); pf = json.load(open(os.path.join(ROOT, "data/clean/playoff_adj_fit.json")))
     lt = lottery_tables(16, 150_000)
-    base = build({"_lottery_tables": lt, "_calibrate": False}); p0 = base["par"].copy(); r05 = base["rating_raw"].copy()
+    base = build({"_lottery_tables": lt, "_calibrate": False, **({"srs_shift": srs_shift} if srs_shift is not None else {})}); p0 = base["par"].copy(); r05 = base["rating_raw"].copy()
     rv = rating_vectors(); slope = (rv[1.0] - rv[0.0])         # dRating/dw (linear)
     rng = np.random.default_rng(seed); draws = []; res = {k: [] for k in ("title", "conference", "division", "cup", "cup_group", "playoffs", "top6", "bracket")}; ranks = []; whist = []
     t0 = time.time()
@@ -43,8 +43,8 @@ def run(M=60, N=15_000, seed=99):
         whist.append(np.stack([np.bincount(r["wins"][:, i], minlength=83) / N for i in range(30)]))
         draws.append(dict(draw=d, w_darko=w, rating_scale=scale, **{k: float(par[PI[k]]) for k in ("sigma_team", "HCA", "b2b_home", "b2b_away", "sigma_game", "HCA_po", "po_lambda", "tank_kappa")}))
         if d % 10 == 0: print("draw", d, round(time.time() - t0), "s", flush=True)
-    np.savez_compressed(os.path.join(ROOT, "data/clean/param_draws.npz"), **{k: np.array(v) for k, v in res.items()}, confrank=np.array(ranks), wins_pmf=np.array(whist), teams=np.array(TEAM_LIST))
-    pd.DataFrame(draws).to_csv(os.path.join(ROOT, "data/clean/param_draws_params.csv"), index=False)
+    np.savez_compressed(os.path.join(ROOT, "data/clean", out_name), **{k: np.array(v) for k, v in res.items()}, confrank=np.array(ranks), wins_pmf=np.array(whist), teams=np.array(TEAM_LIST))
+    pd.DataFrame(draws).to_csv(os.path.join(ROOT, "data/clean", out_name.replace(".npz", "_params.csv")), index=False)
     return draws
 
 if __name__ == "__main__":

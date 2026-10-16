@@ -1,0 +1,206 @@
+{
+ "LDR_RPG": [
+  {
+   "player": "Nikola Jokic",
+   "proj_per_game_calibrated": 11.985513385463086,
+   "proj_mpg": 34.88539746406509,
+   "proj_games": 61.00020333075102,
+   "p_qualify_58": null,
+   "p_lead_raw": 0.1957958333333333
+  },
+  {
+   "player": "Domantas Sabonis",
+   "proj_per_game_calibrated": 12.290850333895046,
+   "proj_mpg": 33.226909733113686,
+   "proj_games": 52.57366324025142,
+   "p_qualify_58": null,
+   "p_lead_raw": 0.1627883333333333
+  },
+  {
+   "player": "Karl-Anthony Towns",
+   "proj_per_game_calibrated": 11.19208759929893,
+   "proj_mpg": 32.57924025432103,
+   "proj_games": 64.07197376133988,
+   "p_qualify_58": null,
+   "p_lead_raw": 0.1153141666666666
+  },
+  {
+   "player": "Rudy Gobert",
+   "proj_per_game_calibrated": 11.149195950956491,
+   "proj_mpg": 32.59363174820543,
+   "proj_games": 62.58888793697307,
+   "p_qualify_58": null,
+   "p_lead_raw": 0.1035824999999999
+  },
+  {
+   "player": "Victor Wembanyama",
+   "proj_per_game_calibrated": 10.87994610361492,
+   "proj_mpg": 30.687073327815707,
+   "proj_games": 60.35940240524449,
+   "p_qualify_58": null,
+   "p_lead_raw": 0.0757458333333333
+  },
+  {
+   "player": "Jalen Duren",
+   "proj_per_game_calibrated": 10.573997896614118,
+   "proj_mpg": 28.82991364841168,
+   "proj_games": 64.85389327357615,
+   "p_qualify_58": null,
+   "p_lead_raw": 0.0643216666666666
+  }
+ ],
+ "LDR_APG": [
+  {
+   "player": "Nikola Jokic",
+   "proj_per_game_calibrated": 9.471529133178299,
+   "proj_mpg": 34.88539746406509,
+   "proj_games": 61.00020333075102,
+   "p_qualify_58": null,
+   "p_lead_raw": 0.2312016666666666
+  },
+  {
+   "player": "Trae Young",
+   "proj_per_game_calibrated": 9.715195069798712,
+   "proj_mpg": 33.33360821575693,
+   "proj_games": 49.981502154789645,
+   "p_qualify_58": null,
+   "p_lead_raw": 0.223445
+  },
+  {
+   "player": "Tyrese Haliburton",
+   "proj_per_game_calibrated": 8.965224778181588,
+   "proj_mpg": 32.56463734924853,
+   "proj_games": 52.34521217843945,
+   "p_qualify_58": null,
+   "p_lead_raw": 0.1299866666666666
+  },
+  {
+   "player": "Cade Cunningham",
+   "proj_per_game_calibrated": 8.760327544360331,
+   "proj_mpg": 33.86363040138613,
+   "proj_games": 62.35548417274384,
+   "p_qualify_58": null,
+   "p_lead_raw": 0.1289883333333333
+  },
+  {
+   "player": "James Harden",
+   "proj_per_game_calibrated": 7.970264959413137,
+   "proj_mpg": 34.53529443178153,
+   "proj_games": 59.9977424796144,
+   "p_qualify_58": null,
+   "p_lead_raw": 0.0543675
+  },
+  {
+   "player": "Luka Doncic",
+   "proj_per_game_calibrated": 7.979714690010691,
+   "proj_mpg": 35.1898636200791,
+   "proj_games": 60.11935487331364,
+   "p_qualify_58": null,
+   "p_lead_raw": 0.0537658333333333
+  }
+ ],
+ "jokic": {
+  "mean_games": 61.04983333333333,
+  "p_ge58": 0.6431333333333333,
+  "p_ge65": 0.5089333333333333
+ },
+ "roy_last5": [
+  {
+   "season": 2022,
+   "player": "Scottie Barnes",
+   "ppg": 15.324324324324325,
+   "mpg": 35.36486486486486,
+   "games": 74,
+   "pick": null
+  },
+  {
+   "season": 2023,
+   "player": "Paolo Banchero",
+   "ppg": 19.958333333333332,
+   "mpg": 33.75,
+   "games": 72,
+   "pick": null
+  },
+  {
+   "season": 2024,
+   "player": "Victor Wembanyama",
+   "ppg": 21.43661971830986,
+   "mpg": 29.661971830985916,
+   "games": 71,
+   "pick": null
+  },
+  {
+   "season": 2025,
+   "player": "Stephon Castle",
+   "ppg": 14.691358024691358,
+   "mpg": 26.691358024691358,
+   "games": 81,
+   "pick": null
+  },
+  {
+   "season": 2026,
+   "player": "Cooper Flagg",
+   "ppg": 21.042857142857144,
+   "mpg": 33.48571428571429,
+   "games": 70,
+   "pick": null
+  }
+ ],
+ "roy_candidates": [
+  {
+   "player": "AJ Dybantsa",
+   "pick": 1.0,
+   "age": 19.0,
+   "proj_mpg_minutes_model": 30.0,
+   "mpg_from_slot_age_fit": 31.987712518150584,
+   "pts36_fit": 17.882049831378342,
+   "ppg_with_minutes_model": 14.901708192815285,
+   "ppg_with_slot_fit": 15.889051923371486,
+   "p_roy": 0.4343
+  },
+  {
+   "player": "Darryn Peterson",
+   "pick": 2.0,
+   "age": 19.0,
+   "proj_mpg_minutes_model": 28.642790682332432,
+   "mpg_from_slot_age_fit": 27.65825778023274,
+   "pts36_fit": 16.658186987330918,
+   "ppg_with_minutes_model": 13.253804528479815,
+   "ppg_with_slot_fit": 12.798234162414367,
+   "p_roy": 0.27281
+  },
+  {
+   "player": "Cameron Boozer",
+   "pick": 3.0,
+   "age": 19.0,
+   "proj_mpg_minutes_model": 26.76524077296091,
+   "mpg_from_slot_age_fit": 25.402680464064137,
+   "pts36_fit": 15.981479791799261,
+   "ppg_with_minutes_model": 11.881893181547678,
+   "ppg_with_slot_fit": 11.277011791499302,
+   "p_roy": 0.1542
+  },
+  {
+   "player": "Caleb Wilson",
+   "pick": 4.0,
+   "age": 20.0,
+   "proj_mpg_minutes_model": 25.43309791218592,
+   "mpg_from_slot_age_fit": 24.22267094531686,
+   "pts36_fit": 15.389018221486259,
+   "ppg_with_minutes_model": 10.871955755540924,
+   "ppg_with_slot_fit": 10.354531237515193,
+   "p_roy": 0.09354
+  },
+  {
+   "player": "Mikel Brown Jr.",
+   "pick": 6.0,
+   "age": 20.0,
+   "proj_mpg_minutes_model": 23.555548002814405,
+   "mpg_from_slot_age_fit": 22.24727149841745,
+   "pts36_fit": 14.763868595625558,
+   "ppg_with_minutes_model": 9.660305983652831,
+   "ppg_with_slot_fit": 9.123772028162248,
+   "p_roy": 0.04504
+  }
+ ]
+}

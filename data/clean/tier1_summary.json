@@ -4,12 +4,12 @@
   "shrink075": 27,
   "fair_ge_5pct": 20,
   "direction_rule": 19,
-  "named_driver": 4,
-  "total_stake_frac": 0.020055526311868473,
-  "exp_return_model": 0.02640595678597606,
-  "p_profit": 0.65912,
-  "p05": -0.020055526311868473,
-  "worst": -0.020055526311868473
+  "named_driver": 1,
+  "total_stake_frac": 0.005648093906447106,
+  "exp_return_model": 0.006035694350777037,
+  "p_profit": 0.31825,
+  "p05": -0.005648093906447106,
+  "worst": -0.005648093906447106
  },
  "top5": [
   "OKC",

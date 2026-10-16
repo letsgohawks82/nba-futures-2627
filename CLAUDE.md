@@ -82,3 +82,6 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 
 ## G6 (2026-10-15) - done, awaiting approval
 - Leader sharpening gamma by LOSO CV = 1.50 [1.30,1.75]; SD/calibration now on top-15. Joint Kelly (src/pricing/joint.py; run.py price order: run_pricing, tier1, price_players, joint) -> 9 Tier 1 bets, 4.9% stake. Tier1_Card player block at row 41; Exposure has joint corr. Independent verify: src/verify/g6_independent.py. PDF via src/workbook/export_pdf.py (matplotlib, no printer needed). Final report reports/G6_final.md.
+
+## G6 update (2026-10-15)
+- Player minutes: top-5 per team keep calibrated mpg_hat (src/players/pool.py star_protected_mpg, g4_mpg_calib.json); team layer untouched. Tier 1 = 4 bets (MIN playoffs NO, ROY Dybantsa, RPG Sabonis, 3PM LaMelo), 2.78% stake. params/tier1_overrides.json holds the CHI exclusion and TOR scenario gate (src/pricing/scenario_market_ratings.py; srs_shift override in inputs.build). Report reports/G6_update.md.
