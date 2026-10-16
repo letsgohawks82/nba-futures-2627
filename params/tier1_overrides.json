@@ -1,13 +1,35 @@
 {
-  "exclude": [
-    {"market": "PLAYIN_EAST", "team": "CHI", "reason": "user 2026-10-15: weak driver (bench departure Dillingham)"}
-  ],
-  "scenario_gate": {
-    "team": "TOR",
-    "markets": ["DIV_ATLANTIC", "CONF_EAST"],
-    "file": "scenario_nyk_phi_market.json",
-    "point_keys": {"DIV_ATLANTIC": "div_TOR", "CONF_EAST": "conf_TOR"},
-    "ci_keys": {"DIV_ATLANTIC": "div_lo", "CONF_EAST": "conf_lo"},
-    "reason": "user 2026-10-15: Tier 1 only if the edge survives with NYK and PHI at market-implied wins (Kawhi/Dick sole driver)"
+ "exclude": [
+  {
+   "market": "PLAYIN_EAST",
+   "team": "CHI",
+   "reason": "user 2026-10-15: weak driver (bench departure Dillingham)"
   }
+ ],
+ "scenario_gate": {
+  "team": "TOR",
+  "markets": [
+   "DIV_ATLANTIC",
+   "CONF_EAST"
+  ],
+  "file": "scenario_nyk_phi_market.json",
+  "point_keys": {
+   "DIV_ATLANTIC": "div_TOR",
+   "CONF_EAST": "conf_TOR"
+  },
+  "ci_keys": {
+   "DIV_ATLANTIC": "div_lo",
+   "CONF_EAST": "conf_lo"
+  },
+  "reason": "user 2026-10-15: Tier 1 only if the edge survives with NYK and PHI at market-implied wins (Kawhi/Dick sole driver)"
+ },
+ "roy_stake_mult": 0.5,
+ "wins_stake_cap": 0.005,
+ "lowcont_mult": 0.7,
+ "lowcont_thr": 0.55,
+ "comp_slope": -0.32,
+ "cons_min": 2.5,
+ "p_per_win": 0.044,
+ "roy_stake_mult_provenance": "user override 2026-10-15: ROY voting model trained on 12-13 winners; rookie minutes unknowable pre-season",
+ "comp_slope_provenance": "G5 compression test (point -0.24, 80% CI [-0.34,-0.13]); user set -0.32 on 2026-10-15 (inside the CI)"
 }

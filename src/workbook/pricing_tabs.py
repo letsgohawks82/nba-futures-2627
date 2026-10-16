@@ -20,7 +20,7 @@ def build_smarkets(wb, o):
     put(ws, "A5", "Edge colours: green = EV >= min EV with CI low > 0; red = EV < 0. Imputed (orange) sides are never bet. Model probabilities are sim-based (M_Sims); WINS also shown live in M_WinDist.", "text", italic=True)
     put(ws, "L5", "=Sim_Stale", "link"); ws["L5"].font = font(RED, bold=True)
     hdr = ["Market", "Selection", "Team", "Side", "Line", "Book American", "Decimal", "Flag", "Fair prob (de-vig)", "Model prob", "Model / fair price (American)", "EV per $1", "Edge (model-fair, pp)", "EV CI low (80%)", "EV CI high (80%)", "P(EV>0)",
-           "Staking prob (shrunk)", "Naive Kelly (frac)", "Naive stake $", "Portfolio Kelly (frac)", "Portfolio stake $", "Robust OK", "Qualifies", "Lock (CST)", "Rule", "Row id", "Sim status", "Live analytic P (WINS, reprices with Overrides)", "Live analytic EV (WINS)", "Zero-sum model P (WINS, means rescaled to book sum)", "Zero-sum EV (WINS)", "EV at shrunk probability", "EV CI low at shrunk probability", "Tier 1 (live)", "Tier 1 stake (frac)", "Tier 1 stake $", "Named driver", "Portfolio Kelly (numeric, for sorting)", "Tier"]
+           "Staking prob (shrunk)", "Naive Kelly (frac)", "Naive stake $", "Portfolio Kelly (frac)", "Portfolio stake $", "Robust OK", "Qualifies", "Lock (CST)", "Rule", "Row id", "Sim status", "Live analytic P (WINS, reprices with Overrides)", "Live analytic EV (WINS)", "Zero-sum model P (WINS, means rescaled to book sum)", "Zero-sum EV (WINS)", "EV at shrunk probability", "EV CI low at shrunk probability", "Tier 1 (live)", "Tier 1 stake (frac)", "Tier 1 stake $", "Named driver", "Portfolio Kelly (numeric, for sorting)", "Tier", "Consensus (WINS)", "Min acceptable price (EV at shrink 0.75 = 0)"]
     headers(ws, 7, hdr, height=30)
     S = REG["sims_team"]; cm = S["cols"]; sf, sl = S["first"], S["last"]
     pm = REG["sims_pmf"]; rk0 = REG["sims_rank_col0"]; ci = REG["sims_ci"]; od = REG["odds"]; dv = REG["devig"]
@@ -30,7 +30,7 @@ def build_smarkets(wb, o):
         sub = o[o.market == m]
         if sub.empty: continue
         put(ws, f"A{r}", m, "text", bold=True); put(ws, f"B{r}", f"{len(sub)} selections - {sub.rule_text.iloc[0]}", "text", italic=True)
-        for col in range(1, 40): ws.cell(row=r, column=col).border = Border(bottom=THIN)
+        for col in range(1, 42): ws.cell(row=r, column=col).border = Border(bottom=THIN)
         r += 1
         for idx, x in sub.iterrows():
             rowmap[idx] = r; orow = od["first"] + idx; dvr = dv["first"] + idx; cir = ci["first"] + idx
@@ -78,8 +78,11 @@ def build_smarkets(wb, o):
                 longshot = f"IF(I{r}<A_longthr,(1-A_shrink)*M_Sims!K{cir}+A_shrink*(I{r}*G{r}-1)>=A_minev,TRUE)"
                 contf = f'IF(AND(OR(A{r}="WINS",A{r}="PLAYOFFS",LEFT(A{r},4)="DIV_"),{cont}<A_contthr),AND(((1-A_contshrink)*J{r}+A_contshrink*I{r})*G{r}-1>=A_minev,(1-A_contshrink)*N{r}+A_contshrink*(I{r}*G{r}-1)>0),TRUE)'
                 put(ws, f"W{r}", f'=AND(H{r}<>"IMPUTED_20C_LADDER",L{r}>=A_minev,N{r}>0,V{r}=1,IF(A{r}="PLAYOFFS",A_poconf=1,TRUE),{zs},AF{r}>=A_minev,AG{r}>0,{longshot},{contf},M_Sims!P{cir}=0)', "formula")
-                put(ws, f"AH{r}", f"=AND(W{r},I{r}>=A_t1_fair,((1-A_t1_shrink)*J{r}+A_t1_shrink*I{r})*G{r}-1>=A_minev,(1-A_t1_shrink)*N{r}+A_t1_shrink*(I{r}*G{r}-1)>0,M_Sims!Q{cir}=1)", "formula")
-                put(ws, f"AI{r}", f"=IF(AH{r},M_Sims!R{cir}*A_t1_cap/A_t1_engcap,0)", "formula", "0.0000")
+                put(ws, f"AH{r}", f"=AND(W{r},I{r}>=A_t1_fair,((1-A_t1_shrink)*J{r}+A_t1_shrink*I{r})*G{r}-1>=A_minev,(1-A_t1_shrink)*N{r}+A_t1_shrink*(I{r}*G{r}-1)>0,IF(A{r}=\"WINS\",AN{r}=\"PASS\",M_Sims!Q{cir}=1))", "formula")
+                put(ws, f"AI{r}", f"=IF(AH{r},MIN(M_Sims!R{cir}*A_t1_cap/A_t1_engcap,IF(A{r}=\"WINS\",A_wins_stake*IF({cont}<A_contthr,A_lowcont_mult,1),1)),0)", "formula", "0.0000")
+                pw_ = REG["windist_pass"]; wd_ = REG["windist"]
+                put(ws, f"AN{r}", (f'=IF(D{r}="OVER",IF(INDEX(M_WinDist!${pw_[0]}${wd_["first"]}:${pw_[0]}${wd_["last"]},MATCH($C{r},M_WinDist!$A${wd_["first"]}:$A${wd_["last"]},0)),"PASS","FAIL"),IF(INDEX(M_WinDist!${pw_[1]}${wd_["first"]}:${pw_[1]}${wd_["last"]},MATCH($C{r},M_WinDist!$A${wd_["first"]}:$A${wd_["last"]},0)),"PASS","FAIL"))' if m == "WINS" else "n/a"), "formula" if m == "WINS" else "text")
+                ps_ = f"((1-A_t1_shrink)*J{r}+A_t1_shrink*I{r})"; put(ws, f"AO{r}", f"=IF(1/{ps_}>=2,(1/{ps_}-1)*100,-100/(1/{ps_}-1))", "formula", "amer")
                 put(ws, f"AJ{r}", f'=IF(OR(A_bankroll="",NOT(AH{r})),"-",MIN(A_maxbet,AI{r}*A_bankroll))', "formula", "money")
                 put(ws, f"AK{r}", f'=IF(AH{r},M_Sims!S{cir},"-")', "link")
                 put(ws, f"AL{r}", f"=M_Sims!M{cir}", "link", "0.0000"); put(ws, f"AM{r}", f'=IF(W{r},IF(AH{r},"Tier 1","Tier 2"),"-")', "formula")
@@ -87,7 +90,7 @@ def build_smarkets(wb, o):
                 put(ws, f"J{r}", "-", "text", align="right"); put(ws, f"K{r}", f"=IF(I{r}>=0.5,-100*I{r}/(1-I{r}),100*(1-I{r})/I{r})", "formula", "amer")
                 for col in "LMNOPQRSTUV": put(ws, f"{col}{r}", "-", "text", align="right")
                 put(ws, f"W{r}", False, "text")
-                for col in ("AD", "AE", "AF", "AG", "AI", "AJ", "AK", "AM"): put(ws, f"{col}{r}", "-", "text", align="right")
+                for col in ("AD", "AE", "AF", "AG", "AI", "AJ", "AK", "AM", "AN", "AO"): put(ws, f"{col}{r}", "-", "text", align="right")
                 put(ws, f"AH{r}", False, "text"); put(ws, f"AL{r}", 0, "text")
             if m == "WINS":
                 wd = REG["windist"]
@@ -115,7 +118,7 @@ def build_betcard(wb):
     sm = REG["smk"]
     put(ws, "A5", "Tier 1 = conservative subset (see Tier1_Card, has stakes). Tier 2 = everything on this card, NO stake by default (Assumptions: tier2_staking_on). Qualifies = EV >= min EV AND edge CI low > 0 AND robustness filter AND not imputed AND (WINS) survives the zero-sum rescale AND the edge survives the shrink toward the market. Stake = portfolio Kelly (correlation-aware), naive shown beside it. Lock times in CST.", "text", italic=True)
     put(ws, "A6", "=Sim_Stale", "link"); ws["A6"].font = font(RED, bold=True)
-    labels = ["Market", "Selection", "Side", "Line", "Book American", "Fair prob", "Model prob", "EV per $1", "EV CI low", "Tier", "Naive Kelly", "Naive stake $", "Portfolio Kelly", "Portfolio stake $", "Lock (CST)", "Rule"]
+    labels = ["Market", "Selection", "Side", "Line", "Book American", "Fair prob", "Model prob", "EV per $1", "EV CI low", "Tier", "Naive Kelly", "Naive stake $", "Portfolio Kelly", "Portfolio stake $", "Lock (CST)", "Rule", "Consensus (WINS)"]
     headers(ws, 7, labels)
     REG["bc"] = dict(first=8, cols=labels)
     widths(ws, {"A": 16, "B": 28, "N": 24, "O": 60}); finish(ws); ws.freeze_panes = "C8"
@@ -124,8 +127,8 @@ def build_betcard(wb):
 
 def bet_card_formula():
     sm = REG["smk"]
-    d = f"S_Markets!$A${sm['first']}:$AM${sm['last']}"
-    cols = [1, 2, 4, 5, 6, 9, 10, 12, 14, 39, 18, 19, 20, 21, 24, 25]
+    d = f"S_Markets!$A${sm['first']}:$AO${sm['last']}"
+    cols = [1, 2, 4, 5, 6, 9, 10, 12, 14, 39, 18, 19, 20, 21, 24, 25, 40]
     pick = ",".join(f"INDEX(s,0,{c})" for c in cols)
     return (f'=LET(d,{d},q,INDEX(d,0,23),f,FILTER(d,q=TRUE,"No qualifying bets"),'
             f'IF(COLUMNS(f)<2,f,LET(s,SORTBY(f,INDEX(f,0,38),-1),HSTACK({pick}))))')
@@ -140,22 +143,51 @@ def tier1_formula():
             f'IF(COLUMNS(f)<2,f,LET(s,SORTBY(f,INDEX(f,0,35),-1),HSTACK({pick}))))')
 
 
-def player_tier1_formula():
-    mp = REG["m_players"]; d = f"M_Players!$A${mp['first']}:$U${mp['last']}"
-    pick = ",".join(f"INDEX(s,0,{c})" for c in (1, 2, 3, 4, 6, 7, 10, 12, 16, 17, 20))
-    return (f'=LET(d,{d},f,FILTER(d,INDEX(d,0,15)=TRUE,"No player Tier 1 bets"),'
-            f'IF(COLUMNS(f)<2,f,LET(s,SORTBY(f,INDEX(f,0,16),-1),HSTACK({pick}))))')
-
-
-def build_tier1(wb):
-    ws = wb.create_sheet("Tier1_Card"); sheet_header(ws, "Tier1_Card - conservative subset of the Bet Card (stakes shown here by default)", span=14)
-    put(ws, "A5", "Tier 1 filters (all must hold): (1) on the Bet Card; (2) edge survives shrink 0.75 (model weight 0.25); (3) market fair probability >= 5%; (4) not against a market top-5 team or for a bottom-5 team (wins, playoffs, division, conference, title); (5) a NAMED DRIVER - verifiable arrival / departure / availability facts of >= 1.0 SRS covering >= 60% of the model-vs-market gap; (6) total exposure capped at 10% of bankroll.", "text", italic=True)
+def build_tier1(wb, o):
+    """Tier 1 card: one FIXED row per engine Tier 1 bet (stable keys so the blue inputs - live price, rule confirmed - stay attached); every other column is a live formula."""
+    ws = wb.create_sheet("Tier1_Card"); sheet_header(ws, "Tier1_Card - the staked card (8 bets): min acceptable price, live price check, consensus basis", span=14)
+    put(ws, "A5", "Tier 1 tests: on the Bet Card; edge survives shrink 0.75; fair >= 5%; direction rule; then team non-WINS = named driver, WINS = external consensus (our bias-adjusted gap and one STAT_MODEL gap, both >= A_cons_min); player bets = Tier 2 test + holds at the sharpening-exponent CI bounds. Stakes = joint Kelly on shared sims (WINS capped; ROY x A_roy_stake_mult), total capped at A_t1_cap.", "text", italic=True)
     put(ws, "A6", "=Sim_Stale", "link"); ws["A6"].font = font(RED, bold=True)
-    labels = ["Market", "Selection", "Side", "Line", "Book American", "Fair prob", "Model prob", "EV per $1", "EV CI low", "Tier 1 stake (frac of bankroll)", "Tier 1 stake $", "Named driver (player / roster facts)", "Lock (CST)", "Rule"]
-    headers(ws, 7, labels)
-    put(ws, "A39", "Player Tier 1 (M_Players): Tier 2 test + fair >= A_t1_fair + edge survives A_t1_shrink + holds at both bounds of the stat-leader sharpening exponent CI. Stakes are the JOINT portfolio Kelly with the team bets above (shared sims, total capped at A_t1_cap).", "text", italic=True)
-    headers(ws, 40, ["Market", "Selection", "Team", "Book American", "Fair prob", "Model prob", "EV per $1", "EV low (shrunk)", "Tier 1 stake (frac of bankroll)", "Tier 1 stake $", "Driver (projection facts)"])
-    widths(ws, {"A": 16, "B": 28, "L": 90, "M": 24, "N": 60}); finish(ws); ws.freeze_panes = "C8"
+    labels = ["Group", "Market", "Selection", "Side", "Line", "Book American", "Live price (input)", "Min acceptable price", "Book rule confirmed? (Y/N)", "Still bet?", "Fair prob", "Model prob", "EV per $1", "EV at shrink 0.75", "Stake (frac of bankroll)", "Stake $", "Consensus (WINS)", "Driver / consensus basis", "Lock (CST)", "Rule", "Live Tier 1 status"]
+    headers(ws, 7, labels, height=45)
+    sm = REG["smk"]; mp = REG["m_players"]; rows = []
+    T = o[o.tier1].copy(); T["src"] = "team"
+    P = pd.read_csv(C("player_pricing_table.csv")); P = P[P.tier1].copy()
+    order = []
+    for _, x in T.iterrows(): order.append(("team", x))
+    for _, x in P.iterrows(): order.append(("player", x))
+    order.sort(key=lambda t: (t[1].market == "WINS", -float(t[1].tier1_kelly if t[0] == "team" else t[1].stake_t1)))
+    need = {"PLAYOFFS": "Y/N: playoffs = 16-team field incl. play-in", "LDR_TPG": "Y/N: TPG = three-pointers made per game", "LDR_RPG": "Y/N: 58-game qualifier (and totals path)"}
+    r = 8
+    for kind, x in order:
+        group = "Wins-consensus" if x.market == "WINS" else "Core"
+        put(ws, f"A{r}", group, "text"); put(ws, f"B{r}", x.market, "text")
+        if kind == "team":
+            sr = sm["rowmap"][x.name]; src = lambda c: f"S_Markets!{c}{sr}"
+            put(ws, f"C{r}", f"={src('B')}", "link"); put(ws, f"D{r}", f"={src('D')}", "link"); put(ws, f"E{r}", f"={src('E')}", "link", "num1"); put(ws, f"F{r}", f"={src('F')}", "link", "amer")
+            put(ws, f"H{r}", f"={src('AO')}", "link", "amer"); put(ws, f"K{r}", f"={src('I')}", "link", "pct"); put(ws, f"L{r}", f"={src('J')}", "link", "pct"); put(ws, f"M{r}", f"={src('L')}", "link", "pct")
+            put(ws, f"N{r}", f"=((1-A_t1_shrink)*{src('J')}+A_t1_shrink*{src('I')})*{src('G')}-1", "formula", "pct"); put(ws, f"O{r}", f"={src('AI')}", "link", "0.0000"); put(ws, f"Q{r}", f"={src('AN')}", "link")
+            put(ws, f"R{r}", str(x.t1_driver) if isinstance(x.t1_driver, str) else "", "text"); put(ws, f"S{r}", x.lock_cst, "text"); put(ws, f"T{r}", x.rule_text, "text"); put(ws, f"U{r}", f"={src('AH')}", "link")
+            key = x.market
+        else:
+            pr_ = mp["rowmap"][(x.market, x.selection)]; src = lambda c: f"M_Players!{c}{pr_}"
+            put(ws, f"C{r}", f"={src('B')}", "link"); put(ws, f"D{r}", "YES", "text"); put(ws, f"E{r}", "-", "text", align="right"); put(ws, f"F{r}", f"={src('D')}", "link", "amer")
+            put(ws, f"H{r}", f"={src('W')}", "link", "amer"); put(ws, f"K{r}", f"={src('F')}", "link", "pct"); put(ws, f"L{r}", f"={src('G')}", "link", "pct"); put(ws, f"M{r}", f"={src('J')}", "link", "pct")
+            put(ws, f"N{r}", f"=((1-A_t1_shrink)*{src('G')}+A_t1_shrink*{src('F')})*{src('E')}-1", "formula", "pct"); put(ws, f"O{r}", f"={src('P')}", "link", "0.0000"); put(ws, f"Q{r}", "n/a", "text")
+            put(ws, f"R{r}", str(x.driver), "text"); put(ws, f"S{r}", "Tue 10/20 02:10 PM CST", "text"); put(ws, f"T{r}", "All in, no refunds; dead-heat rules apply to stat leaders; official qualification", "text"); put(ws, f"U{r}", f"={src('O')}", "link")
+        put(ws, f"G{r}", f"=F{r}", "input", "amer"); ws[f"G{r}"].value = None      # live price: blue input, blank = use the book price in the check
+        put(ws, f"I{r}", "N" if x.market in need else "n/a", "input")
+        ws[f"G{r}"].value = None
+        put(ws, f"J{r}", f'=AND(U{r},IF(I{r}="n/a",TRUE,I{r}="Y"),IF(G{r}="",IF(F{r}>0,1+F{r}/100,1+100/-F{r}),IF(G{r}>0,1+G{r}/100,1+100/-G{r}))>=IF(H{r}>0,1+H{r}/100,1+100/-H{r}))', "formula")
+        put(ws, f"P{r}", f'=IF(A_bankroll="","-",O{r}*A_bankroll)', "formula", "money")
+        r += 1
+    last = r - 1; REG["t1card"] = dict(first=8, last=last, n=last - 7)
+    put(ws, f"A{last+2}", "Live Tier 1 bets under current Assumptions (S_Markets + M_Players) vs rows listed above (0 = card complete; non-zero after changing thresholds: rerun `run.py price` + build)", "text", italic=True)
+    put(ws, f"A{last+3}", "Difference", "text"); put(ws, f"B{last+3}", f'=COUNTIF(S_Markets!$AH${sm["first"]}:$AH${sm["last"]},TRUE)+COUNTIF(M_Players!$O${mp["first"]}:$O${mp["last"]},TRUE)-COUNTIF(U8:U{last},TRUE)', "formula", "int")
+    put(ws, f"A{last+4}", "Total Tier 1 stake (fraction of bankroll)", "text"); put(ws, f"B{last+4}", f"=SUM(O8:O{last})", "formula", "pct2")
+    dv = DataValidation(type="list", formula1='"Y,N,n/a"', allow_blank=False); ws.add_data_validation(dv); dv.add(f"I8:I{last}")
+    ws.conditional_formatting.add(f"J8:J{last}", FormulaRule(formula=["J8=FALSE"], fill=RED_FILL)); ws.conditional_formatting.add(f"J8:J{last}", FormulaRule(formula=["J8=TRUE"], fill=GREEN_FILL))
+    widths(ws, {"A": 16, "B": 14, "C": 28, "R": 90, "S": 24, "T": 50}); finish(ws); ws.freeze_panes = "D8"
     return ws
 
 
@@ -199,6 +231,13 @@ def build_exposure(wb, Q):
     for j in range(n1):
         put(ws, f"{CL(6+j)}{r0}", jc.columns[j][:26], "header"); put(ws, f"E{r0+1+j}", jc.index[j][:40], "text")
         for k in range(n1): put(ws, f"{CL(6+k)}{r0+1+j}", float(jc.iloc[j, k]), "input", "0.00")
+    r1 = r0 + n1 + 3
+    put(ws, f"E{r1}", "Joint Kelly: uncapped vs final stakes (fraction of bankroll)", "text", bold=True)
+    for j, h in enumerate(["Bet", "Joint, no caps / multipliers", "Cap", "Final stake"]): put(ws, f"{CL(5+j)}{r1+1}", h, "header")
+    jst = json.load(open(C("joint_summary.json")))
+    for j, (k, v) in enumerate(jst["uncapped_joint"].items()):
+        put(ws, f"E{r1+2+j}", k[:44], "text"); put(ws, f"F{r1+2+j}", float(v), "input", "pct2"); cp = jst["caps"].get(k); put(ws, f"G{r1+2+j}", float(cp) if cp is not None else "-", "input" if cp is not None else "text", "pct2"); put(ws, f"H{r1+2+j}", float(jst["stakes"][k]), "input", "pct2")
+    put(ws, f"E{r1+2+len(jst['stakes'])}", "Total", "text", bold=True); put(ws, f"F{r1+2+len(jst['stakes'])}", float(jst["uncapped_total"]), "input", "pct2"); put(ws, f"H{r1+2+len(jst['stakes'])}", float(jst["total_stake_frac"]), "input", "pct2")
     widths(ws, {"A": 46, "B": 18, "C": 20, "E": 42}); finish(ws)
 
 
@@ -288,24 +327,35 @@ def build_backtest(wb):
 
 
 def build_tracker(wb):
-    ws = wb.create_sheet("Tracker"); sheet_header(ws, "Tracker - placed bets (blue = inputs); CLV = closing implied - placed implied", span=12)
-    headers(ws, 7, ["Date placed", "Market", "Selection", "Side", "Line", "Placed American", "Stake $", "Closing American", "CLV (implied pp)", "Settled (Y/N)", "Result (W/L/P)", "P&L $", "ROI on stake"])
+    ws = wb.create_sheet("Tracker"); sheet_header(ws, "Tracker - placed bets (blue = inputs); CLV = closing implied - placed implied; Tier 1 rows are pre-populated", span=12)
+    headers(ws, 7, ["Date placed", "Market", "Selection", "Side", "Line", "Placed American", "Stake $", "Closing American", "CLV (implied pp)", "Settled (Y/N)", "Result (W/L/P)", "P&L $", "ROI on stake", "Group", "Recommended stake (frac)", "Recommended stake $", "Min acceptable price", "Lock (CST)"])
+    t1 = REG["t1card"]
     for r in range(8, 108):
         for col, f in (("A", "date"), ("B", None), ("C", None), ("D", None), ("E", "num1"), ("F", "amer"), ("G", "money"), ("H", "amer"), ("J", None), ("K", None)):
             put(ws, f"{col}{r}", None, "input", f)
         put(ws, f"I{r}", f'=IF(OR(F{r}="",H{r}=""),"-",(IF(H{r}>0,100/(H{r}+100),-H{r}/(-H{r}+100))-IF(F{r}>0,100/(F{r}+100),-F{r}/(-F{r}+100)))*100)', "formula", "num2")
         put(ws, f"L{r}", f'=IF(OR(G{r}="",K{r}=""),"-",IF(K{r}="W",G{r}*IF(F{r}>0,F{r}/100,100/-F{r}),IF(K{r}="L",-G{r},0)))', "formula", "money")
         put(ws, f"M{r}", f'=IF(OR(L{r}="-",G{r}=""),"-",L{r}/G{r})', "formula", "pct")
+    for i in range(t1["n"]):                       # pre-populate one row per Tier 1 bet (links to Tier1_Card)
+        r = 8 + i; tr = t1["first"] + i
+        put(ws, f"B{r}", f"=Tier1_Card!B{tr}", "link"); put(ws, f"C{r}", f"=Tier1_Card!C{tr}", "link"); put(ws, f"D{r}", f"=Tier1_Card!D{tr}", "link"); put(ws, f"E{r}", f"=Tier1_Card!E{tr}", "link", "num1")
+        put(ws, f"N{r}", f"=Tier1_Card!A{tr}", "link"); put(ws, f"O{r}", f"=Tier1_Card!O{tr}", "link", "0.0000"); put(ws, f"P{r}", f"=Tier1_Card!P{tr}", "link", "money"); put(ws, f"Q{r}", f"=Tier1_Card!H{tr}", "link", "amer"); put(ws, f"R{r}", f"=Tier1_Card!S{tr}", "link")
     dv = DataValidation(type="list", formula1='"W,L,P"', allow_blank=True); ws.add_data_validation(dv); dv.add("K8:K107")
-    put(ws, "O7", "ROI by market type", "header"); put(ws, "P7", "Stake $", "header"); put(ws, "Q7", "P&L $", "header"); put(ws, "R7", "ROI", "header")
+    put(ws, "T7", "ROI by market type", "header"); put(ws, "U7", "Stake $", "header"); put(ws, "V7", "P&L $", "header"); put(ws, "W7", "ROI", "header")
     for i, m in enumerate(["TITLE", "CONF", "DIV", "CUP", "PLAYIN", "PLAYOFFS", "WINS", "AWARDS/LEADERS"]):
-        r = 8 + i; put(ws, f"O{r}", m, "text")
+        r = 8 + i; put(ws, f"T{r}", m, "text")
         if m == "AWARDS/LEADERS":
-            put(ws, f"P{r}", '=SUM(G8:G107)-SUM(P8:P14)', "formula", "money"); put(ws, f"Q{r}", '=SUMPRODUCT(--ISNUMBER(L8:L107),L8:L107)-SUM(Q8:Q14)', "formula", "money")
+            put(ws, f"U{r}", '=SUM(G8:G107)-SUM(U8:U14)', "formula", "money"); put(ws, f"V{r}", '=SUMPRODUCT(--ISNUMBER(L8:L107),L8:L107)-SUM(V8:V14)', "formula", "money")
         else:
-            put(ws, f"P{r}", f'=SUMIF(B8:B107,"{m}*",G8:G107)', "formula", "money"); put(ws, f"Q{r}", f'=SUMPRODUCT((LEFT($B$8:$B$107,{len(m)})="{m}")*ISNUMBER(L8:L107),L8:L107)', "formula", "money")
-        put(ws, f"R{r}", f'=IF(P{r}=0,"-",Q{r}/P{r})', "formula", "pct")
-    widths(ws, {"A": 14, "B": 16, "C": 28, "O": 20}); finish(ws)
+            put(ws, f"U{r}", f'=SUMIF(B8:B107,"{m}*",G8:G107)', "formula", "money"); put(ws, f"V{r}", f'=SUMPRODUCT((LEFT($B$8:$B$107,{len(m)})="{m}")*ISNUMBER(L8:L107),L8:L107)', "formula", "money")
+        put(ws, f"W{r}", f'=IF(U{r}=0,"-",V{r}/U{r})', "formula", "pct")
+    put(ws, "T18", "CLV and results by group", "header"); put(ws, "U18", "Bets with CLV", "header"); put(ws, "V18", "Avg CLV (implied pp)", "header"); put(ws, "W18", "Stake $", "header"); put(ws, "X18", "P&L $", "header"); put(ws, "Y18", "ROI", "header")
+    for i, g in enumerate(["Core", "Wins-consensus"]):
+        r = 19 + i; put(ws, f"T{r}", g, "text")
+        put(ws, f"U{r}", f'=COUNTIFS($N$8:$N$107,T{r},$I$8:$I$107,"<>-")-COUNTIFS($N$8:$N$107,T{r},$I$8:$I$107,"")', "formula", "int")
+        put(ws, f"V{r}", f'=IFERROR(AVERAGEIFS($I$8:$I$107,$N$8:$N$107,T{r}),"-")', "formula", "num2")
+        put(ws, f"W{r}", f'=SUMIFS($G$8:$G$107,$N$8:$N$107,T{r})', "formula", "money"); put(ws, f"X{r}", f'=SUMPRODUCT(($N$8:$N$107=T{r})*ISNUMBER($L$8:$L$107),$L$8:$L$107)', "formula", "money"); put(ws, f"Y{r}", f'=IF(W{r}=0,"-",X{r}/W{r})', "formula", "pct")
+    widths(ws, {"A": 14, "B": 16, "C": 28, "N": 16, "T": 20}); finish(ws)
 
 
 def build_checks(wb, o):

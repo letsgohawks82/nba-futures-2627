@@ -44,14 +44,13 @@ def main():
         for i, ((k, v), f) in enumerate(zip(mets, fmt)):
             fig.text(0.04, 0.89 - i * 0.022, k, fontsize=8); fig.text(0.42, 0.89 - i * 0.022, f.format(v) if isinstance(v, (int, float)) else str(v), fontsize=8, fontweight="bold")
         ax = fig.add_axes([0.04, 0.05, 0.92, 0.66]); rows = []
-        for r in range(8, 20):
-            if T.cell(r, 1).value and T.cell(r, 2).value:
-                rows.append(("Team", f"{T.cell(r,1).value} {T.cell(r,2).value} {T.cell(r,3).value}", f"{T.cell(r,5).value:+}", pct(T.cell(r, 7).value), pct(T.cell(r, 6).value), pct(T.cell(r, 8).value, 0), pct(T.cell(r, 10).value, 2), str(T.cell(r, 12).value)))
-        for r in range(41, 60):
-            if T.cell(r, 1).value and T.cell(r, 2).value:
-                rows.append(("Player", f"{T.cell(r,1).value} {T.cell(r,2).value}", f"{T.cell(r,4).value:+}", pct(T.cell(r, 6).value), pct(T.cell(r, 5).value), pct(T.cell(r, 7).value, 0), pct(T.cell(r, 9).value, 2), str(T.cell(r, 11).value)))
-        fig.text(0.04, 0.73, "Tier 1 card (joint Kelly, total cap 10% of bankroll; stakes as fraction of bankroll)", fontsize=9, color=NAVY, fontweight="bold")
-        table(ax, ["Type", "Bet", "Book", "Model", "Fair", "EV", "Stake", "Named driver"], rows, [5, 24, 5, 6, 6, 5, 6, 70], fs=6.5, wrap={7, 1})
+        for r in range(8, 30):
+            if T.cell(r, 2).value and T.cell(r, 3).value:
+                sel = f"{T.cell(r,2).value} {T.cell(r,3).value} {T.cell(r,4).value if T.cell(r,4).value != 'YES' else ''} {T.cell(r,5).value if isinstance(T.cell(r,5).value, (int, float)) else ''}".replace("  ", " ").strip()
+                mn = T.cell(r, 8).value
+                rows.append((str(T.cell(r, 1).value)[:6], sel, f"{T.cell(r,6).value:+}", f"{mn:+.0f}" if isinstance(mn, (int, float)) else "-", pct(T.cell(r, 12).value), pct(T.cell(r, 11).value), pct(T.cell(r, 13).value, 0), pct(T.cell(r, 15).value, 2), str(T.cell(r, 17).value), str(T.cell(r, 18).value)))
+        fig.text(0.04, 0.73, "Tier 1 card (joint Kelly, total cap 10% of bankroll; stakes as fraction of bankroll; min price = EV at shrink 0.75 is zero)", fontsize=9, color=NAVY, fontweight="bold")
+        table(ax, ["Group", "Bet", "Book", "Min", "Model", "Fair", "EV", "Stake", "Cons.", "Driver / consensus basis"], rows, [6, 22, 5, 5, 5, 5, 5, 5, 5, 62], fs=6.3, wrap={9, 1})
         pdf.savefig(fig); plt.close(fig)
         # ---- page 2: charts
         fig, axs = plt.subplots(1, 2, figsize=(11, 8.5)); fig.suptitle("Model vs market", color=NAVY, fontweight="bold")
@@ -70,11 +69,11 @@ def main():
         rows = []
         for r in range(8, B.max_row + 1):
             if B.cell(r, 1).value:
-                rows.append((B.cell(r, 1).value, B.cell(r, 2).value, B.cell(r, 3).value, fx(B.cell(r, 4).value), f"{B.cell(r,5).value:+}", pct(B.cell(r, 6).value), pct(B.cell(r, 7).value), pct(B.cell(r, 8).value, 0), pct(B.cell(r, 9).value, 0), B.cell(r, 10).value, str(B.cell(r, 15).value)))
+                rows.append((B.cell(r, 1).value, B.cell(r, 2).value, B.cell(r, 3).value, fx(B.cell(r, 4).value), f"{B.cell(r,5).value:+}", pct(B.cell(r, 6).value), pct(B.cell(r, 7).value), pct(B.cell(r, 8).value, 0), pct(B.cell(r, 9).value, 0), B.cell(r, 10).value, fx(B.cell(r, 17).value), str(B.cell(r, 15).value)))
         per = 40
         for k in range(0, len(rows), per):
-            fig = plt.figure(figsize=(11, 8.5)); fig.text(0.04, 0.95, f"Bet Card - Tier 2 (all qualifying team bets, no stake by default) {k // per + 1}/{-(-len(rows) // per)}", fontsize=12, color=NAVY, fontweight="bold")
-            ax = fig.add_axes([0.04, 0.04, 0.92, 0.87]); table(ax, ["Market", "Selection", "Side", "Line", "Book", "Fair", "Model", "EV", "EV lo", "Tier", "Lock (CST)"], rows[k:k + per], [10, 22, 6, 5, 6, 6, 6, 5, 5, 6, 18], fs=6.5)
+            fig = plt.figure(figsize=(11, 8.5)); fig.text(0.04, 0.95, f"Bet Card - all qualifying team bets (Tier 1 staked on Tier1_Card; Tier 2 no stake) {k // per + 1}/{-(-len(rows) // per)}", fontsize=12, color=NAVY, fontweight="bold")
+            ax = fig.add_axes([0.04, 0.04, 0.92, 0.87]); table(ax, ["Market", "Selection", "Side", "Line", "Book", "Fair", "Model", "EV", "EV lo", "Tier", "Cons.", "Lock (CST)"], rows[k:k + per], [10, 22, 6, 5, 6, 6, 6, 5, 5, 6, 5, 18], fs=6.5)
             pdf.savefig(fig); plt.close(fig)
     return out
 

@@ -63,7 +63,7 @@ def build_team_ratings(wb):
 def build_windist(wb, o):
     ws = wb.create_sheet("M_WinDist"); sheet_header(ws, "M_WinDist - live analytic win distribution (normal approximation) vs sim; reprices when Assumptions / Overrides change")
     put(ws, "A5", "Wins ~ Normal(mean, sd), mean = 41 + k x SRS (the calibrated projection; the sim is moment-matched to it): sd^2 = 82 p (1-p) + (82 phi(z) / sigma_game x sigma_team)^2 with p = mean/82, z = NORMSINV(p). Delta flagged when |analytic - sim| > 2pp.", "text", italic=True)
-    headers(ws, 7, ["Team", "Line", "Mean wins (live)", "SD wins", "P(over) analytic", "P(under) analytic", "P(over) sim", "Delta (pp)", "Flag", "Model fair odds - over", "Model fair odds - under", "Book over", "Book under", "Book fair over (selected)"])
+    headers(ws, 7, ["Team", "Line", "Mean wins (live)", "SD wins", "P(over) analytic", "P(under) analytic", "P(over) sim", "Delta (pp)", "Flag", "Model fair odds - over", "Model fair odds - under", "Book over", "Book under", "Book fair over (selected)", "Market fair median wins", "Compression bias (wins)", "Our gap, bias-adjusted (wins)"] + [f"Gap: {REG['cons']['names'][k]} ({REG['cons']['types'][k]})" for k in REG["cons"]["types"]] + ["Consensus PASS for OVER", "Consensus PASS for UNDER"])
     tr = REG["tr"]; od = REG["odds"]; dv = REG["devig"]
     w = o[(o.market == "WINS") & (o.side == "OVER")]
     from ..data.teams import NAME2ABBR
@@ -79,6 +79,15 @@ def build_windist(wb, o):
         put(ws, f"J{row}", f"=IF(E{row}>=0.5,-100*E{row}/(1-E{row}),100*(1-E{row})/E{row})", "formula", "amer"); put(ws, f"K{row}", f"=IF(F{row}>=0.5,-100*F{row}/(1-F{row}),100*(1-F{row})/F{row})", "formula", "amer")
         put(ws, f"L{row}", f"=Odds_Input!F{orow}", "link", "amer"); put(ws, f"M{row}", f"=Odds_Input!F{orow+1}", "link", "amer")
         put(ws, f"N{row}", f"=M_DeVig!Q{dv['first']+idx}", "link", "pct")
+        cs = REG["cons"]; put(ws, f"O{row}", f"=B{row}+(N{row}-0.5)/A_p_per_win", "formula", "num2"); put(ws, f"P{row}", f"=A_comp_slope*(O{row}-A_games/2)", "formula", "num2"); put(ws, f"Q{row}", f"=(C{row}-O{row})-P{row}", "formula", "num2")
+        gcols = {}
+        for j, (k, tp) in enumerate(cs["types"].items()):
+            col = CL(18 + j); gcols[k] = col; rng = f"Raw_Consensus!${cs['cols'][k]}${cs['first']}:${cs['cols'][k]}${cs['last']}"
+            put(ws, f"{col}{row}", f"=(INDEX({rng},MATCH($A{row},Raw_Consensus!$A${cs['first']}:$A${cs['last']},0))-$O{row})-$P{row}", "formula", "num2")
+        st = [gcols[k] for k, tp in cs["types"].items() if tp == "STAT_MODEL"]; pc = CL(18 + len(gcols))
+        put(ws, f"{pc}{row}", "=AND(Q{r}>=A_cons_min,OR({o}))".format(r=row, o=",".join(f"{c}{row}>=A_cons_min" for c in st)), "formula")
+        put(ws, f"{CL(19 + len(gcols))}{row}", "=AND(Q{r}<=-A_cons_min,OR({o}))".format(r=row, o=",".join(f"{c}{row}<=-A_cons_min" for c in st)), "formula")
+        REG["windist_pass"] = (pc, CL(19 + len(gcols)))
     REG["windist"] = dict(first=8, last=7 + len(w), n=len(w), idx=list(w.index), teams=[NAME2ABBR[s] for s in w.selection])
     ws.conditional_formatting.add(f"I8:I{7+len(w)}", FormulaRule(formula=['LEN(I8)>0'], font=Font(name="Arial", size=10, color=RED, bold=True)))
     widths(ws, {"A": 8}); finish(ws); ws.freeze_panes = "B8"
@@ -188,7 +197,7 @@ def build_players(wb):
     put(ws, "A4", "Probabilities are simulation outputs (100k season sims; 80% interval = season-block bootstrap of the rate/award fits); EV, shrunk EV and the Tier tests are live formulas on Assumptions. Stat-leader probabilities are sharpened p^gamma (gamma from leave-one-season-out CV; see Backtest notes / G6 report). TPG = three-pointers made per game. Display-only markets (MIP, 6MOY, COY, Clutch, Cup MVP) are on S_Markets.", "text", italic=True)
     put(ws, "A5", "Tier 1 here = Tier 2 test + fair >= A_t1_fair + edge survives A_t1_shrink; stakes are multi-outcome fractional Kelly on the shrunk probability within each market (cap 3% per market); Tier 2 stakes are not shown.", "text", italic=True)
     cols = ["Market", "Selection", "Team", "American", "Decimal", "Fair prob (Shin)", "Model prob", "Model p 10th pct", "Model p 90th pct", "EV (model)", "EV (shrunk)", "EV lo (shrunk)", "Worst scenario EV (shrunk)", "Tier 2",
-            "Tier 1", "Tier 1 stake (frac)", "Tier 1 stake ($)", "Proj mpg", "Proj games", "Driver", "Tier 1 holds at sharpening-exponent CI bounds (engine)"]
+            "Tier 1", "Tier 1 stake (frac)", "Tier 1 stake ($)", "Proj mpg", "Proj games", "Driver", "Tier 1 holds at sharpening-exponent CI bounds (engine)", "Joint-Kelly stake before ROY multiplier (engine)", "Min acceptable price (EV at shrink 0.75 = 0)", "Consensus"]
     headers(ws, 7, cols, height=45)
     o = pd.read_csv(C("player_pricing_table.csv")); o = o[o.modelled].copy()
     put(ws, "A6", "Engine Tier 1 count (players)", "text", bold=True); put(ws, "B6", int(o.tier1.sum()), "input", "int")
@@ -203,7 +212,8 @@ def build_players(wb):
         put(ws, f"L{k}", f"=((1-A_shrink)*H{k}+A_shrink*F{k})*E{k}-1", "formula", "pct"); put(ws, f"M{k}", float(r.ev_s_worst_scenario), "input", "pct")
         put(ws, f"N{k}", f"=AND(K{k}>=A_minev,L{k}>0,M{k}>=A_minev)", "formula")
         put(ws, f"O{k}", f"=AND(N{k},U{k},F{k}>=A_t1_fair,((1-A_t1_shrink)*G{k}+A_t1_shrink*F{k})*E{k}-1>=A_minev,((1-A_t1_shrink)*H{k}+A_t1_shrink*F{k})*E{k}-1>0)", "formula")
-        put(ws, f"P{k}", float(r.stake_t1), "input", "0.0000"); put(ws, f"Q{k}", f'=IF(AND(O{k},ISNUMBER(A_bankroll)),P{k}*A_bankroll,"-")', "formula", "money")
+        put(ws, f"V{k}", float(r.stake_t1_premult if r.market == "ROY" else r.stake_t1), "input", "0.0000"); put(ws, f"P{k}", f'=V{k}*IF(A{k}="ROY",A_roy_stake_mult,1)', "formula", "0.0000")
+        ps_ = f"((1-A_t1_shrink)*G{k}+A_t1_shrink*F{k})"; put(ws, f"W{k}", f"=IF(1/{ps_}>=2,(1/{ps_}-1)*100,-100/(1/{ps_}-1))", "formula", "amer"); put(ws, f"X{k}", "n/a", "text"); put(ws, f"Q{k}", f'=IF(AND(O{k},ISNUMBER(A_bankroll)),P{k}*A_bankroll,"-")', "formula", "money")
         put(ws, f"R{k}", float(r.proj_mpg) if pd.notna(r.proj_mpg) else "-", "input", "num1"); put(ws, f"S{k}", float(r.proj_gp) if pd.notna(r.proj_gp) else "-", "input", "num1"); put(ws, f"T{k}", str(r.driver) if isinstance(r.driver, str) else "", "text"); put(ws, f"U{k}", bool(r.tier1_gamma_lo and r.tier1_gamma_hi), "input")
-    last = 7 + len(o); REG["m_players"] = dict(first=8, last=last)
+    last = 7 + len(o); REG["m_players"] = dict(first=8, last=last, rowmap={(r.market, r.selection): 8 + i for i, r in o.iterrows()})
     widths(ws, {"A": 12, "B": 28, "T": 90}); finish(ws)

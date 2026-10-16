@@ -8,6 +8,7 @@ Everything else on the Bet Card is Tier 2 (no stake by default)."""
 import json, math, os
 import numpy as np, pandas as pd
 from .price import portfolio_kelly, DIVMAP
+from . import consensus as CS
 from ..ratings.prep import player_seasons
 from ..sim.inputs import IDX, B_TEAM, R_REPL, TEAM_LIST
 
@@ -71,6 +72,16 @@ def run(table="pricing_table.csv"):
     o["t1_direction"] = ~(against_top | for_bottom)
     o["t1_named"] = o.team.map(lambda t: bool(facts[t]["named"]) if t in facts else False)
     o["t1_driver"] = o.team.map(lambda t: " | ".join(facts[t]["facts"]) if t in facts else "")
+    # WINS: the consensus rule replaces the named-driver rule
+    T, stat, exp = CS.table(o); cons = []; basis = []
+    for r in o.itertuples():
+        if r.market != "WINS" or r.team not in T.index: cons.append("n/a"); basis.append(""); continue
+        t = T.loc[r.team]; ok = bool(t.pass_over if r.side == "OVER" else t.pass_under); cons.append("PASS" if ok else "FAIL")
+        basis.append(f"bias-adj gap vs market median {t['median']:.1f}: model {t.gap_model:+.1f}; " + "; ".join(f"{k} {t['gap_' + k]:+.1f}" for k in stat) + " | expert (display): " + "; ".join(f"{k} {t['gap_' + k]:+.1f}" for k in exp))
+    o["t1_cons"] = cons; o["t1_cons_basis"] = basis
+    isw = o.market == "WINS"; o["t1_named"] = np.where(isw, o.t1_cons == "PASS", o.t1_named); o["t1_driver"] = np.where(isw, o.t1_cons_basis, o.t1_driver)
+    ps_ = (0.25 * o.model_prob + 0.75 * o.fair); dm = 1.0 / ps_.clip(lower=1e-9)
+    o["min_price"] = np.where(dm >= 2, (dm - 1) * 100.0, -100.0 / (dm - 1.0 + 1e-12))
     o["t1_gap_srs"] = o.team.map(lambda t: facts[t]["gap_srs"] if t in facts else np.nan); o["t1_cover"] = o.team.map(lambda t: facts[t]["coverage"] if t in facts else np.nan)
     ovr = json.load(open(os.path.join(ROOT, "params/tier1_overrides.json")))
     o["t1_excluded"] = False; o["t1_scenario_ok"] = True; o["t1_scenario_ev75"] = np.nan; o["t1_scenario_lo75"] = np.nan

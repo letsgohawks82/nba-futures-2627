@@ -84,10 +84,10 @@ def run(path):
     sm = vb["S_Markets"]; neg = sum(1 for row in sm.iter_rows(min_row=8, min_col=35, max_col=36, values_only=True) for v in row if isinstance(v, (int, float)) and v < 0)
     out["sign_checks"] = dict(m_players_rows=n, ev_formula_mismatch=int(bad_ev), negative_player_stakes=int(bad_stake), negative_team_stakes=int(neg))
     linked = {}
-    for sh, cells in (("Dashboard", ["B6", "B7", "B8", "B9", "B10", "B11", "B12", "B13", "B17"]), ("Exposure", ["B14", "B15"]), ("Tier1_Card", ["A8", "A41"]), ("Bet_Card", ["A8"])):
+    for sh, cells in (("Dashboard", ["B6", "B7", "B8", "B9", "B10", "B11", "B12", "B13", "B17"]), ("Exposure", ["B14", "B15"]), ("Tier1_Card", ["C8", "O8", "U8", "H8"]), ("Bet_Card", ["A8"])):
         for c in cells:
             v = wb[sh][c].value; v = getattr(v, "text", v)
-            linked[f"{sh}!{c}"] = bool(isinstance(v, str) and v.startswith("=") and re.search(r"[A-Za-z_]+!", v))
+            linked[f"{sh}!{c}"] = bool(isinstance(v, str) and v.startswith("=") and re.search(r"[A-Za-z_]+!|Sim_Stale", v))
     out["summary_links"] = linked
     out["summary_hardcoded_engine_outputs"] = ["Exposure!B8:B13 (joint-Kelly engine summary from the sims)", "M_Sims (engine), M_Players probabilities/stakes (engine)"]
     return out

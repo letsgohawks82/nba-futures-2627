@@ -92,6 +92,7 @@ def main():
         f = multi_kelly(((1 - A["shrink"]) * g.p + A["shrink"] * g.fair).values, g.dec.values, A["kelly_fraction"]); o.loc[g.index, "stake_t2"] = np.minimum(f, A["market_cap"])
     for mk, g in o[o.tier1].groupby("market"):
         f = multi_kelly(((1 - A["shrink_t1"]) * g.p + A["shrink_t1"] * g.fair).values, g.dec.values, A["kelly_fraction"]); o.loc[g.index, "stake_t1"] = np.minimum(f, A["market_cap"])
+    ps_ = (1 - A["shrink_t1"]) * o.p + A["shrink_t1"] * o.fair; dm = 1.0 / ps_.clip(lower=1e-9); o["min_price"] = np.where(dm >= 2, (dm - 1) * 100.0, -100.0 / (dm - 1.0 + 1e-12))
     o.to_csv(C("player_pricing_table.csv"), index=False)
     return o
 

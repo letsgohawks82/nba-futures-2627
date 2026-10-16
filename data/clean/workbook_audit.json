@@ -4,7 +4,7 @@
   "Assumptions": {
    "30": [
     1,
-    "B48"
+    "B54"
    ]
   },
   "Overrides": {},
@@ -32,7 +32,8 @@
   "Data_Sources": {},
   "Raw_Teams": {},
   "Raw_Players": {},
-  "Raw_Schedule": {}
+  "Raw_Schedule": {},
+  "Raw_Consensus": {}
  },
  "inconsistent": {
   "Cover": {
@@ -299,7 +300,8 @@
   "Data_Sources": {},
   "Raw_Teams": {},
   "Raw_Players": {},
-  "Raw_Schedule": {}
+  "Raw_Schedule": {},
+  "Raw_Consensus": {}
  },
  "format": {
   "Cover": {
@@ -462,6 +464,13 @@
    "gridlines": false,
    "min_label_width": 24.0,
    "tab_header_rows": true
+  },
+  "Raw_Consensus": {
+   "non_arial10_cells": 0,
+   "merged": 0,
+   "gridlines": false,
+   "min_label_width": 24.0,
+   "tab_header_rows": true
   }
  },
  "circular": {},
@@ -488,12 +497,14 @@
   "Dashboard!B10": true,
   "Dashboard!B11": true,
   "Dashboard!B12": true,
-  "Dashboard!B13": false,
+  "Dashboard!B13": true,
   "Dashboard!B17": true,
   "Exposure!B14": true,
   "Exposure!B15": true,
-  "Tier1_Card!A8": true,
-  "Tier1_Card!A41": true,
+  "Tier1_Card!C8": true,
+  "Tier1_Card!O8": true,
+  "Tier1_Card!U8": true,
+  "Tier1_Card!H8": true,
   "Bet_Card!A8": true
  },
  "summary_hardcoded_engine_outputs": [

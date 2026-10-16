@@ -21,7 +21,7 @@ def build_assumptions(wb):
     ws = wb.create_sheet("Assumptions"); sheet_header(ws, "Assumptions - every knob in one table")
     prov = json.load(open(os.path.join(ROOT, "params/provenance.json"))); gm = json.load(open(C("game_model_fit.json")))
     fit = json.load(open(C("ratings_fit_2027.json"))); L = fit["team_layer"]; meta = json.load(open(C("sim_run_meta.json")))
-    pf = json.load(open(C("playoff_adj_fit.json")))
+    pf = json.load(open(C("playoff_adj_fit.json"))); T1P = json.load(open(os.path.join(ROOT, "params/tier1_overrides.json")))
     put(ws, "A5", "Scenario selector (Bull / Base / Bear)", "text", bold=True); put(ws, "B5", "Base", "input")
     dv = DataValidation(type="list", formula1='"Bull,Base,Bear"', allow_blank=False); ws.add_data_validation(dv); dv.add("B5"); name(wb, "A_Scenario", "Assumptions!$B$5")
     put(ws, "C5", "Bull = lower sigma_team / higher DARKO weight / no tank; Bear = higher sigma_team / lower DARKO weight / upper-CI tank. Reprices the analytic layer live; sims must be rerun.", "text", italic=True)
@@ -65,6 +65,12 @@ def build_assumptions(wb):
         ("tier1_shrink", "A_t1_shrink", 0.75, "share", "Tier 1: edge must survive this shrink toward the market (model weight 0.25)", "G5 Tier 1 spec", None, "num2", "input"),
         ("tier1_exposure_cap", "A_t1_cap", 0.10, "share of bankroll", "Tier 1 total exposure cap for the season", "G5 Tier 1 spec", None, "pct", "input"),
         ("tier1_engine_cap", "A_t1_engcap", 0.10, "share of bankroll", "Cap the engine used when solving Tier 1 portfolio Kelly (stakes scale by the ratio)", "engine", None, "pct", "input"),
+        ("roy_stake_mult", "A_roy_stake_mult", T1P["roy_stake_mult"], "multiplier", "Multiplier on the ROY Tier 1 stake, applied after the joint Kelly (the engine re-solves the other bets with the ROY stake fixed; rerun `run.py price` to re-solve if changed)", T1P["roy_stake_mult_provenance"], None, "num2", "input"),
+        ("compression_slope", "A_comp_slope", T1P["comp_slope"], "wins per wins above 41", "Compression bias of our model vs the market: bias = slope x (market fair median - 41); gaps are bias-adjusted", T1P["comp_slope_provenance"], None, "num2", "input"),
+        ("consensus_min_gap", "A_cons_min", T1P["cons_min"], "wins", "WINS consensus rule: our bias-adjusted gap and at least one external STAT_MODEL gap must point the bet's way, each at least this large", "user spec 2026-10-15", None, "num2", "input"),
+        ("lowcont_stake_mult", "A_lowcont_mult", T1P["lowcont_mult"], "multiplier", "Tier 1 WINS stake multiplier for teams with continuity below the low-continuity threshold", "user spec 2026-10-15", None, "num2", "input"),
+        ("wins_tier1_stake_cap", "A_wins_stake", T1P["wins_stake_cap"], "share of bankroll", "Tier 1 WINS bets: stake cap per bet (joint Kelly is solved with these as caps)", "user spec 2026-10-15", None, "pct", "input"),
+        ("p_over_per_win", "A_p_per_win", T1P["p_per_win"], "prob per win", "Slope converting a fair P(over) into a win-total median: median = line + (fair P(over) - 0.5) / this", "user spec 2026-10-15", None, "num3", "input"),
         ("longshot_threshold", "A_longthr", 0.05, "prob", "Selections with fair probability below this must survive shrink + sigma_team -10% (longshot control)", "G5 report", None, "pct", "input"),
         ("low_continuity_threshold", "A_contthr", 0.55, "share", "Teams with roster continuity below this need wins/playoffs/division edges to survive the stronger shrink", "G5 report", None, "num2", "input"),
         ("low_continuity_shrink", "A_contshrink", 0.75, "share", "Shrink applied to the edge test for low-continuity teams", "G5 report", None, "num2", "input"),

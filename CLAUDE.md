@@ -85,3 +85,6 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 
 ## G6 update (2026-10-15)
 - Player minutes: top-5 per team keep calibrated mpg_hat (src/players/pool.py star_protected_mpg, g4_mpg_calib.json); team layer untouched. Tier 1 = 4 bets (MIN playoffs NO, ROY Dybantsa, RPG Sabonis, 3PM LaMelo), 2.78% stake. params/tier1_overrides.json holds the CHI exclusion and TOR scenario gate (src/pricing/scenario_market_ratings.py; srs_shift override in inputs.build). Report reports/G6_update.md.
+
+## G7 (2026-10-15) - final pre-lock build
+- 8 Tier 1 bets, 3.90% stake: MIN playoffs NO, ROY Dybantsa (x0.5 via A_roy_stake_mult), RPG Sabonis, 3PM LaMelo, WINS WAS/UTA/MIA U and POR O (consensus rule, caps 0.5%, MIA x0.7). Consensus: src/pricing/consensus.py + Raw_Consensus tab + M_WinDist cols; inputs data/consensus/. Tier1_Card is now fixed rows with blue inputs (live price, rule confirmed); Tracker pre-populated. `run.py prelock [--dry-run]` = src/prelock.py (ESPN codes normalised; guard restores inputs). Params in params/tier1_overrides.json. Report reports/G7_final.md.

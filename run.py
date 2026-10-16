@@ -1,4 +1,4 @@
-"""NBA futures model CLI: run.py pull | ratings | sim | price | build | verify | all | parse-odds <file>"""
+"""NBA futures model CLI: run.py pull | ratings | sim | price | build | verify | all | prelock | parse-odds <file>"""
 import subprocess, sys, os
 
 PY = sys.executable
@@ -17,6 +17,8 @@ def stage(s):
         return sh("src.sim.run_sim") or sh("src.sim.robust") or sh("src.pricing.param_draws") or sh("src.players.run_g4")
     if s == "price":
         return sh("src.pricing.run_pricing") or sh("src.pricing.tier1") or sh("src.pricing.price_players") or sh("src.pricing.joint")
+    if s == "prelock":
+        return sh("src.prelock", *[a for a in sys.argv[2:] if a.startswith("--")])
     if s == "build":
         return sh("src.workbook.build")
     if s == "verify":
@@ -28,7 +30,7 @@ def stage(s):
 
 
 def main(argv):
-    if len(argv) < 2 or argv[1] not in STAGES + ["all", "parse-odds"]:
+    if len(argv) < 2 or argv[1] not in STAGES + ["all", "parse-odds", "prelock"]:
         print(__doc__); return 2
     if argv[1] == "parse-odds":
         if len(argv) < 3:

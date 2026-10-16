@@ -1,0 +1,54 @@
+{
+ "sources": [
+  {
+   "id": "predictionengine",
+   "name": "PredictionEngine",
+   "url": "https://predictionengine.app/nba-season-predictions",
+   "type": "STAT_MODEL",
+   "pull_date": "2026-10-15",
+   "as_of": "2026-10-15 9:10 AM ET",
+   "note": "user-supplied values"
+  },
+  {
+   "id": "bleacher_report",
+   "name": "Bleacher Report predicted records",
+   "url": "https://bleacherreport.com/articles/25458880",
+   "type": "EXPERT",
+   "pull_date": "2026-10-15",
+   "as_of": "after 2026-27 schedule release",
+   "note": "user-supplied values; built from stat projections plus FanDuel totals per the article blurb"
+  }
+ ],
+ "searched_not_added": [
+  {
+   "source": "MacFax (Utah State) NBA 2026-27 Model Preview",
+   "url": "https://macfax.usu.edu/nba/teams",
+   "why": "model-based projected wins for all 30 teams, but the table is rendered client-side; no values in the fetched HTML"
+  },
+  {
+   "source": "ESPN 2027 forecast",
+   "url": "https://widgets.datasportsgroup.com/sports-news/news/en/177241/thunder-and-spurs-lead-espns-2027-forecast/",
+   "why": "summary only, units unclear (points, not wins)"
+  },
+  {
+   "source": "Truehoop David Thorpe projections",
+   "url": "https://www.truehoop.com/p/david-thorpes-2026-2027-nba-projections",
+   "why": "EXPERT, not a statistical model; not fetched"
+  },
+  {
+   "source": "BetMGM / FanDuel / Statsniper win totals",
+   "url": "https://sports.betmgm.com/en/blog/nba/nba-odds-predictions-season-win-totals-bm23/",
+   "why": "market lines, excluded by the no-market-inputs rule"
+  },
+  {
+   "source": "Kalshi aggregator (simplefunctions.dev)",
+   "url": "https://simplefunctions.dev/odds/nbawins.md",
+   "why": "market prices, dated July"
+  },
+  {
+   "source": "BBall Index, FiveThirtyEight, Basketball-Reference, Dunks and Threes, EvanMiya, Hashtag, Dimers, TeamRankings, numberFire",
+   "url": "",
+   "why": "web search returned no 2026-27 full-league win projection from any of them"
+  }
+ ]
+}
