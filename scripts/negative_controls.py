@@ -45,15 +45,37 @@ control("params/release.json carries a different version than README/AUDIT/workb
 # 5 vacuous assertion
 t = read("tests/test_engine.py")
 control("`or True` is put back in tests/test_engine.py", "tests/test_release_static.py::test_tests_do_not_contain_vacuous_assertions", lambda: write("tests/test_engine.py", t + "\n\ndef test_x():\n    assert 1 == 2 or True\n"), lambda: write("tests/test_engine.py", t))
-# 6 FLAG in a workbook (values-only copy of the committed workbook in a temp output dir)
-import openpyxl
+# 6/7 workbook defects injected by editing the XML inside the .xlsx (cached values of the real workbook are kept)
+import json, re, zipfile
+META = json.load(open(os.path.join(TMP, "params", "release.json"))); wbp = os.path.join(TMP, "output", META["workbook_file"])
 outd = os.path.join(TMP, "neg_out"); os.makedirs(outd, exist_ok=True)
-import json; META = json.load(open(os.path.join(TMP, "params", "release.json"))); wbp = os.path.join(TMP, "output", META["workbook_file"])
-wb = openpyxl.load_workbook(wbp, data_only=True); wb["Checks"]["C23"].value = "FLAG"; wb.save(os.path.join(outd, META["workbook_file"]))
-control("a FLAG appears on the Checks tab", "tests/test_release_static.py::test_workbook_has_no_integrity_flags", lambda: None, lambda: None, outdir=outd)
-# 7 stale count title
-wb = openpyxl.load_workbook(wbp, data_only=True); wb["Tier1_Card"]["A2"].value = "Tier1_Card - the staked card (8 bets): stale"; wb.save(os.path.join(outd, META["workbook_file"]))
-control("the Tier1_Card title says 8 bets while 4 are active", "tests/test_release_static.py::test_workbook_tier1_rows_count_and_stakes_agree_with_card", lambda: None, lambda: None, outdir=outd)
+def sheet_member(zf, name):
+    wbx = zf.read("xl/workbook.xml").decode(); rels = zf.read("xl/_rels/workbook.xml.rels").decode()
+    rid = re.search(r'<sheet [^>]*name="%s"[^>]*r:id="([^"]+)"' % name, wbx).group(1)
+    tgt = re.search(r'<Relationship [^>]*Id="%s"[^>]*Target="([^"]+)"' % rid, rels) or re.search(r'<Relationship [^>]*Target="([^"]+)"[^>]*Id="%s"' % rid, rels)
+    t = tgt.group(1).lstrip("/"); return t if t.startswith("xl/") else "xl/" + t
+def mutate_xlsx(dst, fn):
+    with zipfile.ZipFile(wbp) as zin, zipfile.ZipFile(dst, "w", zipfile.ZIP_DEFLATED) as zout:
+        for item in zin.infolist(): zout.writestr(item, fn(zin, item.filename, zin.read(item.filename)))
+def flag_fn(zin, name, data):
+    if name == sheet_member(zin, "Checks"):
+        x = data.decode(); y = re.sub(r'(<c r="C23"[^>]*>(?:<f>[^<]*</f>)?<v>)OK(</v>)', r'FLAG', x, count=1)
+        if y == x: y = re.sub(r'(<c r="C23"[^>]*>)<is><t>OK</t></is>', r'<is><t>FLAG</t></is>', x, count=1)
+        assert y != x, "could not inject FLAG into Checks!C23"; return y.encode()
+    return data
+def title_fn(zin, name, data):
+    if name == "xl/sharedStrings.xml" or name == sheet_member(zin, "Tier1_Card"):
+        x = data.decode(); return x.replace("active Tier 1 bets", "bets (stale)").replace("(4 bets (stale))", "(8 bets)").encode()
+    return data
+shutil.copy(wbp, os.path.join(outd, META["workbook_file"]))
+t6 = "tests/test_release_static.py::test_workbook_has_no_integrity_flags"; rc0, _ = pytest(t6, outdir=outd)
+mutate_xlsx(os.path.join(outd, META["workbook_file"]), flag_fn); rc1, o1 = pytest(t6, outdir=outd)
+shutil.copy(wbp, os.path.join(outd, META["workbook_file"])); rc2, _ = pytest(t6, outdir=outd)
+rows.append(("a FLAG is injected into Checks!C23 of the workbook", t6.split("::")[-1], "passes" if rc0 == 0 else "FAILS", "FAILS" if rc1 else "PASSES (BAD)", "passes" if rc2 == 0 else "FAILS", o1.strip().splitlines()[-1][:110] if rc1 else ""))
+t7 = "tests/test_release_static.py::test_workbook_tier1_rows_count_and_stakes_agree_with_card"; rc0, _ = pytest(t7, outdir=outd)
+mutate_xlsx(os.path.join(outd, META["workbook_file"]), title_fn); rc1, o1 = pytest(t7, outdir=outd)
+shutil.copy(wbp, os.path.join(outd, META["workbook_file"])); rc2, _ = pytest(t7, outdir=outd)
+rows.append(("the Tier1_Card title says 8 bets while 4 are active", t7.split("::")[-1], "passes" if rc0 == 0 else "FAILS", "FAILS" if rc1 else "PASSES (BAD)", "passes" if rc2 == 0 else "FAILS", o1.strip().splitlines()[-1][:110] if rc1 else ""))
 # 8 rebuilt card differs / run missing (only if a repro run exists)
 if os.path.exists(os.path.join(TMP, "repro", "rebuilt_card.csv")):
     rc = read("repro/rebuilt_card.csv")

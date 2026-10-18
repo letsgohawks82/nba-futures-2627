@@ -62,7 +62,7 @@ def compare(n, seed):
         lim = 1e-6 if same else Z
         if (same and (abs(dw) > 1e-6 or abs(p1 - p0) > 1e-6 or abs(q1 - q0) > 1e-6)) or (not same and max(z) > lim): bad.append(f"{t}: z(wins,P(over),P(top8)) = {[round(x, 2) for x in z]}")
     out["team_rows"] = rows; out["z_max_team"] = zmax
-    card0 = pd.read_csv(B("release/final_card.csv")); card1 = K.card_from_tables(); crow = []
+    rb = os.path.join(REPRO, "rebuilt_card.csv"); card0 = pd.read_csv(B("release/final_card.csv")); card1 = pd.read_csv(rb) if os.path.exists(rb) else K.card_from_tables(); crow = []     # the card file written by the write_card stage
     key = lambda d: set(zip(d.market, d.selection, d.side))
     miss = key(card0) ^ key(card1)
     for r in card0.itertuples():
