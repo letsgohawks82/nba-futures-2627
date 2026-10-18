@@ -16,6 +16,9 @@ It (1) creates `.venv_cleanroom` from `requirements.lock.txt` (skipping `pywin32
 
 Other commands: `python run.py all` (Windows + Excel: ratings, sim, price, build, verify), `python run.py prelock [--dry-run]` (live ESPN refresh; not used by the clean-room), `python run.py repro --n N --seed S`, `python scripts/verify_inputs.py [--restore]`, `python -m pytest tests`.
 
+## Optional: raw Basketball-Reference history (for auditing the data pipeline)
+The clean-room run does not need it. `HISTORY_ARCHIVE.md` explains the second, hash-verified archive (a release asset of `v1.0-preseason.1`: 429 raw pages) and how `python scripts/verify_history_archive.py --restore --rederive` re-derives every committed table from the pages (result: `reports/history_rederivation.md`, all 12 tables agree).
+
 ## What is frozen
 - `inputs/`: the input archive (231 files: odds transcription, Barttorvik, DARKO, game logs, ESPN rosters/injuries/schedule, picks, lottery rules), its SHA-256 (`INPUTS.sha256`, also in `params/release.json`) and a per-file manifest. `DATA_LICENSES.md` lists sources and terms.
 - `release/final_card.csv`: the committed final card (the baseline every rebuilt card is compared with).

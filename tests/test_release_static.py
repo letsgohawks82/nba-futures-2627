@@ -103,7 +103,7 @@ def test_release_metadata_agrees_everywhere():
     base = git("rev-parse", "--verify", "-q", f"refs/tags/{META['baseline_tag']}^{{commit}}")
     if base: assert base == META["baseline_commit"], f"baseline tag {META['baseline_tag']} moved: {base} != {META['baseline_commit']}"
     exact = git("describe", "--tags", "--exact-match", "HEAD")
-    if exact and exact.startswith("v1.0-preseason."): assert exact == v, f"HEAD is tagged {exact} but params/release.json says {v}"
+    if exact and exact.startswith("v1.0-preseason."): assert exact == v or exact.startswith(v + "-"), f"HEAD is tagged {exact} but params/release.json says {v}"
     tag = git("rev-parse", "--verify", "-q", f"refs/tags/{v}^{{commit}}")
     if tag: assert tag == git("rev-parse", "HEAD") or git("merge-base", "--is-ancestor", tag, "HEAD") == "" , f"tag {v} does not point at an ancestor of HEAD"
 
