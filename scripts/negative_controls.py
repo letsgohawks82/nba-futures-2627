@@ -47,7 +47,8 @@ t = read("tests/test_engine.py")
 control("`or True` is put back in tests/test_engine.py", "tests/test_release_static.py::test_tests_do_not_contain_vacuous_assertions", lambda: write("tests/test_engine.py", t + "\n\ndef test_x():\n    assert 1 == 2 or True\n"), lambda: write("tests/test_engine.py", t))
 # 6/7 workbook defects injected by editing the XML inside the .xlsx (cached values of the real workbook are kept)
 import json, re, zipfile
-META = json.load(open(os.path.join(TMP, "params", "release.json"))); wbp = os.path.join(TMP, "output", META["workbook_file"])
+META = json.load(open(os.path.join(TMP, "params", "release.json"))); wbp = os.path.join(TMP, "repro", "output", META["workbook_file"])
+if not os.path.exists(wbp): wbp = os.path.join(TMP, "output", META["workbook_file"])       # the workbook rebuilt by the clean-room run (matches the rebuilt card)
 outd = os.path.join(TMP, "neg_out"); os.makedirs(outd, exist_ok=True)
 def sheet_member(zf, name):
     wbx = zf.read("xl/workbook.xml").decode(); rels = zf.read("xl/_rels/workbook.xml.rels").decode()
@@ -55,16 +56,19 @@ def sheet_member(zf, name):
     tgt = re.search(r'<Relationship [^>]*Id="%s"[^>]*Target="([^"]+)"' % rid, rels) or re.search(r'<Relationship [^>]*Target="([^"]+)"[^>]*Id="%s"' % rid, rels)
     t = tgt.group(1).lstrip("/"); return t if t.startswith("xl/") else "xl/" + t
 def mutate_xlsx(dst, fn):
-    with zipfile.ZipFile(wbp) as zin, zipfile.ZipFile(dst, "w", zipfile.ZIP_DEFLATED) as zout:
-        for item in zin.infolist(): zout.writestr(item, fn(zin, item.filename, zin.read(item.filename)))
-def flag_fn(zin, name, data):
-    if name == sheet_member(zin, "Checks"):
+    with zipfile.ZipFile(wbp) as zin:
+        members = {"Checks": sheet_member(zin, "Checks"), "Tier1_Card": sheet_member(zin, "Tier1_Card")}
+        with zipfile.ZipFile(dst, "w", zipfile.ZIP_DEFLATED) as zout:
+            for item in zin.infolist():
+                zout.writestr(zipfile.ZipInfo(item.filename, item.date_time), fn(members, item.filename, zin.read(item.filename)), zipfile.ZIP_DEFLATED)
+def flag_fn(members, name, data):
+    if name == members["Checks"]:
         x = data.decode(); y = re.sub(r'(<c r="C23"[^>]*>(?:<f>[^<]*</f>)?<v>)OK(</v>)', r'FLAG', x, count=1)
         if y == x: y = re.sub(r'(<c r="C23"[^>]*>)<is><t>OK</t></is>', r'<is><t>FLAG</t></is>', x, count=1)
         assert y != x, "could not inject FLAG into Checks!C23"; return y.encode()
     return data
-def title_fn(zin, name, data):
-    if name == "xl/sharedStrings.xml" or name == sheet_member(zin, "Tier1_Card"):
+def title_fn(members, name, data):
+    if name == "xl/sharedStrings.xml" or name == members["Tier1_Card"]:
         x = data.decode(); return x.replace("active Tier 1 bets", "bets (stale)").replace("(4 bets (stale))", "(8 bets)").encode()
     return data
 shutil.copy(wbp, os.path.join(outd, META["workbook_file"]))
