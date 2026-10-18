@@ -23,8 +23,9 @@ step "3. static tests (inputs, engine invariants, release metadata, committed ca
 NBA_OUTPUT_DIR= "$VPY" -m pytest -q -m "not e2e" tests
 step "4. ratings -> fixed-seed simulation (N=$NBA_N, seed=$NBA_SEED) -> pricing -> reports/repro_check.md"
 "$VPY" run.py repro --n "$NBA_N" --seed "$NBA_SEED"
-step "5. rebuild the workbook (fail-closed on any integrity flag)"
+step "5. rebuild the workbook (fail-closed on any integrity flag) and, with Excel, the dashboard PDF"
 "$VPY" -m src.workbook.build
+if [ "${NBA_NO_EXCEL:-0}" != "1" ]; then "$VPY" -m src.workbook.export_pdf; else echo "[cleanroom] PDF skipped: the workbook has no cached values without Excel"; fi
 step "6. end-to-end tests against the rebuilt outputs"
 "$VPY" -m pytest -q tests
 step "7. SHA-256 of key inputs and outputs"

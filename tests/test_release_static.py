@@ -96,7 +96,7 @@ def test_release_metadata_agrees_everywhere():
         a3 = str(ws["A3"].value or "")
         assert v in a3 and META["odds_as_of"] in a3 and META["build_date"] in a3, f"{ws.title}!A3 header {a3!r} disagrees with params/release.json"
     assert os.path.basename(workbook_path()) == META["workbook_file"]
-    assert os.path.exists(os.path.join(out_dir(), f"NBA_Futures_Dashboard_BetCard_{META['build_date'].replace('-', '')}.pdf")), "dashboard PDF for the build date is missing"
+    assert os.path.exists(os.path.join(ROOT, "output", f"NBA_Futures_Dashboard_BetCard_{META['build_date'].replace('-', '')}.pdf")), "the committed dashboard PDF for the build date is missing"
     rep = os.path.join(ROOT, "reports", "release_report.md")
     if os.path.exists(rep): assert v in open(rep, encoding="utf-8").read().splitlines()[0], "release_report.md title does not carry the version"
     # git tag / commit agreement

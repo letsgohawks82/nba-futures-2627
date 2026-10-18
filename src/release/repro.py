@@ -31,7 +31,9 @@ def numba_compile_seconds():
     code = ("import time,sys; sys.path.insert(0,r'%s'); t=time.time()\n"
             "from src.sim.inputs import build, lottery_tables\nfrom src.sim.runner import simulate\n"
             "lt=lottery_tables(16,2000); inp=build({'_lottery_tables':lt,'_calibrate':False}); t1=time.time(); simulate(inp,64,1,verbose=False); print(round(time.time()-t1,1))") % ROOT
-    out = subprocess.run([PY, "-W", "ignore", "-c", code], capture_output=True, text=True, cwd=ROOT)
+    import tempfile
+    env = dict(os.environ, NUMBA_CACHE_DIR=tempfile.mkdtemp(prefix="numba_cold_"))       # fresh cache dir: the number below is a COLD compile
+    out = subprocess.run([PY, "-W", "ignore", "-c", code], capture_output=True, text=True, cwd=ROOT, env=env)
     try: return float(out.stdout.strip().splitlines()[-1])
     except Exception: return float("nan")
 
@@ -45,7 +47,7 @@ def compare(n, seed):
     rat = float(np.abs(tp0.pred_wins - tp1.pred_wins.reindex(tp0.index)).max()); out["ratings_max_abs_diff_wins"] = rat
     if rat > 1e-6: bad.append(f"ratings differ from the committed projection (max |diff| {rat:.2e} wins)")
     S0 = pd.read_csv(B("data/clean/sim_team_summary.csv")).set_index("team"); S1 = pd.read_csv(C("sim_team_summary.csv")).set_index("team")
-    cols = ["market", "selection", "side", "line", "dec", "fair", "model_prob"]
+    cols = ["team", "market", "selection", "side", "line", "dec", "fair", "model_prob"]
     def both(team_path, player_path):
         t = pd.read_csv(team_path)[cols]; q = pd.read_csv(player_path); q["side"] = "YES"; q["line"] = np.nan
         return pd.concat([t, q[cols]], ignore_index=True)
@@ -65,7 +67,7 @@ def compare(n, seed):
     miss = key(card0) ^ key(card1)
     for r in card0.itertuples():
         m = card1[(card1.market == r.market) & (card1.selection == r.selection) & (card1.side == r.side)]
-        o = P1[(P1.market == r.market) & (P1.selection == r.selection)] if r.market != "WINS" else P1[(P1.market == "WINS") & (P1.selection == r.selection) & (P1.side == r.side)]
+        o = P1[(P1.market == r.market) & (P1.selection == r.selection) & (P1.side == r.side)]
         o = o.iloc[0] if len(o) else None
         if o is None: bad.append(f"card bet missing from rebuilt pricing table: {r.market} {r.selection}"); continue
         dec = float(o.dec); se_p = math.sqrt(max(r.model_prob * (1 - r.model_prob), 1e-6) * (1 / n + 1 / n0)); ev1 = float(o.model_prob) * dec - 1
@@ -89,7 +91,7 @@ def compare(n, seed):
 def report(res, status, compile_s):
     L = ["# repro_check", "", f"Generated {datetime.datetime.now():%Y-%m-%d %H:%M}. Rebuilt with N = {res['n']:,}, seed {res['seed']} (committed outputs: N = {res['n0']:,}, seed {res['seed0']}); "
          f"{'IDENTICAL N and seed: strict comparison (1e-6)' if res['strict'] else f'tolerance = {Z:.0f} Monte Carlo standard errors of the difference (sqrt(1/N + 1/N0))'}.", "",
-         f"**Result: {'PASS' if not res['problems'] else 'FAIL'}.** Numba compile time (first 64-sim run): **{compile_s:.1f} s**. Ratings reproduced to max |diff| {res['ratings_max_abs_diff_wins']:.2e} wins (deterministic).", "",
+         f"**Result: {'PASS' if not res['problems'] else 'FAIL'}.** Numba COLD compile time (first 64-sim run, empty cache): **{compile_s:.1f} s**. Ratings reproduced to max |diff| {res['ratings_max_abs_diff_wins']:.2e} wins (deterministic).", "",
          "## Stages", "| Stage | Exit | Seconds | Log |", "|---|---|---|---|"]
     L += [f"| {s['cmd']} | {s['exit']} | {s['seconds']} | `{s['log']}` |" for s in status]
     L += ["", f"## Teams (max z over all 30 teams and 3 statistics: {res['z_max_team']:.2f})", "| Team | Mean wins (committed) | Mean wins (rebuilt) | z | P(over line) committed | rebuilt | z | P(top-8) committed | rebuilt | z |", "|---|---|---|---|---|---|---|---|---|---|"]
@@ -108,7 +110,7 @@ def main(argv=None):
     steps = [([PY, "-W", "ignore", os.path.join(ROOT, "scripts", "verify_inputs.py")], "verify_inputs")]
     if a.with_backtest: steps.append(([PY, "-W", "ignore", "-m", "src.ratings.backtest"], "ratings_backtest"))
     steps.append(([PY, "-W", "ignore", "-m", "src.ratings.project_2027"], "ratings_project"))
-    compile_s = numba_compile_seconds(); print(f"[repro] numba compile time (first 64-sim run): {compile_s:.1f} s", flush=True)
+    compile_s = numba_compile_seconds(); print(f"[repro] numba COLD compile time (first 64-sim run, empty cache): {compile_s:.1f} s", flush=True)
     steps += [([PY, "-W", "ignore", "-m", "src.sim.run_sim", str(a.n), str(a.seed)], "sim"), ([PY, "-W", "ignore", "-m", "src.pricing.run_pricing"], "price_teams"), ([PY, "-W", "ignore", "-m", "src.pricing.tier1"], "price_tier1"),
               ([PY, "-W", "ignore", "-m", "src.players.run_g4"], "players_sim"), ([PY, "-W", "ignore", "-m", "src.pricing.price_players"], "price_players"), ([PY, "-W", "ignore", "-m", "src.pricing.joint"], "joint_kelly"),
               ([PY, "-W", "ignore", os.path.join(ROOT, "scripts", "write_final_card.py"), os.path.join(REPRO, "rebuilt_card.csv")], "write_card")]
