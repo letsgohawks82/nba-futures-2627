@@ -17,6 +17,7 @@ step "1. venv from requirements.lock.txt (pywin32 / xlwings skipped off Windows)
 if [ -x .venv_cleanroom/bin/python ]; then VPY=.venv_cleanroom/bin/python; else VPY=.venv_cleanroom/Scripts/python.exe; fi
 case "$(uname -s)" in MINGW*|CYGWIN*|MSYS*) grep -v -i -E '^(colorama)==' requirements.lock.txt > repro/requirements.cleanroom.txt ;; *) grep -v -i -E '^(pywin32|xlwings|colorama)==' requirements.lock.txt > repro/requirements.cleanroom.txt ;; esac
 "$VPY" -m pip install --quiet --disable-pip-version-check -r repro/requirements.cleanroom.txt
+if [ "${NBA_BLOCK_NETWORK:-0}" = "1" ]; then : > repro/network_attempts.log; export PYTHONPATH="$PWD/scripts/nonet" NBA_NONET_LOG="$PWD/repro/network_attempts.log"; echo "[cleanroom] outbound network blocked for steps 2-7 (log: repro/network_attempts.log)"; fi
 step "2. restore + verify the frozen input archive (SHA-256 against data/manifest.csv)"
 "$VPY" scripts/verify_inputs.py --restore
 step "3. static tests (inputs, engine invariants, release metadata, committed card vs committed workbook)"
@@ -30,4 +31,5 @@ step "6. end-to-end tests against the rebuilt outputs"
 "$VPY" -m pytest -q tests
 step "7. SHA-256 of key inputs and outputs"
 "$VPY" scripts/hash_outputs.py
+if [ "${NBA_BLOCK_NETWORK:-0}" = "1" ]; then echo "[cleanroom] network attempts during steps 2-7: $(wc -l < repro/network_attempts.log)"; [ ! -s repro/network_attempts.log ] || { echo "[cleanroom] FAILED: network was used"; exit 1; }; fi
 echo; echo "[cleanroom] ALL STEPS PASSED"
