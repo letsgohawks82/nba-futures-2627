@@ -97,14 +97,14 @@ def main(n_draws=40, n_point=100_000, n_draw=10_000, seed=77):
     for d in range(n_draws):
         cal = L.calib_from_backtest(R, list(rng.choice(seas_r, len(seas_r), replace=True)))
         coef = {k: dict(zip(A.FEATS[k], A.fit_clogit(P[k], k, 0.5, seasons=list(rng.choice(seas_a[k], len(seas_a[k]), replace=True))))) for k in P}
-        ix = np.sort(rng.choice(N, n_draw, replace=False))
+        ix = np.sort(rng.choice(N, min(n_draw, N), replace=False))
         r = run_sims(pool, gp_full[ix], wins_full[ix], cal, coef, rookie_fit, tdef_fit, bpm_fit, dbpm_fit, rng)
         for kk in MARKETS: draws[kk].append(r[kk])
         if d % 10 == 9: print("draw", d + 1, round(time.time() - t0, 1), flush=True)
     # scenarios: rate residual SD x0.8 / x1.25 and 65-game rule off
     scen = {}
     for name, kw in (("sd_lo", dict(sd_scale=0.8)), ("sd_hi", dict(sd_scale=1.25)), ("no65", dict(toggle65=False)), ("mpg_lo", dict(mpg_sd=0.22))):
-        ix = np.sort(rng.choice(N, 40_000, replace=False))
+        ix = np.sort(rng.choice(N, min(40_000, N), replace=False))
         scen[name] = run_sims(pool, gp_full[ix], wins_full[ix], point_cal, point_coef, rookie_fit, tdef_fit, bpm_fit, dbpm_fit, rng, **kw)
     rows = []
     for kk in MARKETS:

@@ -1,0 +1,16 @@
+# DATA_LICENSES.md
+
+The repository is **private** and is shared only with an independent auditor. The frozen input archive (`inputs/nba_futures_inputs_2026-10-15.tar.gz`, listed file by file with SHA-256 in `inputs/inputs_manifest.csv`) contains third-party data copied from public web pages. It is kept for audit and reproduction only. **Do not make the repository or the archive public or redistribute it** without checking each provider's terms; none of these providers grants an open data license to the copies here, and the terms below are summaries, not legal advice.
+
+| Input | Provider | How obtained | Terms / note |
+|---|---|---|---|
+| `data/raw/odds/odds_2026-10-15.csv` | The sportsbook's public futures board of 2026-10-15 | Transcribed by the user from screenshots (no account page, no balances, no personal data) | No third-party license; a transcription of publicly displayed prices. Rows flagged `BACKFILL_*` / `IMPUTED_*` are described in `reports/G6_final.md` section 7 |
+| `data/raw/barttorvik/advstats_2014..2026.csv_20261015` | barttorvik.com (`getadvstats.php?year=...&csv=1`) | Polite scrape, 2026-10-15 | Barttorvik terms apply; used only for the college rookie translation model. Retained privately for audit |
+| `data/raw/darko/darko_dpm_leaderboard_20261015.csv`, `darko_official_20261015.csv` | darko.app (DARKO DPM, ratings through 2026-06-03) | Browser-pane scrape and the official CSV download (user-approved), 2026-10-15 | DARKO terms apply. Used for the 50/50 player-rating blend, which is an **UNVALIDATED scenario input** (see README / `params/release.json`) |
+| `data/raw/gamelogs/*_2026.html_*` | basketball-reference.com (Sports Reference) | Polite scrape (<= 15 requests/minute) | Sports Reference terms apply; read only by the tank-carryover audit (`src/ratings/tank_carryover.py`) |
+| `data/raw/espn/*_20261015`, | ESPN site API (rosters, injuries, schedule) | Public JSON endpoints, 2026-10-15 | ESPN terms apply; provenance copies (the cleaned tables are tracked in `data/clean/`) |
+| `data/raw/schedule/*`, `data/raw/picks/*`, `data/raw/lottery/*` | basketball-reference.com schedule pages; Hoops Rumors pick ownership; NBA.com lottery-rule pages (summaries) | Scrapes / fetch summaries, 2026-10-15 | Third-party terms apply; provenance copies |
+| `data/clean/*.parquet` | Basketball-Reference (player/team seasons 2014-2026, award voting, draft) | Parsed from cached pages (see `data/manifest.csv`) | Sports Reference terms apply; derived tables, tracked for reproducibility |
+| `data/external/raw_consensus_20261016.csv`, `raw_marketref_20261016.csv` | PredictionEngine, Opta TRACR (The Analyst), Massey, ESPN, TeamRankings, Bleacher Report; Kalshi / Polymarket (via DeFi Rate / Covers), the NBA GM survey | Pasted by the user on 2026-10-15/16 (URLs and dates are in the files) | Third-party figures reproduced for cross-checks only; never model inputs |
+
+Every raw file's pull time, source URL and SHA-256 are in `data/manifest.csv` (files that pre-date or were pulled without a row are hashed in `inputs/manifest_additions.csv`). Code and reports in this repository are the author's.

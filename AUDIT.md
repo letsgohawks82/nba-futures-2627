@@ -1,11 +1,13 @@
 # AUDIT.md: NBA 2026-27 futures model (prices as of 2026-10-15; build of 2026-10-16)
 
+Release: `v1.0-preseason.1` (baseline tag `v1.0-preseason` is untouched). Reproduce everything with `scripts/cleanroom.sh` (see `README.md`).
+
 Private repo for an external audit. Everything needed to review the model, its gates and the final card is here; raw scraped pages and the large simulation arrays are not (see "What is not in the repo").
 
 ## 1. What the model is
 An independent (market-free) NBA 2026-27 futures model plus an Excel 365 workbook that prices it against one sportsbook's board (`odds_2026-10-15.csv`, 687 rows). Book odds are **never model inputs**: they are used only to de-vig, to compute edges, and (since G8) to cross-check.
 
-- **Player impact and team strength.** Basketball-Reference BPM-based player ratings (decayed three-season prior, reliability shrinkage, aging, a college/draft-slot rookie model, a DARKO blend at a documented weight of 0.5 that is untested), minutes and availability models, and a team layer (SRS regressed on minutes-weighted rating, prior SRS and continuity). Wins = 41 + 2.44 × SRS, zero-sum to 1,230. As of G8 the team layer allocates star-protected minutes (top 3 per team keep calibrated minutes; backtest in `src/ratings/minutes_backtest.py`).
+- **Player impact and team strength.** Basketball-Reference BPM-based player ratings (decayed three-season prior, reliability shrinkage, aging, a college/draft-slot rookie model, a DARKO blend at a weight of 0.5 that is an UNVALIDATED scenario input (no point-in-time DARKO history; never in the backtest; excluded from out-of-sample claims)), minutes and availability models, and a team layer (SRS regressed on minutes-weighted rating, prior SRS and continuity). Wins = 41 + 2.44 × SRS, zero-sum to 1,230. As of G8 the team layer allocates star-protected minutes (top 3 per team keep calibrated minutes; backtest in `src/ratings/minutes_backtest.py`).
 - **Simulation.** A numba Monte Carlo of the full 1,230-game season (home court, back-to-backs, per-player availability, true-strength team shocks, NBA Cup, full tiebreakers, play-in, playoffs, the exact 3-2-1 lottery with pick-ownership rules, a tank module). 100,000 seasons; ratings are moment-matched to the calibrated projection.
 - **Pricing.** Shin de-vig, EV, parameter-posterior confidence intervals, robustness scenarios, a shrink of the model toward the market in the edge test, zero-sum, longshot and low-continuity filters, a compression rule, and a portfolio Kelly solved on exponentially tilted sims.
 - **External consensus (G7/G8).** For WINS bets: per-source regressions of external projections on the book's fair median; a bet needs both roster-aware residuals (ours and PredictionEngine) to point the bet's way by at least 2.5 wins.
@@ -36,25 +38,12 @@ On hold (pass the rules, not staked by decision): MIA U, MIA playoffs NO, IND pl
 `CLAUDE.md` is the running log (including known weaknesses for next season); `SPEC.md` is the original requirement document.
 
 ## 4. Reproducing
-Environment: Windows, Python 3.13 (`requirements.lock.txt`), and **Excel 365** (the build step recalculates through xlwings and sets dynamic-array formulas). From the repo root:
+`scripts/cleanroom.sh` does everything from a fresh clone of the tag: venv from `requirements.lock.txt` (Windows-only packages skipped elsewhere), restore and hash-verify the frozen input archive (`inputs/`, listed in `inputs/inputs_manifest.csv` and checked against `data/manifest.csv`), static tests, ratings, a fixed-seed reduced-N simulation (`python run.py repro --n 20000 --seed 2026`), pricing, a workbook rebuild, end-to-end tests, and SHA-256 hashes. `NBA_N=100000 scripts/cleanroom.sh` runs the production N at the production seed, where the card must match the committed card exactly. `reports/repro_check.md` compares every team's mean wins, P(over) and P(top-8) and every card bet's EV with the committed outputs, within Monte Carlo error.
 
-```
-python -m venv .venv
-.venv\Scripts\pip install -r requirements.lock.txt
-.venv\Scripts\python run.py all        # ratings -> sim -> price -> build -> verify
-.venv\Scripts\python run.py prelock    # pre-lock refresh (add --dry-run to only report)
-```
-
-Notes:
-- `run.py pull` is informational: the raw pulls (Basketball-Reference, ESPN, Barttorvik, DARKO) are cached in `data/raw/`, which is not in the repo. The cleaned inputs (`data/clean/*.parquet|csv|json`) are tracked, so every stage after the pull is reproducible. `run.py prelock` re-pulls ESPN rosters, injuries and transactions (network needed).
-- The simulation arrays (`sims/season_sims.npz`) are not tracked; `run.py sim` regenerates them (100k seasons, a few minutes after the numba JIT compile; clear `src/sim/__pycache__/*.nb*` after editing `src/sim/engine.py`).
-- Stage by stage: `python -m src.ratings.project_2027`, `python -m src.sim.run_sim`, `python -m src.pricing.run_pricing`, `python -m src.pricing.tier1`, `python -m src.pricing.price_players`, `python -m src.pricing.joint`, `python -m src.workbook.build`.
-- Independent checks: `python -m src.verify.g6_independent` (re-derives de-vig, EV, minimum prices, consensus residuals and joint Kelly from raw inputs, importing no model code), `python -m src.workbook.audit` (six-bug audit), `python src/verify/title_check.py` and `python src/verify/compare_title.py` (independent title simulation), `python src/verify/lottery_validation.py`.
-- Parameters and their provenance: `params/` (`provenance.json`, `assumptions.json`, `tier1_overrides.json` with the exclusions, holds and consensus settings).
-- External inputs supplied by the user on 2026-10-15/16: `data/external/raw_consensus_20261016.csv` and `raw_marketref_20261016.csv` (identical copies live in `data/consensus/`, which the code reads).
+Other entry points: `python run.py all` (Windows + Excel 365: ratings, sim, price, build, verify), `python run.py prelock [--dry-run]` (live ESPN refresh, not used in the clean-room), `python -m pytest tests`, and the independent checks `python -m src.verify.g6_independent`, `python -m src.workbook.audit`, `python src/verify/title_check.py`, `python src/verify/compare_title.py`, `python src/verify/lottery_validation.py`. Parameters and provenance: `params/` (`provenance.json`, `assumptions.json`, `tier1_overrides.json`, `release.json`). `data/external/` holds the user-supplied consensus and exchange files (identical copies in `data/consensus/`, which the code reads). Raw sources: `inputs/` (see `DATA_LICENSES.md`).
 
 ## 5. What is not in the repo
-`data/raw/` (cached source pages), `sims/` (simulation arrays), `.venv/`, scratch copies of earlier workbook builds, and any sportsbook screenshots or PDFs. The odds were transcribed to `odds_2026-10-15.csv`; no account information is in the repo.
+`sims/` (simulation arrays, regenerated by `run.py repro` / `run.py sim`), `.venv/`, scratch copies of earlier workbook builds, and any sportsbook screenshots or PDFs. `data/raw/` is git-ignored but its required contents are restored from the frozen archive in `inputs/` (231 files, 20 MB). The odds were transcribed to `odds_2026-10-15.csv`; no account information is in the repo.
 
 ## 6. Known weaknesses an auditor should probe first
 1. **No market benchmark.** The backtest (2019-2026) beats naive baselines but there is no free archive of historical lines, so nothing shows the model beats the book. Model-vs-book wins RMSE is 4.2.

@@ -7,6 +7,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
+from ..release.meta import META
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 NAVY = "#1F3864"
 
@@ -32,13 +33,13 @@ def table(ax, header, rows, widths, fs=7, wrap=None):
 
 
 def main():
-    path = sorted(glob.glob(os.path.join(ROOT, "output", "NBA_Futures_Model_v1_*_MS.xlsx")))[-1]; wb = openpyxl.load_workbook(path, data_only=True)
-    out = os.path.join(ROOT, "output", f"NBA_Futures_Dashboard_BetCard_{datetime.date.today():%Y%m%d}.pdf")
+    OUT = os.environ.get("NBA_OUTPUT_DIR") or os.path.join(ROOT, "output"); path = os.path.join(OUT, META["workbook_file"]); wb = openpyxl.load_workbook(path, data_only=True)
+    out = os.path.join(OUT, f"NBA_Futures_Dashboard_BetCard_{META['build_date'].replace('-', '')}.pdf")
     D = wb["Dashboard"]; E = wb["Exposure"]; T = wb["Tier1_Card"]; B = wb["Bet_Card"]
     with PdfPages(out) as pdf:
         # ---- page 1: dashboard headline + Tier 1 card
         fig = plt.figure(figsize=(11, 8.5)); fig.text(0.04, 0.95, "NBA 2026-27 Futures Model - Dashboard", fontsize=15, color=NAVY, fontweight="bold")
-        fig.text(0.04, 0.925, f"Prices as of 2026-10-15 | workbook {os.path.basename(path)} | {D['B13'].value}", fontsize=8)
+        fig.text(0.04, 0.925, f"{META['version']} | prices as of {META['odds_as_of']} | workbook {os.path.basename(path)} | {D['B13'].value}", fontsize=8)
         mets = [(D.cell(r, 1).value, D.cell(r, 2).value) for r in range(6, 13)]
         fmt = ["{:.0f}", "{:.0f}", "{:.2%}", "{}", "{:.2%}", "{:.1%}", "{:.2%}"]
         for i, ((k, v), f) in enumerate(zip(mets, fmt)):

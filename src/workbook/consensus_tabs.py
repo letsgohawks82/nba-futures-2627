@@ -74,7 +74,7 @@ def build_marketref(wb, o):
         put(ws, f"E{r}", f"=(C{r}+D{r})/2", "formula", "pct")
         put(ws, f"F{r}", f'=SUMIFS(S_Markets!$J$8:$J${sk},S_Markets!$A$8:$A${sk},A{r},S_Markets!$B$8:$B${sk},B{r})+SUMIFS(M_Players!$G${mp["first"]}:$G${mp["last"]},M_Players!$A${mp["first"]}:$A${mp["last"]},A{r},M_Players!$B${mp["first"]}:$B${mp["last"]},B{r})', "link", "pct")
         put(ws, f"G{r}", f'=IF(D{r}>0,F{r}/D{r},"-")', "formula", "num2")
-        put(ws, f"H{r}", f'=IF(ISNUMBER(G{r}),IF(F{r}=0,"",IF(OR(G{r}>A_blend_ratio,G{r}<1/A_blend_ratio),"FLAG: more than "&A_blend_ratio&"x apart","")),"")', "flag")
+        put(ws, f"H{r}", f'=IF(ISNUMBER(G{r}),IF(F{r}=0,"",IF(OR(G{r}>A_blend_ratio,G{r}<1/A_blend_ratio),"DIVERGES >"&A_blend_ratio&"x vs exchange","")),"")', "flag")
         r += 1
     REG["mref"].update(cmp_first=c0, cmp_last=r - 1)
     widths(ws, {"A": 12, "B": 26, "C": 26, "D": 28, "J": 60, "K": 36}); finish(ws)

@@ -145,7 +145,8 @@ def tier1_formula():
 
 def build_tier1(wb, o):
     """Tier 1 card: one FIXED row per engine Tier 1 bet (stable keys so the blue inputs - live price, rule confirmed - stay attached); every other column is a live formula."""
-    ws = wb.create_sheet("Tier1_Card"); sheet_header(ws, "Tier1_Card - the staked card (8 bets): min acceptable price, live price check, consensus basis", span=14)
+    _n_active = int(o.tier1.sum()) + int(pd.read_csv(C("player_pricing_table.csv")).tier1.sum())
+    ws = wb.create_sheet("Tier1_Card"); sheet_header(ws, f"Tier1_Card - the staked card ({_n_active} active Tier 1 bets): min acceptable price, live price check, consensus basis", span=14)
     put(ws, "A5", "Tier 1 tests: on the Bet Card; edge survives shrink 0.75; fair >= 5%; direction rule; then team non-WINS = named driver, WINS = external consensus (our bias-adjusted gap and one STAT_MODEL gap, both >= A_cons_min); player bets = Tier 2 test + holds at the sharpening-exponent CI bounds. Stakes = joint Kelly on shared sims (WINS capped; ROY x A_roy_stake_mult), total capped at A_t1_cap.", "text", italic=True)
     put(ws, "A6", "=Sim_Stale", "link"); ws["A6"].font = font(RED, bold=True)
     labels = ["Group", "Market", "Selection", "Side", "Line", "Book American", "Live price (input)", "Min acceptable price", "Book rule confirmed? (Y/N)", "Still bet?", "Fair prob", "Model prob", "EV per $1", "EV at shrink 0.75", "Stake (frac of bankroll)", "Stake $", "Consensus (WINS)", "Driver / consensus basis", "Lock (CST)", "Rule", "Live Tier 1 status", "Exchange average prob", "Blended prob (book fair + exchange) / 2", "Model vs exchange flag"]
@@ -422,7 +423,8 @@ def build_cover(wb, key):
     ws = wb.create_sheet("Cover", 0); sheet_header(ws, "Cover", span=6)
     meta = json.load(open(C("sim_run_meta.json")))
     put(ws, "A5", "NBA 2026-27 Futures Model", "text", bold=True); ws["A5"].font = font(NAVY, bold=True, size=16)
-    rows = [("Version", "v1 (G5) - 2026-10-15"), ("Data timestamp", "Odds 2026-10-15; rosters/injuries ESPN 2026-10-15; DARKO through 2026-06-03"), ("Sim N", "=M_Sims!B6"), ("Run hash", "=M_Sims!B8"), ("Run timestamp (UTC)", "=M_Sims!B5"), ("Sim status", "=Sim_Stale"),
+    from ..release.meta import META
+    rows = [("Version", f"{META['version']} (baseline tag {META['baseline_tag']})"), ("Build date", META["build_date"]), ("Prices as of", f"{META['odds_as_of']} (book odds transcription); external consensus / exchange inputs as of {META['consensus_as_of']}"), ("Data timestamp", "Rosters/injuries ESPN pulled 2026-10-15; DARKO through 2026-06-03"), ("DARKO blend", META["darko_blend_status"]), ("Sim N", "=M_Sims!B6"), ("Run hash", "=M_Sims!B8"), ("Run timestamp (UTC)", "=M_Sims!B5"), ("Sim status", "=Sim_Stale"),
             ("Model independence", "Market odds are never a model input; they enter only de-vig, edges, staking shrink and backtest benchmarks."), ("First locks", "Tue 10/20 2:10 PM CST (BOS/DET wins & playoffs; all title, conference, division, play-in, award markets)")]
     for i, (k, v) in enumerate(rows):
         put(ws, f"A{7+i}", k, "text", bold=True); put(ws, f"B{7+i}", v, "link" if str(v).startswith("=") else "text")

@@ -1,0 +1,16 @@
+{
+ "version": "v1.0-preseason.1",
+ "baseline_tag": "v1.0-preseason",
+ "odds_as_of": "2026-10-15",
+ "consensus_as_of": "2026-10-16",
+ "build_date": "2026-10-16",
+ "workbook_file": "NBA_Futures_Model_v1_20261016_MS.xlsx",
+ "workbook_title": "NBA 2026-27 Futures Model",
+ "darko_blend_status": "UNVALIDATED scenario input: production blend weight 0.5 is a documented rule; there is no point-in-time DARKO history, so DARKO never entered the historical backtest and the blend is excluded from every out-of-sample performance claim",
+ "analytic_sd_scale": 0.9423,
+ "analytic_skew_slope": -0.021175,
+ "analytic_provenance": "Display/live-reprice layer only (bets use the simulation). SD scale = least-squares fit of the formula SD to the 30 simulated SDs (100k sims, G8 build); skew slope = OLS of the 30 simulated win-distribution skewnesses on (mean wins - 41), applied as an Edgeworth skew term. Neither parameter was tuned to the 2pp check.",
+ "inputs_archive": "inputs/nba_futures_inputs_2026-10-15.tar.gz",
+ "inputs_archive_sha256": "b027f71974ff779cb40ce291ab643f978c0ada1a4471ddb68161d87f9701fc01",
+ "baseline_commit": "da40608119f53934171c416fc286a723eb8565e8"
+}

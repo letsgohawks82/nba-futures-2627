@@ -13,3 +13,5 @@ data/clean/prelock_backup/
 chain_*.sh
 nohup.out
 audit_pack/
+repro/
+.venv_cleanroom/

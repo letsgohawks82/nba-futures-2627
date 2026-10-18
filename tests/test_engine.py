@@ -60,7 +60,7 @@ def sim_invariants():
     pk = np.sort(r["pick"], axis=1)
     assert (pk == np.arange(1, 31)).all(), "picks must be a permutation of 1..30"
     assert (r["pick"][:, IDX["WAS"]] != 1).all(), "WAS cannot win #1 in 2027"
-    assert (r["pick"][:, IDX["UTA"]] > 5).all() or True
+    assert (r["pick"][:, IDX["UTA"]] > 5).all(), "UTA (restricted pick) must never land in the top 5 in any simulated lottery"
     top5_uta = (r["pick"][:, IDX["UTA"]] <= 5).mean()
     assert top5_uta == 0, f"UTA top-5 occurrence {top5_uta}"
     lp = r["lotpos"]
@@ -69,6 +69,14 @@ def sim_invariants():
     bottom3 = (lp >= 1) & (lp <= 3)
     assert (r["pick"][bottom3] <= 12).all(), "three worst records must pick <= 12"
     print("sim invariants OK:", n, "sims")
+
+def test_tiebreak_cases():
+    tb_case()
+
+
+def test_sim_invariants():
+    sim_invariants()
+
 
 if __name__ == "__main__":
     tb_case(); sim_invariants()

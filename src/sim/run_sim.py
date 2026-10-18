@@ -47,5 +47,5 @@ def main(N=100_000, seed=2026):
     return S, meta
 
 if __name__ == "__main__":
-    S, meta = main(int(sys.argv[1]) if len(sys.argv) > 1 else 100_000)
+    S, meta = main(int(sys.argv[1]) if len(sys.argv) > 1 else 100_000, int(sys.argv[2]) if len(sys.argv) > 2 else 2026)
     print(json.dumps(meta, indent=1)); print(S[["team", "wins_mean", "p_playoffs", "p_division", "p_conference", "p_title", "p_cup_group", "p_cup", "p_pick1", "p_top4"]].round(3).sort_values("p_title", ascending=False).to_string())

@@ -179,8 +179,8 @@
   ],
   [
    "Analytic vs sim P(over) deltas > 2pp (count)",
-   2.0,
-   "FLAG"
+   0.0,
+   "OK"
   ],
   [
    "Sim assumptions key matches current Assumptions (0 = match)",
@@ -257,5 +257,6 @@
  "wins_sum": 1230.0,
  "ev_parity_max_abs": 0.0015479999999994387,
  "qualifying_excel": 39,
- "qualifying_python": 39
+ "qualifying_python": 39,
+ "excel_recalc": true
 }

@@ -97,12 +97,40 @@ def post_excel(path):
     return out
 
 
+def excel_available():
+    if os.environ.get("NBA_NO_EXCEL") == "1" or "--no-excel" in sys.argv: return False
+    try:
+        import xlwings  # noqa: F401
+    except Exception:
+        return False
+    return sys.platform.startswith("win")
+
+
 if __name__ == "__main__":
-    stamp = datetime.date.today().strftime("%Y%m%d")
-    path = os.path.join(ROOT, "output", f"NBA_Futures_Model_v1_{stamp}_MS.xlsx")
+    from ..release.meta import META
+    from ..release import checks as RK
+    OUT = os.environ.get("NBA_OUTPUT_DIR") or os.path.join(ROOT, "output")       # clean-room runs write to repro/output so the committed workbook is never overwritten
+    path = os.path.join(OUT, META["workbook_file"])           # file name and dates come from params/release.json, never from the clock
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    if os.path.exists(path):          # retain prior versions
+    if os.path.exists(path) and os.environ.get("NBA_CLEANROOM") != "1":          # retain prior versions (not in the clean-room)
         shutil.copy(path, path.replace(".xlsx", f"_prev{datetime.datetime.now().strftime('%H%M%S')}.xlsx"))
     t = time.time(); build(path); print("built", path, round(time.time() - t, 1), "s")
-    res = post_excel(path); print(json.dumps(res, indent=1, default=str)[:6000])
+    if excel_available():
+        res = post_excel(path); res["excel_recalc"] = True
+    else:
+        res = dict(excel_recalc=False, note="built WITHOUT Excel: no recalculation, no dynamic-array formulas, no cached values; integrity checks are re-computed in Python by src/release/checks.py")
+        print("NOTE: Excel not available - workbook built without recalculation")
+    print(json.dumps(res, indent=1, default=str)[:6000])
     json.dump(res, open(C("workbook_build_report.json"), "w"), indent=1, default=str)
+    # fail closed: any integrity flag, failing check or error cell is a release error
+    problems = []
+    if res.get("excel_recalc"):
+        flags, computed = RK.integrity_flags(path)
+        problems += [f"{a}!{b}: {c}" for a, b, c in flags]
+        if not computed: problems.append("Checks tab has no cached statuses")
+        if res.get("overall_checks_failing"): problems.append(f"Checks overall failing = {res['overall_checks_failing']}")
+        problems += [f"error cells in {k}: {v[0]}" for k, v in res.get("errors", {}).items() if v[0]]
+    mx, bad = RK.analytic_vs_sim()
+    if bad: problems.append(f"analytic vs sim P(over) deltas > 2pp: {bad}")
+    if problems:
+        print("RELEASE ERROR (fail closed):"); [print("  -", x) for x in problems]; sys.exit(2)

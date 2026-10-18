@@ -1,0 +1,4 @@
+path,sha256,note
+data/raw/darko/darko_official_20261015.csv,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,not in data/manifest.csv (no pull-time hash was recorded); SHA-256 first recorded when the input archive was built (2026-10-18)
+data/raw/picks/hoopsrumors_2027.txt,c5b9a8aa6be06547a2bc929250b03b143d4844fe016d9da5af06813a493016b9,not in data/manifest.csv (no pull-time hash was recorded); SHA-256 first recorded when the input archive was built (2026-10-18)
+data/raw/picks/hoopsrumors_2027_text.txt,bdb7a59177473963fe2a3ce47d48e3dc86e24674fc3670812e11c4af5f197737,not in data/manifest.csv (no pull-time hash was recorded); SHA-256 first recorded when the input archive was built (2026-10-18)

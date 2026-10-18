@@ -28,7 +28,10 @@ def put(ws, ref, value, kind="formula", fmt=None, bold=False, align=None, wrap=F
     return c
 
 
-def sheet_header(ws, name, project="NBA 2026-27 Futures Model", version="v1 | 2026-10-15", span=8):
+def sheet_header(ws, name, project="NBA 2026-27 Futures Model", version=None, span=8):
+    if version is None:
+        from ..release.meta import version_label
+        version = version_label()
     ws.sheet_view.showGridLines = False
     put(ws, "A1", project, "text", bold=True); ws["A1"].font = font(NAVY, bold=True, size=12)
     put(ws, "A2", name, "text", bold=True); put(ws, "A3", f"Version: {version}", "text", italic=True)

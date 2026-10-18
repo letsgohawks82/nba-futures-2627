@@ -62,7 +62,7 @@ def build_team_ratings(wb):
 
 def build_windist(wb, o):
     ws = wb.create_sheet("M_WinDist"); sheet_header(ws, "M_WinDist - live analytic win distribution (normal approximation) vs sim; reprices when Assumptions / Overrides change")
-    put(ws, "A5", "Wins ~ Normal(mean, sd), mean = 41 + k x SRS (the calibrated projection; the sim is moment-matched to it): sd^2 = 82 p (1-p) + (82 phi(z) / sigma_game x sigma_team)^2 with p = mean/82, z = NORMSINV(p). Delta flagged when |analytic - sim| > 2pp.", "text", italic=True)
+    put(ws, "A5", "Wins ~ Normal(mean, sd) with an Edgeworth skew term (skewness = A_skew_slope x (mean - 41)), mean = 41 + k x SRS (the calibrated projection; the sim is moment-matched to it): sd^2 = 82 p (1-p) + (82 phi(z) / sigma_game x sigma_team)^2 with p = mean/82, z = NORMSINV(p). Delta flagged when |analytic - sim| > 2pp.", "text", italic=True)
     srcs = ["ours"] + REG["cons"]["order"]
     hdr = ["Team", "Line", "Mean wins (live)", "SD wins", "P(over) analytic", "P(under) analytic", "P(over) sim", "Delta (pp)", "Flag", "Model fair odds - over", "Model fair odds - under", "Book over", "Book under", "Book fair over (selected)", "Market fair median wins"]
     for k in srcs: hdr += [f"Proj: {k}", f"Residual: {k}"]
@@ -78,8 +78,8 @@ def build_windist(wb, o):
         put(ws, f"A{row}", abbr, "text")
         put(ws, f"B{row}", f"=Odds_Input!E{orow}", "link", "num1")
         put(ws, f"C{row}", f"=INDEX(M_TeamRatings!$K${tr['first']}:$K${tr['last']},MATCH(A{row},M_TeamRatings!$A${tr['first']}:$A${tr['last']},0))", "link", "num2")
-        put(ws, f"D{row}", f"=A_sdscale*SQRT(A_games*(C{row}/A_games)*(1-C{row}/A_games)+(A_games*EXP(-NORMSINV(C{row}/A_games)^2/2)/SQRT(2*PI())/A_sigma_game*A_sigma_team)^2)", "formula", "num2")
-        put(ws, f"E{row}", f"=1-NORMDIST(B{row},C{row},D{row},TRUE)", "formula", "pct"); put(ws, f"F{row}", f"=1-E{row}", "formula", "pct")
+        put(ws, f"D{row}", f"=A_sdscale*SQRT(A_games*(C{row}/A_games)*(1-C{row}/A_games)+(A_games*EXP(-(NORMSINV(C{row}/A_games)^2)/2)/SQRT(2*PI())/A_sigma_game*A_sigma_team)^2)", "formula", "num2")
+        put(ws, f"E{row}", f"=1-(NORMSDIST((B{row}-C{row})/D{row})-NORMDIST((B{row}-C{row})/D{row},0,1,FALSE)*A_skew_slope*(C{row}-A_games/2)/6*(((B{row}-C{row})/D{row})^2-1))", "formula", "pct"); put(ws, f"F{row}", f"=1-E{row}", "formula", "pct")
         put(ws, f"G{row}", f"=M_Sims!$CK{{SIMS_ROW_{r.selection}}}", "link", "pct")      # placeholder replaced in M_Sims builder
         put(ws, f"H{row}", f"=(E{row}-G{row})*100", "formula", "num1"); put(ws, f"I{row}", f'=IF(ABS(H{row})>2,"CHECK >2pp","")', "flag")
         put(ws, f"J{row}", f"=IF(E{row}>=0.5,-100*E{row}/(1-E{row}),100*(1-E{row})/E{row})", "formula", "amer"); put(ws, f"K{row}", f"=IF(F{row}>=0.5,-100*F{row}/(1-F{row}),100*(1-F{row})/F{row})", "formula", "amer")
@@ -234,7 +234,7 @@ def build_players(wb):
         put(ws, f"N{k}", f"=AND(K{k}>=A_minev,L{k}>0,M{k}>=A_minev,OR(NOT(ISNUMBER(Y{k})),AA{k}>0),NOT(AD{k}))", "formula")
         put(ws, f"Y{k}", f'=IFERROR(AVERAGEIFS(Raw_MarketRef!$G${_m0}:$G${_m1},Raw_MarketRef!$A${_m0}:$A${_m1},A{k},Raw_MarketRef!$D${_m0}:$D${_m1},B{k},Raw_MarketRef!$H${_m0}:$H${_m1},"Y"),"-")', "formula", "pct2")
         put(ws, f"Z{k}", f"=IF(ISNUMBER(Y{k}),(F{k}+Y{k})/2,F{k})", "formula", "pct2"); put(ws, f"AA{k}", f"=Z{k}*E{k}-1", "formula", "pct")
-        put(ws, f"AB{k}", f'=IF(ISNUMBER(Y{k}),IF(OR(G{k}/Y{k}>A_blend_ratio,G{k}/Y{k}<1/A_blend_ratio),"FLAG: >"&A_blend_ratio&"x apart",""),"")', "flag"); put(ws, f"AC{k}", bool(r.t1_excluded), "input"); put(ws, f"AD{k}", bool(r.display_block), "input")
+        put(ws, f"AB{k}", f'=IF(ISNUMBER(Y{k}),IF(OR(G{k}/Y{k}>A_blend_ratio,G{k}/Y{k}<1/A_blend_ratio),"DIVERGES >"&A_blend_ratio&"x vs exchange",""),"")', "flag"); put(ws, f"AC{k}", bool(r.t1_excluded), "input"); put(ws, f"AD{k}", bool(r.display_block), "input")
         put(ws, f"O{k}", f"=AND(N{k},U{k},NOT(AC{k}),F{k}>=A_t1_fair,((1-A_t1_shrink)*G{k}+A_t1_shrink*F{k})*E{k}-1>=A_minev,((1-A_t1_shrink)*H{k}+A_t1_shrink*F{k})*E{k}-1>0)", "formula")
         put(ws, f"V{k}", float(r.stake_t1_premult if r.market == "ROY" else r.stake_t1), "input", "0.0000"); put(ws, f"P{k}", f'=V{k}*IF(A{k}="ROY",A_roy_stake_mult,1)', "formula", "0.0000")
         ps_ = f"((1-A_t1_shrink)*G{k}+A_t1_shrink*F{k})"; put(ws, f"W{k}", f"=IF(1/{ps_}>=2,(1/{ps_}-1)*100,-100/(1/{ps_}-1))", "formula", "amer"); put(ws, f"X{k}", "n/a", "text"); put(ws, f"Q{k}", f'=IF(AND(O{k},ISNUMBER(A_bankroll)),P{k}*A_bankroll,"-")', "formula", "money")
