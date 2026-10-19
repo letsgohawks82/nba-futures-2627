@@ -96,3 +96,8 @@ Running state for context across sessions. Full requirements in SPEC.md (authori
 - MVP / DPOY / ROY models are DISPLAY-ONLY: voting models trained on 12-13 winners, rookie minutes unknowable pre-season, and they fail sanity checks against exchanges and the GM survey (Dybantsa ROY 46% vs ~19%, Wembanyama MVP 8% vs 33%). Revisit with a longer voting history (pre-2014 pools), a proper candidate-pool/ballot model, and a minutes model that handles Wembanyama-type availability before re-enabling.
 - Stat-leader bets are eligible only with an external reference (exchange average in Raw_MarketRef); none exists today so no player bets. Leader probabilities are very sensitive to minutes allocation (LaMelo/Gobert flip between top-3 and top-5 minutes protection).
 - Final G8 card: WAS U, UTA U, POR O, MIN NO (2.63%); held (not released): MIA U/NO, IND NO, Gobert RPG.
+
+## Post-audit status (2026-10-19)
+- Release v1.0-preseason.1 (+ history tags) audited: REPRODUCIBLE WITH LIMITATIONS (AUDIT_STATUS.md). Market alpha UNPROVEN (reports/alpha_validation.md).
+- MODEL FREEZE: no methodology/parameter/stake changes for 2026-27 (each change resets the evidence clock). Only measurement work: live/ snapshots (`python -m src.live.opportunity_log snapshot|close`), reports/bankroll_sim.md, reports/sizing_waterfall.md.
+- Decision rule (alpha_validation.md): lower 95% CLV bound > 0 with n>=100 logged sides AND card CLV > not-bet CLV; stakes are not scaled up before that.
